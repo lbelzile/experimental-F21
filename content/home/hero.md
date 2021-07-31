@@ -1,32 +1,26 @@
 ---
+# Hero widget
 widget: hero
 headless: true
+active: true
 weight: 10
-title: Online Course Template
-hero_media: student.svg
+
+title: "Program Evaluation for Public Service"
+
+# Hero image (optional). Enter filename of an image in the `static/media/` folder.
+hero_media: eval_hires.png
+
 design:
   background:
-    gradient_angle: 0
-    gradient_start: 'rgb(224,223,255)'
-    gradient_end: 'rgb(153,238,255)'
-    text_color_light: false
-cta:
-  url: course/
-  label: Explore our courses
-  icon_pack: fas
-  icon: user-graduate
-cta_alt:
-  url:
-  label:
+    # Background gradient
+    gradient_start: '#A52C60'
+    gradient_end: '#CF4446'
+
+    # Text color (true=light or false=dark).
+    text_color_light: true
+
 cta_note:
-  label:
-advanced:
-  css_class: fullscreen
+  label: PMAP 8141 • Spring 2021<br>Andrew Young School of Policy Studies<br>Georgia State University
 ---
-<br>
 
-Published with the [Wowchemy Website Builder](https://wowchemy.com/) for Hugo.
-
-Introduce your courses here.
-
-<a class="github-button" href="https://github.com/wowchemy/wowchemy-hugo-modules" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Wowchemy Website Builder for Hugo">Star Wowchemy Website Builder for Hugo</a><br><a class="github-button" href="https://github.com/wowchemy/starter-hugo-online-course" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star the Online Course template">Star the Online Course template</a><script async defer src="https://buttons.github.io/buttons.js"></script>
+**Combine research design, causal inference, and econometric tools to measure the effects of social programs**
