@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: lbelzile.github.io/math807667a/sitemap.xml
