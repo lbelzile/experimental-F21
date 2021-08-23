@@ -3,6 +3,7 @@ title: "SAT scores and college GPA"
 output: 
   html_document: 
     toc: yes
+    author: Andrew Heiss
 ---
 
 # Introduction 

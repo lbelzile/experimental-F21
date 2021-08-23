@@ -2,6 +2,7 @@
 title: "Generating random numbers"
 linktitle: "Random numbers"
 date: "2020-10-31"
+author: Andrew Heiss
 menu:
   example:
     parent: Simulated data
@@ -11,12 +12,12 @@ toc: true
 editor_options:
   chunk_output_type: console
 ---
-<script src="/rmarkdown-libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="/rmarkdown-libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="/lbelzile.github.io/math807667armarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/lbelzile.github.io/math807667armarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
-In your final project, you will generate a synthetic dataset and use it to conduct an evaluation of some social program. Generating fake or simulated data is an *incredibly powerful skill*, but it takes some practice. Here are a bunch of helpful resources and code examples of how to use different R functions to generate random numbers that follow specific distributions (or probability shapes).
+Generating fake or simulated data is an *incredibly powerful skill*, but it takes some practice. Here are a bunch of helpful resources and code examples of how to use different R functions to generate random numbers that follow specific distributions (or probability shapes).
 
 This example focuses primarily on distributions. Each of the columns you'll generate will be completely independent from each other and there will be no correlation between them. [The example for generating synthetic data](/example/synthetic-data/) provides code and a bunch of examples of how to build in correlations between columns.
 
@@ -163,7 +164,7 @@ If you don't specify `replace = TRUE`, and you try to choose more numbers than a
 # Choose 8 numbers between 1 and 6, but don't replace them.
 # This won't work!
 sample(possible_answers, size = 8)
-## Error in sample.int(length(x), size, replace, prob): cannot take a sample larger than the population when 'replace = FALSE'
+## Error in sample.int(length(x), size, replace, prob): impossible de prendre un échantillon plus grand que la population lorsque 'replace = FALSE'
 ```
 
 It's hard to see patterns in the outcomes when generating just a handful of numbers, but easier when you do a lot. Let's roll a die 1,000 times:
@@ -176,7 +177,7 @@ die <- tibble(value = sample(possible_answers,
                              replace = TRUE))
 die %>%
   count(value)
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   value     n
 ##   <dbl> <int>
 ## 1     1   161
@@ -191,7 +192,7 @@ ggplot(die, aes(x = value)) +
   labs(title = "1,000 rolls of a single die")
 ```
 
-<img src="/example/random-numbers_files/figure-html/dice-roll-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/dice-roll-1.png" width="75%" style="display: block; margin: auto;" />
 
 In this case, 3 and 6 came up more often than the others, but that's just because of randomness. If we rolled the die 100,000 times, the bars should basically be the same:
 
@@ -207,7 +208,7 @@ ggplot(die, aes(x = value)) +
   labs(title = "100,000 rolls of a single die")
 ```
 
-<img src="/example/random-numbers_files/figure-html/dice-roll-lots-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/dice-roll-lots-1.png" width="75%" style="display: block; margin: auto;" />
 
 #### `runif()`
 
@@ -249,7 +250,7 @@ ggplot(lots_of_numbers, aes(x = x)) +
   geom_histogram(binwidth = 1, color = "white", boundary = 18)
 ```
 
-<img src="/example/random-numbers_files/figure-html/runif-plot-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/runif-plot-1.png" width="75%" style="display: block; margin: auto;" />
 
 ### Normal distribution
 
@@ -282,7 +283,7 @@ set.seed(1234)
 
 plot_data <- tibble(x = rnorm(1000, mean = 10, sd = 4))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##        x
 ##    <dbl>
 ## 1  5.17 
@@ -296,7 +297,7 @@ ggplot(plot_data, aes(x = x)) +
   geom_histogram(binwidth = 1, boundary = 0, color = "white")
 ```
 
-<img src="/example/random-numbers_files/figure-html/normal-10-4-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-10-4-1.png" width="75%" style="display: block; margin: auto;" />
 
 Neat. Most numbers are around 10; lots are between 5 and 15; some go as high as 25 and as low as −5.
 
@@ -308,7 +309,7 @@ set.seed(1234)
 
 plot_data <- tibble(x = rnorm(1000, mean = 10, sd = 10))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##        x
 ##    <dbl>
 ## 1  -2.07
@@ -322,7 +323,7 @@ ggplot(plot_data, aes(x = x)) +
   geom_histogram(binwidth = 1, boundary = 0, color = "white")
 ```
 
-<img src="/example/random-numbers_files/figure-html/normal-10-10-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-10-10-1.png" width="75%" style="display: block; margin: auto;" />
 
 It's still centered around 10, but now you get values as high as 40 and as low as −20. The data is more spread out now.
 
@@ -336,7 +337,7 @@ fake_people <- tibble(income = rnorm(1000, mean = 40000, sd = 15000),
                       age = rnorm(1000, mean = 25, sd = 8),
                       education = rnorm(1000, mean = 16, sd = 4))
 head(fake_people)
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   income   age education
 ##    <dbl> <dbl>     <dbl>
 ## 1 21894. 15.4      12.1 
@@ -361,7 +362,7 @@ fake_education <- ggplot(fake_people, aes(x = education)) +
 fake_income + fake_age + fake_education
 ```
 
-<img src="/example/random-numbers_files/figure-html/reasonable-normal-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/reasonable-normal-1.png" width="100%" style="display: block; margin: auto;" />
 
 These three columns all have different centers and spreads. Income is centered around <span>$45,000</span>, going up to almost <span>$100,000</span> and as low as <span>−$10,000</span>; age is centered around 25, going as low as 0 and as high as 50; education is centered around 16, going as low as 3 and as high as 28. Cool.
 
@@ -388,7 +389,7 @@ set.seed(1234)
 
 plot_data <- tibble(fake_age = rnorm(1000, mean = 14, sd = 5))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   fake_age
 ##      <dbl>
 ## 1     7.96
@@ -402,7 +403,7 @@ ggplot(plot_data, aes(x = fake_age)) +
   geom_histogram(binwidth = 2, color = "white", boundary = 0)
 ```
 
-<img src="/example/random-numbers_files/figure-html/nontruncated-normal-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/nontruncated-normal-1.png" width="75%" style="display: block; margin: auto;" />
 
 To fix this, truncate the range at 12 and 21:
 
@@ -414,7 +415,7 @@ set.seed(1234)
 
 plot_data <- tibble(fake_age = rtruncnorm(1000, mean = 14, sd = 5, a = 12, b = 21))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   fake_age
 ##      <dbl>
 ## 1     15.4
@@ -428,7 +429,7 @@ ggplot(plot_data, aes(x = fake_age)) +
   geom_histogram(binwidth = 1, color = "white", boundary = 0)
 ```
 
-<img src="/example/random-numbers_files/figure-html/truncated-normal-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/truncated-normal-1.png" width="75%" style="display: block; margin: auto;" />
 
 And voila! A bunch of people between 12 and 21, with most around 14, with no invalid values.
 
@@ -484,7 +485,7 @@ ggplot(plot_data, aes(x = exam_score)) +
   scale_x_continuous(breaks = 0:10)
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-example1-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-example1-1.png" width="75%" style="display: block; margin: auto;" />
 
 Most people score around 6, with a bunch at 5 and 7, and fewer in the tails. Importantly, it's *not* centered at 6—the distribution is asymmetric.
 
@@ -498,7 +499,7 @@ ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 6, shape2 = 4))
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-6-4-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-6-4-1.png" width="75%" style="display: block; margin: auto;" />
 
 Again, there's a peak at 0.6 (or 6), which is what we expected.
 
@@ -510,7 +511,7 @@ ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 60, shape2 = 40))
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-60-44-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-60-44-1.png" width="75%" style="display: block; margin: auto;" />
 
 So far all these curves look like normal distributions, just slightly skewed. But when if most people score 90–100%? Or most fail? A Beta distribution can handle that too:
 
@@ -521,7 +522,7 @@ ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 1, shape2 = 9), color = "red")
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-1-9-9-1-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-1-9-9-1-1.png" width="75%" style="display: block; margin: auto;" />
 
 With `shape1 = 9` and `shape2 = 1` (or `\(\frac{9}{9 + 1}\)`) we get most around 90%, while `shape1 = 1` and `shape2 = 9` (or `\(\frac{1}{1 + 9}\)`) gets us most around 10%.
 
@@ -536,7 +537,7 @@ ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 13, shape2 = 17), color = "brown")
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-lots-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-lots-1.png" width="75%" style="display: block; margin: auto;" />
 
 In real life, if I don't want to figure out the math behind the `\(\frac{\alpha}{\alpha + \beta}\)` shape values, I end up just choosing different numbers until it looks like the shape I want, and then I use `rbeta()` with those parameter values. Like, how about we generate some numbers based on the red line above, with `shape1 = 2` and `shape2 = 5`, which looks like it should be centered around 0.2ish ($\frac{2}{2 + 5} = 0.2857$):
 
@@ -547,7 +548,7 @@ set.seed(1234)
 plot_data <- tibble(thing = rbeta(1000, shape1 = 2, shape2 = 5)) %>%
   mutate(thing = thing * 100)
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   thing
 ##   <dbl>
 ## 1 10.1 
@@ -561,7 +562,7 @@ ggplot(plot_data, aes(x = thing)) +
   geom_histogram(binwidth = 2, color = "white", boundary = 0)
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-2-5-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-2-5-1.png" width="75%" style="display: block; margin: auto;" />
 
 It worked! Most values are around 20ish, but some go up to 60–80.
 
@@ -607,7 +608,7 @@ fake_elections <- tibble(winner = sample(candidates,
                                          replace = TRUE))
 fake_elections %>%
   count(winner)
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   winner       n
 ##   <chr>    <int>
 ## 1 Person 1   792
@@ -617,7 +618,7 @@ ggplot(fake_elections, aes(x = winner)) +
   geom_bar()
 ```
 
-<img src="/example/random-numbers_files/figure-html/fake-election-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/fake-election-1.png" width="75%" style="display: block; margin: auto;" />
 
 Person 1 won 792 of the elections. Neat.
 
@@ -667,17 +668,17 @@ plot_data <- tibble(thing = rbinom(2000, 1, prob = 0.6)) %>%
 plot_data %>%
   count(thing) %>%
   mutate(proportion = n / sum(n))
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   thing     n proportion
 ##   <fct> <int>      <dbl>
-## 1 0       840      0.42 
-## 2 1      1160      0.580
+## 1 0       840       0.42
+## 2 1      1160       0.58
 
 ggplot(plot_data, aes(x = thing)) +
   geom_bar()
 ```
 
-<img src="/example/random-numbers_files/figure-html/plot-binomial-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-binomial-1.png" width="75%" style="display: block; margin: auto;" />
 
 58% of the 2,000 fake people here were 1/TRUE/yes, which is close to the goal of 60%. Perfect.
 
@@ -729,7 +730,7 @@ set.seed(1234)
 
 plot_data <- tibble(num_kids = rpois(500, lambda = 1))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   num_kids
 ##      <int>
 ## 1        0
@@ -743,7 +744,7 @@ plot_data %>%
   group_by(num_kids) %>%
   summarize(count = n()) %>%
   mutate(proportion = count / sum(count))
-## # A tibble: 6 x 3
+## # A tibble: 6 × 3
 ##   num_kids count proportion
 ##      <int> <int>      <dbl>
 ## 1        0   180      0.36 
@@ -757,7 +758,7 @@ ggplot(plot_data, aes(x = num_kids)) +
   geom_bar()
 ```
 
-<img src="/example/random-numbers_files/figure-html/plot-poisson-lambda1-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-poisson-lambda1-1.png" width="75%" style="display: block; margin: auto;" />
 
 Here 75ish% of families have 0–1 kids (36% + 37.4%), 17% have 2 kids, 6% have 3, 2% have 4, and only 0.6% have 5.
 
@@ -769,7 +770,7 @@ set.seed(1234)
 
 plot_data <- tibble(num_kids = rpois(500, lambda = 2))
 head(plot_data)
-## # A tibble: 6 x 1
+## # A tibble: 6 × 1
 ##   num_kids
 ##      <int>
 ## 1        0
@@ -783,12 +784,12 @@ plot_data %>%
   group_by(num_kids) %>%
   summarize(count = n()) %>%
   mutate(proportion = count / sum(count))
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##   num_kids count proportion
 ##      <int> <int>      <dbl>
 ## 1        0    62      0.124
 ## 2        1   135      0.27 
-## 3        2   145      0.290
+## 3        2   145      0.29 
 ## 4        3    88      0.176
 ## 5        4    38      0.076
 ## 6        5    19      0.038
@@ -799,7 +800,7 @@ ggplot(plot_data, aes(x = num_kids)) +
   geom_bar()
 ```
 
-<img src="/example/random-numbers_files/figure-html/plot-poisson-lambda3-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-poisson-lambda3-1.png" width="75%" style="display: block; margin: auto;" />
 
 Now most families have 1–2 kids. Cool.
 
@@ -825,7 +826,7 @@ ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 2, shape2 = 5))
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-2-5-income-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-2-5-income-1.png" width="75%" style="display: block; margin: auto;" />
 
 If we generate random numbers from this distribution, they'll all be stuck between 0 and 1:
 
@@ -839,7 +840,7 @@ ggplot(fake_people, aes(x = income)) +
   geom_histogram(binwidth = 0.1, color = "white", boundary = 0)
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-income-not-scaled-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-income-not-scaled-1.png" width="75%" style="display: block; margin: auto;" />
 
 We can take those underling 0–1 values and rescale them to some other range using the `rescale()` function. We can specify the minimum and maximum values in the `to` argument. Here we'll scale it up so that 0 = <span>$10,000</span> and 1 = <span>$100,000</span>. Our rescaled version follows the same skewed Beta distribution shape, but now we're using better values!
 
@@ -850,7 +851,7 @@ library(scales)
 fake_people_scaled <- fake_people %>%
   mutate(income_scaled = rescale(income, to = c(10000, 100000)))
 head(fake_people_scaled)
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   income income_scaled
 ##    <dbl>         <dbl>
 ## 1 0.101         21154.
@@ -864,7 +865,7 @@ ggplot(fake_people_scaled, aes(x = income_scaled)) +
   geom_histogram(binwidth = 5000, color = "white", boundary = 0)
 ```
 
-<img src="/example/random-numbers_files/figure-html/beta-income-scaled-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-income-scaled-1.png" width="75%" style="display: block; margin: auto;" />
 
 This works for anything, really. For instance, instead of specifying a mean and standard deviation for a normal distribution and hoping that the generated values don't go too high or too low, you can generate a normal distribution with a mean of 0 and standard deviation of 1 and then rescale it to the range you want:
 
@@ -875,7 +876,7 @@ set.seed(1234)
 fake_data <- tibble(age_not_scaled = rnorm(1000, mean = 0, sd = 1)) %>%
   mutate(age = rescale(age_not_scaled, to = c(18, 65)))
 head(fake_data)
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   age_not_scaled   age
 ##            <dbl> <dbl>
 ## 1         -1.21   33.6
@@ -894,7 +895,7 @@ plot_scaled <- ggplot(fake_data, aes(x = age)) +
 plot_unscaled + plot_scaled
 ```
 
-<img src="/example/random-numbers_files/figure-html/normal-scaled-up-1.png" width="75%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-scaled-up-1.png" width="75%" style="display: block; margin: auto;" />
 
 This gives you less control over the center of the distribution (here it happens to be 40 because that's in the middle of 18 and 65), but it gives you more control over the edges of the distribution.
 
@@ -992,7 +993,7 @@ example_fake_people <- tibble(
   mutate(happiness = rescale(happiness, to = c(1, 8)))
 
 head(example_fake_people)
-## # A tibble: 6 x 9
+## # A tibble: 6 × 9
 ##      id opinion             age income education happiness treatment size  family_size
 ##   <int> <chr>             <dbl>  <dbl>     <dbl>     <dbl> <lgl>     <chr>       <dbl>
 ## 1     1 Agree              31.7 43900.      18.3      7.20 TRUE      Large           1
@@ -1009,6 +1010,7 @@ plot_opinion <- ggplot(example_fake_people, aes(x = opinion)) +
   geom_bar() +
   guides(fill = FALSE) +
   labs(title = "Opinion (uniform with sample())")
+## Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 
 plot_age <- ggplot(example_fake_people, aes(x = age)) +
   geom_histogram(binwidth = 5, color = "white", boundary = 0) +
@@ -1043,11 +1045,11 @@ plot_family <- ggplot(example_fake_people, aes(x = family_size)) +
 (plot_opinion + plot_age) / (plot_income + plot_education)
 ```
 
-<img src="/example/random-numbers_files/figure-html/example-plots-1-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/example-plots-1-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 ```r
 (plot_happiness + plot_treatment) / (plot_size + plot_family)
 ```
 
-<img src="/example/random-numbers_files/figure-html/example-plots-2-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/example-plots-2-1.png" width="100%" style="display: block; margin: auto;" />

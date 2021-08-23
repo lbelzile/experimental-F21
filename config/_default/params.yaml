@@ -10,7 +10,7 @@
 #   Latest themes (may require updating): https://sourcethemes.com/academic/themes/
 #   Browse built-in themes in `themes/academic/data/themes/`
 #   Browse user installed themes in `data/themes/`
-theme: "inferno"
+theme: "hec"
 
 # Enable users to switch between day and night mode?
 day_night: false
@@ -38,7 +38,7 @@ font_size: "L"
 site_type: "Course"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description: "Use modern statistical and data scientific tools to measure causal effects and evaluate public policy"
+description: "Basics of design of experiments and statistical analysis with a focus on randomization, blocking and multi-way analysis of variance. Introduction to causal inference and mediation analysis."
 
 
 ############################
@@ -108,11 +108,11 @@ instructor:
     I am best reached by email
 
 course:
-  number: "MATh 80667A"
+  number: "MATH 80667A"
   semester: "Fall 2021"
   days: "Friday"
   time: "8:30-11:30"
-  # location: "Online only (thanks, COVID-19, for ruining everything)"
+  location: "Côte-Sainte-Catherine building, room [Béton Grilli](https://www.hec.ca/campus/edifices/cote_sainte_catherine/1er_etage/salles_cours/betongrilli.html)"
   github: "lbelzile/experimental"
   copyrightYear: "2021"
 
@@ -126,7 +126,7 @@ university:
 ############################
 
 # Default image for social sharing and search engines. Place image in `static/media/` folder and specify image name here.
-# sharing_image: "social-image-sp21.png"
+sharing_image: "social-image-f21.png"
 
 # Twitter username (without @). Used when a visitor shares your site on Twitter.
 # twitter: "andrewheiss"
@@ -174,7 +174,7 @@ copyright_license:
   allow_derivatives: false
   share_alike: true
   allow_commercial: false
-  notice: 'This work is licensed under {license}'
+  notice: 'This work is based on [Dr. Andrew Heiss](https://evalf20.classes.andrewheiss.com) and is licensed under {license}'
 
 # Abstract length (characters) in the Compact and Portfolio Card list views. Also, see `summaryLength` in `config.toml`.
 abstract_length: 135

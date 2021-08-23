@@ -1,6 +1,7 @@
 ---
 title: "Welcome to R, RStudio, and the tidyverse!"
 linktitle: "R, RStudio, and the tidyverse"
+author: Andrew Heiss
 date: "2020-08-24"
 menu:
   example:

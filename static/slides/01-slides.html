@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Evaluation and the causal revolution</title>
+    <title>Introduction to experimental design</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Andrew Heiss" />
-    <meta name="date" content="2020-12-30" />
-    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <meta name="author" content="Léo Belzile" />
+    <meta name="date" content="2021-08-22" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/tile-view-0.2.1/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view-0.2.1/tile-view.js"></script>
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
     <link rel="stylesheet" href="css/ath-slides.css" type="text/css" />
     <link rel="stylesheet" href="css/ath-inferno-fonts.css" type="text/css" />
     <link rel="stylesheet" href="css/animate.css" type="text/css" />
@@ -23,16 +23,16 @@
 
 
 
-class: center middle main-title section-title-7
+class: center middle main-title section-title-1
 
-# Evaluation and the&lt;br&gt;causal revolution
+# Introduction to experimental design
 
 .class-info[
 
 **Session 1**
 
-.light[PMAP 8521: Program evaluation&lt;br&gt;
-Andrew Young School of Policy Studies
+.light[MATH 80667A: Experimental Design and Statistical Methods &lt;br&gt;for Quantitative Research in Management &lt;br&gt;
+HEC Montréal
 ]
 
 ]
@@ -42,692 +42,26 @@ Andrew Young School of Policy Studies
 name: outline
 class: title title-inv-8
 
-# Plan for today
-
---
-
-.box-5.medium.sp-after-half[Data science and public service]
-
---
-
-.box-3.medium.sp-after-half[Evidence, evaluation, and causation]
-
+# Outline
 --
 
 .box-6.medium.sp-after-half[Class details]
 
----
+--
 
-layout: false
-name: ds-ps
-class: center middle section-title section-title-5 animated fadeIn
-
-# Data science and&lt;br&gt;public service
-
----
-
-class: title title-5
-
-# Data and government
-
-.pull-left-3.center[
-&lt;figure&gt;
-  &lt;img src="img/01/usds.png" alt="US Digital Service" title="US Digital Service" width="90%"&gt;
-&lt;/figure&gt;
-]
+.box-5.medium.sp-after-half[Motivation]
 
 --
 
-.pull-middle-3.center[
-&lt;figure&gt;
-  &lt;img src="img/01/dj-patil.jpg" alt="DJ Patil" title="DJ Patil" width="100%"&gt;
-  &lt;figcaption&gt;DJ Patil&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
+.box-3.medium.sp-after-half[Experimental vs observational]
 
 --
 
-.pull-right-3[
-&amp;nbsp;
-
-.box-inv-5["To responsibly unleash the power of data to benefit all Americans"]
-]
-
-???
-
-DJ Patil, ["What Makes a Radical and Revolutionary Technology?](https://www.youtube.com/watch?v=UOoMzaWOQJA)
+.box-2.medium.sp-after-half[Key notions]
 
 ---
 
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/ddji.png" alt="Obama's Data-Driven Justice Initiative" title="Obama's Data-Driven Justice Initiative" width="70%"&gt;
-&lt;/figure&gt;
-]
 
-???
-
-11.4 million people + 23 days
-
-Data shared between agencies - arresting officer checks database, sees if person has been cycling, sees if they need mental health services
-
-Two jails in Florida closed after this
-
-https://obamawhitehouse.archives.gov/the-press-office/2016/06/30/fact-sheet-launching-data-driven-justice-initiative-disrupting-cycle
-
----
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/nola.jpg" alt="New Orleans hackathon" title="New Orleans hackathon" width="70%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-class: bg-full
-background-image: url("img/01/open-city-all.png")
-
-???
-
-http://us-cities.survey.okfn.org/
-
----
-
-class: bg-full
-background-image: url("img/01/open-city-atl.png")
-
-???
-
-http://us-cities.survey.okfn.org/place/atlanta
-
----
-
-class: bg-full
-background-image: url("img/01/dataset-search.png")
-
-???
-
-https://datasetsearch.research.google.com/
-
----
-
-class: middle
-
-.box-5.large[How do you use all this data&lt;br&gt;to make the world better?]
-
----
-
-class: middle
-
-.box-5.large[Analyze it and&lt;br&gt;uncover insights!]
-
-.box-inv-5[(and take this class!)]
-
----
-
-layout: true
-class: title title-5
-
----
-
-# What is "statistics"?
-
-&amp;nbsp;
-
-.box-inv-5.medium[Collecting and analyzing data from a representative sample in order to make inferences about a whole population]
-
----
-
-# What is "data science"?
-
-.box-inv-5.medium.sp-after[Turning raw data into&lt;br&gt;understanding, insight,&lt;br&gt;and knowledge]
-
---
-
-.pull-left-3[
-.box-5.medium[&amp;emsp;Collect&amp;emsp;]
-]
-
-.pull-middle-3[
-.box-5.medium[&amp;emsp;Analyze&amp;emsp;]
-]
-
-.pull-right-3[
-.box-5.medium[Communicate]
-]
-
----
-
-# What's the difference?
-
-.pull-left.center[
-&lt;figure&gt;
-  &lt;img src="img/01/ds-venn.png" alt="Data science Venn diagram" title="Data science Venn diagram" width="90%"&gt;
-&lt;/figure&gt;
-]
-
-.pull-right[
-.box-inv-5.medium[Collect]
-
-.box-inv-5.medium[Analyze]
-
-.box-5.medium[Communicate]
-]
-
----
-
-# What is "program evaluation"?
-
-.box-inv-5.medium[Measuring the effect of&lt;br&gt;social programs on society]
-
-.pull-left[
-.box-5[.medium[**Data science**]&lt;br&gt;(data + statistics +&lt;br&gt;communication)]
-]
-
-.pull-right[
-.box-5[.medium[**Causal inference**]&lt;br&gt;(DAGs + econometrics)]
-]
-
----
-
-layout: false
-name: evidence-evaluation-causation
-class: center middle section-title section-title-3 animated fadeIn
-
-# Evidence, evaluation,&lt;br&gt;and causation
-
----
-
-layout: true
-class: title title-3
-
----
-
-# Evidence-based medicine
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/salk.jpg" alt="Salk trials" title="Salk trials" width="60%"&gt;
-&lt;/figure&gt;
-]
-
-???
-
-Polio shots administered blindly with placebo - kids didn't know, doctor didn't know (double blind) - effect found
-
-Why not just use those who didn't get a shot as the control group? Why placebo? Kids who opted out were poor (which actually had a lower incidence rate), so you can't compare them with the rich (which had higher incidence rate)
-
-All drugs get the safety and efficacy requirement and double blind RCTs after that
-
-https://www.npr.org/sections/health-shots/2020/05/22/860789014/the-race-for-a-polio-vaccine-differed-from-the-quest-to-prevent-coronavirus
-
----
-
-# Modern evidence-based medicine
-
-.box-inv-3.medium[Apply evidence to clinical&lt;br&gt;treatment decisions]
-
---
-
-.box-inv-3.medium.sp-after[Move away from clinical judgment&lt;br&gt;and "craft knowledge"]
-
---
-
-.box-3.medium[Is this good?]
-
-???
-
-No, this isn’t the greatest. Push for evidence-based practice can crowd out clinical judgment, which is valuable – we can’t ignore it or dismiss it
-
-Doctors have seen things in the past. Lady Sybil in Downton Abbey and preeclampsia - family doctor knew more about the condition and Sybil—he had intuition and experience—but he was ignored
-
----
-
-# Evidence-based policy
-
---
-
-.box-inv-3.medium[RAND health insurance study]
-
---
-
-.box-inv-3.medium[Oregon Medicaid expansion]
-
---
-
-.box-inv-3.medium[HUD's Moving to Opportunity]
-
---
-
-.box-inv-3.medium[Tennessee STAR]
-
-???
-
-- RAND: In a large-scale, multiyear experiment, participants who paid for a share of their health care used fewer health services than a comparison group given free care. It concluded that cost sharing reduced "inappropriate or unnecessary" medical care (overutilization), but also reduced "appropriate or needed" medical care.
-- Oregon: ongoing
-- MTO: Researchers found that voucher recipients lived in lower-crime neighborhoods and generally had better units than the control group families, but the experiment had no impact on earnings or educational attainment. It did, however, have unexpected results in health and happiness. Parents in families who moved to low-poverty areas had lower rates of obesity and depression, and positive impacts on behavior and outlook among young women (but not young men)
-- STAR: smaller class sizes lead to better outcomes
-
----
-
-# Policy evidence industry
-
---
-
-.box-inv-3.medium[Jameel Poverty Action Lab (J-PAL)]
-
---
-
-.box-inv-3.medium[Campbell Collaboration]
-
-???
-
-- https://www.povertyactionlab.org/
-- https://campbellcollaboration.org/
-
----
-
-layout: false
-
-&amp;nbsp;
-
-.box-3.large[Should we have evidence for&lt;br&gt;every policy or program?]
-
---
-
-.box-inv-3.medium[**No!**]
-
---
-
-.box-inv-3[Science vs. art/craft/intuition]
-
----
-
-.pull-left.center[
-&lt;figure&gt;
-  &lt;img src="img/01/ellie-smoking.png" alt="No RCTs for smoking" title="No RCTs for smoking" width="100%"&gt;
-&lt;/figure&gt;
-]
-
---
-
-.pull-right.center[
-&lt;figure&gt;
-  &lt;img src="img/01/drink-id.jpg" alt="Drink ID sign" title="Drink ID sign" width="70%"&gt;
-&lt;/figure&gt;
-]
-
-???
-
-https://twitter.com/epiellie/status/1017622949799571456?s=12
-
-In the 1970s, experts were saying that reducing the drinking age would be fine - 26 states did - created a natural quasi-experiment for researchers - Cook then found that highway fatalities increase by 10% for 18–20-year-olds. That wouldn't have been possible without legislators inadvertently performing the experiment, paving the way for better science 
-
-So knowledge flows between the two sides - use innovation from administrators as the basis for better science 
-
-
----
-
-&amp;nbsp;
-
-.box-3.large[Where does program evaluation&lt;br&gt;fit with all this?]
-
---
-
-.box-inv-3[It's a method for collecting evidence&lt;br&gt;for policies and programs]
-
----
-
-layout: true
-class: title title-3
-
----
-
-# Types of evaluation
-
-.pull-left.center[
-&lt;figure&gt;
-  &lt;img src="img/01/rossi.jpg" alt="Rossi, Evaluation" title="Rossi, Evaluation" width="75%"&gt;
-&lt;/figure&gt;
-]
-
-.pull-right[
-.box-inv-3[Needs assessment]
-
-.box-inv-3[Design and&lt;br&gt;theory assessment]
-
-.box-inv-3[Process evaluation&lt;br&gt;and monitoring]
-
-.box-inv-3[Impact evaluation]
-
-.box-inv-3[Efficiency evaluation (CBA)]
-]
-
----
-
-layout: false
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/psd-logic-model.png" alt="PSD logic model" title="PSD logic model" width="70%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-layout: true
-class: title title-3
-
----
-
-# Theories of change
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/psd-impact-theory.png" alt="PSD impact theory" title="PSD impact theory" width="100%"&gt;
-&lt;/figure&gt;
-]
-
-.box-inv-3[Impact evaluation!]
-
----
-
-layout: false
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/wb-eval.jpg" alt="Impact Evaluation in Practice" title="Impact Evaluation in Practice" width="40%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-class: title title-3
-
-# Theory → impact
-
-&lt;figure&gt;
-  &lt;img src="img/01/psd-program-effect.png" alt="Program effect" title="Program effect" width="100%"&gt;
-&lt;/figure&gt;
-
----
-
-class: middle
-
-&lt;figure&gt;
-  &lt;img src="img/01/psd-results.png" alt="PSD program effect" title="PSD program effect" width="100%"&gt;
-&lt;/figure&gt;
-
----
-
-name: evidence-evaluation-causation1
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/godwins-law.png" alt="Godwin's Law" title="Godwin's Law" width="50%"&gt;
-&lt;/figure&gt;
-]
-
-???
-
-https://en.wikipedia.org/wiki/Godwin%27s_law
-
----
-
-class: title title-3
-
-# Godwin's Law for statistics
-
---
-
-.box-inv-3.medium[Correlation does not&lt;br&gt;imply causation]
-
---
-
-.box-3[Except when it does]
-
---
-
-.box-3[Even if it doesn't,&lt;br&gt;this phrase is useless&lt;br&gt;and kills discussion]
-
----
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/slate-title.png" alt="Slate headline" title="Slate headline" width="80%"&gt;
-&lt;/figure&gt;
-
-&lt;hr&gt;
-
-&lt;figure&gt;
-  &lt;img src="img/01/slate-quote.png" alt="Slate quote" title="Slate quote" width="80%"&gt;
-&lt;/figure&gt;
-]
-
-???
-
-https://slate.com/technology/2012/10/correlation-does-not-imply-causation-how-the-internet-fell-in-love-with-a-stats-class-cliche.html
-
----
-
-layout: true
-class: title title-3
-
----
-
-# Correlation vs. causation
-
-.pull-left[
-.box-inv-3.medium[How do we figure out correlation?]
-]
-
-.pull-right[
-.box-inv-3.medium[How do we figure out causation?]
-]
-
----
-
-# Correlation vs. causation
-
-.pull-left[
-.box-inv-3.medium[How do we figure out correlation?]
-
-.box-3[Math and statistics]
-]
-
-.pull-right[
-.box-inv-3.medium[How do we figure out causation?]
-]
-
----
-
-# Correlation vs. causation
-
-.pull-left[
-.box-inv-3.medium[How do we figure out correlation?]
-
-.box-3[Math and statistics]
-]
-
-.pull-right[
-.box-inv-3.medium[How do we figure out causation?]
-
-.box-3[Philosophy. No math.]
-]
-
----
-
-layout: false
-class: middle
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/john-tweets.png" alt="John Holbein on causality" title="John Holbein on causality" width="70%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-layout: true
-class: title title-3
-
----
-
-# How does we know if **X** causes **Y**?
-
---
-
-.box-inv-3.medium[**X** causes **Y** if…]
-
---
-
-.box-inv-3.medium[…we intervene and change **X**&lt;br&gt;without changing anything else…]
-
---
-
-.box-inv-3.medium[…and **Y** changes]
-
----
-
-# **Y** "listens to" **X**
-
---
-
-.box-inv-3["A variable **X** is a cause of a variable **Y** if **Y** in any way relies on **X** for its value.… **X** is a cause of **Y** if **Y** listens to **X** and decides its value in response to what it hears"&lt;br&gt;(Pearl, Glymour, and Jewell 2016, 5–6)]
-
---
-
-.box-inv-3[**Y** doesn't necessarily listen only to **X**]
-
---
-
-.box-inv-3[A light switch causes a light to go on, but not&lt;br&gt;if the bulb is burned out (no **Y** despite **X**), or if&lt;br&gt;the light was already on (**Y** without **X**)]
-
----
-
-# Causal relationships?
-
---
-
-.box-inv-3.medium[Lighting fireworks causes noise]
-
---
-
-.box-inv-3.medium[Rooster crows cause the sunrise]
-
---
-
-.box-inv-3.medium[Getting an MPA/MPP increases your earnings]
-
---
-
-.box-inv-3.medium[Colds go away a few days&lt;br&gt;after you take vitamin C]
-
----
-
-# Causation
-
-.box-inv-3.medium[Causation =&lt;br&gt;Correlation + time order +&lt;br&gt;nonspuriousness]
-
---
-
-.box-3[How do you know if you have it right?]
-
---
-
-.box-3[You need a philosophical model]
-
---
-
-.box-3[That's what this class is for!]
-
----
-
-# The causal revolution
-
-.pull-left-narrow[
-&lt;figure&gt;
-  &lt;img src="img/01/book-of-why.jpg" alt="The Book of Why" title="The Book of Why" width="100%"&gt;
-&lt;/figure&gt;
-]
-
-.pull-right-wide.center[
-&lt;figure&gt;
-  &lt;img src="img/01/judea-pearl.jpg" alt="Judea Pearl" title="Judea Pearl" width="90%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-# Causal diagrams
-
-.box-inv-3.medium[Directed acyclic graphs (DAGs)]
-
-.pull-left[
-
-.box-3.SMALL[Graphical model of the process that generates the data]
-
-.box-3.SMALL[Maps your philosophical model]
-
-.box-3.SMALL[Fancy math ("*do*-calculus") tells you what to control for to isolate and identify causation]
-
-]
-
-.pull-right[
-
-&lt;img src="01-slides_files/figure-html/simple-dag-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-layout: false
-
-&lt;img src="01-slides_files/figure-html/edu-earn-simple-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="01-slides_files/figure-html/edu-earn-full-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="01-slides_files/figure-html/smoking-dag-1.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-
----
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/dagitty-model.png" alt="FASD DAG" title="FASD DAG" width="60%"&gt;
-  &lt;figcaption&gt;Effect of smoking on fetal alcohol syndrome&lt;/figcaption&gt;
-&lt;/figure&gt;
-]
-
-???
-
-https://link.springer.com/article/10.1007/s00787-018-1264-3
-
-
----
-
-class: bg-full
-background-image: url("img/01/nyt-dag1.png")
-
-???
-
-https://twitter.com/andrewheiss/status/1208836534285340673
-
----
-
-class: bg-full
-background-image: url("img/01/nyt-dag2.png")
-
-???
-
-https://twitter.com/andrewheiss/status/1208836534285340673
-
----
 
 layout: false
 name: class-details
@@ -737,150 +71,111 @@ class: center middle section-title section-title-6 animated fadeIn
 
 ---
 
-layout: true
 class: title title-6
 
----
-
-# Plan for the class
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/eval-flowchart.png" alt="Class flowchart" title="Class flowchart" width="100%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-# Textbooks
-
-.pull-left-3.center[
-&lt;figure&gt;
-  &lt;img src="img/01/wb-eval.jpg" alt="Impact Evaluation in Practice" title="Impact Evaluation in Practice" width="100%"&gt;
-&lt;/figure&gt;
-]
-
-.pull-middle-3.center[
-&lt;figure&gt;
-  &lt;img src="img/01/mastering-metrics.jpg" alt="Mastering Metrics" title="Mastering Metrics" width="90%"&gt;
-&lt;/figure&gt;
-]
-
-.pull-right-3.center[
-&lt;figure&gt;
-  &lt;img src="img/01/mixtape.jpg" alt="Causal Inference: The Mixtape" title="Causal Inference: The Mixtape" width="100%" style="border: 1px solid #EE6A24"&gt;
-&lt;/figure&gt;
-]
-
----
-
-layout: false
-
-class: bg-full
-background-image: url("img/01/geordi.png")
-
----
-
-layout: true
-class: title title-6
-
----
-
-# Class technology
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/Rlogo.png" alt="R logo" title="R logo" width="30%"&gt;
-&lt;/figure&gt;
-
-&lt;figure&gt;
-  &lt;img src="img/01/rstudio-logo.png" alt="RStudio logo" title="RStudio logo" width="50%"&gt;
-&lt;/figure&gt;
-]
-
----
-
-# The tidyverse
-
-.center[
-&lt;figure&gt;
-  &lt;img src="img/01/tidyverse.png" alt="The tidyverse" title="The tidyverse" width="50%"&gt;
-&lt;/figure&gt;
-] 
-
----
-
-# The tidyverse
-
-&lt;figure&gt;
-  &lt;img src="img/01/tidyverse-language.png" alt="tidyverse and language" title="tidyverse and language" width="100%"&gt;
-&lt;/figure&gt;
-
-???
-
-From "Master the Tidyverse" by RStudio
-
----
-
-# R code, but reads like English!
-
-.small-code[
-
-```r
-strike_damages_month &lt;- bird_strikes %&gt;% 
-  group_by(Month) %&gt;% 
-  summarize(total_damages = sum(Cost, na.rm = TRUE),
-            average_damages = mean(Cost, na.rm = TRUE))
-
-ggplot(data = strike_damages_month, 
-       mapping = aes(x = Month, y = total_damages)) + 
-  geom_col() + 
-  scale_y_continuous(labels = dollar) +
-  labs(x = "Month",
-       y = "Total damages",
-       title = "Really expensive collisions happen in the fall?",
-       subtitle = "Don't fly in August or October?",
-       caption = "Source: FAA Wildlife Strike Database")
-```
-]
----
-
-# Sucking
-
-.center[
-.box-inv-6.medium[“There is no way of knowing nothing about a subject to knowing something about a subject without going through a period of much frustration and suckiness.”]
-
-.box-inv-6.medium[**“Push through. You’ll suck less.”**]
-
-.box-inv-6.tiny[Hadley Wickham, author of **ggplot2**]
-]
-
-???
-
-[Source for quote](https://twitter.com/Akbaritabar/status/1022057084802748416)
-
----
-
-# Sucking
-
-&amp;nbsp;
-
+# Learning objectives
 .pull-left[
-&lt;figure&gt;
-  &lt;img src="img/01/sucking-first-step.jpg" alt="Sucking at something is the first step towards being sort of good at something" title="Sucking at something is the first step towards being sort of good at something" width="100%"&gt;
-&lt;/figure&gt;
+.box-inv-6[Content]
+
+- Basics of experimental design
+- Statistical inference
+- Programming in **R**
+- Analysis of variance
+- Intro to causal inference
+- Mediation analysis
+
 ]
+
+???
+
+We will focus on simple designs as they lead to simple analysis. For more complicated schemes, consult an expert or find a collaborator.
+
+The course content is first-year undergraduate, so the purpose is more one of numerical literacy then expert knowledge.
+
+However, the assessment, activities and interdisciplinary skills are targeted for PhD students
+
+We will spend a lot of time on ANOVA (one-way, two-way, multivariate, repeated measures, etc.)
 
 --
 
 .pull-right[
+.box-inv-6[Cross-disciplinary skills]
+
+- Scientific workflow
+- Peer-review
+- Reporting
+- Statistical fallacies
+- Reproducibility
+ 
+
+]
+
+???
+
+The reproducibility crisis has changed the publishing landscape, so the requirements for publications are more stringent. I intend to cover these in details.
+
+Statistical fallacies are common mistakes that discredit the validity of your work. Learning to recognize them in the wild is crucial (also as reviewer).
+
+---
+
+class: title title-6
+# Prerequisites
+
+--
+
+.box-6.medium[**Math skills**]
+
+.box-inv-6.small.sp-after[Basic algebra]
+
+--
+
+.box-6.medium[**Computer science**]
+
+.box-inv-6.small.sp-after[None]
+
+--
+
+.box-6.medium[**Statistics**]
+
+.box-inv-6.small[At the level of OpenIntro Statistics (Chapter 1)]
+
+???
+More specifically for statistics:
+- variable types (continuous, discrete, etc.) 
+- basic graphs (histograms, scatterplots)
+- hypothesis testing
+- differences in mean (e.g., t-test)
+- simple linear regression
+
+The OpenIntro Statistics book can be freely downloaded from &lt;https://www.openintro.org/book/os/&gt;
+
+---
+
+class: title title-6
+
+# Programming
+
+We will use the **R** programming language and the **RStudio** IDE 
+
+.pull-left[
+- free (!)
+- open-source
+- large support community
+- comprehensive
+]
+
+.pull-right[
 &lt;figure&gt;
-  &lt;img src="img/01/sucking-nyt.png" alt="It's great to suck at something" title="It's great to suck at something" width="100%"&gt;
-  &lt;figcaption&gt;&lt;a href="https://www.nytimes.com/2017/04/28/opinion/its-great-to-suck-at-surfing.html" target="_blank"&gt;Karen Rinaldi, "(It's Great to) Suck at Something"&lt;/a&gt;&lt;/figcaption&gt;
+  &lt;img src="img/01/Rlogo.png" alt="R programming language" width="50%"&gt;
 &lt;/figure&gt;
 ]
 
+???
+
+Commercial software is expensive (e.g., SPSS licenses cost more than $5,730 USD per year as of 2021).
+
 ---
+
 
 # Am I making you computer scientists?
 
@@ -892,13 +187,16 @@ ggplot(data = strike_damages_month,
 
 .box-6[You don't need to be a mechanic to drive a car safely]
 
+
+???
+
+Words of wisdom from @allison_horst to her data analysis class this quarter: You don't need to be a mechanic to drive a car safely, and you don't need to be a computer scientist or developer to use R safely. #rstats #tidytuesday
+
 --
 
 .box-6[You don't need to be a computer scientist&lt;br&gt;or developer to use R safely]
 
 ???
-
-Words of wisdom from @allison_horst to her data analysis class this quarter: You don't need to be a mechanic to drive a car safely, and you don't need to be a computer scientist or developer to use R safely. #rstats #tidytuesday
 
 https://twitter.com/ameliaritger/status/1214682596182904832?s=12
 
@@ -912,7 +210,7 @@ https://twitter.com/Sumidu/status/1214695065387438083
 
 .center[
 &lt;figure&gt;
-  &lt;img src="img/01/learning-r.png" alt="Learning R through googling" title="Learning R through googling" width="70%" style="border: 1px solid #EE6A24"&gt;
+  &lt;img src="img/01/learning-r.png" alt="Learning R through googling" title="Learning R through googling" width="70%"&gt;
 &lt;/figure&gt;
 ]
 
@@ -923,56 +221,203 @@ https://twitter.com/kierisi/status/898534740051062785
 ---
 
 layout: false
-class: center middle
+name: motivation
+class: center middle section-title section-title-5 animated fadeIn
 
-.box-6.huge[You can do this.]
-
----
-
-layout: true
-class: title title-6
+# Motivation
 
 ---
 
-# Goals for the class
+class: title title-5
 
---
+# Experiments as gold-standard
 
-.box-inv-6.medium[~~Become an expert with R~~]
+.center[
+&lt;figure&gt;
+  &lt;img src="img/01/BJOG_randomized_trials.png" alt="Screenshot of a paper in BJOG by Hariton and Locascio" title="Screenshot of a paper in BJOG by Hariton and Locascio" width="60%"&gt;
+&lt;/figure&gt;
+]
 
---
+.small[
+&gt; *Randomised controlled trials (RCTs) are the reference standard for studying causal relationships between interventions and outcomes as randomisation eliminates much of the bias inherent with other study designs.*
+]
+???
 
-.box-inv-6.medium[Speak and do causation]
+Paper available at https://doi.org/10.1111/1471-0528.15199
 
---
-
-.box-inv-6.medium[Design rigorous evaluations]
-
---
-
-.box-6.medium[Change the world with data]
+From the abstract:
+"Randomised controlled trials (RCTs) are the reference standard for studying causal relationships between interventions and outcomes as randomisation eliminates much of the bias inherent with other study designs."
 
 ---
 
-# Prerequisites
+class: title title-5
+
+# History
+
+Experiments on agricultural trials in Rothamsted ongoing since 1841
+.pull-left[
+&lt;figure&gt;
+  &lt;img src="img/01/ECN_Rothamsted1.png" alt="Description of the Rothamsted station" title="Rothamsted station" width="110%"&gt;
+&lt;/figure&gt;
+]
+
+.pull-right[
+&lt;figure&gt;
+  &lt;img src="img/01/Broadbalk.jpg" alt="Broadbalk photo" title="Broadbalk, by e-RA (Rothamsted Archives) circa 2012" width="75%"&gt;
+&lt;/figure&gt;
+]
+
+???
+
+https://www.rothamsted.ac.uk/environmental-change-network
+
+http://www.era.rothamsted.ac.uk/images/metadata/rbk1/2012-AJ-12-10.jpg
+
+R.A. Fisher worked 14 years at Rothamsted from 1919 and developed much of the theory underlying experimental design
+See this recollection by Yates on his contribution: https://doi.org/10.2307/2528399 
+
+Fisher was a eugenist and his views are largely decried
+
+---
+
+class: title title-5
+
+# Experiments are still a thing 
+
+Modern experiments: A/B testing
+
+&lt;figure&gt;
+  &lt;img src="img/01/twitter_overhaul.png" alt="Screenshot of Twitter page following changes made to interface in 2021 (the follow button is black (higher contrast)." title="Screenshot of Twitter following changes made to interface" width="80%"&gt;
+&lt;/figure&gt;
+
+???
+
+This illustrates changes to the design (Follow now high-contrast in black). This is an example of A/B testing common in web design.
+---
+
+class: title title-5
+
+# Evidence-based policy
 
 --
 
-.box-inv-6.medium[**Math skills**]
+.box-inv-5.medium[
+RAND health insurance study
+]
 
-.box-inv-6.small.sp-after[Basic algebra]
+&lt;br&gt;
+
+.box-inv-5.medium[
+Student Teacher Achievement Ratio (STAR)
+]
+
+
+
+???
+
+RAND: In a large-scale, multiyear experiment, participants who paid for a share of their health care used fewer health services than a comparison group given free care. It concluded that cost sharing reduced "inappropriate or unnecessary" medical care (overutilization), but also reduced "appropriate or needed" medical care.
+https://www.rand.org/health-care/projects/hie.html
+
+Tennessee's STAR project: smaller class sizes lead to better outcomes
+"Over 7,000 students in 79 schools were randomly assigned into one of 3 interventions: small class (13 to 17 students per teacher), regular class (22 to 25 students per teacher), and regular-with-aide class (22 to 25 students with a full-time teacher's aide). Classroom teachers were also randomly assigned to the classes they would teach. The interventions were initiated as the students entered school in kindergarten and continued through third grade."
+https://dss.princeton.edu/catalog/resource1589
+
+---
+class: title title-5
+# Nobel memorial prize
+
+&lt;figure&gt;
+&lt;img src="img/01/jpal-nobel.png" alt="Composite photo by Andrew Heiss: excerpt from the Washington Post following the announcement of the Nobel prize in economics for experimental approach to solving poverty, Abdul Latif Jameel Poverty Action Lab (J-PAL) video and a Twitter feed with a photo of Abhijit Banerjee and Esther Duflo upon the announcement of the Nobel memorial price." title="" width="80%"&gt;
+&lt;/figure&gt;
+
+
+---
+
+class: title title-5
+# Nobel memorial prize
+
+&lt;figure&gt;
+&lt;img src="img/01/jpal-nobel.png" alt="Composite photo by Andrew Heiss: excerpt from the Washington Post following the announcement of the Nobel prize in economics for experimental approach to solving poverty, Abdul Latif Jameel Poverty Action Lab (J-PAL) video and a Twitter feed containing a photo of Abhijit Banerjee and Esther Duflo following the announcement of the Nobel memorial price." title="" width="80%"&gt;
+&lt;/figure&gt;
+
+---
+
+class: title title-2
+# Definitions
+
+.box-inv-2.large[Experimental unit]
+
+&gt; Smallest division such that two units may receive different treatments in the actual experiment (Cox, 1958)
+
+.box-inv-2.large[Treatment]
+
+
+.box-inv-2.large[Observations]
+
+---
+
+class: title title-2
+# Objective of the experiment
+
+- Objective: compare multiple treatments
+- Without treatment, variability in output
+    - from one observation to the next
+- Differences between treatment are comparatively stable
+
+
+---
+class: title title-2
+# Experimental design
+
+Experimenter must choose 
+- **treatments** for comparison
+- observations to be made (repetition, etc.)
+- experimental units to be used
+
+
+---
+class: title title-2
+# Requirements for good experiments (1/2)
+
+.box-inv-2.large[Absence of systematic error]
+
+.center[Achieved via randomization]
 
 --
 
-.box-inv-6.medium[**Computer science skills**]
+.box-inv-2.large[Precision]
 
-.box-inv-6.small.sp-after[None]
+Depends on the intrinsic variability `\(+\)` function of
+
+
+1. accuracy of experimental work
+2. number of experimental units / repetitions per unit
+3. design and methods of analysis
+
+
+---
+
+class: title title-2
+# Requirements for good experiments (2/2)
+
+.box-inv-2.large[Range of validity]
+
+- What is population?
+- Identify restrictions
+- Extrapolation only if proper sampling scheme
 
 --
 
-.box-inv-6.medium[**Statistical skills**]
+.box-inv-2.large[Simplicity of the design]
 
-.box-inv-6.small[Regression, differences in means, and statistical significance]
+Leads to simple analysis 
+
+???
+
+Important: understand reasons for difference
+- do not limit to experimental knowledge about the differences
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

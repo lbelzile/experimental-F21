@@ -1,6 +1,6 @@
 main:
   - name: Syllabus
-    url: /syllabus/
+    url: https://lbelzile.github.io/experimental/raw/master/static/syllabus/MATH80667A_F21_Syllabus.pdf
     weight: 1
   - name: Schedule
     url: /schedule/
@@ -15,14 +15,8 @@ main:
     url: /assignment/
     weight: 4
   - name: Resources
-    url: /resource/
+    url: "https://evalf21.classes.andrewheiss.com/resource/"
     weight: 6
-  - name: '<i class="fab fa-slack"></i>'
-    url: "https://gsuevalsp2021.slack.com"
-    weight: 7
-  - name: RStudio.cloud
-    url: https://rstudio.cloud/
-    weight: 8
 
 content:
   - name: Overview
@@ -39,16 +33,10 @@ example:
 assignment:
   - name: Assignments
     weight: 1
-  - name: Other projects
+  - name: Weekly check-in
     weight: 2
   - name: Problem sets
     weight: 3
-  - name: Evaluation
+  - name: Final exam
     weight: 4
-resource:
-  - name: Resources
-    weight: 1
-  - name: Study guides
-    weight: 2
-  - name: Guides
-    weight: 3
+

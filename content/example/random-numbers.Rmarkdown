@@ -2,6 +2,7 @@
 title: "Generating random numbers"
 linktitle: "Random numbers"
 date: "2020-10-31"
+author: Andrew Heiss
 menu:
   example:
     parent: Simulated data
@@ -20,7 +21,7 @@ options("digits" = 4, "width" = 150)
 options(dplyr.summarise.inform = FALSE)
 ```
 
-In your final project, you will generate a synthetic dataset and use it to conduct an evaluation of some social program. Generating fake or simulated data is an *incredibly powerful skill*, but it takes some practice. Here are a bunch of helpful resources and code examples of how to use different R functions to generate random numbers that follow specific distributions (or probability shapes).
+Generating fake or simulated data is an *incredibly powerful skill*, but it takes some practice. Here are a bunch of helpful resources and code examples of how to use different R functions to generate random numbers that follow specific distributions (or probability shapes).
 
 This example focuses primarily on distributions. Each of the columns you'll generate will be completely independent from each other and there will be no correlation between them. [The example for generating synthetic data](/example/synthetic-data/) provides code and a bunch of examples of how to build in correlations between columns.
 

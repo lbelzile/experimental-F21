@@ -8,6 +8,6 @@ type: docs
 weight: 1
 ---
 
-Visit this section after you have finished the readings and lecture videos. It contains fully annotated R code and other supplementary information and it will be indispensable as you work on your problem sets and project.
+This section will contain annotated **R** code along with worked out examples. If time permits, I will also include videos of me life-coding, so you can see me making programming mistakes in real time!
 
-Many sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. You'll notice me make all sorts of little errors, which *is totally normal*—everyone does!
+For the time being, this section includes two useful pages by Dr. Andrew Heiss.

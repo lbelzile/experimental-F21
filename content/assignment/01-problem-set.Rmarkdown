@@ -1,9 +1,9 @@
 ---
 title: "Problem set 1"
 linktitle: "Problem set 1"
-date: "2021-01-19"
-due_date: "2021-01-19"
-due_time: "11:59 PM"
+date: "2021-09-01"
+due_date: "2021-09-10"
+due_time: "11:55 PM"
 menu:
   assignment:
     parent: Problem sets
@@ -14,20 +14,22 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r write-data, include=FALSE}
-readr::write_csv(ggplot2::mpg, here::here("static", "data", "cars.csv"))
-```
+## Task 2: 
 
-## Task 1: Introduce yourself to R, RStudio, and the tidyverse
+1. Identify a scientific paper in your research field in which an experimental study is conducted. 
+	- Provide a citation for the latter, briefly describe the experiment (you can simply quote the description of the database). 
+ 	- Based on the information provided, identify the experimental units and the treatments.
 
-1. Go the the example page for this week, ["Welcome to R, RStudio, and the tidyverse"](/example/rstudio-tidyverse/), and work through the different primers and videos in the four parts of the page.
+## Task 1: Introduce yourself to **R**, RStudio, and the tidyverse
 
-    It seems like there's a lot on the page, but they're short and go fairly quickly (especially as you get the hang of the syntax). Also, **I have no way of seeing what you do or what you get wrong or right, and that's totally fine!** If you get stuck and want to skip some (or if it gets too easy), go right ahead and skip them!
-
+1. Go the the example page for this week, ["Welcome to **R**, RStudio, and the tidyverse"](/example/rstudio-tidyverse/) by Andrew Heiss, and work through the different primers and videos in the four parts of the page.
+2. Alternatively, complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics. 
+3. Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
+4. Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-getting-started-with-data-03/#section-principles-of-experimental-design)
 
 ## Task 2: Make an RStudio Project
 
-1. Use either RStudio.cloud or RStudio on your computer (preferably RStudio on your computer! [Follow these instructions to get started!](/resource/install/)) to create a new RStudio Project. Refer to the [example page you read in Task 1 for instructions](/example/rstudio-tidyverse/#part-3-rstudio-projects)
+1. Use RStudio on your computer[Follow these instructions to get started!](/resource/install/)) to create a new RStudio Project. Refer to the [example page you read in Task 1 for instructions](/example/rstudio-tidyverse/#part-3-rstudio-projects)
 
 2. Create a folder named "data" in the project folder you just made.
 
@@ -61,7 +63,7 @@ readr::write_csv(ggplot2::mpg, here::here("static", "data", "cars.csv"))
     
     # My first plots
     
-    Insert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with diplacement (`displ`) on the x-axis, city MPG (`cty`) on the y-axis, and with the points colored by drive (`drv`).
+    Insert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with displacement (`displ`) on the x-axis, city MPG (`cty`) on the y-axis, and with the points colored by drive (`drv`).
     
     PUT CHUNK HERE
     
@@ -102,7 +104,7 @@ knitr::include_graphics("/img/assignments/insert-chunk-button.png", error = FALS
 knitr::include_graphics("/img/assignments/knit-button.png", error = FALSE)
 ```
 
-4. Upload the knitted document to iCollege.
+4. Upload the knitted document to ZoneCours.
 
 5. `r emo::ji("tada")` Party! `r emo::ji("tada")`
 

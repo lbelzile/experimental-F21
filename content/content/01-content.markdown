@@ -1,6 +1,6 @@
 ---
-title: "Evaluation and the causal revolution"
-linktitle: "1: Evaluation and the causal revolution"
+title: "Introduction to experimental designs"
+linktitle: "1: Introduction to experimental designs"
 date: "2021-01-11"
 start_date: "2021-01-11"
 end_date: "2021-01-15"
@@ -15,14 +15,41 @@ csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
 slides: "01-slides"
 ---
 
+## Content
+
+-   Syllabus and learning objectives
+    -   Programming premises
+-   Motivational
+    -   Examples of experiments
+    -   Notions of causal inference
+-   Differences between observational and experimental studies
+-   Key concepts in experimental designs
+    -   Randomization
+    -   Blocking
+
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+-   distinguishing between observational and experimental studies, and the merits of both.
+-   identifying experimental units, observations and treatments in an experimental study
+-   assessing the generalizability of a study
+-   using **R** for basic manipulations
+
+## Preliminaries
+
+-   Familiarize yourself with the [syllabus](/syllabus/), [content](/content/), [examples](/example/), and [assignments](/assigment/) pages for this class.
+
+-   <i class="fas fa-book"></i> Read Chapter 1 (Intro to Data) of [OpenIntro Statistics](https://www.openintro.org/book/os/) and the accompanying <i class="fab fa-youtube"></i>[videos](https://www.youtube.com/playlist?list=PLkIselvEzpM6pZ76FD3NoCvvgkj_p-dE8)
+
+-   [Overview of **R** and the tidyverse](https://evalf20.classes.andrewheiss.com/projects/01_lab/slides/01_lab.html) slides by Andrew Heiss)
+
 ## Readings
 
--   The [syllabus](/syllabus/), [content](/content/), [examples](/example/), and [assignments](/assigment/) pages for this class
--   <i class="fas fa-book"></i> Chapter 1 in *Impact Evaluation in Practice*[^1]
--   <i class="fab fa-youtube"></i> DJ Patil, [“What Makes a Radical and Revolutionary Technology?”](https://www.youtube.com/watch?v=UOoMzaWOQJA)
-    -   <small>(DJ Patil is the former Chief Data Scientist of the United States under President Obama. He gave this forum address at Brigham Young University on February 13, 2018.)</small>
--   <i class="fas fa-external-link-square-alt"></i> Stephen Goldsmith, [“Next Generation of Public Employees Must Understand Data and Policy”](http://www.govtech.com/opinion/Next-Generation-Public-Employees-Must-Understand-Data-Policy.html)
--   <i class="fas fa-external-link-square-alt"></i> Hadley Wickham, [“Data Science: How is it Different To Statistics?”](http://bulletin.imstat.org/2014/09/data-science-how-is-it-different-to-statistics%E2%80%89/)
+-   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199)
+-   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries) in *Planning of experiments\*[^1]
+-   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments*[^2]
+-   <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design*[^3]
 
 ## Slides
 
@@ -35,16 +62,16 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <a class="nav-link active" id="introduction-tab" data-toggle="tab" href="#introduction" role="tab" aria-controls="introduction" aria-selected="true">Introduction</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="data-science-and-public-service-tab" data-toggle="tab" href="#data-science-and-public-service" role="tab" aria-controls="data-science-and-public-service" aria-selected="false">Data science and public service</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="evidence-evaluation-and-causation-1-tab" data-toggle="tab" href="#evidence-evaluation-and-causation-1" role="tab" aria-controls="evidence-evaluation-and-causation-1" aria-selected="false">Evidence, evaluation, and causation (1)</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="evidence-evaluation-and-causation-2-tab" data-toggle="tab" href="#evidence-evaluation-and-causation-2" role="tab" aria-controls="evidence-evaluation-and-causation-2" aria-selected="false">Evidence, evaluation, and causation (2)</a>
-</li>
-<li class="nav-item">
 <a class="nav-link" id="class-details-tab" data-toggle="tab" href="#class-details" role="tab" aria-controls="class-details" aria-selected="false">Class details</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="motivation-tab" data-toggle="tab" href="#motivation" role="tab" aria-controls="motivation" aria-selected="false">Motivation</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="experimental-vs-observational-tab" data-toggle="tab" href="#experimental-vs-observational" role="tab" aria-controls="experimental-vs-observational" aria-selected="false">Experimental vs observational</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" id="key-notions-tab" data-toggle="tab" href="#key-notions" role="tab" aria-controls="key-notions" aria-selected="false">Key notions</a>
 </li>
 </ul>
 
@@ -55,39 +82,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <div class="embed-responsive embed-responsive-16by9">
 
 <iframe class="embed-responsive-item" src="/slides/01-slides.html#1">
-</iframe>
-
-</div>
-
-</div>
-
-<div id="data-science-and-public-service" class="tab-pane fade" role="tabpanel" aria-labelledby="data-science-and-public-service-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#ds-ps">
-</iframe>
-
-</div>
-
-</div>
-
-<div id="evidence-evaluation-and-causation-1" class="tab-pane fade" role="tabpanel" aria-labelledby="evidence-evaluation-and-causation-1-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#evidence-evaluation-causation">
-</iframe>
-
-</div>
-
-</div>
-
-<div id="evidence-evaluation-and-causation-2" class="tab-pane fade" role="tabpanel" aria-labelledby="evidence-evaluation-and-causation-2-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#evidence-evaluation-causation1">
 </iframe>
 
 </div>
@@ -105,6 +99,39 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
+<div id="motivation" class="tab-pane fade" role="tabpanel" aria-labelledby="motivation-tab">
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#motivation">
+</iframe>
+
+</div>
+
+</div>
+
+<div id="experimental-vs-observational" class="tab-pane fade" role="tabpanel" aria-labelledby="experimental-vs-observational-tab">
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#experimental-vs-observational">
+</iframe>
+
+</div>
+
+</div>
+
+<div id="key-notions" class="tab-pane fade" role="tabpanel" aria-labelledby="key-notions-tab">
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#key-notions">
+</iframe>
+
+</div>
+
+</div>
+
 </div>
 
 {{% div fyi %}}
@@ -113,21 +140,25 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 ## Videos
 
-Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC).
+Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=).
 
--   [Introduction](https://www.youtube.com/watch?v=BIhz1dz5Vws&list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC)
--   [Data science and public service](https://www.youtube.com/watch?v=f-sOSXyeeJE&list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC)
--   [Evidence, evaluation, and causation (1)](https://www.youtube.com/watch?v=Z2foqSMWnGU&list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC)
--   [Evidence, evaluation, and causation (2)](https://www.youtube.com/watch?v=W5ChuEhAzrs&list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC)
--   [Class details](https://www.youtube.com/watch?v=D4LoEctZxHE&list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC)
+-   [Introduction](https://www.youtube.com/watch?v=&list=)
+-   [Class details](https://www.youtube.com/watch?v=&list=)
+-   [Motivation](https://www.youtube.com/watch?v=&list=)
+-   [Experimental vs observational](https://www.youtube.com/watch?v=&list=)
+-   [Key notions](https://www.youtube.com/watch?v=&list=)
 
 You can also watch the playlist (and skip around to different sections) here:
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLS6tnpTr39sHcnk9KcoQVzDywxWRzVWHC" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 </div>
 
-[^1]: Paul J. Gertler et al., *Impact Evaluation in Practice*, 2nd ed. (Inter-American Development Bank; World Bank, 2016), <https://openknowledge.worldbank.org/handle/10986/25030>.
+[^1]: David R. Cox, *Planning of Experiments* (New York, NY: Wiley, 1958).
+
+[^2]: A. Dean, D. Voss, and D. Draguljić, *Design and Analysis of Experiments* (Springer, 2017), <https://www.springer.com/gp/book/9783319522487>.
+
+[^3]: Paul D. Berger, Robert E. Maurer, and Giovana B. Celli, *Experimental Design with Applications in Management, Engineering, and the Sciences*, 2nd ed. (Springer, 2018), doi:[10.1007/978-3-319-64583-4](https://doi.org/10.1007/978-3-319-64583-4).

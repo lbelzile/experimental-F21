@@ -5,22 +5,24 @@ headless: true
 active: true
 weight: 10
 
-title: "Program Evaluation for Public Service"
+title: "Experimental Design and Statistical Methods"
 
 # Hero image (optional). Enter filename of an image in the `static/media/` folder.
-hero_media: eval_hires.png
+hero_media: 'experimental.png'
 
 design:
   background:
     # Background gradient
-    gradient_start: '#A52C60'
-    gradient_end: '#CF4446'
+    #gradient_start: '#003C71'
+    #gradient_end: '#005EB8'
+    gradient_start: '#D40F7D'
+    gradient_end: '#AD1AAC'
 
     # Text color (true=light or false=dark).
     text_color_light: true
 
 cta_note:
-  label: PMAP 8141 • Spring 2021<br>Andrew Young School of Policy Studies<br>Georgia State University
+  label: MATH 80667A • Fall 2021<br>HEC Montréal
 ---
 
-**Combine research design, causal inference, and econometric tools to measure the effects of social programs**
+**Basic concepts for data collection planning; appropriate statistical analyses of these data and interpretation of results. Advantages and disadvantages of the various experimental designs.**

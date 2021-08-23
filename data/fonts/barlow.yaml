@@ -2,10 +2,10 @@
 name: Fira Sans Condensed + Barlow
 
 # Optional Google font URL
-google_fonts: 'Fira+Sans+Condensed:400,400i,700,700i|Barlow:ital,wght@0,400;0,700;1,400;1,700'
+google_fonts: 'family=Barlow:wght@500&family=Fira+Sans:wght@500'
 
 # Font families
-heading_font: Fira Sans Condensed
+heading_font: Fira Sans
 body_font: Barlow
 nav_font: Barlow
 mono_font: 'Consolas, "Liberation Mono", Menlo, Courier, monospace'
