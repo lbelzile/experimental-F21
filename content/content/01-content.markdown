@@ -19,9 +19,9 @@ slides: "01-slides"
 
 -   Syllabus and learning objectives
     -   Programming premises
--   Motivational
-    -   Examples of experiments
-    -   Notions of causal inference
+-   Motivation
+    -   Why are experiments useful?
+    -   Examples
 -   Differences between observational and experimental studies
 -   Key concepts in experimental designs
     -   Randomization
@@ -34,7 +34,7 @@ At the end of the session, students should be capable of
 -   distinguishing between observational and experimental studies, and the merits of both.
 -   identifying experimental units, observations and treatments in an experimental study
 -   assessing the generalizability of a study
--   using **R** for basic manipulations
+-   using **R** for basic data manipulations and graphics
 
 ## Preliminaries
 
@@ -47,7 +47,7 @@ At the end of the session, students should be capable of
 ## Readings
 
 -   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199)
--   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries) in *Planning of experiments\*[^1]
+-   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments*[^1]
 -   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments*[^2]
 -   <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design*[^3]
 
@@ -137,25 +137,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 {{% div fyi %}}
 **Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
 {{% /div %}}
-
-## Videos
-
-Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=).
-
--   [Introduction](https://www.youtube.com/watch?v=&list=)
--   [Class details](https://www.youtube.com/watch?v=&list=)
--   [Motivation](https://www.youtube.com/watch?v=&list=)
--   [Experimental vs observational](https://www.youtube.com/watch?v=&list=)
--   [Key notions](https://www.youtube.com/watch?v=&list=)
-
-You can also watch the playlist (and skip around to different sections) here:
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-
-</div>
 
 [^1]: David R. Cox, *Planning of Experiments* (New York, NY: Wiley, 1958).
 

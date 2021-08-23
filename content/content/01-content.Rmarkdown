@@ -34,9 +34,9 @@ slide_details <- tibble::tribble(
 
 - Syllabus and learning objectives
 	- Programming premises
-- Motivational 
-	- Examples of experiments
-	- Notions of causal inference
+- Motivation
+	- Why are experiments useful?
+	- Examples
 - Differences between observational and experimental studies
 - Key concepts in experimental designs
 	- Randomization
@@ -49,7 +49,7 @@ At the end of the session, students should be capable of
 - distinguishing between observational and experimental studies, and the merits of both.
 - identifying experimental units, observations and treatments in an experimental study
 - assessing the generalizability of a study
-- using **R** for basic manipulations
+- using **R** for basic data manipulations and graphics
 
 ## Preliminaries
 
@@ -60,7 +60,7 @@ At the end of the session, students should be capable of
 
 ## Readings
 - <i class="fas fa-newspaper-o"></i>  Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199)
-- <i class="fas fa-book"></i> Chapter 1 (*Preliminaries) in *Planning of experiments* [@Cox:1958]
+- <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments* [@Cox:1958]
 - <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments* [@Dean:2017]
 - <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design* [@Berger:2018]
 
@@ -81,9 +81,8 @@ slide_tabs(slide_details, "/slides/01-slides.html")
 {{% /div %}}
 
 
-## Videos
 
-```{r show-youtube-list, echo=FALSE, results="asis"}
+```{r show-youtube-list, echo=FALSE, results="asis", eval = FALSE}
 youtube_list(slide_details, playlist_id)
 ```
 

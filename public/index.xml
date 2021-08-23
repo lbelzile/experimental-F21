@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Course materials | Experimental Design</title>
-    <link>lbelzile.github.io/math807667a/</link>
-      <atom:link href="lbelzile.github.io/math807667a/index.xml" rel="self" type="application/rss+xml" />
+    <title>Course materials | Experimental Design and Statistical Methods</title>
+    <link>/</link>
+      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Course materials</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-ca</language><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-ca</language><copyright>This website is based on work of [Dr. Andrew Heiss](https://evalf20.classes.andrewheiss.com) and is licensed under {license}</copyright><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/lbelzile.github.io/math807667a/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Course materials</title>
-      <link>lbelzile.github.io/math807667a/</link>
+      <link>/</link>
     </image>
     
     <item>
       <title>Introduction to experimental designs</title>
-      <link>lbelzile.github.io/math807667a/content/01-content/</link>
+      <link>/content/01-content/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>lbelzile.github.io/math807667a/content/01-content/</guid>
+      <guid>/content/01-content/</guid>
       <description>&lt;h2 id=&#34;content&#34;&gt;Content&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Syllabus and learning objectives
@@ -49,7 +49,7 @@
 &lt;h2 id=&#34;preliminaries&#34;&gt;Preliminaries&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Familiarize yourself with the &lt;a href=&#34;lbelzile.github.io/math807667a/syllabus/&#34;&gt;syllabus&lt;/a&gt;, &lt;a href=&#34;lbelzile.github.io/math807667a/content/&#34;&gt;content&lt;/a&gt;, &lt;a href=&#34;lbelzile.github.io/math807667a/example/&#34;&gt;examples&lt;/a&gt;, and &lt;a href=&#34;lbelzile.github.io/math807667a/assigment/&#34;&gt;assignments&lt;/a&gt; pages for this class.&lt;/p&gt;
+&lt;p&gt;Familiarize yourself with the &lt;a href=&#34;/syllabus/&#34;&gt;syllabus&lt;/a&gt;, &lt;a href=&#34;/content/&#34;&gt;content&lt;/a&gt;, &lt;a href=&#34;/example/&#34;&gt;examples&lt;/a&gt;, and &lt;a href=&#34;/assigment/&#34;&gt;assignments&lt;/a&gt; pages for this class.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;i class=&#34;fas fa-book&#34;&gt;&lt;/i&gt; Read Chapter 1 (Intro to Data) of &lt;a href=&#34;https://www.openintro.org/book/os/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;OpenIntro Statistics&lt;/a&gt; and the accompanying &lt;i class=&#34;fab fa-youtube&#34;&gt;&lt;/i&gt;&lt;a href=&#34;https://www.youtube.com/playlist?list=PLkIselvEzpM6pZ76FD3NoCvvgkj_p-dE8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;videos&lt;/a&gt;&lt;/p&gt;
@@ -67,7 +67,7 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;slides&#34;&gt;Slides&lt;/h2&gt;
 &lt;p&gt;The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.&lt;/p&gt;
-&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;lbelzile.github.io/math807667a/slides/01-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; View all slides in new window&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;lbelzile.github.io/math807667a/slides/01-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Download PDF of all slides&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/01-slides.html&#34;&gt;&lt;i class=&#34;fas fa-external-link-alt&#34;&gt;&lt;/i&gt; View all slides in new window&lt;/a&gt; &lt;a class=&#34;btn btn-primary btn-lg&#34; target=&#34;_blank&#34; href=&#34;/slides/01-slides.pdf&#34; role=&#34;button&#34;&gt;&lt;i class=&#34;far fa-file-pdf&#34;&gt;&lt;/i&gt; Download PDF of all slides&lt;/a&gt;&lt;/p&gt;
 &lt;ul class=&#34;nav nav-tabs&#34; id=&#34;slide-tabs&#34; role=&#34;tablist&#34;&gt;
 &lt;li class=&#34;nav-item&#34;&gt;
 &lt;a class=&#34;nav-link active&#34; id=&#34;introduction-tab&#34; data-toggle=&#34;tab&#34; href=&#34;#introduction&#34; role=&#34;tab&#34; aria-controls=&#34;introduction&#34; aria-selected=&#34;true&#34;&gt;Introduction&lt;/a&gt;
@@ -88,31 +88,31 @@
 &lt;div id=&#34;slide-tabs&#34; class=&#34;tab-content&#34;&gt;
 &lt;div id=&#34;introduction&#34; class=&#34;tab-pane fade show active&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;introduction-tab&#34;&gt;
 &lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;lbelzile.github.io/math807667a/slides/01-slides.html#1&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#1&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;class-details&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;class-details-tab&#34;&gt;
 &lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;lbelzile.github.io/math807667a/slides/01-slides.html#class-details&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#class-details&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;motivation&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;motivation-tab&#34;&gt;
 &lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;lbelzile.github.io/math807667a/slides/01-slides.html#motivation&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#motivation&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;experimental-vs-observational&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;experimental-vs-observational-tab&#34;&gt;
 &lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;lbelzile.github.io/math807667a/slides/01-slides.html#experimental-vs-observational&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#experimental-vs-observational&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;key-notions&#34; class=&#34;tab-pane fade&#34; role=&#34;tabpanel&#34; aria-labelledby=&#34;key-notions-tab&#34;&gt;
 &lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;lbelzile.github.io/math807667a/slides/01-slides.html#key-notions&#34;&gt;
+&lt;iframe class=&#34;embed-responsive-item&#34; src=&#34;/slides/01-slides.html#key-notions&#34;&gt;
 &lt;/iframe&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -153,13 +153,13 @@
     
     <item>
       <title>Generating random numbers</title>
-      <link>lbelzile.github.io/math807667a/example/random-numbers/</link>
+      <link>/example/random-numbers/</link>
       <pubDate>Sat, 31 Oct 2020 00:00:00 +0000</pubDate>
-      <guid>lbelzile.github.io/math807667a/example/random-numbers/</guid>
-      <description>&lt;script src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667armarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667armarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+      <guid>/example/random-numbers/</guid>
+      <description>&lt;script src=&#34;/lbelzile.github.io/math807667armarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/lbelzile.github.io/math807667armarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;p&gt;Generating fake or simulated data is an &lt;em&gt;incredibly powerful skill&lt;/em&gt;, but it takes some practice. Here are a bunch of helpful resources and code examples of how to use different R functions to generate random numbers that follow specific distributions (or probability shapes).&lt;/p&gt;
-&lt;p&gt;This example focuses primarily on distributions. Each of the columns you&amp;rsquo;ll generate will be completely independent from each other and there will be no correlation between them. &lt;a href=&#34;lbelzile.github.io/math807667a/example/synthetic-data/&#34;&gt;The example for generating synthetic data&lt;/a&gt; provides code and a bunch of examples of how to build in correlations between columns.&lt;/p&gt;
+&lt;p&gt;This example focuses primarily on distributions. Each of the columns you&amp;rsquo;ll generate will be completely independent from each other and there will be no correlation between them. &lt;a href=&#34;/example/synthetic-data/&#34;&gt;The example for generating synthetic data&lt;/a&gt; provides code and a bunch of examples of how to build in correlations between columns.&lt;/p&gt;
 &lt;p&gt;First, make sure you load the libraries we&amp;rsquo;ll use throughout the example:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
 library(patchwork)
@@ -274,7 +274,7 @@ ggplot(die, aes(x = value)) +
   geom_bar() +
   labs(title = &amp;quot;1,000 rolls of a single die&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/dice-roll-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/dice-roll-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this case, 3 and 6 came up more often than the others, but that&amp;rsquo;s just because of randomness. If we rolled the die 100,000 times, the bars should basically be the same:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
 die &amp;lt;- tibble(value = sample(possible_answers,
@@ -285,7 +285,7 @@ ggplot(die, aes(x = value)) +
   geom_bar() +
   labs(title = &amp;quot;100,000 rolls of a single die&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/dice-roll-lots-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/dice-roll-lots-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;h4 id=&#34;runif&#34;&gt;&lt;code&gt;runif()&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;Another way to generate uniformly distributed numbers is to use the &lt;code&gt;runif()&lt;/code&gt; function (which is short for &amp;ldquo;random uniform&amp;rdquo;, and which took me years to realize, and for years I wondered why people used a function named &amp;ldquo;run if&amp;rdquo; when there&amp;rsquo;s no if statement anywhere??)&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;runif()&lt;/code&gt; will choose numbers between a minimum and a maximum. These numbers will not be whole numbers. By default, the min and max are 0 and 1:&lt;/p&gt;
@@ -308,7 +308,7 @@ lots_of_numbers &amp;lt;- tibble(x = runif(5000, min = 18, max = 35))
 ggplot(lots_of_numbers, aes(x = x)) +
   geom_histogram(binwidth = 1, color = &amp;quot;white&amp;quot;, boundary = 18)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/runif-plot-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/runif-plot-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;normal-distribution&#34;&gt;Normal distribution&lt;/h3&gt;
 &lt;p&gt;The whole &amp;ldquo;choose a number between 1 and 10&amp;rdquo; idea of a uniform distribution is neat and conceptually makes sense, but most numbers that exist in the world tend to have higher probabilities around certain values—almost like gravity around a specific point. For instance, income in the United States is not uniformly distributed—a handful of people are really really rich, lots are very poor, and most are kind of clustered around an average.&lt;/p&gt;
 &lt;p&gt;The idea of having possible values clustered around an average is how the rest of these distributions work (uniform distributions don&amp;rsquo;t have any sort of central gravity point; all these others do). Each distribution is defined by different things called &lt;em&gt;parameters&lt;/em&gt;, or values that determine the shape of the probabilities and locations of the clusters.&lt;/p&gt;
@@ -343,7 +343,7 @@ head(plot_data)
 ggplot(plot_data, aes(x = x)) +
   geom_histogram(binwidth = 1, boundary = 0, color = &amp;quot;white&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-10-4-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-10-4-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Neat. Most numbers are around 10; lots are between 5 and 15; some go as high as 25 and as low as −5.&lt;/p&gt;
 &lt;p&gt;Watch what happens if you change the standard deviation to 10 to make the spread wider:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
@@ -363,7 +363,7 @@ head(plot_data)
 ggplot(plot_data, aes(x = x)) +
   geom_histogram(binwidth = 1, boundary = 0, color = &amp;quot;white&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-10-10-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-10-10-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s still centered around 10, but now you get values as high as 40 and as low as −20. The data is more spread out now.&lt;/p&gt;
 &lt;p&gt;When simulating data, you&amp;rsquo;ll most often use a normal distribution just because it&amp;rsquo;s easy and lots of things follow that pattern in the real world. Incomes, ages, education, etc. all have a kind of gravity to them, and a normal distribution is a good way of showing that gravity. For instance, here are 1,000 simulated people with reasonable random incomes, ages, and years of education:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
@@ -396,7 +396,7 @@ fake_education &amp;lt;- ggplot(fake_people, aes(x = education)) +
 
 fake_income + fake_age + fake_education
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/reasonable-normal-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/reasonable-normal-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;These three columns all have different centers and spreads. Income is centered around &lt;span&gt;$45,000&lt;/span&gt;, going up to almost &lt;span&gt;$100,000&lt;/span&gt; and as low as &lt;span&gt;−$10,000&lt;/span&gt;; age is centered around 25, going as low as 0 and as high as 50; education is centered around 16, going as low as 3 and as high as 28. Cool.&lt;/p&gt;
 &lt;p&gt;Again, when generating these numbers, it&amp;rsquo;s really hard to know how high or low these ranges will be, so it&amp;rsquo;s a good idea to plot them constantly. I settled on &lt;code&gt;sd = 4&lt;/code&gt; for education only because I tried things like &lt;code&gt;1&lt;/code&gt; and &lt;code&gt;10&lt;/code&gt; and got wild looking values (everyone basically at 16 with little variation, or everyone ranging from −20 to 50, which makes no sense when thinking about years of education). Really it&amp;rsquo;s just a process of trial and error until the data looks good and reasonable.&lt;/p&gt;
 &lt;h3 id=&#34;truncated-normal-distribution&#34;&gt;Truncated normal distribution&lt;/h3&gt;
@@ -427,7 +427,7 @@ head(plot_data)
 ggplot(plot_data, aes(x = fake_age)) +
   geom_histogram(binwidth = 2, color = &amp;quot;white&amp;quot;, boundary = 0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/nontruncated-normal-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/nontruncated-normal-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;To fix this, truncate the range at 12 and 21:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(truncnorm)  # For rtruncnorm()
 
@@ -448,7 +448,7 @@ head(plot_data)
 ggplot(plot_data, aes(x = fake_age)) +
   geom_histogram(binwidth = 1, color = &amp;quot;white&amp;quot;, boundary = 0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/truncated-normal-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/truncated-normal-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;And voila! A bunch of people between 12 and 21, with most around 14, with no invalid values.&lt;/p&gt;
 &lt;h3 id=&#34;beta-distribution&#34;&gt;Beta distribution&lt;/h3&gt;
 &lt;p&gt;Normal distributions are neat, but they&amp;rsquo;re symmetrical around the mean (unless you truncate them). What if your program involves a test with a maximum of 100 points where most people score around 85, but a sizable portion score below that. In other words, it&amp;rsquo;s not centered at 85, but is skewed left.&lt;/p&gt;
@@ -485,26 +485,26 @@ ggplot(plot_data, aes(x = exam_score)) +
   geom_histogram(binwidth = 1, color = &amp;quot;white&amp;quot;) +
   scale_x_continuous(breaks = 0:10)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-example1-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-example1-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Most people score around 6, with a bunch at 5 and 7, and fewer in the tails. Importantly, it&amp;rsquo;s &lt;em&gt;not&lt;/em&gt; centered at 6—the distribution is asymmetric.&lt;/p&gt;
 &lt;p&gt;The magic of—and most confusing part about—Beta distributions is that you can get all sorts of curves by just changing the shape parameters. To make this easier to see, we can make a bunch of different Beta distributions. Instead of plotting them with histograms, we&amp;rsquo;ll use density plots (and instead of generating random numbers, we&amp;rsquo;ll plot the actual full range of the distribution (that&amp;rsquo;s what &lt;code&gt;dbeta&lt;/code&gt; and &lt;code&gt;geom_function()&lt;/code&gt; do in all these examples)).&lt;/p&gt;
 &lt;p&gt;Here&amp;rsquo;s what we saw before, with &lt;code&gt;\(\alpha\)&lt;/code&gt; (&lt;code&gt;shape1&lt;/code&gt;) = 6 and &lt;code&gt;\(\beta\)&lt;/code&gt; (&lt;code&gt;shape2&lt;/code&gt;) = 4:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 6, shape2 = 4))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-6-4-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-6-4-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Again, there&amp;rsquo;s a peak at 0.6 (or 6), which is what we expected.&lt;/p&gt;
 &lt;p&gt;We can make the distribution narrower if we scale the shapes up. Here pretty much everyone scores around 50% and 75%.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 60, shape2 = 40))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-60-44-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-60-44-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;So far all these curves look like normal distributions, just slightly skewed. But when if most people score 90–100%? Or most fail? A Beta distribution can handle that too:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 9, shape2 = 1), color = &amp;quot;blue&amp;quot;) +
   geom_function(fun = dbeta, args = list(shape1 = 1, shape2 = 9), color = &amp;quot;red&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-1-9-9-1-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-1-9-9-1-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;With &lt;code&gt;shape1 = 9&lt;/code&gt; and &lt;code&gt;shape2 = 1&lt;/code&gt; (or &lt;code&gt;\(\frac{9}{9 + 1}\)&lt;/code&gt;) we get most around 90%, while &lt;code&gt;shape1 = 1&lt;/code&gt; and &lt;code&gt;shape2 = 9&lt;/code&gt; (or &lt;code&gt;\(\frac{1}{1 + 9}\)&lt;/code&gt;) gets us most around 10%.&lt;/p&gt;
 &lt;p&gt;Check out all these other shapes too:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
@@ -513,7 +513,7 @@ ggplot(plot_data, aes(x = exam_score)) +
   geom_function(fun = dbeta, args = list(shape1 = 80, shape2 = 23), color = &amp;quot;orange&amp;quot;) +
   geom_function(fun = dbeta, args = list(shape1 = 13, shape2 = 17), color = &amp;quot;brown&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-lots-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-lots-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In real life, if I don&amp;rsquo;t want to figure out the math behind the &lt;code&gt;\(\frac{\alpha}{\alpha + \beta}\)&lt;/code&gt; shape values, I end up just choosing different numbers until it looks like the shape I want, and then I use &lt;code&gt;rbeta()&lt;/code&gt; with those parameter values. Like, how about we generate some numbers based on the red line above, with &lt;code&gt;shape1 = 2&lt;/code&gt; and &lt;code&gt;shape2 = 5&lt;/code&gt;, which looks like it should be centered around 0.2ish ($\frac{2}{2 + 5} = 0.2857$):&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
 
@@ -533,7 +533,7 @@ head(plot_data)
 ggplot(plot_data, aes(x = thing)) +
   geom_histogram(binwidth = 2, color = &amp;quot;white&amp;quot;, boundary = 0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-2-5-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-2-5-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It worked! Most values are around 20ish, but some go up to 60–80.&lt;/p&gt;
 &lt;h3 id=&#34;binomial-distribution&#34;&gt;Binomial distribution&lt;/h3&gt;
 &lt;p&gt;Often you&amp;rsquo;ll want to generate a column that only has two values: yes/no, treated/untreated, before/after, big/small, red/blue, etc. You&amp;rsquo;ll also likely want to control the proportions (25% treated, 62% blue, etc.). You can do this in two different ways: (1) &lt;code&gt;sample()&lt;/code&gt; and (2) &lt;code&gt;rbinom()&lt;/code&gt;.&lt;/p&gt;
@@ -570,7 +570,7 @@ fake_elections %&amp;gt;%
 ggplot(fake_elections, aes(x = winner)) +
   geom_bar()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/fake-election-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/fake-election-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Person 1 won 792 of the elections. Neat.&lt;/p&gt;
 &lt;p&gt;(This is essentially what election forecasting websites like FiveThirtyEight do! They just do it with way more sophisticated simulations.)&lt;/p&gt;
 &lt;h4 id=&#34;rbinom&#34;&gt;&lt;code&gt;rbinom()&lt;/code&gt;&lt;/h4&gt;
@@ -612,7 +612,7 @@ plot_data %&amp;gt;%
 ggplot(plot_data, aes(x = thing)) +
   geom_bar()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-binomial-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-binomial-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;58% of the 2,000 fake people here were 1/TRUE/yes, which is close to the goal of 60%. Perfect.&lt;/p&gt;
 &lt;h3 id=&#34;poisson-distribution&#34;&gt;Poisson distribution&lt;/h3&gt;
 &lt;p&gt;One last common distribution that you might find helpful when simulating data is the &lt;a href=&#34;https://en.wikipedia.org/wiki/Poisson_binomial_distribution&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Poisson distribution&lt;/a&gt; (in French, &lt;a href=&#34;https://www.youtube.com/watch?v=UoJxBEQRLd0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;poisson&amp;rdquo; = fish&lt;/a&gt;, but here it&amp;rsquo;s not actually named after the animal, but after &lt;a href=&#34;https://en.wikipedia.org/wiki/Sim%C3%A9on_Denis_Poisson&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;French mathematician Siméon Denis Poisson&lt;/a&gt;).&lt;/p&gt;
@@ -674,7 +674,7 @@ plot_data %&amp;gt;%
 ggplot(plot_data, aes(x = num_kids)) +
   geom_bar()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-poisson-lambda1-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-poisson-lambda1-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Here 75ish% of families have 0–1 kids (36% + 37.4%), 17% have 2 kids, 6% have 3, 2% have 4, and only 0.6% have 5.&lt;/p&gt;
 &lt;p&gt;We can play with the &lt;code&gt;\(\lambda\)&lt;/code&gt; to increase the rate of kids per family:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
@@ -710,7 +710,7 @@ plot_data %&amp;gt;%
 ggplot(plot_data, aes(x = num_kids)) +
   geom_bar()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-poisson-lambda3-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/plot-poisson-lambda3-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Now most families have 1–2 kids. Cool.&lt;/p&gt;
 &lt;h2 id=&#34;rescaling-numbers&#34;&gt;Rescaling numbers&lt;/h2&gt;
 &lt;p&gt;All these different distributions are good at generating general shapes:&lt;/p&gt;
@@ -726,7 +726,7 @@ ggplot(plot_data, aes(x = num_kids)) +
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
   geom_function(fun = dbeta, args = list(shape1 = 2, shape2 = 5))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-2-5-income-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-2-5-income-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we generate random numbers from this distribution, they&amp;rsquo;ll all be stuck between 0 and 1:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
 
@@ -735,7 +735,7 @@ fake_people &amp;lt;- tibble(income = rbeta(1000, shape1 = 2, shape2 = 5))
 ggplot(fake_people, aes(x = income)) +
   geom_histogram(binwidth = 0.1, color = &amp;quot;white&amp;quot;, boundary = 0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-income-not-scaled-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-income-not-scaled-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can take those underling 0–1 values and rescale them to some other range using the &lt;code&gt;rescale()&lt;/code&gt; function. We can specify the minimum and maximum values in the &lt;code&gt;to&lt;/code&gt; argument. Here we&amp;rsquo;ll scale it up so that 0 = &lt;span&gt;$10,000&lt;/span&gt; and 1 = &lt;span&gt;$100,000&lt;/span&gt;. Our rescaled version follows the same skewed Beta distribution shape, but now we&amp;rsquo;re using better values!&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(scales)
 
@@ -755,7 +755,7 @@ head(fake_people_scaled)
 ggplot(fake_people_scaled, aes(x = income_scaled)) +
   geom_histogram(binwidth = 5000, color = &amp;quot;white&amp;quot;, boundary = 0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-income-scaled-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/beta-income-scaled-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This works for anything, really. For instance, instead of specifying a mean and standard deviation for a normal distribution and hoping that the generated values don&amp;rsquo;t go too high or too low, you can generate a normal distribution with a mean of 0 and standard deviation of 1 and then rescale it to the range you want:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
 
@@ -780,9 +780,9 @@ plot_scaled &amp;lt;- ggplot(fake_data, aes(x = age)) +
 
 plot_unscaled + plot_scaled
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-scaled-up-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/normal-scaled-up-1.png&#34; width=&#34;75%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This gives you less control over the center of the distribution (here it happens to be 40 because that&amp;rsquo;s in the middle of 18 and 65), but it gives you more control over the edges of the distribution.&lt;/p&gt;
-&lt;p&gt;Rescaling things is really helpful when building in effects and interacting columns with other columns, since multiplying variables by different coefficients can make the values go way out of the normal range. You&amp;rsquo;ll see a lot more of that in the &lt;a href=&#34;lbelzile.github.io/math807667a/example/synthetic-data/&#34;&gt;synthetic data example&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Rescaling things is really helpful when building in effects and interacting columns with other columns, since multiplying variables by different coefficients can make the values go way out of the normal range. You&amp;rsquo;ll see a lot more of that in the &lt;a href=&#34;/example/synthetic-data/&#34;&gt;synthetic data example&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
 &lt;p&gt;Phew. We covered a lot here, and we barely scratched the surface of all the distributions that exist. Here&amp;rsquo;s a helpful summary of the main distributions you should care about:&lt;/p&gt;
 &lt;table&gt;
@@ -841,7 +841,7 @@ plot_unscaled + plot_scaled
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
-&lt;p&gt;And here&amp;rsquo;s an example dataset of 1,000 fake people and different characteristics. One shortcoming of this fake data is that each of these columns is completely independent—there&amp;rsquo;s no relationship between age and education and family size and income. You can see how to make these columns correlated (and make one cause another!) in the &lt;a href=&#34;lbelzile.github.io/math807667a/example/synthetic-data&#34;&gt;example for synthetic data&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And here&amp;rsquo;s an example dataset of 1,000 fake people and different characteristics. One shortcoming of this fake data is that each of these columns is completely independent—there&amp;rsquo;s no relationship between age and education and family size and income. You can see how to make these columns correlated (and make one cause another!) in the &lt;a href=&#34;/example/synthetic-data&#34;&gt;example for synthetic data&lt;/a&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(1234)
 
 # Set the number of people here once so it&#39;s easier to change later
@@ -914,18 +914,18 @@ plot_family &amp;lt;- ggplot(example_fake_people, aes(x = family_size)) +
 
 (plot_opinion + plot_age) / (plot_income + plot_education)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/example-plots-1-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/example-plots-1-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;(plot_happiness + plot_treatment) / (plot_size + plot_family)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/example-plots-2-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/lbelzile.github.io/math807667aexample/random-numbers_files/figure-html/example-plots-2-1.png&#34; width=&#34;100%&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Welcome to R, RStudio, and the tidyverse!</title>
-      <link>lbelzile.github.io/math807667a/example/rstudio-tidyverse/</link>
+      <link>/example/rstudio-tidyverse/</link>
       <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
-      <guid>lbelzile.github.io/math807667a/example/rstudio-tidyverse/</guid>
+      <guid>/example/rstudio-tidyverse/</guid>
       <description>&lt;h2 id=&#34;part-1-the-basics-of-r-and-dplyr&#34;&gt;Part 1: The basics of R and dplyr&lt;/h2&gt;
 &lt;p&gt;For this week&amp;rsquo;s problem set, you need to work through a few of RStudio&amp;rsquo;s introductory primers. You&amp;rsquo;ll do these in your browser and type code and see results there.&lt;/p&gt;
 &lt;p&gt;You&amp;rsquo;ll learn some of the basics of R, as well as some powerful methods for manipulating data with the &lt;strong&gt;dplyr&lt;/strong&gt; package.&lt;/p&gt;
@@ -977,7 +977,7 @@ Recent versions of &lt;strong&gt;tidyr&lt;/strong&gt; have renamed these core fu
 &lt;p&gt;One of the most powerful and useful aspects of RStudio is its ability to manage projects.&lt;/p&gt;
 &lt;p&gt;When you first open R, it is &amp;ldquo;pointed&amp;rdquo; at some folder on your computer, and anything you do will be relative to that folder. The technical term for this is a &amp;ldquo;working directory.&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;When you first open RStudio, look in the area right at the top of the Console pane to see your current working directory. Most likely you&amp;rsquo;ll see something cryptic: &lt;code&gt;~/&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;lbelzile.github.io/math807667a/img/example/working-directory.png&#34; width=&#34;50%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/example/working-directory.png&#34; width=&#34;50%&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;That tilde sign (&lt;code&gt;~&lt;/code&gt;) is a shortcut that stands for your user directory. On Windows this is &lt;code&gt;C:\Users\your_user_name\&lt;/code&gt;; on macOS this is &lt;code&gt;/Users/your_user_name/&lt;/code&gt;. With the working directory set to &lt;code&gt;~/&lt;/code&gt;, R is &amp;ldquo;pointed&amp;rdquo; at that folder, and anything you save will end up in that folder, and R will expect any data that you load to be there too.&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s always best to point R at some other directory. If you don&amp;rsquo;t use RStudio, you need to manually set the working directory to where you want it with &lt;code&gt;setwd()&lt;/code&gt;, and many R scripts in the wild include something like &lt;code&gt;setwd(&amp;quot;C:\\Users\\bill\\Desktop\\Important research project&amp;quot;)&lt;/code&gt; at the beginning to change the directory. &lt;strong&gt;THIS IS BAD THOUGH&lt;/strong&gt; (&lt;a href=&#34;https://www.tidyverse.org/blog/2017/12/workflow-vs-script/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see here for an explanation&lt;/a&gt;). If you ever move that directory somewhere else, or run the script on a different computer, or share the project with someone, the path will be wrong and nothing will run and you will be sad.&lt;/p&gt;
 &lt;p&gt;The best way to deal with working directories with RStudio is to use RStudio Projects. These are special files that RStudio creates for you that end in a &lt;code&gt;.Rproj&lt;/code&gt; extension. When you open one of these special files, a new RStudio instance will open up and be pointed at the correct directory automatically. If you move the folder later or open it on a different computer, it will work just fine and you will not be sad.&lt;/p&gt;
@@ -997,8 +997,8 @@ Recent versions of &lt;strong&gt;tidyr&lt;/strong&gt; have renamed these core fu
 &lt;li&gt;
 &lt;p&gt;Skim through the content at these pages:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;lbelzile.github.io/math807667a/resource/markdown/&#34;&gt;Using Markdown&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;lbelzile.github.io/math807667a/resource/rmarkdown/&#34;&gt;Using R Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/markdown/&#34;&gt;Using Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/resource/rmarkdown/&#34;&gt;Using R Markdown&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://rmarkdown.rstudio.com/lesson-2.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;How it Works&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://rmarkdown.rstudio.com/lesson-3.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Code Chunks&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://rmarkdown.rstudio.com/lesson-4.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Inline Code&lt;/a&gt;&lt;/li&gt;
@@ -1018,18 +1018,18 @@ Recent versions of &lt;strong&gt;tidyr&lt;/strong&gt; have renamed these core fu
     
     <item>
       <title>Schedule</title>
-      <link>lbelzile.github.io/math807667a/schedule/</link>
+      <link>/schedule/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>lbelzile.github.io/math807667a/schedule/</guid>
+      <guid>/schedule/</guid>
       <description>
-&lt;script src=&#34;lbelzile.github.io/math807667a/schedule/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/schedule/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Here’s your roadmap for the semester!&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;lbelzile.github.io/math807667a/content/&#34;&gt;&lt;strong&gt;Content&lt;/strong&gt;&lt;/a&gt; (&lt;i class=&#34;fas fa-book-reader&#34;&gt;&lt;/i&gt;): This page contains the readings, slides, and recorded lectures for the topic. Read and watch these first.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;lbelzile.github.io/math807667a/example/&#34;&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/a&gt; (&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;): This page contains fully annotated R code and other supplementary information that you can use as a reference for your assignments and project. This is only a reference page—you don’t have to necessarily do anything here. Some sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. This page will be &lt;em&gt;very&lt;/em&gt; helpful as you work on your assignments.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;lbelzile.github.io/math807667a/assignment/&#34;&gt;&lt;strong&gt;Assignment&lt;/strong&gt;&lt;/a&gt; (&lt;i class=&#34;fas fa-pencil-ruler&#34;&gt;&lt;/i&gt;): This page contains the instructions for each assignment. &lt;strong&gt;Assignments are due by 11:55 PM on the day they’re listed.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/content/&#34;&gt;&lt;strong&gt;Content&lt;/strong&gt;&lt;/a&gt; (&lt;i class=&#34;fas fa-book-reader&#34;&gt;&lt;/i&gt;): This page contains the readings, slides, and recorded lectures for the topic. Read and watch these first.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/example/&#34;&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;/a&gt; (&lt;i class=&#34;fas fa-laptop-code&#34;&gt;&lt;/i&gt;): This page contains fully annotated R code and other supplementary information that you can use as a reference for your assignments and project. This is only a reference page—you don’t have to necessarily do anything here. Some sections also contain videos of me live coding the examples so you can see what it looks like to work with R in real time. This page will be &lt;em&gt;very&lt;/em&gt; helpful as you work on your assignments.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/assignment/&#34;&gt;&lt;strong&gt;Assignment&lt;/strong&gt;&lt;/a&gt; (&lt;i class=&#34;fas fa-pencil-ruler&#34;&gt;&lt;/i&gt;): This page contains the instructions for each assignment. &lt;strong&gt;Assignments are due by 11:55 PM on the day they’re listed.&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

@@ -2,36 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>lbelzile.github.io/math807667a/content/</loc>
+    <loc>/content/</loc>
     <lastmod>2021-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/example/</loc>
+    <loc>/example/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/assignment/</loc>
+    <loc>/evaluations/</loc>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/content/01-content/</loc>
+    <loc>/content/01-content/</loc>
     <lastmod>2021-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/</loc>
+    <loc>/</loc>
     <lastmod>2021-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/example/random-numbers/</loc>
+    <loc>/example/random-numbers/</loc>
     <lastmod>2020-10-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/example/rstudio-tidyverse/</loc>
+    <loc>/example/rstudio-tidyverse/</loc>
     <lastmod>2020-08-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/authors/lbelzile/</loc>
+    <loc>/authors/lbelzile/</loc>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/authors/</loc>
+    <loc>/authors/</loc>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/categories/</loc>
+    <loc>/categories/</loc>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/publication_types/</loc>
+    <loc>/publication_types/</loc>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/schedule/</loc>
+    <loc>/schedule/</loc>
   </url><url>
-    <loc>lbelzile.github.io/math807667a/tags/</loc>
+    <loc>/tags/</loc>
   </url>
 </urlset>

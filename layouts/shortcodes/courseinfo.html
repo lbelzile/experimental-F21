@@ -12,7 +12,7 @@
         <ul class="icon-list">
             <li><i class="far fa-calendar"></i> {{ .Site.Params.course.days }}</li>
             <li><i class="far fa-clock"></i> {{ .Site.Params.course.time }}</li>
-            {{ if isset .Site.Params.course "location" }}<li><i class="fas fa-university"></i> {{ .Site.Params.course.location }}</li>{{end}}
+            <li><i class="fas fa-university"></i> <a href="{{ .Site.Params.location.url }}" target="_blank" rel="noopener"> {{ .Site.Params.location.name }}</a></li>
         </ul>
     </div>
     <div class="col-md-4 contact-policy">

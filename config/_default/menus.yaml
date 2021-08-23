@@ -8,8 +8,8 @@ main:
   - name: Examples
     url: /example/
     weight: 3
-  - name: Assignments
-    url: /assignment/
+  - name: Evaluations
+    url: /evaluations/
     weight: 4
   - name: Resources
     url: "https://evalf21.classes.andrewheiss.com/resource/"
@@ -27,13 +27,15 @@ example:
     weight: 2
   - name: Examples
     weight: 3
-assignment:
-  - name: Assignments
+evaluations:
+  - name: Evaluations
     weight: 1
   - name: Weekly check-in
     weight: 2
   - name: Problem sets
     weight: 3
-  - name: Final exam
+  - name: Final project
     weight: 4
+  - name: Final exam
+    weight: 5
 

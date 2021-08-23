@@ -4,11 +4,11 @@
     <title>Overview of R and the tidyverse</title>
     <meta charset="utf-8" />
     <meta name="author" content="Andrew Heiss" />
-    <meta name="date" content="2021-08-23" />
-    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <meta name="date" content="2021-01-25" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/tile-view-0.2.1/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.1/tile-view.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/ath-slides.css" type="text/css" />
@@ -500,10 +500,12 @@ class: title title-1
 # `ggplot()` template
 
 
+&lt;code class ='r hljs remark-code'&gt;ggplot(data = &lt;b&gt;&lt;span style='background-color:#CBB5FF'&gt;DATA&lt;/span&gt;&lt;/b&gt;) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;GEOM_FUNCTION&lt;/span&gt;&lt;/b&gt;(mapping = aes(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;AESTHETIC MAPPINGS&lt;/span&gt;&lt;/b&gt;))&lt;/code&gt;
 
 --
 
 
+&lt;code class ='r hljs remark-code'&gt;ggplot(data = &lt;b&gt;&lt;span style='background-color:#CBB5FF'&gt;troops&lt;/span&gt;&lt;/b&gt;) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;geom_path&lt;/span&gt;&lt;/b&gt;(mapping = aes(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;x = longitude&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;y = latitude&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;color = direction&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;size = survivors&lt;/span&gt;&lt;/b&gt;))&lt;/code&gt;
 
 ---
 
@@ -551,6 +553,7 @@ layout: false
 --
 
 
+&lt;code class ='r hljs remark-code'&gt;ggplot(data = &lt;b&gt;&lt;span style='background-color:#CBB5FF'&gt;troops&lt;/span&gt;&lt;/b&gt;) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;geom_path&lt;/span&gt;&lt;/b&gt;(mapping = aes(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;x = longitude&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;y = latitude&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;color = direction&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;size = survivors&lt;/span&gt;&lt;/b&gt;))&lt;/code&gt;
 
 ---
 
@@ -742,6 +745,7 @@ class: title title-1
 # Geoms
 
 
+&lt;code class ='r hljs remark-code'&gt;ggplot(data = &lt;b&gt;&lt;span style='background-color:#CBB5FF'&gt;DATA&lt;/span&gt;&lt;/b&gt;) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;GEOM_FUNCTION&lt;/span&gt;&lt;/b&gt;(mapping = aes(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;AESTHETIC MAPPINGS&lt;/span&gt;&lt;/b&gt;))&lt;/code&gt;
 
 ---
 
@@ -1132,7 +1136,7 @@ gapminder
 ```
 
 ```
-## # A tibble: 1,704 × 6
+## # A tibble: 1,704 x 6
 ##    country     continent  year lifeExp      pop gdpPercap
 ##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
 ##  1 Afghanistan Asia       1952    28.8  8425333      779.
@@ -1221,6 +1225,7 @@ class: title title-2
 
 .pull-left[
 
+&lt;code class ='r hljs remark-code'&gt;filter(.data = &lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;DATA&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;...&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 .pull-right[
@@ -1231,6 +1236,7 @@ class: title title-2
 ---
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(.data = &lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;country == "Denmark"&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left[
 &lt;table&gt;
@@ -1330,6 +1336,7 @@ class: title title-2
 
 .pull-left[
 
+&lt;code class ='r hljs remark-code'&gt;filter(.data = &lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;country == "Denmark"&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 .pull-right[
@@ -1432,8 +1439,10 @@ class: title title-2
 .box-inv-2[Using `=` instead of `==`]
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;country &lt;b&gt;&lt;span style='color:#FF4136'&gt;=&lt;/span&gt;&lt;/b&gt; "Canada")&lt;/code&gt;
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;country &lt;b&gt;&lt;span style='color:#2ECC40'&gt;==&lt;/span&gt;&lt;/b&gt; "Canada")&lt;/code&gt;
 ]
 
 --
@@ -1442,8 +1451,10 @@ class: title title-2
 .box-inv-2[Quote use]
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;country == &lt;b&gt;&lt;span style='color:#FF4136'&gt;Canada&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;country == &lt;b&gt;&lt;span style='color:#2ECC40'&gt;"Canada"&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 ---
@@ -1455,10 +1466,12 @@ class: title title-2
 .box-inv-2[Extract rows that meet *every* test]
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;country == "Denmark", year &gt; 2000&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 ---
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;country == "Denmark", year &gt; 2000&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left[
 &lt;table&gt;
@@ -1564,8 +1577,10 @@ class: title title-2
 .box-inv-2[These do the same thing:]
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;country == "Denmark", year &gt; 2000&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;country == "Denmark" &amp; year &gt; 2000&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 ---
 
@@ -1612,10 +1627,12 @@ class: title title-2
 
 .small-code[
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;b&gt;&lt;span style='color:#FF4136'&gt;1960 &amp;lt; year &amp;lt; 1980&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 .small-code[
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='color:#2ECC40'&gt;year &gt; 1960, year &amp;lt; 1980&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 ]
 
@@ -1626,10 +1643,12 @@ class: title title-2
 
 .small-code[
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='color:#FF4136'&gt;country == "Mexico", &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;country == "Canada", &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;country == "United States"&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 .small-code[
 
+&lt;code class ='r hljs remark-code'&gt;filter(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='color:#2ECC40'&gt;country %in% c("Mexico", "Canada", &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"United States")&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 ]
 
@@ -1645,6 +1664,7 @@ class: title title-2
 
 .pull-left[
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#EFB3FF'&gt;VERB&lt;/span&gt;&lt;/b&gt;(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;DATA&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;...&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 .pull-right[
@@ -1663,6 +1683,7 @@ class: title title-2
 
 .pull-left[
 
+&lt;code class ='r hljs remark-code'&gt;mutate(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;.data&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;...&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 .pull-right[
@@ -1673,6 +1694,7 @@ class: title title-2
 ---
 
 
+&lt;code class ='r hljs remark-code'&gt;mutate(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;gdp = gdpPercap * pop&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left.small[
 &lt;table&gt;
@@ -1781,6 +1803,7 @@ class: title title-2
 ---
 
 
+&lt;code class ='r hljs remark-code'&gt;mutate(&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;gdp = gdpPercap * pop,&lt;/span&gt;&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;pop_mil = round(pop / 1000000)&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left.small[
 &lt;table&gt;
@@ -1903,6 +1926,7 @@ class: title title-2
 
 .pull-left[
 
+&lt;code class ='r hljs remark-code'&gt;ifelse(&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;TEST&lt;/span&gt;&lt;/b&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;VALUE_IF_TRUE&lt;/span&gt;&lt;/b&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#CBB5FF'&gt;VALUE_IF_FALSE&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 ]
 
 .pull-right[
@@ -1914,8 +1938,10 @@ class: title title-2
 ---
 
 
+&lt;code class ='r hljs remark-code'&gt;mutate(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;after_1960 = ifelse(&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;year &gt; 1960&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;TRUE&lt;/span&gt;&lt;/b&gt;, &lt;b&gt;&lt;span style='background-color:#CBB5FF'&gt;FALSE&lt;/span&gt;&lt;/b&gt;))&lt;/code&gt;
 
 
+&lt;code class ='r hljs remark-code'&gt;mutate(gapminder, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;after_1960 = ifelse(&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;year &gt; 1960&lt;/span&gt;&lt;/b&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;"After 1960"&lt;/span&gt;&lt;/b&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#CBB5FF'&gt;"Before 1960"&lt;/span&gt;&lt;/b&gt;))&lt;/code&gt;
 
 ---
 
@@ -1968,6 +1994,7 @@ class: title title-2
 .box-inv-2[Solution 1: Intermediate variables]
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;gapminder_2002&lt;/span&gt;&lt;/b&gt; &lt;- filter(gapminder, year == 2002)&lt;br&gt;&lt;br&gt;&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;gapminder_2002&lt;/span&gt;&lt;/b&gt;_log &lt;- mutate(&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;gapminder_2002&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;log_gdpPercap = log(gdpPercap))&lt;/code&gt;
 
 ---
 
@@ -1980,6 +2007,7 @@ class: title title-2
 .box-inv-2[Solution 2: Nested functions]
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;filter(&lt;/span&gt;&lt;/b&gt;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;mutate(gapminder_2002,&lt;/span&gt;&lt;/b&gt; &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;log_gdpPercap = log(gdpPercap))&lt;/span&gt;&lt;/b&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;year == 2002)&lt;/span&gt;&lt;/b&gt;&lt;/code&gt;
 
 ---
 
@@ -1994,6 +2022,7 @@ class: title title-2
 .box-inv-2[The `%&gt;%` operator (pipe) takes an object on the left&lt;br&gt;and passes it as the first argument of the function on the right]
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;gapminder&lt;/span&gt;&lt;/b&gt; %&gt;% filter(&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;_____&lt;/span&gt;&lt;/b&gt;, country == "Canada")&lt;/code&gt;
 
 ---
 
@@ -2004,8 +2033,10 @@ class: title title-2
 .box-inv-2[These do the same thing!]
 
 
+&lt;code class ='r hljs remark-code'&gt;filter(&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;gapminder&lt;/span&gt;&lt;/b&gt;, country == "Canada")&lt;/code&gt;
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFC0DC'&gt;gapminder&lt;/span&gt;&lt;/b&gt; %&gt;% filter(country == "Canada")&lt;/code&gt;
 
 ---
 
@@ -2018,6 +2049,7 @@ class: title title-2
 .box-inv-2[Solution 3: Pipes!]
 
 
+&lt;code class ='r hljs remark-code'&gt;gapminder %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;filter(year == 2002) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;mutate(log_gdpPercap = log(gdpPercap))&lt;/code&gt;
 
 ---
 
@@ -2026,10 +2058,12 @@ class: title title-2
 # `%&gt;%`
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;leave_house&lt;/b&gt;(&lt;b&gt;get_dressed&lt;/b&gt;(&lt;b&gt;get_out_of_bed&lt;/b&gt;(&lt;b&gt;wake_up&lt;/b&gt;(&lt;span style='color:#E16462'&gt;me&lt;/span&gt;, &lt;span style='color:#0D0887'&gt;time&lt;/span&gt; = &lt;span style='color:#E16462'&gt;"8:00"&lt;/span&gt;), &lt;span style='color:#0D0887'&gt;side&lt;/span&gt; = &lt;span style='color:#E16462'&gt;"correct"&lt;/span&gt;), &lt;span style='color:#0D0887'&gt;pants&lt;/span&gt; = &lt;span style='color:#E16462'&gt;TRUE&lt;/span&gt;, &lt;span style='color:#0D0887'&gt;shirt&lt;/span&gt; = &lt;span style='color:#E16462'&gt;TRUE&lt;/span&gt;), &lt;span style='color:#0D0887'&gt;car&lt;/span&gt; = &lt;span style='color:#E16462'&gt;TRUE&lt;/span&gt;, &lt;span style='color:#0D0887'&gt;bike&lt;/span&gt; = &lt;span style='color:#E16462'&gt;FALSE&lt;/span&gt;)&lt;/code&gt;
 
 --
 
 
+&lt;code class ='r hljs remark-code'&gt;me %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;wake_up&lt;/b&gt;(&lt;span style='color:#0D0887'&gt;time&lt;/span&gt; = &lt;span style='color:#E16462'&gt;"8:00"&lt;/span&gt;) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;get_out_of_bed&lt;/b&gt;(&lt;span style='color:#0D0887'&gt;side&lt;/span&gt; = &lt;span style='color:#E16462'&gt;"correct"&lt;/span&gt;) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;get_dressed&lt;/b&gt;(&lt;span style='color:#0D0887'&gt;pants&lt;/span&gt; = &lt;span style='color:#E16462'&gt;TRUE&lt;/span&gt;, &lt;span style='color:#0D0887'&gt;shirt&lt;/span&gt; = &lt;span style='color:#E16462'&gt;TRUE&lt;/span&gt;) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b&gt;leave_house&lt;/b&gt;(&lt;span style='color:#0D0887'&gt;car&lt;/span&gt; = &lt;span style='color:#E16462'&gt;TRUE&lt;/span&gt;, &lt;span style='color:#0D0887'&gt;bike&lt;/span&gt; = &lt;span style='color:#E16462'&gt;FALSE&lt;/span&gt;)&lt;/code&gt;
 
 ---
 
@@ -2040,6 +2074,7 @@ class: title title-2
 .box-inv-2[Compute a table of summaries]
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt; %&gt;% summarize(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;mean_life = mean(lifeExp)&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left.small[
 &lt;table&gt;
@@ -2110,6 +2145,7 @@ class: title title-2
 # `summarize()`
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt; %&gt;% summarize(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;mean_life = mean(lifeExp),&lt;/span&gt;&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;min_life = min(lifeExp)&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left.small[
 &lt;table&gt;
@@ -2270,6 +2306,7 @@ class: title title-2
 .box-inv-2[Put rows into groups based on values in a column]
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;gapminder&lt;/span&gt;&lt;/b&gt; %&gt;% group_by(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;continent&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 &amp;nbsp;
 
@@ -2330,6 +2367,7 @@ gapminder %&gt;%
 
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;pollution&lt;/span&gt;&lt;/b&gt; %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;mean = mean(amount), sum = sum(amount), n = n()&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left.small[
 &lt;table&gt;
@@ -2399,6 +2437,7 @@ gapminder %&gt;%
 ---
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;pollution&lt;/span&gt;&lt;/b&gt; %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;city&lt;/span&gt;&lt;/b&gt;) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;mean = mean(amount), sum = sum(amount), n = n()&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left.small[
 &lt;table&gt;
@@ -2482,6 +2521,7 @@ gapminder %&gt;%
 ---
 
 
+&lt;code class ='r hljs remark-code'&gt;&lt;b&gt;&lt;span style='background-color:#FFDFD1'&gt;pollution&lt;/span&gt;&lt;/b&gt; %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;particle_size&lt;/span&gt;&lt;/b&gt;) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(&lt;b&gt;&lt;span style='background-color:#FFD0CF'&gt;mean = mean(amount), sum = sum(amount), n = n()&lt;/span&gt;&lt;/b&gt;)&lt;/code&gt;
 
 .pull-left.small[
 &lt;table&gt;

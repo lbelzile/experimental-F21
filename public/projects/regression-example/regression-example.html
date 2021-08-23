@@ -268,7 +268,7 @@ hs_gpa_cor</code></pre>
 sat_gpa %&gt;% 
   group_by(sex) %&gt;% 
   summarize(correlation = cor(sat_total, gpa_fy))</code></pre>
-<pre><code>## # A tibble: 2 × 2
+<pre><code>## # A tibble: 2 x 2
 ##   sex    correlation
 ##   &lt;chr&gt;        &lt;dbl&gt;
 ## 1 Female       0.493
@@ -288,7 +288,7 @@ ggplot(sat_gpa, aes(x = gpa_hs, y = gpa_fy, color = sex)) +
 <pre class="r"><code>sat_gpa %&gt;% 
   group_by(sex) %&gt;% 
   summarize(correlation = cor(gpa_hs, gpa_fy))</code></pre>
-<pre><code>## # A tibble: 2 × 2
+<pre><code>## # A tibble: 2 x 2
 ##   sex    correlation
 ##   &lt;chr&gt;        &lt;dbl&gt;
 ## 1 Female       0.597
@@ -308,7 +308,7 @@ ggplot(sat_gpa, aes(x = gpa_hs, y = gpa_fy, color = sex)) +
 
 # Look at the model results and include confidence intervals for the coefficients
 tidy(model_sat_gpa, conf.int = TRUE)</code></pre>
-<pre><code>## # A tibble: 2 × 7
+<pre><code>## # A tibble: 2 x 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)  0.00193   0.152      0.0127 9.90e- 1  -0.296     0.300 
@@ -320,7 +320,7 @@ tidy(model_sat_gpa, conf.int = TRUE)</code></pre>
 </ul>
 <p>We can look at the summary table of the regression to check the <span class="math inline">\(R^2\)</span>:</p>
 <pre class="r"><code>glance(model_sat_gpa)</code></pre>
-<pre><code>## # A tibble: 1 × 12
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.212         0.211 0.658      268. 1.39e-53     1  -999. 2005. 2019.
@@ -336,7 +336,7 @@ tidy(model_sat_gpa, conf.int = TRUE)</code></pre>
 <pre class="r"><code>model_sat_gpa_types &lt;- lm(gpa_fy ~ sat_verbal + sat_math, data = sat_gpa)
 
 tidy(model_sat_gpa_types, conf.int = TRUE)</code></pre>
-<pre><code>## # A tibble: 3 × 7
+<pre><code>## # A tibble: 3 x 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)  0.00737   0.152      0.0484 9.61e- 1  -0.291     0.306 
@@ -345,7 +345,7 @@ tidy(model_sat_gpa_types, conf.int = TRUE)</code></pre>
 <p>Again, the intercept is meaningless since no student has a zero on both the verbal and the math test. The slope for <code>sat_verbal</code> (or <span class="math inline">\(\beta_1\)</span>) is 0.025, so a one percentile point increase in the verbal SAT is associated with a 0.025 point increase in GPA, on average, controlling for math scores. Meanwhile, a one percentile point increase in the math SAT (<span class="math inline">\(\beta_2\)</span>) is associated with a 0.022 point increase in GPA, on average, controlling for verbal scores. These are essentially the same, so at first glance, it doesn’t seem like the type of test has substantial bearing on college GPAs.</p>
 <p>The adjusted <span class="math inline">\(R^2\)</span> (which we need to look at because we’re using more than one explanatory variable) is 0.211, which means that this model explains 21% of the variation in college GPA. Like before, this isn’t great, but it tells us a little bit about the importance of SAT scores.</p>
 <pre class="r"><code>glance(model_sat_gpa_types)</code></pre>
-<pre><code>## # A tibble: 1 × 12
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.212         0.211 0.658      134. 2.36e-52     2  -999. 2006. 2026.
@@ -360,7 +360,7 @@ tidy(model_sat_gpa_types, conf.int = TRUE)</code></pre>
 <pre class="r"><code>model_sat_gpa_hs &lt;- lm(gpa_fy ~ gpa_hs, data = sat_gpa)
 
 tidy(model_sat_gpa_hs)</code></pre>
-<pre><code>## # A tibble: 2 × 5
+<pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   0.0913    0.118      0.775 4.39e- 1
@@ -368,7 +368,7 @@ tidy(model_sat_gpa_hs)</code></pre>
 <p>The intercept here (<span class="math inline">\(\beta_0\)</span>) is 0.091, which means that a student with a high school GPA of zero would have a predicted freshman GPA of 0.091, on average. This is nonsensical, so we can ignore it. The slope for <code>gpa_hs</code> (<span class="math inline">\(\beta_1\)</span>), on the other hand, is helpful. For every 1 point increase in GPA (i.e. moving from 2.0 to 3.0, or 3.0 to 4.0), there’s an associated increase in college GPA of 0.743 points, on average.</p>
 <p>The <span class="math inline">\(R^2\)</span> value is 0.295, which means that nearly 30% of the variation in college GPA can be explained by high school GPA. Neat.</p>
 <pre class="r"><code>glance(model_sat_gpa_hs)</code></pre>
-<pre><code>## # A tibble: 1 × 12
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.295         0.295 0.622      418. 6.93e-78     1  -943. 1893. 1908.
@@ -383,7 +383,7 @@ tidy(model_sat_gpa_hs)</code></pre>
 <pre class="r"><code>model_sat_sex &lt;- lm(gpa_fy ~ sat_total + sex, data = sat_gpa)
 
 tidy(model_sat_sex, conf.int = TRUE)</code></pre>
-<pre><code>## # A tibble: 3 × 7
+<pre><code>## # A tibble: 3 x 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)  -0.0269   0.149      -0.181 8.57e- 1  -0.319     0.265 
@@ -392,7 +392,7 @@ tidy(model_sat_sex, conf.int = TRUE)</code></pre>
 <p>Here, stuff gets interesting. The intercept (<span class="math inline">\(\beta_0\)</span>) is once again nonsensical—females with a 0 score on their SAT would have a -0.027 college GPA on average. There’s a positive effect with our <span class="math inline">\(\beta_1\)</span> (or <code>sat_total</code>), since controlling for sex, a one percentile point increase in SAT scores is associated with a 0.026 point increase in freshman GPA, on average. If we control for SAT scores, males see an average drop of 0.274 points (<span class="math inline">\(\beta_2\)</span>) in their college GPAs.</p>
 <p>The combination of these two variables, however, doesn’t boost the model’s explanatory power that much. The adjusted <span class="math inline">\(R^2\)</span> (which we must look at because we’re using more than one explanatory variable) is 0.243, meaning that the model explains a little over 24% of the variation in college GPAs.</p>
 <pre class="r"><code>glance(model_sat_sex)</code></pre>
-<pre><code>## # A tibble: 1 × 12
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.245         0.243 0.644      162. 1.44e-61     2  -978. 1964. 1983.
@@ -407,7 +407,7 @@ tidy(model_sat_sex, conf.int = TRUE)</code></pre>
 <pre class="r"><code>model_sat_hs_sex &lt;- lm(gpa_fy ~ sat_total + gpa_hs + sex, data = sat_gpa)
 
 tidy(model_sat_hs_sex, conf.int = TRUE)</code></pre>
-<pre><code>## # A tibble: 4 × 7
+<pre><code>## # A tibble: 4 x 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)  -0.836    0.148       -5.63 2.35e- 8  -1.13     -0.544 
@@ -423,7 +423,7 @@ tidy(model_sat_hs_sex, conf.int = TRUE)</code></pre>
 </ul>
 <p>As always, the adjusted <span class="math inline">\(R^2\)</span> shows us how well the model fits overall (again, we have to look at the adjusted <span class="math inline">\(R^2\)</span> because we have more than one explanatory variable). In this case, the model explains 36.5% of the variation in college GPA, which is higher than any of the previous models (but not phenomenal, in the end).</p>
 <pre class="r"><code>glance(model_sat_hs_sex)</code></pre>
-<pre><code>## # A tibble: 1 × 12
+<pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.367         0.365 0.590      192. 2.67e-98     3  -890. 1790. 1815.
@@ -474,10 +474,10 @@ Model 5
 0.091
 </td>
 <td style="text-align:center;">
-−0.027
+-0.027
 </td>
 <td style="text-align:center;">
-−0.836
+-0.836
 </td>
 </tr>
 <tr>
@@ -640,10 +640,10 @@ sexMale
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-−0.274
+-0.274
 </td>
 <td style="text-align:center;">
-−0.143
+-0.143
 </td>
 </tr>
 <tr>
@@ -767,19 +767,19 @@ BIC
 Log.Lik.
 </td>
 <td style="text-align:center;">
-−999.382
+-999.382
 </td>
 <td style="text-align:center;">
-−999.189
+-999.189
 </td>
 <td style="text-align:center;">
-−943.477
+-943.477
 </td>
 <td style="text-align:center;">
-−977.904
+-977.904
 </td>
 <td style="text-align:center;">
-−890.108
+-890.108
 </td>
 </tr>
 <tr>

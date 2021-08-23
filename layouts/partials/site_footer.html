@@ -19,8 +19,9 @@
 
             <p>
                 <i class="far fa-calendar-alt"></i> {{ .Site.Params.course.days }} &emsp;&emsp;
-                <i class="far fa-clock"></i> {{ .Site.Params.course.time }}
-                {{ if isset .Site.Params.course "location" }}<br><i class="fas fa-university"></i> {{ .Site.Params.course.location }}{{end}}
+                <i class="far fa-clock"></i> {{ .Site.Params.course.time }} &emsp;&emsp;
+                <a href="{{ .Site.Params.location.url }}" target="_blank" rel="noopener"><i class="fas fa-university"></i>
+                  {{ .Site.Params.location.shortname }}</a>
             </p>
         </div>
 
@@ -33,7 +34,10 @@
             <p>{{ .Site.Params.credits | markdownify }}</p>
             {{- end }}
 
-            <p>Site created with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>.<br> Published with <a href="https://wowchemy.com/?utm_campaign=poweredby"  target="_blank" rel="noopener">Wowchemy</a> </p>
+            <p>Site created with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> and <a href="https://wowchemy.com/?utm_campaign=poweredby"  target="_blank" rel="noopener">Wowchemy</a>
+            <br>
+          This website is based on work of <a href="https://www.andrewheiss.com/">Dr. Andrew Heiss</a>
+            </p>
 
             <p><a href="https://github.com/{{ .Site.Params.course.github }}" target="_blank" rel="noopener"><i class="fab fa-github"></i> View the source at GitHub.</a></p>
         </div>

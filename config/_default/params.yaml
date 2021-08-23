@@ -112,24 +112,16 @@ course:
   semester: "Fall 2021"
   days: "Friday"
   time: "8:30-11:30"
-  location: "Côte-Sainte-Catherine building, room [Béton Grilli](https://www.hec.ca/campus/edifices/cote_sainte_catherine/1er_etage/salles_cours/betongrilli.html)"
   github: "lbelzile/experimental"
   copyrightYear: "2021"
-
+location: 
+     shortname: "CSC, Béton Grilli"
+     name: "Côte-Sainte-Catherine building, room Béton Grilli"
+     url:  "https://www.hec.ca/campus/edifices/cote_sainte_catherine/1er_etage/salles_cours/betongrilli.html"
 university: 
   name: HEC Montréal
   url: "https://www.hec.ca"
 
-
-############################
-## Social
-############################
-
-# Default image for social sharing and search engines. Place image in `static/media/` folder and specify image name here.
-sharing_image: "social-image-f21.png"
-
-# Twitter username (without @). Used when a visitor shares your site on Twitter.
-# twitter: "andrewheiss"
 
 
 ############################
@@ -174,7 +166,7 @@ copyright_license:
   allow_derivatives: false
   share_alike: true
   allow_commercial: false
-  notice: 'This work is based on [Dr. Andrew Heiss](https://evalf20.classes.andrewheiss.com) and is licensed under {license}'
+  notice: ''
 
 # Abstract length (characters) in the Compact and Portfolio Card list views. Also, see `summaryLength` in `config.toml`.
 abstract_length: 135
