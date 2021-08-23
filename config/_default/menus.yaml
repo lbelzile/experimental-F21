@@ -1,22 +1,19 @@
 main:
   - name: Syllabus
-    url: https://lbelzile.github.io/experimental/raw/master/static/syllabus/MATH80667A_F21_Syllabus.pdf
+    url: https://github.com/lbelzile/experimental/raw/main/static/syllabus/MATH80667A_F21_Syllabus.pdf
     weight: 1
-  - name: Schedule
-    url: /schedule/
-    weight: 2
   - name: Content
     url: /content/
-    weight: 3
+    weight: 2
   - name: Examples
     url: /example/
-    weight: 5
+    weight: 3
   - name: Assignments
     url: /assignment/
     weight: 4
   - name: Resources
     url: "https://evalf21.classes.andrewheiss.com/resource/"
-    weight: 6
+    weight: 5
 
 content:
   - name: Overview

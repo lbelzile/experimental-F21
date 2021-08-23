@@ -4,7 +4,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: Experimental Design and Statistical Methods # Website name
-baseurl: 'math80667a.netlify.app' # Website URL 
+baseurl: '' # Website URL 
 copyright: '' # Footer text, e.g. '© {year} Me'
 
 ############################
