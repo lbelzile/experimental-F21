@@ -1,6 +1,6 @@
 ---
-title: "Introduction to experimental designs"
-linktitle: "1: Introduction to experimental designs"
+title: "Introduction"
+linktitle: "1: Introduction"
 date: "2021-01-11"
 start_date: "2021-01-11"
 end_date: "2021-01-15"
@@ -39,15 +39,16 @@ At the end of the session, students should be capable of
 ## Preliminaries
 
 -   Familiarize yourself with the [syllabus](/syllabus/), [content](/content/), [examples](/example/), and [assignments](/assigment/) pages for this class.
-
 -   <i class="fas fa-book"></i> Read Chapter 1 (Intro to Data) of [OpenIntro Statistics](https://www.openintro.org/book/os/) and the accompanying <i class="fab fa-youtube"></i>[videos](https://www.youtube.com/playlist?list=PLkIselvEzpM6pZ76FD3NoCvvgkj_p-dE8)
-
--   [Overview of **R** and the tidyverse](https://evalf20.classes.andrewheiss.com/projects/01_lab/slides/01_lab.html) slides by Andrew Heiss)
 
 ## Readings
 
+-   <i class="fas fa-book"></i> Chapter 1 of the [Course notes](https://lbelzile.github.io/math80667a/introduction.html)
 -   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199)
 -   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments*[^1]
+
+## Complementary readings
+
 -   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments*[^2]
 -   <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design*[^3]
 
@@ -133,6 +134,17 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 </div>
 
 </div>
+
+## In-class presentation
+
+This material by [Dr. Andrew Heiss](https://www.andrewheiss.com/) nicely goes over the presentation of the various basics (the integrated development environment, the programming language, basics of data manipulation, graphics).
+
+-   [Project .zip file](https://evalf21.classes.andrewheiss.com/projects/01-class.zip)
+-   [Lab slides 1: Markdown](https://evalf21.classes.andrewheiss.com/slides/01-class_01_markdown-writing.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_01_markdown-writing.pdf)
+-   [Lab slides 2: Getting started with **R** and RStudio](https://evalf21.classes.andrewheiss.com/slides/01-class_02-getting-started.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_02-getting-started.pdf)
+    [Lab slides 3: Data basics](https://evalf21.classes.andrewheiss.com/slides/01-class_03_data-basics.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_03_data-basics.pdf)
+-   [Lab slides 4: Visualize data with ggplot2](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.pdf)
+-   [Lab slides 5: Transform data with dplyr](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.pdf)
 
 {{% div fyi %}}
 **Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.

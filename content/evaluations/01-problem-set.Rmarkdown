@@ -17,13 +17,14 @@ editor_options:
 ## Task 1: 
 
 1. Identify a scientific paper in your research field in which an experimental study is conducted. 
-	- Provide a citation for the latter, briefly describe the experiment (you can simply quote the description of the database). 
+	- Provide a citation for the latter
+	- Briefly describe the experiment (you can simply quote the description of the database). 
  	- Based on the information provided, identify the experimental units and the treatments.
 
-## Task 2: Introduce yourself to **R**, RStudio, and the tidyverse
+## Task 2: Introduce yourself to **R** and RStudio
 
-1. Go the the example page for this week, ["Welcome to **R**, RStudio, and the tidyverse"](/example/rstudio-tidyverse/) by Andrew Heiss, and work through the different primers and videos in the four parts of the page.
-2. Alternatively, complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics. 
+1. Install **R** and Rstudio using [this guide by Andrew Heiss](https://evalf21.classes.andrewheiss.com/resource/install/)
+2. Complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics. 
 3. Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
 4. Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-getting-started-with-data-03/#section-principles-of-experimental-design)
 
