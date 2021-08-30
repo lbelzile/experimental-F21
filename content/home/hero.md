@@ -8,7 +8,7 @@ weight: 10
 title: "Experimental Design and Statistical Methods"
 
 # Hero image (optional). Enter filename of an image in the `static/media/` folder.
-hero_media: 'experimental.png'
+# hero_media: 'icon.png'
 
 design:
   background:
