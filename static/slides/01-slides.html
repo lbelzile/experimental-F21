@@ -4,7 +4,7 @@
     <title>Introduction to experimental design</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-08-29" />
+    <meta name="date" content="2021-08-30" />
     <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -53,11 +53,11 @@ class: title title-inv-8
 
 --
 
-.box-3.medium.sp-after-half[Experimental vs observational]
+.box-3.medium.sp-after-half[Review]
 
 --
 
-.box-2.medium.sp-after-half[Key notions]
+.box-2.medium.sp-after-half[Key concepts in experimental designs]
 
 ---
 
@@ -174,29 +174,9 @@ We will use the **R** programming language and the **RStudio** IDE
 
 Commercial software is expensive (e.g., SPSS licenses cost more than $5,730 USD per year as of 2021).
 
----
-
-
-# Am I making you computer scientists?
-
---
-
-.box-inv-6.huge[**No!**]
-
---
-
-.box-6[You don't need to be a mechanic to drive a car safely]
-
-
-???
-
+I am not making you computer scientists
 Words of wisdom from @allison_horst to her data analysis class this quarter: You don't need to be a mechanic to drive a car safely, and you don't need to be a computer scientist or developer to use R safely. #rstats #tidytuesday
 
---
-
-.box-6[You don't need to be a computer scientist&lt;br&gt;or developer to use R safely]
-
-???
 
 https://twitter.com/ameliaritger/status/1214682596182904832?s=12
 
@@ -282,9 +262,7 @@ Fisher was a eugenist and his views are largely decried nowadays.
 
 class: title title-5
 
-# Experiments are still a thing 
-
-Modern experiments: A/B testing
+# Modern experiments: A/B testing
 
 &lt;figure&gt;
   &lt;img src="img/01/twitter_overhaul.png" alt="Screenshot of Twitter page following changes made to interface in 2021 (the follow button is black (higher contrast)." title="Screenshot of Twitter following changes made to interface" width="80%"&gt;
@@ -299,17 +277,17 @@ class: title title-5
 
 # Evidence-based policy
 
---
 
-.box-inv-5.medium[
-RAND health insurance study
-]
+
+
 
 &lt;br&gt;
 
-.box-inv-5.medium[
-Student Teacher Achievement Ratio (STAR)
-]
+.box-inv-5.medium[RAND health insurance study]
+
+&lt;br&gt;
+
+.box-inv-5.medium[Student Teacher Achievement Ratio (STAR)]
 
 
 
@@ -330,60 +308,288 @@ class: title title-5
 &lt;img src="img/01/jpal-nobel.png" alt="Composite photo by Andrew Heiss: excerpt from the Washington Post following the announcement of the Nobel prize in economics for experimental approach to solving poverty, Abdul Latif Jameel Poverty Action Lab (J-PAL) video and a Twitter feed with a photo of Abhijit Banerjee and Esther Duflo upon the announcement of the Nobel memorial price." title="" width="80%"&gt;
 &lt;/figure&gt;
 
+---
+
+layout: false
+name: review
+class: center middle section-title section-title-3 animated fadeIn
+
+# Review
+
+---
+class: title title-3
+
+# Population and sampling
+
+.pull-left[
+
+.box-inv-3.medium[Defining a population]
+
+.box-inv-3.medium[Sampling frame]
+
+.box-inv-3.medium[Randomization]
+
+]
+
+--
+
+.pull-right[
+
+.box-inv-3.medium[Convenience samples]
+
+.box-inv-3.medium[Non-response bias]
+
+
+]
+---
+
+class: title title-3
+
+# Sampling scheme
+
+
+.box-inv-3.medium[Simple random sampling]
+
+--
+
+.box-inv-3.medium[Stratified sampling]
+
+
+.box-3[Gender, ethnicity, etc.]
+
+--
+
+.box-inv-3.medium[Cluster sampling]
+
+.box-3[Villages, housing block, classrooms, etc.]
+
+--
+
+.box-inv-3.medium[Multi-stage sampling]
+
+
+---
+class: title title-3
+
+# Simple random sampling
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="img/01/simple.png" alt="Simple random sampling" title="OpenIntro distributed under the CC BY-SA license." height="120%"&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+.right.small[OpenIntro, CC BY-SA license]
+
+---
+class: title title-3
+# Stratified sampling
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="img/01/stratified.png" alt="Stratified sampling" title="Stratified sampling, OpenIntro distributed under the CC BY-SA license." height="120%"&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+.right.small[OpenIntro, CC BY-SA license]
+
+---
+class: title title-3
+
+# Cluster sampling
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="img/01/cluster.png" alt="Cluster sampling" title="Cluster sampling, OpenIntro distributed under the CC BY-SA license." width="80%"&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+.right.small[OpenIntro, CC BY-SA license]
+
+
+---
+
+class: title title-3
+
+# Multistage sampling
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="img/01/multistage.png" alt="Multistage sampling" title="Multistage sampling, OpenIntro distributed under the CC BY-SA license." width="80%"&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+.right.small[OpenIntro, CC BY-SA license]
+
+
+---
+class: title title-3
+
+.box-inv-3-center.large[# Judging the quality of a sample]
+
+.box-inv-3.medium[Summary statistics]
+
+Reported to check representativeness of the sample relative to population.
+
+--
+
+.box-inv-3.medium[Raw data]
+
+Used for reproducibility and to assess whether data is fraudulent.
+
+--
+
+.box-inv-3.medium[Pre-testing]
+
+Check whether sampling allocation is sufficiently random.
+
+???
+
+U. Simonsohn, L. Nelson and J. Simmons. *Evidence of Fraud in an Influential Field Experiment About Dishonesty*, 2021, https://datacolada.org/98.
+
+---
+
+class: title title-3
+
+.box-inv-3-center.large[# Experimental versus observational]
+
+.box-inv-3.large[Experiment controls &lt;br&gt; 
+allocation of treatment]
+
+--
+
+.box-3.medium[Systematic vs random allocation]
+
+.box-3.medium[propensity score]
+
+---
+
+class: title title-3
+
+.box-inv-3-center.large[# Study type versus sampling]
+
+&lt;figure&gt;
+  &lt;img src="img/01/random_sample_assignment.png" alt="Random versus non-random assignment and sampling" title="Two by two classification matrix for experiments based on sampling and study type. Material from Mine Çetinkaya-Rundel and OpenIntro distributed under the CC BY-SA license." width="90%"&gt;
+&lt;/figure&gt;
+
+---
+
+layout: false
+name: key-concepts-experimental
+class: center middle section-title section-title-2 animated fadeIn
+
+# Key concepts in experimental design
 
 ---
 
 class: title title-2
-# Definitions
+# Technical vocabulary
 
-.box-inv-2.large[Experimental unit]
+.pull-left[
+.box-inv-2.medium[Experimental unit]
 
-&gt; Smallest division such that two units may receive different treatments in the actual experiment (Cox, 1958)
+.box-inv-2.medium[Observational unit]
 
-.box-inv-2.large[Treatment]
+.box-inv-2.medium[Factor / treatment]
 
+.box-inv-2.medium[Treatment group]
 
-.box-inv-2.large[Observations]
+.box-inv-2.medium[Control group]
+
+]
+
+.pull-right[
+
+.box-inv-2.medium[Blocking factors]
+
+.box-inv-2.medium[Confounder]
+
+.box-inv-2.medium[Effect size]
+
+.box-inv-2.medium[Placebo]
+
+.box-inv-2.medium[(Double) blinding]
+]
+
+---
+
+class: title title-2
+# Four pillars of experimental design
+
+.pull-left[
+
+.box-inv-2.large[Control]
+
+.box-inv-2.large[Randomization]
+
+]
+
+.pull-right[
+
+.box-inv-2.large[Blocking]
+
+.box-inv-2.large[Replication]
+
+]
+
+--
+
+&lt;br&gt;
+
+.box-2.large[Difference between stratification and blocking]
+
+???
+
+Control: Control for the (potential) effect of variables other than the ones directly being studied.
+2. Randomize: Randomly assign subjects to treatments, and randomly sample from the population whenever possible.
+3. Replicate: Within a study, replicate by collecting a sufficiently large
+sample. Or replicate the entire study.
+4. Block: If there are variables that are known or suspected to affect the response variable, first group subjects into blocks based on
+these variables, and then randomize cases within each block to treatment groups.
 
 ---
 
 class: title title-2
 # Objective of the experiment
 
-- Objective: compare multiple treatments
-- Without treatment, variability in output
-    - from one observation to the next
-- Differences between treatment are comparatively stable
+.box-2.medium[Compare multiple treatments]
 
+.medium[
+- Without treatment, .color-2.medium[**variability**] in output from one observation to the next.
+- Differences between treatment are .color-2[**comparatively stable**].
+
+]
 
 ---
 class: title title-2
-# Experimental design
+# Choices in experimental designs
 
-Experimenter must choose 
-- **treatments** for comparison
-- observations to be made (repetition, etc.)
-- experimental units to be used
+.box-2.medium[**treatments** for comparison]
+
+--
+
+.box-2.medium[observations to be made (number of repetitions, etc.)]
+
+--
+
+.box-2.medium[experimental units]
 
 
 ---
 class: title title-2
 # Requirements for good experiments (1/2)
 
-.box-inv-2.large[Absence of systematic error]
 
-.center[Achieved via randomization]
+.box-inv-2.large.left[Absence of systematic error]
+
+Achieved via randomization
 
 --
 
-.box-inv-2.large[Precision]
+.left.box-inv-2.large[Precision]
 
-Depends on the intrinsic variability `\(+\)` function of
+- depends on the intrinsic variability 
+- function of
+    1. accuracy of experimental work
+    2. number of experimental units / repetitions per unit
+    3. design and methods of analysis
 
-
-1. accuracy of experimental work
-2. number of experimental units / repetitions per unit
-3. design and methods of analysis
 
 
 ---
@@ -391,7 +597,7 @@ Depends on the intrinsic variability `\(+\)` function of
 class: title title-2
 # Requirements for good experiments (2/2)
 
-.box-inv-2.large[Range of validity]
+.left.box-inv-2.large[Range of validity]
 
 - What is population?
 - Identify restrictions
@@ -399,7 +605,7 @@ class: title title-2
 
 --
 
-.box-inv-2.large[Simplicity of the design]
+.left.box-inv-2.large[Simplicity of the design]
 
 Leads to simple analysis 
 

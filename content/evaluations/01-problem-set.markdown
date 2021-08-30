@@ -5,108 +5,115 @@ date: "2021-09-01"
 due_date: "2021-09-10"
 due_time: "11:55 PM"
 menu:
-  evaluations:
+  assignment:
     parent: Problem sets
     weight: 1
 type: docs
 toc: true
 editor_options: 
   chunk_output_type: console
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
 ---
 
-## Task 1: 
+## Task 1: Find an experimental study
 
-1. Identify a scientific paper in your research field in which an experimental study is conducted. 
-	- Provide a citation for the latter
-	- Briefly describe the experiment (you can simply quote the description of the database). 
- 	- Based on the information provided, identify the experimental units and the treatments.
+1.  Identify a scientific paper in your research field in which an experimental study is conducted.
+    -   Provide a citation for the latter
+    -   Briefly describe the experiment (you can simply quote the description of the database).
+    -   Based on the information provided, identify the experimental units and the treatments.
 
 ## Task 2: Introduce yourself to **R** and RStudio
 
-1. Install **R** and Rstudio using [this guide by Andrew Heiss](https://evalf21.classes.andrewheiss.com/resource/install/)
-2. Complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics. 
-3. Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
-4. Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-getting-started-with-data-03/#section-principles-of-experimental-design)
+1.  Install **R** and Rstudio using [this guide by Andrew Heiss](https://evalf21.classes.andrewheiss.com/resource/install/)
+2.  Complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics.
+3.  Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
+4.  Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-getting-started-with-data-03/#section-principles-of-experimental-design)
 
 ## Task 3: Make an RStudio Project
 
-1. Use RStudio on your computer[Follow these instructions to get started!](/resource/install/)) to create a new RStudio Project. Refer to the [example page you read in Task 1 for instructions](/example/rstudio-tidyverse/#part-3-rstudio-projects)
+We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The data contains measures of implicit bias for multiple participants from “in-field implicit association tests”. The database includes the following variables:
 
-2. Create a folder named "data" in the project folder you just made.
+-   `age`: of the respondant
+-   `village`: village of the respondant
+-   `female`: a binary indicator for gender equal to unity for female and zero otherwise
+-   `d.score`: the participant [Implicit Association Test (IAT) result](https://implicit.harvard.edu/implicit/iatdetails.html)
+-   `quota`: binary indicator of treatment, unity if there is a quota and zero otherwise
+-   `under25`: binary indicator, equal to unity if the respondant age is less than or equal to 25 years.
 
-3. Download this CSV file and place it in that folder:
+1.  Use RStudio on your computer[Follow these instructions to get started!](/resource/install/)) to create a new RStudio Project. Refer to the [example page you read in Task 1 for instructions](/example/rstudio-tidyverse/#part-3-rstudio-projects)
 
-    - [<i class="fas fa-file-csv"></i> `cars.csv`](/data/cars.csv)
+2.  Create a folder named “data” in the project folder you just made.
 
-4. In RStudio, go to "File" > "New File…" > "R Markdown…" and click "OK" in the dialog without changing anything.
+3.  Download this CSV file and place it in that folder:
 
-5. Delete all the placeholder text in that new file and replace it with this:
+    -   [<i class="fas fa-file-csv"></i> `ImplicitBias2014.csv`](/data/ImplicitBias2014.csv)
 
-    ````text
+4.  In RStudio, go to “File” > “New File…” > “R Markdown…” and click “OK” in the dialog without changing anything.
+
+5.  Delete all the placeholder text in that new file and replace it with this:
+
+    ```` text
     ---
     title: "Problem set 1"
     author: "Put your name here"
     output: html_document
     ---
-    
+
     ```{r load-libraries-data, warning=FALSE, message=FALSE}
     library(tidyverse)
-    
-    cars <- read_csv("data/cars.csv")
+
+    cars <- read_csv("data/`ImplicitBias2014.csv")
     ```
-    
+
     # Learning R
-    
+
     Tell me that you worked through the primers and videos and examples at the example page for this week:
-    
+
     WRITE SOMETHING HERE LIKE "I did all the primers and had the time of my life!" or whatever.
-    
-    
+
+
     # My first plots
-    
-    Insert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with displacement (`displ`) on the x-axis, city MPG (`cty`) on the y-axis, and with the points colored by drive (`drv`).
-    
+
+    Insert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with age (`age`) on the x-axis, IAT score (`d.score`) on the y-axis, and with the points colored by gender (`female`).
+
     PUT CHUNK HERE
-    
-    Insert a chunk below and use it to create a histogram (hint: `geom_histogram()`) with highway MPG (`hwy`) on the x-axis. Do not include anything on the y-axis (`geom_histogram()` will do that automatically for you). Choose an appropriate bin width. If you're brave, facet by drive (`drv`).
-    
+
+    Insert a chunk below and use it to create a box-and-whiskers plots (hint: `geom_boxplot()`) with IAT score (`d.score`) on the y-axis and `quota` (map to `factor`) on the x-axis observations with `geom_jitter` (adjust the width accordingly to avoid overlap). Try facetting by gender (`female`).
+
     PUT CHUNK HERE
-    
-    
+
+
     # My first data manipulation
-    
-    Insert a chunk below and use it to calculate the average city MPG (`cty`) by class of car (`class`). This won't be a plot---it'll be a table. Hint: use a combination of `group_by()` and `summarize()`.
-    
+
+    Insert a chunk below and use it to calculate the average IAT score (`d.score`) by gender (`female`) and assignment to treatment variable (`quota`). This will return a table. Hint: use a combination of `group_by()` and `summarize()`.
+
     PUT CHUNK HERE
     ````
 
-6. Save the R Markdown file with some sort of name (**without any spaces!**)
+6.  Save the R Markdown file with some sort of name (**without any spaces!**)
 
-7. Your project folder should look something like this:
+7.  Your project folder should look something like this:
 
     <img src="/img/assignments/project-structure.png" width="30%" />
 
-
 ## Task 3: Work with R
 
-1. Remove the text that says "PUT CHUNK HERE" and insert a new R code chunk. Either type <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>i</kbd> on Windows, or <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>i</kbd> on macOS, or use the "Insert Chunk" menu:
+1.  Remove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>i</kbd> on Windows, or <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>i</kbd> on macOS, or use the “Insert Chunk” menu:
 
     <img src="/img/assignments/insert-chunk-button.png" width="19%" />
 
-2. Follow the instructions for the three chunks of code.
+2.  Follow the instructions for the three chunks of code.
 
-3. Knit your document as a Word file (or PDF if you're brave and [installed LaTeX](/resource/install/#install-tinytex)). Use the "Knit" menu:
+3.  Knit your document as a Word file (or PDF if you’re brave and [installed LaTeX](/resource/install/#install-tinytex)). Use the “Knit” menu:
 
     <img src="/img/assignments/knit-button.png" width="30%" />
 
-4. Upload the knitted document to ZoneCours.
-
-5. 🎉 Party! 🎉
-
+4.  Upload the knitted document to ZoneCours 🎉
 
 {{% div fyi %}}
 
-You'll be doing this same process for all your future problem sets. Each problem set will involve an R Markdown file. You can either create a new RStudio Project directory for all your work:
+You’ll be doing this same process for all your future problem sets. Each problem set will involve an R Markdown file. You can either create a new RStudio Project directory for all your work:
 
 <img src="/img/reference/rproj-one-folder.png" width="30%" />
 
@@ -115,3 +122,19 @@ Or you can create individual projects for each assignment and project:
 <img src="/img/reference/rproj-multiple-folders.png" width="30%" />
 
 {{% /div %}}
+
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+
+<div id="ref-Clayton:2018" class="csl-entry">
+
+Clayton, A. (2018a). Do gender quotas really reduce bias? Evidence from a policy experiment in Southern Africa. *Journal of Experimental Political Science*, *5*(3), 182--194. <https://doi.org/10.1017/XPS.2018.8>
+
+</div>
+
+<div id="ref-Clayton:2018data" class="csl-entry">
+
+Clayton, A. (2018b). *<span class="nocase">Replication Data for: “Do Gender Quotas Really Reduce Bias? Evidence from a Policy Experiment in Southern Africa.”</span>* (Version V1) \[Data set\]. Harvard Dataverse. <https://doi.org/10.7910/DVN/0DE35E>
+
+</div>
+
+</div>

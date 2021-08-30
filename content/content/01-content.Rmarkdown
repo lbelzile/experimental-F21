@@ -11,7 +11,7 @@ menu:
 type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
-csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+csl: "../../static/bib/apa.csl"
 slides: "01-slides"
 ---
 
@@ -26,8 +26,8 @@ slide_details <- tibble::tribble(
   "", "Introduction", "1", TRUE,
   "", "Class details", "class-details", FALSE,
   "", "Motivation", "motivation", FALSE,
-  "", "Experimental vs observational", "experimental-vs-observational", FALSE,
-  "", "Key notions", "key-notions", FALSE
+  "", "Review", "review", FALSE,
+  "", "Key concepts in experimental design", "key-concepts-experimental", FALSE
 )
 ```
 ## Content

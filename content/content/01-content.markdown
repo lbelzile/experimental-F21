@@ -11,7 +11,7 @@ menu:
 type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
-csl: "../../static/bib/chicago-fullnote-bibliography-no-bib.csl"
+csl: "../../static/bib/apa.csl"
 slides: "01-slides"
 ---
 
@@ -49,14 +49,14 @@ At the end of the session, students should be capable of
 ## Readings
 
 -   <i class="fas fa-book"></i> Chapter 1 of the [Course notes](https://lbelzile.github.io/math80667a/introduction.html)
--   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments*[^1]
+-   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments* (Dean et al., 2017)
 -   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199)
 
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> Chapter 2 (*Study design*) in [*Introduction to Modern Statistics*](https://openintro-ims.netlify.app/data-design.html)
--   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments*[^2]
--   <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design*[^3]
+-   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments* (Cox, 1958)
+-   <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design* (Berger et al., 2018)
 
 ## Slides
 
@@ -75,10 +75,10 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <a class="nav-link" id="motivation-tab" data-toggle="tab" href="#motivation" role="tab" aria-controls="motivation" aria-selected="false">Motivation</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="experimental-vs-observational-tab" data-toggle="tab" href="#experimental-vs-observational" role="tab" aria-controls="experimental-vs-observational" aria-selected="false">Experimental vs observational</a>
+<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Review</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="key-notions-tab" data-toggle="tab" href="#key-notions" role="tab" aria-controls="key-notions" aria-selected="false">Key notions</a>
+<a class="nav-link" id="key-concepts-in-experimental-design-tab" data-toggle="tab" href="#key-concepts-in-experimental-design" role="tab" aria-controls="key-concepts-in-experimental-design" aria-selected="false">Key concepts in experimental design</a>
 </li>
 </ul>
 
@@ -117,22 +117,22 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
-<div id="experimental-vs-observational" class="tab-pane fade" role="tabpanel" aria-labelledby="experimental-vs-observational-tab">
+<div id="review" class="tab-pane fade" role="tabpanel" aria-labelledby="review-tab">
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#experimental-vs-observational">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#review">
 </iframe>
 
 </div>
 
 </div>
 
-<div id="key-notions" class="tab-pane fade" role="tabpanel" aria-labelledby="key-notions-tab">
+<div id="key-concepts-in-experimental-design" class="tab-pane fade" role="tabpanel" aria-labelledby="key-concepts-in-experimental-design-tab">
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#key-notions">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#key-concepts-experimental">
 </iframe>
 
 </div>
@@ -156,8 +156,24 @@ This material by [Dr. Andrew Heiss](https://www.andrewheiss.com/) nicely goes o
 **Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
 {{% /div %}}
 
-[^1]: A. Dean, D. Voss, and D. Draguljić, *Design and Analysis of Experiments* (Springer, 2017), <https://www.springer.com/gp/book/9783319522487>.
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
-[^2]: David R. Cox, *Planning of Experiments* (New York, NY: Wiley, 1958).
+<div id="ref-Berger:2018" class="csl-entry">
 
-[^3]: Paul D. Berger, Robert E. Maurer, and Giovana B. Celli, *Experimental Design with Applications in Management, Engineering, and the Sciences*, 2nd ed. (Springer, 2018), doi:[10.1007/978-3-319-64583-4](https://doi.org/10.1007/978-3-319-64583-4).
+Berger, P. D., Maurer, R. E., & Celli, G. B. (2018). *Experimental design with applications in management, engineering, and the sciences* (2nd ed.). Springer. <https://doi.org/10.1007/978-3-319-64583-4>
+
+</div>
+
+<div id="ref-Cox:1958" class="csl-entry">
+
+Cox, D. R. (1958). *Planning of experiments*. Wiley.
+
+</div>
+
+<div id="ref-Dean:2017" class="csl-entry">
+
+Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+</div>
