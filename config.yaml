@@ -51,10 +51,12 @@ markup:
     renderer:
       unsafe: true
   highlight:
-    codeFences: false
+    codeFences: true
+    guessSyntax: true
+    style: "monokai"
   tableOfContents:
     startLevel: 2
-    endLevel: 3
+    endLevel: 4
 imaging:
   resampleFilter: "box"
   quality: 50

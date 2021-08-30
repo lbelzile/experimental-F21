@@ -1,5 +1,6 @@
 ---
 title: Evaluations details
+date: "2021-08-30"
 menu:
   evaluations:
     parent: Evaluations

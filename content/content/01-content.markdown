@@ -1,9 +1,9 @@
 ---
 title: "Introduction"
 linktitle: "1: Introduction"
-date: "2021-01-11"
-start_date: "2021-01-11"
-end_date: "2021-01-15"
+date: "2021-08-30"
+start_date: "2021-08-30"
+end_date: "2021-09-03"
 menu:
   content:
     parent: Course content
@@ -43,7 +43,7 @@ At the end of the session, students should be capable of
 
 ## Preliminaries
 
--   Familiarize yourself with the [syllabus](/syllabus/), [content](/content/), [examples](/example/), and [assignments](/assigment/) pages for this class.
+-   Familiarize yourself with the [syllabus](/syllabus/), [content](/content/), [examples](/example/), and [evaluations](/evaluations/) pages for this class.
 -   <i class="fas fa-book"></i> Read Chapter 1 (Intro to Data) of [OpenIntro Statistics](https://www.openintro.org/book/os/) and the accompanying <i class="fab fa-youtube"></i>[videos](https://www.youtube.com/playlist?list=PLkIselvEzpM6pZ76FD3NoCvvgkj_p-dE8)
 
 ## Readings

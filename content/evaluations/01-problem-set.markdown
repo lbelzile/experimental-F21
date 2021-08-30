@@ -8,9 +8,7 @@ menu:
     parent: Problem sets
     weight: 1
 type: docs
-output:
-  blogdown::html_page:
-    toc: true
+toc: true
 editor_options: 
   chunk_output_type: console
 bibliography: "../../static/bib/references.bib"
@@ -42,7 +40,7 @@ We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The da
 -   `quota`: binary indicator of treatment, unity if there is a quota and zero otherwise
 -   `under25`: binary indicator, equal to unity if the respondant age is less than or equal to 25 years.
 
-1.  Use RStudio on your computer[Follow these instructions to get started!](/resource/install/)) to create a new RStudio Project. Refer to the [example page you read in Task 1 for instructions](/example/rstudio-tidyverse/#part-3-rstudio-projects)
+1.  Use RStudio on your computer to create a new RStudio Project.
 
 2.  Create a folder named “data” in the project folder you just made.
 
