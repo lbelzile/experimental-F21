@@ -9,7 +9,9 @@ menu:
     parent: Problem sets
     weight: 1
 type: docs
-toc: true
+output:
+  blogdown::html_page:
+    toc: true
 editor_options: 
   chunk_output_type: console
 bibliography: "../../static/bib/references.bib"
