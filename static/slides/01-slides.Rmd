@@ -624,5 +624,3 @@ Leads to simple analysis
 
 Important: understand reasons for difference
 - do not limit to experimental knowledge about the differences
-
----
