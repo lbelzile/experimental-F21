@@ -10,4 +10,3 @@ weight: 1
 
 This section will contain annotated **R** code along with worked out examples. If time permits, I will also include videos of me life-coding, so you can see me making programming mistakes in real time!
 
-For the time being, this section includes two useful pages by Dr. Andrew Heiss.

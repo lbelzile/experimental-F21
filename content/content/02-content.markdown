@@ -1,13 +1,13 @@
 ---
 title: "Introduction"
-linktitle: "1: Introduction"
+linktitle: "2: Hypothesis testing"
 date: "2021-01-11"
 start_date: "2021-01-11"
 end_date: "2021-01-15"
 menu:
   content:
     parent: Course content
-    weight: 1
+    weight: 2
 type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
@@ -17,28 +17,16 @@ slides: "01-slides"
 
 ## Content
 
--   Syllabus and learning objectives
--   Programming premises
--   Motivation
-    -   Examples of experimental designs
-    -   Evidence-based policy
--   Review
-    -   Population and samples
-    -   Basic sampling mechanisms
-    -   Study types: observational versus experimental
--   Introduction to experimental designs
-    -   Terminology
-    -   Key concepts: control, randomization, replication, blocking
-    -   Requirements for a good experiment
+-   Hypothesis testing
+-   Completely randomized designs
 
 ## Learning objectives
 
 At the end of the session, students should be capable of
 
--   knowing the basic vocabulary attached to experiments.
--   assessing the generalizability of a study based on the description.
--   distinguishing between observational and experimental studies.
--   identifying experimental and observational units, treatments and blocking variables in an experimental study
+-   distinguishing between observational and experimental studies, and the merits of both.
+-   identifying experimental units, observations and treatments in an experimental study
+-   assessing the generalizability of a study
 -   using **R** for basic data manipulations and graphics
 
 ## Preliminaries
@@ -49,13 +37,12 @@ At the end of the session, students should be capable of
 ## Readings
 
 -   <i class="fas fa-book"></i> Chapter 1 of the [Course notes](https://lbelzile.github.io/math80667a/introduction.html)
--   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments*[^1]
 -   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199)
+-   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments*[^1]
 
 ## Complementary readings
 
--   <i class="fas fa-book"></i> Chapter 2 (*Study design*) in [*Introduction to Modern Statistics*](https://openintro-ims.netlify.app/data-design.html)
--   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments*[^2]
+-   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments*[^2]
 -   <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design*[^3]
 
 ## Slides
@@ -149,15 +136,15 @@ This material by [Dr. Andrew Heiss](https://www.andrewheiss.com/) nicely goes o
 -   [Lab slides 1: Markdown](https://evalf21.classes.andrewheiss.com/slides/01-class_01_markdown-writing.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_01_markdown-writing.pdf)
 -   [Lab slides 2: Getting started with **R** and RStudio](https://evalf21.classes.andrewheiss.com/slides/01-class_02-getting-started.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_02-getting-started.pdf)
     -[Lab slides 3: Data basics](https://evalf21.classes.andrewheiss.com/slides/01-class_03_data-basics.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_03_data-basics.pdf)
--   [Lab slides 4: Visualize data with `ggplot2`](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.pdf)
--   [Lab slides 5: Transform data with `dplyr`](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.pdf)
+-   [Lab slides 4: Visualize data with ggplot2](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.pdf)
+-   [Lab slides 5: Transform data with dplyr](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.pdf)
 
 {{% div fyi %}}
 **Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
 {{% /div %}}
 
-[^1]: A. Dean, D. Voss, and D. Draguljić, *Design and Analysis of Experiments* (Springer, 2017), <https://www.springer.com/gp/book/9783319522487>.
+[^1]: David R. Cox, *Planning of Experiments* (New York, NY: Wiley, 1958).
 
-[^2]: David R. Cox, *Planning of Experiments* (New York, NY: Wiley, 1958).
+[^2]: A. Dean, D. Voss, and D. Draguljić, *Design and Analysis of Experiments* (Springer, 2017), <https://www.springer.com/gp/book/9783319522487>.
 
 [^3]: Paul D. Berger, Robert E. Maurer, and Giovana B. Celli, *Experimental Design with Applications in Management, Engineering, and the Sciences*, 2nd ed. (Springer, 2018), doi:[10.1007/978-3-319-64583-4](https://doi.org/10.1007/978-3-319-64583-4).

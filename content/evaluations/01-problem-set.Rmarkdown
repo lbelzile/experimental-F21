@@ -5,7 +5,7 @@ date: "2021-09-01"
 due_date: "2021-09-10"
 due_time: "11:55 PM"
 menu:
-  assignment:
+  evaluations:
     parent: Problem sets
     weight: 1
 type: docs
