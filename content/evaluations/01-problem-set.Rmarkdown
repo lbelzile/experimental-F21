@@ -10,8 +10,6 @@ menu:
     weight: 1
 type: docs
 toc: true
-editor_options: 
-  chunk_output_type: console
 bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
 ---
