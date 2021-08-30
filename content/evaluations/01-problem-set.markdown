@@ -5,7 +5,7 @@ due_date: "2021-09-10"
 due_time: "11:55 PM"
 menu:
   evaluations:
-    parent: Problem sets
+    parent: Assignments
     weight: 1
 type: docs
 toc: true
