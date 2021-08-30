@@ -1,7 +1,7 @@
 ---
 title: Evaluations details
 menu:
-  assignment:
+  evaluations:
     parent: Evaluations
     weight: 1
 type: docs

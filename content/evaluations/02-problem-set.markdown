@@ -5,7 +5,7 @@ date: "2021-09-10"
 due_date: "2021-09-17"
 due_time: "11:55 PM"
 menu:
-  evaluations:
+  assignments:
     parent: Problem sets
     weight: 2
 type: docs
@@ -13,6 +13,8 @@ toc: true
 editor_options: 
   chunk_output_type: console
 ---
+
+TO BE COMPLETED
 
 Using **R**, answer the following questions:
 
