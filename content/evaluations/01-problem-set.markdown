@@ -30,7 +30,7 @@ csl: "../../static/bib/apa.csl"
 3.  Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
 4.  Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-getting-started-with-data-03/#section-principles-of-experimental-design)
 
-## Task 3: Make an RStudio Project
+## Task 3: Make an RStudio Project and work with **R**
 
 We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The data contains measures of implicit bias for multiple participants from “in-field implicit association tests”. The database includes the following variables:
 
@@ -97,19 +97,17 @@ We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The da
 
     <img src="/img/assignments/project-structure.png" width="30%" />
 
-## Task 3: Work with R
-
-1.  Remove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>i</kbd> on Windows, or <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>i</kbd> on macOS, or use the “Insert Chunk” menu:
+8.  Remove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>i</kbd> on Windows, or <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>i</kbd> on macOS, or use the “Insert Chunk” menu:
 
     <img src="/img/assignments/insert-chunk-button.png" width="19%" />
 
-2.  Follow the instructions for the three chunks of code.
+9.  Follow the instructions for the three chunks of code.
 
-3.  Knit your document as a Word file (or PDF if you’re brave and [installed LaTeX](/resource/install/#install-tinytex)). Use the “Knit” menu:
+10. Knit your document as a Word file (or PDF if you’re brave and [installed LaTeX](/resource/install/#install-tinytex)). Use the “Knit” menu:
 
     <img src="/img/assignments/knit-button.png" width="30%" />
 
-4.  Upload the knitted document to ZoneCours 🎉
+11. Upload the knitted document to ZoneCours 🎉
 
 {{% div fyi %}}
 
