@@ -1,6 +1,5 @@
 ---
 title: "Problem set 1"
-linktitle: "Problem set 1"
 date: "2021-09-01"
 due_date: "2021-09-10"
 due_time: "11:55 PM"
