@@ -14,7 +14,7 @@
 
             <td style="width:8%;text-align:center" class="mid-table-header">Content</td>
             <td style="width:8%;text-align:center" class="mid-table-header">Example</td>
-            <td style="width:8%;text-align:center" class="mid-table-header">Assignment</td>
+            <td style="width:8%;text-align:center" class="mid-table-header">Evaluations</td>
 
             {{- else }}
 
@@ -40,9 +40,9 @@
             </td>
             {{- end }}
 
-            {{- if .assignment }}
+            {{- if .evaluations }}
             <td align="center" style="width:10%;text-align:center"><a
-                    href="{{ .Site.baseurl }}/assignment/{{ .assignment }}/">
+                    href="{{ .Site.baseurl }}/evaluations/{{ .evaluations }}/">
                     <i class="fas fa-pencil-ruler fa-lg"></i></a></td>
             {{- else }}
             <td align="center" style="width:10%;text-align:center">

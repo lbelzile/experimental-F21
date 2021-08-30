@@ -1,8 +1,4 @@
 "file" "checksum"
-"content/assignment/_index.Rmarkdown" "effac28efa3efad5daeef9d3d21857b6"
-"content/assignment/01-problem-set.Rmarkdown" "fe82193107bb06640af5cba9abe2daeb"
-"content/assignment/02-problem-set.Rmarkdown" "f872158f99fefeff411cf0af54d8e5d3"
-"content/assignment/weekly-check-in.Rmarkdown" "b7f4f47a6e21f4cf1bcbce3131f928ef"
 "content/content/_index.Rmarkdown" "630c91585e8710c5299637a295a80a0b"
 "content/content/01-content.Rmarkdown" "a3689ba7ba42e712630d641d926795f8"
 "content/content/02-content.Rmarkdown" "e738575044624909d7d899cf4b28d30e"
