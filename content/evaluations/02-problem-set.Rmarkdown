@@ -1,17 +1,15 @@
 ---
 title: "Problem set 2"
 linktitle: "Problem set 2"
-date: "2021-09-10"
+date: "2021-08-31"
 due_date: "2021-09-17"
 due_time: "11:55 PM"
 menu:
-  assignments:
+  evaluations:
     parent: Problem sets
     weight: 2
 type: docs
 toc: true
-editor_options: 
-  chunk_output_type: console
 ---
 
 TO BE COMPLETED

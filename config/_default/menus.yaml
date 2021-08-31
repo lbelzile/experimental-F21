@@ -33,7 +33,7 @@ evaluations:
     weight: 1
   - name: Weekly check-in
     weight: 2
-  - name: Assignments
+  - name: Problem sets
     weight: 3
   - name: Final project
     weight: 4
