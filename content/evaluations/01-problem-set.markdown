@@ -6,8 +6,10 @@ due_date: "2021-09-10"
 due_time: "11:55 PM"
 menu:
   evaluations:
-    parent: Assignments
+    parent: Problem sets
     weight: 1
+editor_options: 
+  chunk_output_type: console
 type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
