@@ -10,3 +10,4 @@ node_modules/
 .Rproj.user
 .DS_Store
 Thumbs.db
+blogdown/md5sum.txt
