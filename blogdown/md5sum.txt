@@ -1,6 +1,6 @@
 "file" "checksum"
 "content/content/_index.Rmarkdown" "630c91585e8710c5299637a295a80a0b"
-"content/content/01-content.Rmarkdown" "d468eef7d80285783cc6e2f9c8b270cc"
+"content/content/01-content.Rmarkdown" "93bef9a419f35dcf5e8da4981b41dcdf"
 "content/content/02-content.Rmarkdown" "e738575044624909d7d899cf4b28d30e"
 "content/evaluations/_index.Rmarkdown" "4fa346be8b01eb4ca1862a2f2d07bba3"
 "content/evaluations/01-problem-set.Rmarkdown" "9b398c66ffd8777020a57ad7a8536343"

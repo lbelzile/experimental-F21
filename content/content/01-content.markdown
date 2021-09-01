@@ -88,7 +88,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#1">
+<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#1">
 </iframe>
 
 </div>
@@ -99,7 +99,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#class-details">
+<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#class-details">
 </iframe>
 
 </div>
@@ -110,7 +110,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#motivation">
+<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#motivation">
 </iframe>
 
 </div>
@@ -121,7 +121,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#review">
+<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#review">
 </iframe>
 
 </div>
@@ -132,7 +132,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/01-slides.html#key-concepts-experimental">
+<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#key-concepts-experimental">
 </iframe>
 
 </div>

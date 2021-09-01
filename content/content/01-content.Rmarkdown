@@ -84,7 +84,7 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 `r blogdown::shortcode("slide-buttons")`
 
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/01-slides.html")
+slide_tabs(slide_details, "https://edsm.rbind.io/slides/01-slides.html")
 ```
 
 ## In-class presentation
