@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 linktitle: "1: Introduction"
-date: "2021-08-30"
+date: "2021-09-02"
 start_date: "2021-08-30"
 end_date: "2021-09-03"
 menu:
@@ -141,7 +141,20 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
-## In-class presentation
+## Case study
+
+We will discuss the summary of [“The Impact of Mask Distribution and Promotion on Mask Uptake and COVID-19 in Bangladesh”](https://www.poverty-action.org/printpdf/47486) in class during the workshop. The [preprint of the paper](https://www.poverty-action.org/sites/default/files/publications/Mask_RCT____Symptomatic_Seropositivity_083121.pdf) contains additional information.
+
+During the activity, you will be asked to identify in teams the following:
+
+-   the objective of the study
+-   the target population (which findings generalize?)
+-   the sampling scheme
+-   the observational and experimental units
+-   the treatments
+-   the outcome variable(s)
+
+## **R** and Rmarkdown introduction
 
 This material by [Dr. Andrew Heiss](https://www.andrewheiss.com/) nicely goes over the presentation of the various basics of programming in **R** (including a presentation of the integrated development environment, the programming language syntax, and basics of data manipulation and graphics using the tidyverse).
 
