@@ -25,7 +25,7 @@ csl: "../../static/bib/apa.csl"
 
 ## Task 2: Introduce yourself to **R** and RStudio
 
-1. Install **R** and Rstudio using [this guide by Andrew Heiss](https://evalf21.classes.andrewheiss.com/resource/install/)
+1. Install **R** and Rstudio using [this guide by Andrew Heiss](/example/installr/)
 2. Complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics. 
 3. Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-getting-started-with-data-03/#section-principles-of-experimental-design)
 
