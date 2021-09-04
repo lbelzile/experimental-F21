@@ -1,5 +1,5 @@
 ---
-title: Evaluations details
+title: Grading scheme
 date: "2021-08-30"
 menu:
   evaluations:

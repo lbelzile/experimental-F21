@@ -1,0 +1,623 @@
+---
+title: "Hypothesis tests"
+author: "Léo Belzile"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = "center")
+```
+
+```{r packages-data, include=FALSE}
+library(tidyverse)
+```
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view"))
+```
+
+class: center middle main-title section-title-1
+
+# Hypothesis testing
+
+.class-info[
+
+**Session 2**
+
+.light[MATH 80667A: Experimental Design and Statistical Methods <br>for Quantitative Research in Management <br>
+HEC Montréal
+]
+
+]
+
+---
+
+name: outline
+class: title title-inv-8
+
+# Outline
+--
+
+.box-6.medium.sp-after-half[Testing]
+
+--
+
+.box-5.medium.sp-after-half[Completely randomized trials]
+.box-5.medium.sp-after-half[(one-way analysis of variance)]
+
+--
+
+.box-3.medium.sp-after-half[**R** workflow]
+
+
+---
+
+
+
+layout: false
+name: class-details
+class: center middle section-title section-title-6 animated fadeIn
+
+# Class details
+
+---
+
+class: title title-6
+
+# Learning objectives
+.pull-left[
+.box-inv-6[Content]
+
+- Basics of experimental design
+- Statistical inference
+- Programming in **R**
+- Analysis of variance
+- Intro to causal inference
+- Mediation analysis
+
+]
+
+???
+
+We will focus on simple designs as they lead to simple analysis. For more complicated schemes, consult an expert or find a collaborator.
+
+The course content is first-year undergraduate, so the purpose is more one of numerical literacy then expert knowledge.
+
+However, the assessment, activities and interdisciplinary skills are targeted for PhD students
+
+We will spend a lot of time on ANOVA (one-way, two-way, multivariate, repeated measures, etc.)
+
+--
+
+.pull-right[
+.box-inv-6[Cross-disciplinary skills]
+
+- Scientific workflow
+- Peer-review
+- Reporting
+- Statistical fallacies
+- Reproducibility
+ 
+
+]
+
+???
+
+The reproducibility crisis has changed the publishing landscape, so the requirements for publications are more stringent. I intend to cover these in details.
+
+Statistical fallacies are common mistakes that discredit the validity of your work. Learning to recognize them in the wild is crucial (also as reviewer).
+
+---
+
+class: title title-6
+# Prerequisites
+
+--
+
+.box-6.medium[**Math skills**]
+
+.box-inv-6.small.sp-after[Basic algebra]
+
+--
+
+.box-6.medium[**Computer science**]
+
+.box-inv-6.small.sp-after[None]
+
+--
+
+.box-6.medium[**Statistics**]
+
+.box-inv-6.small[At the level of OpenIntro Statistics (Chapter 1)]
+
+???
+More specifically for statistics:
+- variable types (continuous, discrete, etc.) 
+- basic graphs (histograms, scatterplots)
+- hypothesis testing
+- differences in mean (e.g., t-test)
+- simple linear regression
+
+The OpenIntro Statistics book can be freely downloaded from <https://www.openintro.org/book/os/>
+
+---
+
+class: title title-6
+
+# Programming
+
+We will use the **R** programming language and the **RStudio** IDE 
+
+.pull-left[
+- free (!)
+- open-source
+- large support community
+- comprehensive
+]
+
+.pull-right[
+<figure>
+  <img src="img/01/Rlogo.png" alt="R programming language" width="50%">
+</figure>
+]
+
+???
+
+Commercial software is expensive (e.g., SPSS licenses cost more than $5,730 USD per year as of 2021).
+
+I am not making you computer scientists
+Words of wisdom from @allison_horst to her data analysis class this quarter: You don't need to be a mechanic to drive a car safely, and you don't need to be a computer scientist or developer to use R safely. #rstats #tidytuesday
+
+
+https://twitter.com/ameliaritger/status/1214682596182904832?s=12
+
+I always teach my students: there’s three levels of skill: driver, mechanic, engineer. You’re here to get your drivers license. But being able to change a tire can be helpful. Don’t worry not every one has to be an engineer. (I talk about R in social sciences)
+
+https://twitter.com/Sumidu/status/1214695065387438083
+
+---
+
+# Learning R
+
+.center[
+<figure>
+  <img src="img/01/learning-r.png" alt="Learning R through googling" title="Learning R through googling" width="70%">
+</figure>
+]
+
+???
+
+https://twitter.com/kierisi/status/898534740051062785
+
+---
+
+layout: false
+name: motivation
+class: center middle section-title section-title-5 animated fadeIn
+
+# Motivation
+
+---
+
+class: title title-5
+
+# Experiments as gold-standard
+
+.center[
+<figure>
+  <img src="img/01/BJOG_randomized_trials.png" alt="Screenshot of a paper in BJOG by Hariton and Locascio" title="Screenshot of a paper in BJOG by Hariton and Locascio" width="60%">
+</figure>
+]
+
+.small[
+> *Randomised controlled trials (RCTs) are the reference standard for studying causal relationships between interventions and outcomes as randomisation eliminates much of the bias inherent with other study designs.*
+]
+???
+
+Paper available at https://doi.org/10.1111/1471-0528.15199
+
+From the abstract:
+"Randomised controlled trials (RCTs) are the reference standard for studying causal relationships between interventions and outcomes as randomisation eliminates much of the bias inherent with other study designs."
+
+---
+
+class: title title-5
+
+# History
+
+Experiments on agricultural trials in Rothamsted ongoing since 1841
+.pull-left[
+<figure>
+  <img src="img/01/ECN_Rothamsted1.png" alt="Description of the Rothamsted station" title="Rothamsted station" width="110%">
+</figure>
+]
+
+.pull-right[
+<figure>
+  <img src="img/01/Broadbalk.jpg" alt="Broadbalk photo" title="Broadbalk, by e-RA (Rothamsted Archives) circa 2012" width="75%">
+</figure>
+]
+
+???
+
+https://www.rothamsted.ac.uk/environmental-change-network
+
+http://www.era.rothamsted.ac.uk/images/metadata/rbk1/2012-AJ-12-10.jpg
+
+R.A. Fisher worked 14 years at Rothamsted from 1919 and developed much of the theory underlying experimental design
+See this recollection by Yates on his contribution: https://doi.org/10.2307/2528399 
+
+Fisher was a eugenist and his views are largely decried nowadays.
+
+---
+
+class: title title-5
+
+# Modern experiments: A/B testing
+
+<figure>
+  <img src="img/01/twitter_overhaul.png" alt="Screenshot of Twitter page following changes made to interface in 2021 (the follow button is black (higher contrast)." title="Screenshot of Twitter following changes made to interface" width="80%">
+</figure>
+
+???
+
+This illustrates changes to the design (Follow now high-contrast in black). This is an example of A/B testing common in web design.
+---
+
+class: title title-5
+
+# Evidence-based policy
+
+
+
+
+
+<br>
+
+.box-inv-5.medium[RAND health insurance study]
+
+<br>
+
+.box-inv-5.medium[Student Teacher Achievement Ratio (STAR)]
+
+
+
+???
+
+RAND: In a large-scale, multiyear experiment, participants who paid for a share of their health care used fewer health services than a comparison group given free care. It concluded that cost sharing reduced "inappropriate or unnecessary" medical care (overutilization), but also reduced "appropriate or needed" medical care.
+https://www.rand.org/health-care/projects/hie.html
+
+Tennessee's STAR project: smaller class sizes lead to better outcomes
+"Over 7,000 students in 79 schools were randomly assigned into one of 3 interventions: small class (13 to 17 students per teacher), regular class (22 to 25 students per teacher), and regular-with-aide class (22 to 25 students with a full-time teacher's aide). Classroom teachers were also randomly assigned to the classes they would teach. The interventions were initiated as the students entered school in kindergarten and continued through third grade."
+https://dss.princeton.edu/catalog/resource1589
+
+---
+class: title title-5
+# Nobel memorial prize
+
+<figure>
+<img src="img/01/jpal-nobel.png" alt="Composite photo by Andrew Heiss: excerpt from the Washington Post following the announcement of the Nobel prize in economics for experimental approach to solving poverty, Abdul Latif Jameel Poverty Action Lab (J-PAL) video and a Twitter feed with a photo of Abhijit Banerjee and Esther Duflo upon the announcement of the Nobel memorial price." title="" width="80%">
+</figure>
+
+---
+
+layout: false
+name: review
+class: center middle section-title section-title-3 animated fadeIn
+
+# Review
+
+---
+class: title title-3
+
+# Population and sampling
+
+.pull-left[
+
+.box-inv-3.medium[Defining a population]
+
+.box-inv-3.medium[Sampling frame]
+
+.box-inv-3.medium[Randomization]
+
+]
+
+--
+
+.pull-right[
+
+.box-inv-3.medium[Convenience samples]
+
+.box-inv-3.medium[Non-response bias]
+
+
+]
+---
+
+class: title title-3
+
+# Sampling scheme
+
+
+.box-inv-3.medium[Simple random sampling]
+
+--
+
+.box-inv-3.medium[Stratified sampling]
+
+
+.box-3[Gender, ethnicity, etc.]
+
+--
+
+.box-inv-3.medium[Cluster sampling]
+
+.box-3[Villages, housing block, classrooms, etc.]
+
+--
+
+.box-inv-3.medium[Multi-stage sampling]
+
+
+---
+class: title title-3
+
+# Simple random sampling
+
+<center>
+<figure>
+  <img src="img/01/simple.png" alt="Simple random sampling" title="OpenIntro distributed under the CC BY-SA license." height="120%">
+</figure>
+</center>
+.right.small[OpenIntro, CC BY-SA license]
+
+---
+class: title title-3
+# Stratified sampling
+
+<center>
+<figure>
+  <img src="img/01/stratified.png" alt="Stratified sampling" title="Stratified sampling, OpenIntro distributed under the CC BY-SA license." height="120%">
+</figure>
+</center>
+.right.small[OpenIntro, CC BY-SA license]
+
+---
+class: title title-3
+
+# Cluster sampling
+
+<center>
+<figure>
+  <img src="img/01/cluster.png" alt="Cluster sampling" title="Cluster sampling, OpenIntro distributed under the CC BY-SA license." width="80%">
+</figure>
+</center>
+.right.small[OpenIntro, CC BY-SA license]
+
+
+---
+
+class: title title-3
+
+# Multistage sampling
+
+<center>
+<figure>
+  <img src="img/01/multistage.png" alt="Multistage sampling" title="Multistage sampling, OpenIntro distributed under the CC BY-SA license." width="80%">
+</figure>
+</center>
+.right.small[OpenIntro, CC BY-SA license]
+
+
+---
+class: title title-3
+
+.box-inv-3-center.large[# Judging the quality of a sample]
+
+.box-inv-3.medium[Summary statistics]
+
+Reported to check representativeness of the sample relative to population.
+
+--
+
+.box-inv-3.medium[Raw data]
+
+Used for reproducibility and to assess whether data is fraudulent.
+
+--
+
+.box-inv-3.medium[Pre-testing]
+
+Check whether sampling allocation is sufficiently random.
+
+???
+
+U. Simonsohn, L. Nelson and J. Simmons. *Evidence of Fraud in an Influential Field Experiment About Dishonesty*, 2021, https://datacolada.org/98.
+
+---
+
+class: title title-3
+
+.box-inv-3-center.large[# Experimental versus observational]
+
+.box-inv-3.large[Experiment controls <br> 
+allocation of treatment]
+
+--
+
+.box-3.medium[Systematic vs random allocation]
+
+.box-3.medium[propensity score]
+
+---
+
+class: title title-3
+
+.box-inv-3-center.large[# Study type versus sampling]
+
+<figure>
+  <img src="img/01/random_sample_assignment.png" alt="Random versus non-random assignment and sampling" title="Two by two classification matrix for experiments based on sampling and study type. Material from Mine Çetinkaya-Rundel and OpenIntro distributed under the CC BY-SA license." width="90%">
+</figure>
+
+---
+
+layout: false
+name: key-concepts-experimental
+class: center middle section-title section-title-2 animated fadeIn
+
+# Key concepts in experimental design
+
+---
+
+class: title title-2
+# Technical vocabulary
+
+.pull-left[
+.box-inv-2.medium[Experimental unit]
+
+.box-inv-2.medium[Observational unit]
+
+.box-inv-2.medium[Factor / treatment]
+
+.box-inv-2.medium[Treatment group]
+
+.box-inv-2.medium[Control group]
+
+]
+
+.pull-right[
+
+.box-inv-2.medium[Blocking factors]
+
+.box-inv-2.medium[Confounder]
+
+.box-inv-2.medium[Effect size]
+
+.box-inv-2.medium[Placebo]
+
+.box-inv-2.medium[(Double) blinding]
+]
+
+---
+
+class: title title-2
+# Four pillars of experimental design
+
+.pull-left[
+
+.box-inv-2.large[Control]
+
+.box-inv-2.large[Randomization]
+
+]
+
+.pull-right[
+
+.box-inv-2.large[Blocking]
+
+.box-inv-2.large[Replication]
+
+]
+
+--
+
+<br>
+
+.box-2.large[Difference between stratification and blocking]
+
+???
+
+Control: Control for the (potential) effect of variables other than the ones directly being studied.
+2. Randomize: Randomly assign subjects to treatments, and randomly sample from the population whenever possible.
+3. Replicate: Within a study, replicate by collecting a sufficiently large
+sample. Or replicate the entire study.
+4. Block: If there are variables that are known or suspected to affect the response variable, first group subjects into blocks based on
+these variables, and then randomize cases within each block to treatment groups.
+
+---
+
+class: title title-2
+# Objective of the experiment
+
+.box-2.medium[Compare multiple treatments]
+
+.medium[
+- Without treatment, .color-2.medium[**variability**] in output from one observation to the next.
+- Differences between treatment are .color-2[**comparatively stable**].
+
+]
+
+---
+class: title title-2
+# Choices in experimental designs
+
+.box-2.medium[**treatments** for comparison]
+
+--
+
+.box-2.medium[observations to be made (number of repetitions, etc.)]
+
+--
+
+.box-2.medium[experimental units]
+
+
+---
+class: title title-2
+# Requirements for good experiments (1/2)
+
+
+.box-inv-2.large.left[Absence of systematic error]
+
+Achieved via randomization
+
+--
+
+.left.box-inv-2.large[Precision]
+
+- depends on the intrinsic variability 
+- function of
+    1. accuracy of experimental work
+    2. number of experimental units / repetitions per unit
+    3. design and methods of analysis
+
+
+
+---
+
+class: title title-2
+# Requirements for good experiments (2/2)
+
+.left.box-inv-2.large[Range of validity]
+
+- What is population?
+- Identify restrictions
+- Extrapolation only if proper sampling scheme
+
+--
+
+.left.box-inv-2.large[Simplicity of the design]
+
+Leads to simple analysis 
+
+???
+
+Important: understand reasons for difference
+- do not limit to experimental knowledge about the differences
