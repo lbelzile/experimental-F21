@@ -35,11 +35,10 @@ slides: "01-slides"
 
 At the end of the session, students should be capable of
 
--   knowing the basic vocabulary attached to experiments.
+-   using the basic vocabulary attached to experiments.
 -   assessing the generalizability of a study based on the description.
 -   distinguishing between observational and experimental studies.
 -   identifying experimental and observational units, treatments and blocking variables in an experimental study
--   using **R** for basic data manipulations and graphics
 
 ## Preliminaries
 
@@ -88,7 +87,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#1">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#1">
 </iframe>
 
 </div>
@@ -99,7 +98,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#class-details">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#class-details">
 </iframe>
 
 </div>
@@ -110,7 +109,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#motivation">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#motivation">
 </iframe>
 
 </div>
@@ -121,7 +120,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#review">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#review">
 </iframe>
 
 </div>
@@ -132,7 +131,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://edsm.rbind.io/slides/01-slides.html#key-concepts-experimental">
+<iframe class="embed-responsive-item" src="/slides/01-slides.html#key-concepts-experimental">
 </iframe>
 
 </div>
@@ -153,17 +152,6 @@ During the activity, you will be asked to identify in teams the following:
 -   the observational and experimental units
 -   the treatments
 -   the outcome variable(s)
-
-## **R** and Rmarkdown introduction
-
-This material by [Dr. Andrew Heiss](https://www.andrewheiss.com/) nicely goes over the presentation of the various basics of programming in **R** (including a presentation of the integrated development environment, the programming language syntax, and basics of data manipulation and graphics using the tidyverse).
-
--   [Project .zip file](https://evalf21.classes.andrewheiss.com/projects/01-class.zip)
--   [Lab slides 1: Markdown](https://evalf21.classes.andrewheiss.com/slides/01-class_01_markdown-writing.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_01_markdown-writing.pdf)
--   [Lab slides 2: Getting started with **R** and RStudio](https://evalf21.classes.andrewheiss.com/slides/01-class_02-getting-started.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_02-getting-started.pdf)
--   [Lab slides 3: Data basics](https://evalf21.classes.andrewheiss.com/slides/01-class_03_data-basics.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_03_data-basics.pdf)
--   [Lab slides 4: Visualize data with `ggplot2`](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_04_visualize-data.pdf)
--   [Lab slides 5: Transform data with `dplyr`](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.html) [(PDF)](https://evalf21.classes.andrewheiss.com/slides/01-class_05_transform-data.pdf)
 
 {{% div fyi %}}
 **Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.

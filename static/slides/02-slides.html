@@ -4,7 +4,7 @@
     <title>Hypothesis tests</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-09-03" />
+    <meta name="date" content="2021-09-05" />
     <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -65,54 +65,40 @@ layout: false
 name: class-details
 class: center middle section-title section-title-6 animated fadeIn
 
-# Class details
+# Hypothesis testing
 
 ---
 
 class: title title-6
 
-# Learning objectives
+# Parallel between hypothesis tests and trials
 .pull-left[
-.box-inv-6[Content]
+.box-inv-6[Hypothesis tests]
 
-- Basics of experimental design
-- Statistical inference
-- Programming in **R**
-- Analysis of variance
-- Intro to causal inference
-- Mediation analysis
+1. Define variables
+2. Write down hypotheses ($\mathscr{H}_0/\mathscr{H}_a$)
+3. Choose and compute a test statistic
+4. Compare the value to the null distribution (benchmark)
+5. Compute the _p_-value
+6. Conclude (reject/fail to reject)
+7. Report findings
 
 ]
-
-???
-
-We will focus on simple designs as they lead to simple analysis. For more complicated schemes, consult an expert or find a collaborator.
-
-The course content is first-year undergraduate, so the purpose is more one of numerical literacy then expert knowledge.
-
-However, the assessment, activities and interdisciplinary skills are targeted for PhD students
-
-We will spend a lot of time on ANOVA (one-way, two-way, multivariate, repeated measures, etc.)
 
 --
 
 .pull-right[
-.box-inv-6[Cross-disciplinary skills]
+.box-inv-6[Trial]
 
-- Scientific workflow
-- Peer-review
-- Reporting
-- Statistical fallacies
-- Reproducibility
+- Binary decision: guilty/not guilty
+- Test `\(\to\)` summary of evidence
+- Assess evidence in light of **presumption of innocence**
+- Verdict: either guilty or not guilty
+- Potential for judicial mistakes
  
 
 ]
 
-???
-
-The reproducibility crisis has changed the publishing landscape, so the requirements for publications are more stringent. I intend to cover these in details.
-
-Statistical fallacies are common mistakes that discredit the validity of your work. Learning to recognize them in the wild is crucial (also as reviewer).
 
 ---
 

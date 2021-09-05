@@ -35,40 +35,21 @@ csl: "../../static/bib/apa.csl"
 
 -->
 
-## Task 3: Make an RStudio Project and work with **R**
+## Task 3: Make an RStudio Project
 
-We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The data contains measures of implicit bias for multiple participants from “in-field implicit association tests”. The database includes the following variables:
+1.  In RStudio, go to “File” > “New File…” > “R Markdown…” and click “OK” in the dialog without changing anything.
 
--   `age`: of the respondant
--   `village`: village of the respondant
--   `female`: a binary indicator for gender equal to unity for female and zero otherwise
--   `d.score`: the participant [Implicit Association Test (IAT) result](https://implicit.harvard.edu/implicit/iatdetails.html)
--   `quota`: binary indicator of treatment, unity if there is a quota and zero otherwise
--   `under25`: binary indicator, equal to unity if the respondant age is less than or equal to 25 years.
-
-1.  Use RStudio on your computer to create a new RStudio Project.
-
-2.  Create a folder named “data” in the project folder you just made.
-
-3.  Download this CSV file and place it in that folder:
-
-    -   [<i class="fas fa-file-csv"></i> `ImplicitBias2014.csv`](/data/ImplicitBias2014.csv)
-
-4.  In RStudio, go to “File” > “New File…” > “R Markdown…” and click “OK” in the dialog without changing anything.
-
-5.  Delete all the placeholder text in that new file and replace it with this:
+2.  Delete all the placeholder text in that new file and replace it with this:
 
     ```` text
     ---
     title: "Problem set 1"
     author: "Put your name here"
-    output: html_document
+    output: word_document
     ---
 
     ```{r load-libraries-data, warning=FALSE, message=FALSE}
     library(tidyverse)
-
-    cars <- read_csv("data/`ImplicitBias2014.csv")
     ```
 
     # Learning R
@@ -76,43 +57,15 @@ We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The da
     Tell me that you worked through the primers and videos and examples at the example page for this week:
 
     WRITE SOMETHING HERE LIKE "I did all the primers and had the time of my life!" or whatever.
-
-
-    # My first plots
-
-    Insert a chunk below and use it to create a scatterplot (hint: `geom_point()`) with age (`age`) on the x-axis, IAT score (`d.score`) on the y-axis, and with the points colored by gender (`female`).
-
-    PUT CHUNK HERE
-
-    Insert a chunk below and use it to create a box-and-whiskers plots (hint: `geom_boxplot()`) with IAT score (`d.score`) on the y-axis and `quota` (map to `factor`) on the x-axis observations with `geom_jitter` (adjust the width accordingly to avoid overlap). Try facetting by gender (`female`).
-
-    PUT CHUNK HERE
-
-
-    # My first data manipulation
-
-    Insert a chunk below and use it to calculate the average IAT score (`d.score`) by gender (`female`) and assignment to treatment variable (`quota`). This will return a table. Hint: use a combination of `group_by()` and `summarize()`.
-
-    PUT CHUNK HERE
     ````
 
-6.  Save the R Markdown file with some sort of name (**without any spaces!**)
+3.  Save the R Markdown file with some sort of name (**without any spaces!**)
 
-7.  Your project folder should look something like this:
-
-    <img src="/img/assignments/project-structure.png" width="30%" />
-
-8.  Remove the text that says “PUT CHUNK HERE” and insert a new R code chunk. Either type <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>i</kbd> on Windows, or <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>i</kbd> on macOS, or use the “Insert Chunk” menu:
-
-    <img src="/img/assignments/insert-chunk-button.png" width="19%" />
-
-9.  Follow the instructions for the three chunks of code.
-
-10. Knit your document as a Word file (or PDF if you’re brave and [installed LaTeX](/resource/install/#install-tinytex)). Use the “Knit” menu:
+4.  Knit your document as a Word file (or PDF if you’re brave and [installed LaTeX](/resource/install/#install-tinytex)). Use the “Knit” menu:
 
     <img src="/img/assignments/knit-button.png" width="30%" />
 
-11. Upload the knitted document to ZoneCours 🎉
+5.  Upload the knitted document to ZoneCours 🎉.
 
 {{% div fyi %}}
 
@@ -125,19 +78,3 @@ Or you can create individual projects for each assignment and project:
 <img src="/img/reference/rproj-multiple-folders.png" width="30%" />
 
 {{% /div %}}
-
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-
-<div id="ref-Clayton:2018" class="csl-entry">
-
-Clayton, A. (2018a). Do gender quotas really reduce bias? Evidence from a policy experiment in Southern Africa. *Journal of Experimental Political Science*, *5*(3), 182--194. <https://doi.org/10.1017/XPS.2018.8>
-
-</div>
-
-<div id="ref-Clayton:2018data" class="csl-entry">
-
-Clayton, A. (2018b). *<span class="nocase">Replication Data for: “Do Gender Quotas Really Reduce Bias? Evidence from a Policy Experiment in Southern Africa.”</span>* (Version V1) \[Data set\]. Harvard Dataverse. <https://doi.org/10.7910/DVN/0DE35E>
-
-</div>
-
-</div>
