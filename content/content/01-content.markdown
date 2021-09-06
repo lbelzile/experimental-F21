@@ -140,6 +140,10 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
+{{% div fyi %}}
+**Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
+{{% /div %}}
+
 ## Case study
 
 We will discuss the summary of [“The Impact of Mask Distribution and Promotion on Mask Uptake and COVID-19 in Bangladesh”](https://www.poverty-action.org/printpdf/47486) in class during the workshop. The [preprint of the paper](https://www.poverty-action.org/sites/default/files/publications/Mask_RCT____Symptomatic_Seropositivity_083121.pdf) contains additional information.
@@ -152,10 +156,6 @@ During the activity, you will be asked to identify in teams the following:
 -   the observational and experimental units
 -   the treatments
 -   the outcome variable(s)
-
-{{% div fyi %}}
-**Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
-{{% /div %}}
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 

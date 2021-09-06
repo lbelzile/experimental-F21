@@ -81,7 +81,15 @@ class: center middle section-title section-title-6 animated fadeIn
 
 class: title title-6
 
+# Sampling variability
+
+
+
+---
+
 # Parallel between hypothesis tests and trials
+
+
 .pull-left[
 .box-inv-6[Hypothesis tests]
 

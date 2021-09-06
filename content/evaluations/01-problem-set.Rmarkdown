@@ -19,7 +19,8 @@ csl: "../../static/bib/apa.csl"
 ## Task 1: Find an experimental study
 
 1. Identify a scientific paper in your research field in which an experimental study is conducted. 
-	- Provide a citation for the latter
+*If the paper contains multiple experiments, pick a single one.*
+	- Provide a citation for the paper
 	- Briefly describe the experiment (you can simply quote the description of the database). 
  	- Based on the information provided, identify the experimental units and the treatments.
 
