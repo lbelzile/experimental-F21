@@ -1,7 +1,7 @@
 ---
 title: "Problem set 2"
 linktitle: "Problem set 2"
-date: "2021-09-04"
+date: "2021-09-05"
 due_date: "2021-09-17"
 due_time: "11:55 PM"
 menu:
@@ -108,25 +108,27 @@ Please use the same workflow as in Task 1.
     2.  the standard deviation, `sd`
     3.  the sample size per group, `n()`
     4.  the standard error of the mean, `se = sd/sqrt(n())`
-        5.  the lower bound of the 95% confidence interval, `lower = mean - qt(0.975, df = n() - 1)*se` with `mean` and `se` from above
-    5.  the upper bound of the 95% confidence interval (similar formula)
+    5.  the lower bound of the 95% confidence interval,
+        -   `lower = mean - qt(0.975, df = n() - 1)*se`, with `mean` and `se` from above
+    6.  the upper bound of the 95% confidence interval
 
 The commands `group_by` and `summarize` from the `dplyr` library will prove useful.
 
-3.  Figure 1 of Bastian:2014 shows a bar plot with confidence intervals for each condition. Note that this is standard display, but overall it is poor graphical choice (why?).
+3.  Figure 1 of Bastian:2014 shows a dynamite plot, i.e., bar plot with 95% confidence intervals for each condition. Note that this is standard display, but overall it is poor graphical choice[(why?)](https://simplystatistics.org/2019/02/21/dynamite-plots-must-die/)
 
-Create a graphic to summarize the information in the sample: try to strike a balance between the quantity of information and the clarity of the display.
+**Create a graphic to summarize the information in the sample**: try to strike a balance between the quantity of information and the clarity of the display.
 
-Standard graphical displays include box-and-whisker plots (`geom_boxplot`), violin plots (`geom_violin`), dotplot (`geom_dotplot`). Do a Google search.
-You can even combine all of these displays using a [raincloud plot (click for examples).](https://z3tt.github.io/Rainclouds/)
-The `ggdist` package includes many interesting geoms for univariate distributions; it can be installed using `install.packages("ggdist")`.
+Standard graphical displays include box-and-whisker plots (`geom_boxplot`), violin plots (`geom_violin`), dotplot (`geom_dotplot`) with potentially jittered observations added to the display. Multiple displays can be combined using a raincloud plot [(click for examples).](https://z3tt.github.io/Rainclouds/) [This page](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/#back2) describes different visualizations and how they can be misleading. There is a [`raincloudplots`](https://github.com/jorvlan/raincloudplots) package, and the `ggdist` package includes many interesting geoms for univariate distributions.
 
+<!--
 If you wanted to reproduce Figure 1 nevertheless, here are some instructions:
 
--   Create a bar plot using `geom_col` with your tibble of summary statistics as input data, with `condition` on the x-axis and `bonding` on the y-axis;
--   Use `geom_errorbar` to overlay the confidence intervals (you will need to specify the aesthetics `ymin` and `ymax` for the respective limits of the intervals);
--   The range of the y-axis can be restricted to the range (2,5) via `coord_cartesian(ylim = c(2,5))` to match that of the paper.
+- Create a bar plot using `geom_col` with your tibble of summary statistics as input data, with `condition` on the x-axis and `bonding` on the y-axis;
+- Use `geom_errorbar` to overlay the confidence intervals (you will need to specify the aesthetics `ymin` and `ymax` for the respective limits of the intervals);
+- The range of the y-axis can be restricted to the range (2,5) via `coord_cartesian(ylim = c(2,5))` to match that of the paper.
+-->
 
+Make sure you provide a title, clearly label your axes (with units) so that the graph is standalone.
 Be creative and explore, but don’t waste too much time!
 
 4.  Perform the one-way ANOVA and print the output. Extract the degrees of freedom, the value of the `\(F\)`-statistic and the *p*-value, suitably rounded and report these.

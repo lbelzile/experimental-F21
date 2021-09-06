@@ -47,15 +47,21 @@ At the end of the session, students should be capable of
 
 ## Readings
 
+These readings should be completed before class, to ensure timely understanding and let us discuss the concepts together through various examples and case studies — the strict minimum being the course notes. If you feel a section is redundant and overlaps with the latter, feel free to skim through the rest of the material.
+
 -   <i class="fas fa-book"></i> Chapter 1 of the [Course notes](https://lbelzile.github.io/math80667a/introduction.html)
 -   <i class="fas fa-book"></i> Chapter 1 and Sections 2.1-2.2 in *Design and Analysis of Experiments* (Dean et al., 2017)
--   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199)
+-   <i class="fas fa-book"></i> Chapter 2 (*Study design*) in [*Introduction to Modern Statistics*](https://openintro-ims.netlify.app/data-design.html)
+
+Feel free to inform me in the weekly check-in of your take on these references.
 
 ## Complementary readings
 
--   <i class="fas fa-book"></i> Chapter 2 (*Study design*) in [*Introduction to Modern Statistics*](https://openintro-ims.netlify.app/data-design.html)
--   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments* (Cox, 1958)
--   <i class="fas fa-book"></i> Examples from Section 1.4 of *Experimental Design* (Berger et al., 2018)
+Complementary readings are additional sources of information that are not required readings, but may be useful substitutes. Sometimes, they go beyond the scope of what we cover and in more depth.
+
+-   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199). This reference goes over some of the reasons why experiments are preferred to observational studies.
+-   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments* (Cox, 1958). Out of print, but addresses the basic concepts using a variety of examples (mostly from agricultural field trials), and particularly well writen.
+-   <i class="fas fa-book"></i> Section 1.4 of *Experimental Design* (Berger et al., 2018). Provides a variety of examples of experiments along with their characteristics.
 
 ## Slides
 
