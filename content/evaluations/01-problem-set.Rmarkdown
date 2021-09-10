@@ -28,10 +28,13 @@ csl: "../../static/bib/apa.csl"
 
 1. Install **R** and Rstudio using [this guide by Andrew Heiss](/example/installr/)
 2. Complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics. 
-3. Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-data-03/)
-4. Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
+3. Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
+4. Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-data-03/)
+
 
 If the tutorial pages don't load, please try again later: this is sometimes due to high traffic (the servers have limited capacities).
+
+You don't need to turn in anything for this (but see the next task)
 
 ## Task 3: Make an RStudio Project 
 
@@ -51,11 +54,17 @@ If the tutorial pages don't load, please try again later: this is sometimes due 
     library(tidyverse)
     ```
     
-    # Learning R
+    # Task 1:  Find an experimental study
     
-    Tell me that you worked through the primers and videos and examples at the example page for this week:
+    REPLACE THE FOLLOWING PARAGRAPH
+    You can report here the summary of Task 1 (including a citation, the description of one of the experiments and the variables).
+    If you are citing a paper, please include the DOI whenever possible.
     
-    WRITE SOMETHING HERE LIKE "I did all the primers and had the time of my life!" or whatever.
+    # Task 2: Introduce yourself to **R** and RStudio
+    
+    REPLACE THE FOLLOWING PARAGRAPH
+    Tell me that you worked through the examples listed in Task 2. 
+    Feel free to provide feedback or simply state "Been there, done that" or whatever.
     ````
 
 3. Save the R Markdown file with some sort of name (**without any spaces!**)

@@ -114,7 +114,7 @@ Please use the same workflow as in Task 1.
 
 The commands `group_by` and `summarize` from the `dplyr` library will prove useful.
 
-3.  Figure 1 of Bastian:2014 shows a dynamite plot, i.e., bar plot with 95% confidence intervals for each condition. Note that this is standard display, but overall it is poor graphical choice[(why?)](https://simplystatistics.org/2019/02/21/dynamite-plots-must-die/)
+3.  Figure 1 of Bastian:2014 shows a dynamite plot, i.e., bar plot with 95% confidence intervals for each condition. Note that this is standard display, but overall it is poor graphical choice [(why?)](https://simplystatistics.org/2019/02/21/dynamite-plots-must-die/)
 
 **Create a graphic to summarize the information in the sample**: try to strike a balance between the quantity of information and the clarity of the display.
 

@@ -24,10 +24,9 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
-  "", "Class details", "class-details", FALSE,
-  "", "Motivation", "motivation", FALSE,
-  "", "Review", "review", FALSE,
-  "", "Key concepts in experimental design", "key-concepts-experimental", FALSE
+  "", "Variability", "signal-vs-noise", FALSE,
+  "", "Hypothesis testing", "hypothesis-tests", FALSE,
+  "", "Power", "power", FALSE
 )
 ```
 ## Content
@@ -57,7 +56,7 @@ At the end of the session, students should be capable of
 
 - <i class="fas fa-file-o"></i> [Laboratory 4: ANOVA by Matthew Crump (illustrations)](https://www.crumplab.com/rstatsmethods/articles/Stats2/Lab4_ANOVA.html)
 
-<!--
+
 ## Slides
 
 The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
@@ -67,7 +66,7 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
 slide_tabs(slide_details, "/slides/02-slides.html")
 ```
--->
+
 
 ## In-class
 

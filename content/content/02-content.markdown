@@ -42,58 +42,74 @@ At the end of the session, students should be capable of
 
 -   <i class="fas fa-file-o"></i> [Laboratory 4: ANOVA by Matthew Crump (illustrations)](https://www.crumplab.com/rstatsmethods/articles/Stats2/Lab4_ANOVA.html)
 
-<!--
 ## Slides
 
-The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
 
-`{{% slide-buttons %}}`{=html}
+{{% slide-buttons %}}
 
 <ul class="nav nav-tabs" id="slide-tabs" role="tablist">
 <li class="nav-item">
 <a class="nav-link active" id="introduction-tab" data-toggle="tab" href="#introduction" role="tab" aria-controls="introduction" aria-selected="true">Introduction</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="class-details-tab" data-toggle="tab" href="#class-details" role="tab" aria-controls="class-details" aria-selected="false">Class details</a>
+<a class="nav-link" id="variability-tab" data-toggle="tab" href="#variability" role="tab" aria-controls="variability" aria-selected="false">Variability</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="motivation-tab" data-toggle="tab" href="#motivation" role="tab" aria-controls="motivation" aria-selected="false">Motivation</a>
+<a class="nav-link" id="hypothesis-testing-tab" data-toggle="tab" href="#hypothesis-testing" role="tab" aria-controls="hypothesis-testing" aria-selected="false">Hypothesis testing</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Review</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="key-concepts-in-experimental-design-tab" data-toggle="tab" href="#key-concepts-in-experimental-design" role="tab" aria-controls="key-concepts-in-experimental-design" aria-selected="false">Key concepts in experimental design</a>
+<a class="nav-link" id="power-tab" data-toggle="tab" href="#power" role="tab" aria-controls="power" aria-selected="false">Power</a>
 </li>
 </ul>
-<div class="tab-content" id="slide-tabs">
-<div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+
+<div id="slide-tabs" class="tab-content">
+
+<div id="introduction" class="tab-pane fade show active" role="tabpanel" aria-labelledby="introduction-tab">
+
 <div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/02-slides.html#1"></iframe>
+
+<iframe class="embed-responsive-item" src="/slides/02-slides.html#1">
+</iframe>
+
 </div>
+
 </div>
-<div class="tab-pane fade" id="class-details" role="tabpanel" aria-labelledby="class-details-tab">
+
+<div id="variability" class="tab-pane fade" role="tabpanel" aria-labelledby="variability-tab">
+
 <div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/02-slides.html#class-details"></iframe>
+
+<iframe class="embed-responsive-item" src="/slides/02-slides.html#signal-vs-noise">
+</iframe>
+
 </div>
+
 </div>
-<div class="tab-pane fade" id="motivation" role="tabpanel" aria-labelledby="motivation-tab">
+
+<div id="hypothesis-testing" class="tab-pane fade" role="tabpanel" aria-labelledby="hypothesis-testing-tab">
+
 <div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/02-slides.html#motivation"></iframe>
+
+<iframe class="embed-responsive-item" src="/slides/02-slides.html#hypothesis-tests">
+</iframe>
+
 </div>
+
 </div>
-<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+
+<div id="power" class="tab-pane fade" role="tabpanel" aria-labelledby="power-tab">
+
 <div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/02-slides.html#review"></iframe>
+
+<iframe class="embed-responsive-item" src="/slides/02-slides.html#power">
+</iframe>
+
 </div>
+
 </div>
-<div class="tab-pane fade" id="key-concepts-in-experimental-design" role="tabpanel" aria-labelledby="key-concepts-in-experimental-design-tab">
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/02-slides.html#key-concepts-experimental"></iframe>
+
 </div>
-</div>
-</div>
--->
 
 ## In-class
 
