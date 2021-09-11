@@ -42,7 +42,7 @@ kbd {
 
 pre, code {
     color: nth($colors, 7);
-    background-color: lighten(nth($colors, 7), 60%);
+    background-color: lighten(nth($colors, 7), 90%);
 }
 
 .highlight pre, .highlight code {
@@ -53,7 +53,6 @@ pre, code {
 .highlight>pre {
     margin: 0 0 2rem;
     padding: 1rem;
-    border-radius: 1rem;
 }
 
 pre {

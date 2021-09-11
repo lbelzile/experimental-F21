@@ -53,7 +53,7 @@ markup:
   highlight:
     codeFences: true
     guessSyntax: true
-    style: "monokai"
+    style: "xcode"
   tableOfContents:
     startLevel: 2
     endLevel: 4

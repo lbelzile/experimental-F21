@@ -89,7 +89,7 @@ We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The da
 
 ## Task 2: One-way analysis of variance
 
-Please use the same workflow as in Task 1.
+Please use the same workflow as in Task 1 and check out [Example 1. One way ANOVA](/example/01-onewayanova/) to get started.
 
 1.  Download the data file `Study_1_Data.sav` for Experiment 1 from Bastian et al. (2014), [from OSF](https://osf.io/9k3sw/) and put it in the `data` folder. Load it in your Rmarkdown script using
 
@@ -100,6 +100,8 @@ Please use the same workflow as in Task 1.
        rowwise() %>% 
        transmute(bonding = mean(c_across(group101:group107)),
                  condition = as_factor(condition))
+    # To see the labels for condition, check the raw data
+    dat_raw_pain$condition %>% attr('labels')
     ```
 
 2.  Create a table of summary statistics with, for each group:
