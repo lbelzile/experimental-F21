@@ -1,0 +1,87 @@
+---
+title: "One way analysis of variance"
+linktitle: "3: One way analysis of variance"
+date: "2021-09-16"
+start_date: "2021-09-13"
+end_date: "2021-09-17"
+menu:
+  content:
+    parent: Course content
+    weight: 3
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "03-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+source(here::here("R", "youtube-playlist.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "ANOVA", "1", TRUE,
+  "", "Parametrizations", "parametrization-interpret", FALSE,
+  "", "Estimability and contrasts", "estim-and-contrasts", FALSE,
+  "", "t-tests", "link-to-ttest", FALSE,
+  "", "Multiple testing", "multiple-testing", FALSE
+)
+```
+## Content
+
+- Programming premises
+- Sampling variability
+- Hypothesis testing
+- One-way analysis of variance
+- **R** demo
+
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+- interpret parameter estimates for a one-way analysis of variance with different parametrizations (average, constrasts, sum-to-zero)
+- understand the logic behind estimability
+- 
+- reporting summary statistics and output of an _F_-test
+
+## Readings
+
+- <i class="fas fa-book"></i> Chapter 3 of the [Course notes](https://lbelzile.github.io/math80667a/hypothesis-testing.html)
+- <i class="fas fa-book"></i> Chapter _Reproducibility Crisis_ of the [Course notes](https://lbelzile.github.io/math80667a/reproducibility-crisis.html)
+- <i class="fas fa-book"></i> Chapter 1 (*Introduction to Data Science*) of [Timbers, Campbell and Lee (2021) Data Sciences: A First Introduction](https://ubc-dsci.github.io/introduction-to-datascience/intro.html)
+
+
+## Complementary readings
+
+- <i class="fas fa-book"></i> Chapters 3 and 4 of @Dean:2017; the exposition is more mathematical and formulaic than what we cover in the notes.
+
+<!--
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/03-slides.html")
+```
+-->
+
+## In-class
+
+
+<!-- 
+{{% div fyi %}}
+**Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
+{{% /div %}}
+
+
+
+```{r show-youtube-list, echo=FALSE, results="asis", eval = FALSE}
+youtube_list(slide_details, playlist_id)
+```
+
+-->

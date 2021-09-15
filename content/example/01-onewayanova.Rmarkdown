@@ -74,17 +74,17 @@ We are now ready to proceed with the data analysis.
 
 ## Summary statistics
 
-We have seen that although they may come from the same population, the sample estimates will never coincide with the population values exactly because of sampling variability. We compute summary statistics by treatment group: for this, we use the pipe, `%>%`, which takes the object on the left and passes it on the right (this is the logical workflow), then `group_by` to split into separate groups and `summarize` to compute the statistics and create a new `tibble`. The result is stored in `summary_stats` (note the assignment using the `<-` operator) on the first line.
+We have seen that although they may come from the same population, the sample estimates will never coincide with the population values exactly because of sampling variability. We compute summary statistics by treatment group: for this, we use the pipe, `%>%`, which takes the object on the left and passes it on the right (this is the logical workflow), then `group_by` to split into separate groups and `summarize` to create a new `tibble` containing the descriptive statistics. The result is stored in `summary_stats` (note the assignment using the `<-` operator) on the first line.
 
 ```{r summary-stats, echo = TRUE, eval = TRUE}
 summary_stats <- reading %>%
   group_by(group) %>%
   summarize(mean = mean(pretest1),
-            sd = sd(pretest1),
-            n = n()) # "sd = standard deviation"
+            sd = sd(pretest1), # "sd = standard deviation, i.e., sqrt(variance)"
+            n = n()) 
 ```
 
-We can print the table in Rmarkdown
+We can print the table in Rmarkdown.
 
 ```{r print-summary-stat, echo = FALSE, results = 'asis'}
 knitr::kable(summary_stats, 
@@ -95,14 +95,13 @@ knitr::kable(summary_stats,
 
 Check that the summary statistics match the ones reported in the paper. 
 
-If you pay closer attention to the data and their description, you will note that the response variable, which represents the number of correctly identied text insertions (out of 16) is discrete and bounded above by 16 and below by zero. The averages (and maximum) are high. The article mentions that the second task `posttest1` was made more difficult due to fear that student improvement would lead them to successfully detect most statements (with more people getting the maximum possible score, thus making comparisons of capabilities more difficult). One would need to rescale the tests if we wished to make meaningful comparisons between the two.
+If you pay closer attention to the data and their description, you will note that the response variable, which represents the number of correctly identified text insertions (out of 16) is discrete and bounded above by 16 and below by zero. The averages (and maximum) are high. The article mentions that the second task `posttest1` was made more difficult due to fear that student improvement would lead them to successfully detect most statements (with more people getting the maximum possible score, thus making comparisons of capabilities more difficult). One would need to rescale the scores if we wished to make meaningful comparisons between the two because the denominator differ.
 
 ## Graphics
 
 Summary statistics are useful indicators, but they potentially hide aspects of the data. It is useful to plot the data (and sometimes include graphics in articles) to show the reader features or artefacts of the latter.
 
-Our data here consists of a categorical variable, `group`, and a numerical variable, `pretest1`. There are multiple choices of graphics, including dot plots, box-and-whisker plots, or simply scatterplots, jittered to avoid overplotting. These can be combined using raincloud plots.
-Below, I show a boxplot, the data points and finally the sample average.
+Our data here consists of a categorical variable, `group`, and a numerical variable, `pretest1`. There are multiple choices of graphics, including dot plots, box-and-whisker plots, or simply scatterplots, jittered to avoid overplotting. These can be combined using raincloud plots. Below, I show a boxplot, the data points and finally the sample average.
 
 We explore below some potential choices and present a final product that is camery-ready for publication. I strongly advice that you produce graphics that are standalone: they should be interpretable once extracted from the paper with their caption.
 

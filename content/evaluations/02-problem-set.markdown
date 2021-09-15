@@ -14,6 +14,8 @@ bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
 ---
 
+Check out [Example 1. One way ANOVA](/example/01-onewayanova/) to get started.
+
 ## Task 1: Make an RStudio Project and work with **R**
 
 We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The data contains measures of implicit bias for multiple participants from “in-field implicit association tests”. The database includes the following variables:
@@ -57,7 +59,7 @@ We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The da
 
     PUT CHUNK HERE
 
-    Insert a chunk below and use it to create a box-and-whiskers plots (hint: `geom_boxplot()`) with IAT score (`d.score`) on the y-axis and `quota` (map to `factor`) on the x-axis observations with `geom_jitter` (adjust the width accordingly to avoid overlap). Try facetting by gender (`female`).
+    Insert a chunk below and use it to create a box-and-whiskers plots (hint: `geom_boxplot()`) with IAT score (`d.score`) on the y-axis and `quota` (map to `factor`) on the x-axis observations with `geom_jitter` (adjust the width accordingly to avoid overlap). Try facetting by gender (`female`) using `facet_wrap(~female)`.
 
     PUT CHUNK HERE
 
@@ -89,13 +91,13 @@ We will analyze data from Clayton (2018a), obtained from Clayton (2018b). The da
 
 ## Task 2: One-way analysis of variance
 
-Please use the same workflow as in Task 1 and check out [Example 1. One way ANOVA](/example/01-onewayanova/) to get started.
+Please use the same workflow as in Task 1.
 
 1.  Download the data file `Study_1_Data.sav` for Experiment 1 from Bastian et al. (2014), [from OSF](https://osf.io/9k3sw/) and put it in the `data` folder. Load it in your Rmarkdown script using
 
     ``` text
     library(tidyverse)
-    dat_raw_pain <- haven::read_sav(file = "Study_1_Data.sav")
+    dat_raw_pain <- haven::read_sav(file = "data/Study_1_Data.sav")
     dat_pain <- dat_raw_pain %>%  
        rowwise() %>% 
        transmute(bonding = mean(c_across(group101:group107)),

@@ -148,7 +148,7 @@ ggplot(data = samp,
   theme(legend.position = "none") + 
   transition_states(
     rep,
-    transition_length = 4,
+    transition_length = 8,
     state_length = 1
   )
 ```
@@ -250,10 +250,11 @@ countdown::countdown(minutes = 3, seconds = 0)
 # Load libraries
 library(tidyverse) 
 # Load and reformat data
+url <- "https://edsm.rbind.io/data/arithmetic.csv"
 arithmetic <- 
- read_csv("data/arithmetic.csv", 
-          col_types = c("fn"))
-# categorical == factor <fct> 
+ read_csv(url) %>%
+  mutate(group = factor(group))
+# categorical variable == factor <fct> 
 glimpse(arithmetic)
 ```
 
@@ -279,8 +280,8 @@ glimpse(arithmetic, width = 30)
 # compute summary statistics
 arithmetic %>% 
   group_by(group) %>%
-  summarize(mean = mean(y),
-            sd = sd(y))
+  summarize(mean = mean(score),
+            sd = sd(score))
 ```
 ]
 .pull-right[
@@ -296,7 +297,7 @@ arithmetic %>%
 # Boxplot with jittered data
 ggplot(data = arithmetic,
        aes(x = group,
-           y = y, 
+           y = score, 
            color = group)) +
   geom_boxplot() +
   geom_jitter(width = 0.3) +
@@ -315,7 +316,7 @@ knitr::include_graphics(
 ```{r panel-chunk-4, eval = FALSE, echo = FALSE, fig.fullwidth = TRUE}
 ggplot(data = arithmetic,
        mapping = aes(x = group,
-                     y = y, 
+                     y = score, 
                      color = group)) +
   geom_boxplot() +
   geom_jitter(width = 0.3) +
