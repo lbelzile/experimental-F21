@@ -133,3 +133,10 @@ confint(contrasts_res)
 pairwise_diff <- emmeans(mod_param1, pairwise ~ group)
 pairwise_diff
 pwpp(mod_emm, type = "response")
+
+---
+
+class: title title-3
+# *Post-hoc* tests
+
+emmeans(mod_param1, pairwise ~ group)

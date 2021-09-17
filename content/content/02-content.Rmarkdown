@@ -25,8 +25,7 @@ slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
   "", "Variability", "signal-vs-noise", FALSE,
-  "", "Hypothesis testing", "hypothesis-tests", FALSE,
-  "", "Power", "power", FALSE
+  "", "Hypothesis testing", "hypothesis-tests", FALSE
 )
 ```
 ## Content
@@ -34,7 +33,7 @@ slide_details <- tibble::tribble(
 - Programming premises
 - Sampling variability
 - Hypothesis testing
-- One-way analysis of variance
+- Introduction to one-way analysis of variance
 - **R** demo
 
 ## Learning objectives

@@ -38,7 +38,7 @@ There are 11 problem sets on the schedule. **I will keep the highest grades for 
 
 - ✔+: (*110% in gradebook*) Assignment is 100% completed. Every question was attempted and answered, and most answers are correct. Document is clean and easy to follow. Work is exceptional. I will not assign these often.
 - ✔: (*100% in gradebook*) Assignment is 70–99% complete and most answers are correct. **This is the expected level of performance.**
-- ✔−: (*50% in gradebook*) Assignment is less than 70% complete and/or most answers are incorrect. This indicates that you need to improve next time. I will hopefully not asisgn these often.
+- ✔−: (*50% in gradebook*) Assignment is less than 70% complete and/or most answers are incorrect. This indicates that you need to improve next time. I will hopefully not assign these often.
 
 You may (and should!) work together on the problem sets, but *you must turn in your own answers.* You cannot work in groups of more than **four** people, and you must note who participated in the group in your assignment.
 

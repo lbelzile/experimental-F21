@@ -20,7 +20,7 @@ slides: "02-slides"
 -   Programming premises
 -   Sampling variability
 -   Hypothesis testing
--   One-way analysis of variance
+-   Introduction to one-way analysis of variance
 -   **R** demo
 
 ## Learning objectives
@@ -58,9 +58,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <li class="nav-item">
 <a class="nav-link" id="hypothesis-testing-tab" data-toggle="tab" href="#hypothesis-testing" role="tab" aria-controls="hypothesis-testing" aria-selected="false">Hypothesis testing</a>
 </li>
-<li class="nav-item">
-<a class="nav-link" id="power-tab" data-toggle="tab" href="#power" role="tab" aria-controls="power" aria-selected="false">Power</a>
-</li>
 </ul>
 
 <div id="slide-tabs" class="tab-content">
@@ -92,17 +89,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <div class="embed-responsive embed-responsive-16by9">
 
 <iframe class="embed-responsive-item" src="/slides/02-slides.html#hypothesis-tests">
-</iframe>
-
-</div>
-
-</div>
-
-<div id="power" class="tab-pane fade" role="tabpanel" aria-labelledby="power-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/02-slides.html#power">
 </iframe>
 
 </div>

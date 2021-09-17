@@ -4,7 +4,7 @@
     <title>Hypothesis tests</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-09-15" />
+    <meta name="date" content="2021-09-17" />
     <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -180,7 +180,7 @@ In pairs, identify
 - the null and alternative hypothesis
 
 ]
-<div class="countdown" id="timer_61427839" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_614423ab" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -277,7 +277,7 @@ One-way analysis of variance uses an `\(F\)` statistic.
 ```r
 #one way analysis of variance
 aov(data = arithmetic, 
-         formula = y ~ group)
+         formula = score ~ group)
 # can replace 'aov' by 'lm'
 ```
 
@@ -360,37 +360,6 @@ pf(stat,
 
 Uniform distribution under H0
 
-
----
-
-layout: false
-name: power
-class: center middle section-title section-title-3 animated fadeIn
-
-# Power
-
----
-
-class: title title-3
-# I cried power!
-
-The null alternative corresponds to a single value: `\(\mu_a = \cdots = \mu_e\)`.
-
---
-
-whereas there are infinitely many alternatives...
-
-Power is the ability to detect when the null is false, for a given alternative.
-.pull-left[
-![Power with small overlap](img/02/power1-1.png)
-]
-.pull-left[
-![Power with large overlap](img/02/power2-1.png)
-]
-
-???
-
-In which of the two figures is power the largest?
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

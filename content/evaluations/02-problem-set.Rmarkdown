@@ -2,7 +2,7 @@
 title: "Problem set 2"
 linktitle: "Problem set 2"
 date: "2021-09-05"
-due_date: "2021-09-17"
+due_date: "2021-09-20"
 due_time: "11:55 PM"
 menu:
   evaluations:

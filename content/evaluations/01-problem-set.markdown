@@ -30,6 +30,7 @@ csl: "../../static/bib/apa.csl"
 2.  Complete the [Intro to **R** tutorial](http://openintrostat.github.io/oilabs-tidy/01_intro_to_r/intro_to_r.html) from OpenIntro Statistics.
 3.  Complete the `learnr` tutorial: [Introduction to data: 1 - Language of data](https://openintro.shinyapps.io/ims-01-data-01/)
 4.  Complete the `learnr` tutorial: [Getting Started with Data: 3 - Sampling strategies and Experimental design](https://openintro.shinyapps.io/ims-01-data-03/)
+5.  Complete the `learnr` tutorial: [Case study](https://openintro.shinyapps.io/ims-01-data-04/)
 
 If the tutorial pages don’t load, please try again later: this is sometimes due to high traffic (the servers have limited capacities).
 
