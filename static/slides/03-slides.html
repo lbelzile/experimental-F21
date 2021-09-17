@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
     <meta name="date" content="2021-09-17" />
-    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view-0.2.6/tile-view.js"></script>
@@ -322,8 +322,8 @@ In terms of differences, relative to a baseline category `\(j\)`
 
 
 - Intercept = sample mean `\(\widehat{\mu}_j\)`
-- Coefficient for group `\(k \neq j\)`: `\(\widehat{\mu}_j - \widehat{\mu}_k\)`
-    - difference between averages of baseline and group `\(k\)`
+- Coefficient for group `\(k \neq j\)`: `\(\widehat{\mu}_k - \widehat{\mu}_j\)`
+    - difference between averages of group `\(k\)` and baseline
 
 In **R**, the baseline is the smallest alphanumerical value.
 
@@ -341,10 +341,8 @@ class: title title-4
 
 In terms of differences, relative to average of `\(\widehat{\mu}_1, \ldots, \widehat{\mu}_K\)`
 
-
-
 - Intercept = `\((\widehat{\mu}_1 + \cdots + \widehat{\mu}_K)/K\)`
-- Coefficient for group `\(k\)`: intercept minus `\(\widehat{\mu}_k\)`
+- Coefficient for group `\(k\)`: `\(\widehat{\mu}_k\)` minus intercept
 
 In **R**, the last factor level is dropped by default.
 
@@ -354,6 +352,8 @@ In **R**, the last factor level is dropped by default.
 lm(response ~ group, contrasts = contr.sum(group))
 ```
 ]
+
+Warning: Intercept `\(\neq \widehat{\mu}\)` unless the sample is balanced
 
 ---
 class: title title-4
@@ -374,7 +374,7 @@ class: title title-4
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; intercept &lt;/td&gt;
    &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 19.67 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19.66 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 21.00 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
@@ -527,7 +527,6 @@ confint(contrasts_res)
 
 ---
 
----
 
 class: title title-3
 
