@@ -21,7 +21,7 @@ csl: "../../static/bib/apa.csl"
 1. Identify a scientific paper in your research field in which an experimental study is conducted. 
 *If the paper contains multiple experiments, pick a single one.*
 	- Provide a citation for the paper
-	- Briefly describe the experiment (you can simply quote the description of the database). 
+	- Briefly describe the experiment (you can simply quote the description of the paper). 
  	- Based on the information provided, identify the experimental units and the treatments.
 
 ## Task 2: Introduce yourself to **R** and RStudio
