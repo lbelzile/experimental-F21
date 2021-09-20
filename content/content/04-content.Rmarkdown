@@ -1,0 +1,92 @@
+---
+title: "Multiple testing and assumptions"
+linktitle: "4: Multiple testing and assumptions"
+date: "2021-09-21"
+start_date: "2021-09-20"
+end_date: "2021-09-24"
+menu:
+  content:
+    parent: Course content
+    weight: 4
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "04-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "Multiple testing", "multtest", FALSE,
+  "", "Assumptions", "graphdiag", FALSE,
+  "", "Statistical fallacies", "fallacies1", FALSE
+)
+```
+
+## Content
+
+- Multiple testing
+    - Family-wise error rate and false discovery rate
+    - Bonferroni and Šidák corrections
+    - Benjamini--Hochberg procedure
+- Assumptions of the analysis of variance model 
+    - ANOVA as a special case of a linear regression model
+    - Homogeneity of variance and Levene's test
+    - Independence
+
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+- understand how to correct _p_-values to account for multiple testing
+- grasp the tradeoff between multiple testing and 
+- produce graphical diagnostics and compute tests to check the assumptions
+- think critically about the model assumptions as part of the model formulation
+
+
+## Readings
+
+- <i class="fas fa-book"></i> Chapter 3 of the [Course notes](https://lbelzile.github.io/math80667a/hypothesis-testing.html)
+- <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/)
+
+
+
+## Complementary readings
+
+- <i class="fas fa-book"></i> Section 4.4 and Chapter 5 of @Dean:2017.
+
+<!--
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/04-slides.html")
+```
+
+-->
+
+## In-class
+
+
+<!-- 
+{{% div fyi %}}
+**Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
+{{% /div %}}
+
+
+
+```{r show-youtube-list, echo=FALSE, results="asis", eval = FALSE}
+youtube_list(slide_details, playlist_id)
+```
+
+-->

@@ -14,14 +14,38 @@ bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
 ---
 
-# Comparing means
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "youtube-playlist.R"))
+playlist_id <- "PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H"
+slide_details <- tibble::tribble(
+~title, ~youtube_id,
+"RStudio interface", "utGd_kt0pdw",
+"Loading data", "mMcSFqGal0w",
+"Cleaning and transforming data", "1YYlLZ90Vas",
+"Summary statistics", "PvHFsiuase0",
+"Creating graphics", "lNUC5_Tws9M",
+"F-statistic table", "7ysgXYx6Rwg"
+)
+
+```
+
+# Videos
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id, example = TRUE)
+```
+
+# Notebook
 
 This notebook shows the various manipulation that an experimenter may undertake to test whether the population averages are the same based on some experimental data.
 
 ```{r setup, eval = TRUE, echo = FALSE}
 library(knitr)
 options(knitr.kable.NA = '')
+options(tidyverse.quiet = TRUE)
 ```
+
 
 ## Working directory and packages 
 
@@ -49,15 +73,14 @@ We have multiple columns for each of the tests (pre-intervention and post-interv
 
 The reader is invited at this stage to look at the description of the first task (*Pretest 1*) and the findings presented on p.148 of @Baumann:1992. We aim to reproduce their results here.
 
-```{r loadpackages, echo = TRUE, eval = TRUE, message=FALSE}
+
+```{r loaddata, echo = TRUE, eval = TRUE}
 # Load packages
 library(tidyverse)
-```
-```{r loaddata, echo = TRUE, eval = TRUE}
 # Load data
 # We directly fetch the data from the URL
 url <- "https://edsm.rbind.io/data/reading.csv"
-reading <- readr::read_csv(url)
+reading <- readr::read_csv(url, show_col_types = FALSE)
 ```
 
 The first column, `group`, is stored as a string (of type `character` or `<chr>`, indicating that the values are text). In **R**, [categorical variables](https://lbelzile.github.io/math80667a/introduction.html#review-of-basic-concepts) are stored as objects of type `factor`, so we need first to tell the software that the labels `"DR"`, `"DRTA"`, `"TA"`, stored as strings, corresponds to different categories labels. We use mutate to transform `group` into a `factor` and leave the other variables unchanged (`<dbl>`, which stands for double, indicates numerical values).
@@ -114,23 +137,32 @@ set.seed(2021)
 ggplot(data = reading,
        #aesthetics: which variables to map where
        aes(x = group, 
-           y = pretest1)) +
-  geom_boxplot() +
-  # superimpose points, 
-  # jittered (only) horizontally
-  geom_jitter(height = 0,
-              width = 0.33) +
+           y = pretest1,
+           col = group)) +
+  geom_boxplot(
+    width = 0.2, # change width
+    position = position_nudge(x = -0.2, y = 0)) + 
+  # offset to the left
+  # add rugs for observations
+  # move to right of boxplot
+  geom_point(shape = 95, # a horizontal bar
+             size = 4, # size of bar
+             alpha = 0.5, # transparency 1=opaque, 0=transparent
+             position = position_nudge(x = 0.2, y = 0)) +
   # add averages
   geom_point(data = summary_stats,
              aes(y = mean),
              shape = 4, # 4 is cross (x)
-             size = 2) + # double size of point
+             size = 2,# double size of point
+             position = position_nudge(x = -0.2, y = 0)) + 
   # add meaningful labels
   labs(x = "learning strategy",
        y = "", # put in subtitle (no head tilting)
        title = "Pre-test scores",
        subtitle = "Number of sentences that don't belong to the story found (out of 16).",
-       caption = "Group averages are indicated with 'x'.")
+       caption = "Group averages are indicated with 'x'.") + 
+  theme_minimal() + # change theme (color of background, etc.)
+  theme(legend.position = "none") #remove legend
 ```
 
 ## Hypothesis testing
@@ -151,7 +183,7 @@ The function `anova` is a method: when applied to the result of a call to `lm`, 
 We need to decide beforehand the level of the test (typically 5\% or lower): this is the percentage of times we will reject the null hypothesis when its true based on observing an extreme outcome. We are asked to perform a binary decision (reject or fail to reject): if the _p_-value is less than the level, we 'reject' the null hypothesis of equal (population) means.
 
 ```{r anova-stat, echo = TRUE, eval = TRUE}
-pretest1_anova <- aov(formula = pretest1 ~ group,
+pretest1_anova <- lm(formula = pretest1 ~ group,
                      data = reading)
 anova_table <- anova(pretest1_anova)
 # Save the output in a tibble with more meaningful column names
@@ -161,7 +193,7 @@ anova_tab <- broom::tidy(anova_table)
 
 ```{r print-anova-table, echo = FALSE, results = 'asis'}
 knitr::kable(anova_tab, 
-             digits = c(0,2,2,2,3),
+             digits = c(2,2,2,3),
              caption = "Analysis of variance table",
              col.names = c("Terms",
                            "Degrees of freedom",
@@ -172,7 +204,7 @@ knitr::kable(anova_tab,
   kableExtra::kable_styling(position = "center")
 ```
 
-There isn't strong evidence of difference in strength between groups prior to intervention. We can report the findings.
+There isn't strong evidence of difference in strength between groups prior to intervention. We can report the findings as follows:
 
 We carried a one-way analysis for the pre-test results to ensure that the group abilities are the same in each treatment group; results show no significant differences at the 5\% level ($F$ (`r anova_tab$df[1]`, `r anova_tab$df[2]`) = `r round(anova_tab$statistic[1], 2)`, $p$ = `r format.pval(anova_tab$p.value[1], digits = 3, eps=1e-3)`).
 

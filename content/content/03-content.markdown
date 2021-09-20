@@ -38,7 +38,7 @@ At the end of the session, students should be capable of
 
 ## Complementary readings
 
--   <i class="fas fa-book"></i> Chapters 3 and 4 of Dean et al. (2017); the exposition is more mathematical and formulaic than what we cover in the notes.
+-   <i class="fas fa-book"></i> Chapter 3 and Sections 4.1-4.3 of Dean et al. (2017).
 
 ## Slides
 

@@ -20,7 +20,27 @@ csl: "../../static/bib/apa.csl"
 
 <link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
-# Comparing means
+# Videos
+
+There’s a set of videos that walks through each section below. To make it easier for you to jump around the video examples, I cut the long video into smaller pieces and included them all in [one YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H).
+
+-   [RStudio interface](https://www.youtube.com/watch?v=utGd_kt0pdw&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [Loading data](https://www.youtube.com/watch?v=mMcSFqGal0w&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [Cleaning and transforming data](https://www.youtube.com/watch?v=1YYlLZ90Vas&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [Summary statistics](https://www.youtube.com/watch?v=PvHFsiuase0&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [Creating graphics](https://www.youtube.com/watch?v=lNUC5_Tws9M&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [F-statistic table](https://www.youtube.com/watch?v=7ysgXYx6Rwg&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+
+You can also watch the playlist (and skip around to different sections) here:
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+
+</div>
+
+# Notebook
 
 This notebook shows the various manipulation that an experimenter may undertake to test whether the population averages are the same based on some experimental data.
 
@@ -51,25 +71,11 @@ The reader is invited at this stage to look at the description of the first task
 ``` r
 # Load packages
 library(tidyverse)
-```
-
-``` r
 # Load data
 # We directly fetch the data from the URL
 url <- "https://edsm.rbind.io/data/reading.csv"
-reading <- readr::read_csv(url)
+reading <- readr::read_csv(url, show_col_types = FALSE)
 ```
-
-    ## Rows: 66 Columns: 6
-
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): group
-    ## dbl (5): pretest1, pretest2, posttest1, posttest2, posttest3
-
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 The first column, `group`, is stored as a string (of type `character` or `<chr>`, indicating that the values are text). In **R**, [categorical variables](https://lbelzile.github.io/math80667a/introduction.html#review-of-basic-concepts) are stored as objects of type `factor`, so we need first to tell the software that the labels `"DR"`, `"DRTA"`, `"TA"`, stored as strings, corresponds to different categories labels. We use mutate to transform `group` into a `factor` and leave the other variables unchanged (`<dbl>`, which stands for double, indicates numerical values).
 
@@ -192,23 +198,32 @@ set.seed(2021)
 ggplot(data = reading,
        #aesthetics: which variables to map where
        aes(x = group, 
-           y = pretest1)) +
-  geom_boxplot() +
-  # superimpose points, 
-  # jittered (only) horizontally
-  geom_jitter(height = 0,
-              width = 0.33) +
+           y = pretest1,
+           col = group)) +
+  geom_boxplot(
+    width = 0.2, # change width
+    position = position_nudge(x = -0.2, y = 0)) + 
+  # offset to the left
+  # add rugs for observations
+  # move to right of boxplot
+  geom_point(shape = 95, # a horizontal bar
+             size = 4, # size of bar
+             alpha = 0.5, # transparency 1=opaque, 0=transparent
+             position = position_nudge(x = 0.2, y = 0)) +
   # add averages
   geom_point(data = summary_stats,
              aes(y = mean),
              shape = 4, # 4 is cross (x)
-             size = 2) + # double size of point
+             size = 2,# double size of point
+             position = position_nudge(x = -0.2, y = 0)) + 
   # add meaningful labels
   labs(x = "learning strategy",
        y = "", # put in subtitle (no head tilting)
        title = "Pre-test scores",
        subtitle = "Number of sentences that don't belong to the story found (out of 16).",
-       caption = "Group averages are indicated with 'x'.")
+       caption = "Group averages are indicated with 'x'.") + 
+  theme_minimal() + # change theme (color of background, etc.)
+  theme(legend.position = "none") #remove legend
 ```
 
 <div class="figure">
@@ -237,7 +252,7 @@ The function `anova` is a method: when applied to the result of a call to `lm`, 
 We need to decide beforehand the level of the test (typically 5% or lower): this is the percentage of times we will reject the null hypothesis when its true based on observing an extreme outcome. We are asked to perform a binary decision (reject or fail to reject): if the *p*-value is less than the level, we ‘reject’ the null hypothesis of equal (population) means.
 
 ``` r
-pretest1_anova <- aov(formula = pretest1 ~ group,
+pretest1_anova <- lm(formula = pretest1 ~ group,
                      data = reading)
 anova_table <- anova(pretest1_anova)
 # Save the output in a tibble with more meaningful column names
@@ -283,13 +298,13 @@ group
 20.58
 </td>
 <td style="text-align:right;">
-10.29
+10.288
 </td>
 <td style="text-align:right;">
-1.132
+1.13
 </td>
 <td style="text-align:right;">
-0
+0.33
 </td>
 </tr>
 <tr>
@@ -303,7 +318,7 @@ Residuals
 572.45
 </td>
 <td style="text-align:right;">
-9.09
+9.087
 </td>
 <td style="text-align:right;">
 </td>
@@ -313,7 +328,7 @@ Residuals
 </tbody>
 </table>
 
-There isn’t strong evidence of difference in strength between groups prior to intervention. We can report the findings.
+There isn’t strong evidence of difference in strength between groups prior to intervention. We can report the findings as follows:
 
 We carried a one-way analysis for the pre-test results to ensure that the group abilities are the same in each treatment group; results show no significant differences at the 5% level ($F$ (2, 63) = 1.13, `\(p\)` = 0.329).
 
