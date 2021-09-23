@@ -14,12 +14,11 @@ bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
 ---
 
-The purpose of this demonstration is to show, by means of simulations, the concepts of null distribution and level we did with hypothesis testing. 
+The purpose of this demonstration is to show, by means of simulations, the concepts of null distribution and level we did with hypothesis testing.
 
-We begin by generating a dataset of independent and identically distributed data from some population: each has the same theoretical mean $\mu$ and the same standard deviation $\sigma$. For each replicate sample here with four groups and 20 observations per group, we compute the analysis of variance global test of equality of means with the $F$-statistic and store its value and the associated value. This gives us, much like the permutation approach, a simulated benchmark against which we can compare the $F$ distribution, which is the large sample approximation to the null distribution.
+We begin by generating a dataset of independent and identically distributed data from some population: each has the same theoretical mean `\(\mu\)` and the same standard deviation `\(\sigma\)`. For each replicate sample here with four groups and 20 observations per group, we compute the analysis of variance global test of equality of means with the `\(F\)`-statistic and store its value and the associated value. This gives us, much like the permutation approach, a simulated benchmark against which we can compare the `\(F\)` distribution, which is the large sample approximation to the null distribution.
 
-
-```{r pvaluedist, eval = TRUE, echo = TRUE, cache = TRUE}
+``` r
 suppressPackageStartupMessages(library(tidyverse)) #load packages
 alpha <- 0.05 #level of the test
 ng <- 4L #number of groups
@@ -46,9 +45,9 @@ for(i in 1:nrep){
 }
 ```
 
-If the null distribution is well calibrated (model assumptions hold and data arise from the null model), then the distribution of the _p_-values is uniform: every number between zero and one is equally likely, so the probability that the result is less than the level $\alpha$ is on average $\alpha$. We can create a histogram of the 10K _p_-values and compare them to the uniform distribution.
+If the null distribution is well calibrated (model assumptions hold and data arise from the null model), then the distribution of the *p*-values is uniform: every number between zero and one is equally likely, so the probability that the result is less than the level `\(\alpha\)` is on average `\(\alpha\)`. We can create a histogram of the 10K *p*-values and compare them to the uniform distribution.
 
-```{r plotpval, echo = TRUE, eval = TRUE, cache = TRUE}
+``` r
 ggplot(data = tibble("pvalue" = pval),
        aes(x = pvalue)) +
   # bin into 20 compartments,
@@ -68,8 +67,11 @@ ggplot(data = tibble("pvalue" = pval),
    geom_vline(xintercept = alpha, type = 2)
 ```
 
+    ## Warning: Ignoring unknown parameters: type
 
-```{r pvaluedist2, eval = TRUE, echo = TRUE, cache = TRUE}
+<img src="/example/02-hypothesis_testing_files/figure-html/plotpval-1.png" width="672" />
+
+``` r
 cutoff <- qf(0.95, ng - 1, ntot - ng) 
 #cutoff: reject if larger than this value
 ggplot(data = tibble("stat" = fstat),
@@ -83,3 +85,4 @@ ggplot(data = tibble("stat" = fstat),
   labs(x = "F statistic")
 ```
 
+<img src="/example/02-hypothesis_testing_files/figure-html/pvaluedist2-1.png" width="672" />

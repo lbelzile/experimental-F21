@@ -1,6 +1,6 @@
 ---
-title: "Multiple testing and assumptions"
-linktitle: "4: Multiple testing and assumptions"
+title: "Multiple testing and model assumptions"
+linktitle: "4: Multiple testing and model assumptions"
 date: "2021-09-21"
 start_date: "2021-09-20"
 end_date: "2021-09-24"
@@ -21,8 +21,9 @@ slides: "04-slides"
     -   Family-wise error rate and false discovery rate
     -   Bonferroni and Šidák corrections
     -   Benjamini–Hochberg procedure
+    -   Practice with **R**
 -   Assumptions of the analysis of variance model
-    -   ANOVA as a special case of a linear regression model
+    -   Additivity
     -   Homogeneity of variance and Levene’s test
     -   Independence
 
@@ -31,20 +32,22 @@ slides: "04-slides"
 At the end of the session, students should be capable of
 
 -   understand how to correct *p*-values to account for multiple testing
--   grasp the tradeoff between multiple testing and
--   produce graphical diagnostics and compute tests to check the assumptions
+-   grasp the tradeoff between multiple testing and power
+-   produce graphical diagnostics and perform hypothesis tests to check the model assumptions
 -   think critically about the model assumptions as part of the model formulation
 
 ## Readings
 
--   <i class="fas fa-book"></i> Chapter 3 of the [Course notes](https://lbelzile.github.io/math80667a/hypothesis-testing.html)
--   <i class="fas fa-book"></i> Andrew Gelman’s blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/)
+-   <i class="fas fa-book"></i> Section 3.4 of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html#model-assumptions)
 
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> Section 4.4 and Chapter 5 of Dean et al. (2017).
+-   <i class="fas fa-book"></i> [H. Abdi (2010) Holm’s Sequential Bonferroni Procedure](https://personal.utdallas.edu/~herve/abdi-Holm2010-pretty.pdf)
 
 <!--
+- <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons. 
+
 
 ## Slides
 

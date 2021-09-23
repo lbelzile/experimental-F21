@@ -22,6 +22,8 @@ csl: "../../static/bib/apa.csl"
 
 # Videos
 
+The code created in the video [can be downloaded here](/example/01-onewayanova-video.R).
+
 There’s a set of videos that walks through each section below. To make it easier for you to jump around the video examples, I cut the long video into smaller pieces and included them all in [one YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H).
 
 -   [RStudio interface](https://www.youtube.com/watch?v=utGd_kt0pdw&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)

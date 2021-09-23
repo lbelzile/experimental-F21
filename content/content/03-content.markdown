@@ -32,9 +32,10 @@ At the end of the session, students should be capable of
 
 ## Readings
 
--   <i class="fas fa-book"></i> Chapter 3 of the [Course notes](https://lbelzile.github.io/math80667a/hypothesis-testing.html)
--   <i class="fas fa-book"></i> Chapter *Reproducibility Crisis* of the [Course notes](https://lbelzile.github.io/math80667a/reproducibility-crisis.html)
+-   <i class="fas fa-book"></i> Sections 3.1 to 3.3 of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html)
 -   <i class="fas fa-book"></i> Chapter 1 (*Introduction to Data Science*) of [Timbers, Campbell and Lee (2021) Data Sciences: A First Introduction](https://ubc-dsci.github.io/introduction-to-datascience/intro.html)
+    <!--- <i class="fas fa-book"></i> Chapter _Reproducibility Crisis_ of the [Course notes](https://lbelzile.github.io/math80667a/reproducibility-crisis.html)
+    -->
 
 ## Complementary readings
 
@@ -124,6 +125,8 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 </div>
 
 ## In-class
+
+We conducted a Monte Carlo study in class to check the distribution of *p*-values. The code can be found in [Example 2. Hypothesis testing](/example/02-hypothesis_testing/)
 
 <!-- 
 {{% div fyi %}}
