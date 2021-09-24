@@ -1,32 +1,464 @@
+---
+title: "Multiple testing and model assumptions"
+author: "Léo Belzile"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = "center")
+```
+```{r packages-data, echo = FALSE, include=FALSE}
+library(tidyverse)
+library(patchwork)
+```
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","freezeframe","panelset"))
+# xaringanExtra::use_clipboard()
+xaringanExtra::use_broadcast()
+```
+
+class: center middle main-title section-title-1
+
+# Multiple testing
+
+.class-info[
+
+**Session 4**
+
+.light[MATH 80667A: Experimental Design and Statistical Methods <br>for Quantitative Research in Management <br>
+HEC Montréal
+]
+
+]
 
 ---
-  
-  layout: false
-name: power
-class: center middle section-title section-title-3 animated fadeIn
 
-# Power
+name: outline
+class: title title-inv-1
 
----
-  
-  class: title title-3
-# I cried power!
+# Outline
+--
 
-The null alternative corresponds to a single value: $\mu_a = \cdots = \mu_e$.
+.box-2.medium.sp-after-half[Multiple testing]
+
 
 --
   
-  whereas there are infinitely many alternatives...
+.box-3.medium.sp-after-half[Statistical fallacies and the reproducibility crisis]
 
-Power is the ability to detect when the null is false, for a given alternative.
-.pull-left[
-  ![Power with small overlap](img/02/power1-1.png)
-]
-.pull-left[
-  ![Power with large overlap](img/02/power2-1.png)
-]
+
+---
+
+
+
+layout: false
+name: multiple-testing
+class: center middle section-title section-title-2 animated fadeIn
+
+# Multiple testing
+
+---
+
+class: title title-2
+
+# Scientifist, investigate!
+
+Having found a significant difference between group means, you proceed to look at all pairwise differences: $\binom{K}{2}$ tests for $K$ groups.
+- 3 tests if $K=3$ groups
+- 10 tests if $K=5$ groups
+- 45 tests if $K=10$
+
+Many tests!
 
 ???
-  
-  In which of the two figures is power the largest?
-  
+
+Bring students to realize the multiple testing problem: quiz them on potential consequences
+
+Gone fishing
+
+- Having found no difference between group, you decide to stratify with another categorical variable and perform the comparisons for each level (subgroup analysis)
+ 
+The more tests you perform, the larger the type I error.
+
+---
+
+class: title title-2
+
+# Family-wise error rate
+
+If you do a single hypothesis test `r emo::ji('wink')` and your testing procedure is well calibrated (model assumptions met), there is a probability $\alpha$ of making a type I error if the null is true.
+
+--
+
+Why $\alpha=5$%? Essentially **arbitrary**...
+
+> If one in twenty does not seem high enough odds, we may, if we prefer it, draw the line at one in fifty or one in a hundred. Personally, the writer prefers to set a low standard of significance at the 5 per cent point, and ignore entirely all results which fails to reach this level. 
+
+.tiny[
+Fisher, R.A. (1926). The arrangement of field experiments. *Journal of the
+Ministry of Agriculture of Great Britain*, 33:503-513.
+]
+
+
+---
+class: title title-2
+
+# How many tests?
+
+Dr. Yoav Benjamini looked at the number of inference / tests performed in the Psychology replication project
+
+.small[
+[Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. Science, 349(6251), aac4716.](https://doi.org/10.1126/science.aac4716)
+]
+
+The number of tests performed ranged from 4 to 700, with an average of 72. 
+
+--
+
+Most studies did not account for selection.
+
+???
+
+Yoav B. reported that 11/100 engaged with selection, but only cursorily
+
+
+---
+
+class: title title-2
+
+# Motivation
+
+- If we do $m$ independent comparisons, each
+one at the level $\alpha$, the probability of making at least one type I error, say $\alpha^{\star}$, is
+
+\begin{align}\alpha^{\star} &= 1 – \text{probability of making no type I error} \\\ &= 1- (1-\alpha)^m\end{align}
+
+--
+
+With $\alpha = 5$%
+
+- $m=4$ tests, $\alpha^{\star} \approx 0.185$.
+- $m=72$ tests, $\alpha^{\star} \approx 0.975$.
+
+--
+
+Tests need not be independent... but can show $\alpha^{\star} \leq m\alpha$.
+
+???
+
+The first holds with independent observations, the second follows from Boole's inequality and does not require independence.
+
+It is an upper bound on the Probability of making no type I error
+
+
+---
+
+class: title title-2
+
+# Family of hypothesis
+
+Consider a family of $m$ null hypothesis $\mathscr{H}_{01}, \ldots, \mathscr{H}_{0m}$ tested.
+
+- The family may depend on the context, but all hypothesis that are scientifically relevant and could be reported.
+
+--
+
+.box-inv-2.wide[**Should be chosen a priori and pre-registered**]
+
+--
+
+**Keep it small**: the number of planned comparisons for a one-way ANOVA should be less than the number of groups $K$.
+
+???
+
+Researchers do not all agree with this “liberal” approach (i.e., that don't correct for multiplicity even for pre-planned comparisons) and recommend to always control for the familywise or experimentwise Type I error rate. *dixit F. Bellavance*.
+---
+
+class: title title-2
+
+# Notation
+
+Define 
+$$R_i = \begin{cases} 1 & \text{if we reject }  \mathscr{H}_{0i} \\
+0 & \text{if we fail to reject } \mathscr{H}_{0i}
+\end{cases}$$
+with $R=R_1 + \cdots + R_m$ the total number of rejections ( $0 \leq R \leq m$ ).
+
+$$V_i =\begin{cases} 1 & \text{type I error for } \mathscr{H}_{0i}\quad  (R_i=1 \text{ and  }\mathscr{H}_{0i} \text{ is true}) \\\
+0 & \text{otherwise} 
+\end{cases}$$
+
+Thus $V = V_1 + \cdots + V_m$ is the number of null hypothesis rejected by mistake.
+
+---
+
+class: title title-2
+# Familywise error rate
+
+The familywise error rate is the probability of making at least one type I error per family
+
+`$$\mathsf{FWER} = \Pr(V \geq 1)$$`
+
+If we use a procedure that controls for the family-wise error rate, we talk about simultaneous inference (or simultaneous coverage  for confidence intervals).
+
+
+---
+
+class: title title-2
+
+# Bonferroni's procedure
+
+Consider a family of $m$ hypothesis tests and perform each test at level $\alpha/m$.
+- reject $H_{i0}$ if the associated _p_-value $p_i \leq \alpha/m$.
+- build confidence intervals similarly with $1-\alpha/m$ quantiles.
+
+If the (raw) $p$-values are reported, reject $\mathscr{H}_{0i}$ if $m \times p_i \geq \alpha$ (i.e., multiply reported $p$-values by $m$)
+
+
+???
+
+Often incorrectly applied to a set of significant contrasts, rather than for preplanned comparisons only
+
+
+---
+class: title title-2
+
+# Holm's sequential method
+
+Order the $p$-values of the family of $m$ tests from smallest to largest
+`$$p_{(1)} \leq \cdots \leq p_{(m)}$$`
+
+associated to null hypothesis $\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(m)}$.
+
+**Idea** use a different level for each test, more stringent for smaller $p$-values.
+
+Coupling Holm's method with Bonferroni's procedure: compare $p_{(1)}$ to $\alpha_{(1)} = \alpha/m$, $p_{(2)}$ to $\alpha_{(2)}=\alpha/(m-1)$, etc.
+
+
+---
+
+class: title title-2
+
+# Holm-Bonferroni procedure
+
+
+.box-inv-2[**Sequential testing**]
+
+.small[
+- start with the smallest $p$-value
+- check significance one test at a time
+- stop when the first nonsignificant $p$-value is found or no more test in store.
+]
+
+--
+
+.box-inv-2[**Conclusion**]
+
+.pull-left.small[
+If $p_{(j)} \geq \alpha_{(j)}$ but $p_{(i)} \leq \alpha_{(i)}$ for $i=1, \ldots, j-1$ (all smaller $p$-values)
+- reject $\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(j-1)}$
+- fail to reject $\mathscr{H}_{0(j)}, \ldots, \mathscr{H}_{0(m)}$
+]
+.pull-right.small[
+If $p_{(i)} \leq \alpha_{(i)}$ for all test $i=1, \ldots, m$
+- reject $\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(m)}$
+]
+
+---
+class: title title-2
+# Numerical example
+
+Consider $m=3$ tests with raw $p$-values $0.01$, $0.04$, $0.02$.
+
+
+$i$ | $p_{(i)}$ | $\text{Bonferroni}$ | $\text{Holm-Bonferroni}$
+--------|--------|---------|---------
+1 | $0.01$ | $3 \times 0.01 = 0.03$ | $3 \times 0.01 = 0.03$
+2 | $0.02$ | $3 \times 0.02 = 0.06$ | $2 \times 0.02 = 0.04$
+3 | $0.05$ | $3 \times 0.05 = 0.12$ | $1 \times 0.05 = 0.04$
+
+.small[
+
+Reminder of Holm–Bonferroni:  multiply by $(m-j+1)$ the $j$th smallest $p$-value $p_{(j)}$ and compare to $\alpha$.
+
+]
+
+---
+
+class: title title-2
+
+# Why choose Bonferroni's procedure?
+
+- simple
+- generally applicable (any design)
+- but dominated by sequential procedures (Holm-Bonferroni uniformly more powerful)
+- low power when the number of test $m$ is large
+- $m$ must be prespecified
+
+
+???
+
+**Careful**: adjust for the real number of comparisons made (often reporter correct only the 'significant tests').
+
+---
+
+class: title title-2
+# Alternative measures
+
+The FWER does not make a distinction between one or multiple type I errors.
+
+We can also look at the more stringent criterion **per-family error rate**, $\textsf{PFER}=\mathsf{E}(V)$, the expected (theoretical average) number of false positive.
+
+One can show that
+`$$\mathsf{FWER} = \Pr(V \geq 1) \leq \mathsf{E}(V),$$` 
+
+Any procedure that controls the per-family error rate thus also controls the familywise error rate: Bonferroni does.
+
+---
+
+class: title title-2
+# Methods dedicated for one-way ANOVA
+
+Described in Dean, Voss and Draguljić (2017) in more details. 
+
+Specialized to the one-way ANOVA setting
+
+All methods assume (require) equal variance and independent observations.
+
+.small[
+- **Tukey**'s honestly significant difference (HSD) method: best choice to compare all pairwise differences, based on the largest possible pairwise mean differences, with extensions for unbalanced samples.
+- **Scheffé**'s method: applies to any contrast (properties depends on $n$ and $K$, not the number of test). Better than Bonferroni if $m$ is large. Can be used for any design, but not powerful.
+- **Dunnett**'s method: only for all pairwise contrasts relative to a specific baseline (control).
+]
+
+---
+class: title title-2
+
+# Adjustment for one-way ANOVA
+
+Similar ideas but different **critical coefficients**. All derived using software.
+
+Proceed only if there is a significant difference between groups, i.e. if we reject global null.
+
+With $K=5$ groups and $n=9$ individuals per group (`arithmetic` example), critical value for two-sided test of zero difference with standardized $t$-test statistic and $\alpha=5$% are
+
+- Scheffé's (all contrasts): 3.229 (`agricolae::scheffe.test`)
+- Tukey's (all pairwise differences): 2.856 (`TukeyHSD`, `agricolae::HSD.test`)
+- Dunnett's (difference to baseline): 2.543 (`DescTools::DunnettTest`)
+- unadjusted Student's $t$-distribution: 2.021
+
+???
+
+These were derived from the output of the function, sometimes by reverse-engineering.
+
+
+
+---
+
+class: title title-2
+
+# False discovery rate
+
+Suppose that $m_0$ out of $m$ hypothesis are true null (so $\mathscr{H}_0$ holds $m_0$ times).
+
+The **false discovery rate** is the proportion of false discovery among rejected nulls,
+
+$$\textsf{FDR} = \begin{cases} \frac{V}{R} & R > 0,\\ 0 & R=0.\end{cases}$$
+
+False discovery rate offers weak-FWER control
+
+> the property is only guaranteed under the scenario where all null hypotheses are true.
+
+---
+
+class: title title-2
+
+# False discovery rate vs FWER
+
+A simultaneous procedure that controls family-wise error rate (FWER) ensure any selected test has type I error $\alpha$.
+
+The false discovery rate (FDR) is less stringent: it's a guarantee for the proportion **among selected** discoveries.
+
+But false discovery rate is scalable:
+
+- 2 type I errors out of 4 tests is unacceptable.
+- 2 type I errors out of 100 tests is probably okay.
+
+???
+
+
+---
+
+class: title title-2
+
+# Controlling false discovery rate
+
+The Benjamini-Hochberg (1995) procedure 
+
+1. Order the _p_-values from the $m$ tests from smallest to largest: $p_{(1)} \leq \cdots \leq p_{(m)}$
+2. For level $q$, set 
+`$$k=\max\left\{i: p_{(i)} \leq \frac{i}{m}q\right\}$$`
+3. Reject $\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(m)}$.
+
+---
+
+class: title title-2
+
+# Picture of Benjamini-Hochberg
+
+
+Plot the $m$ $p$-values against their rank.
+
+To ensure $\textsf{FDR}\leq q$, reject null hypotheses corresponding to $p$-value that fall below the line of slope $q/m$.
+
+
+
+```{r pictureBH, echo = FALSE, out.width='50%'}
+knitr::include_graphics("img/04/pvalBH-1.png")
+```
+
+---
+class: title title-2
+# Exercice
+
+```{r picturetabGross, echo = FALSE, out.width='80%'}
+knitr::include_graphics("img/04/Grossman-S3.png")
+```
+
+.tiny[
+> Grossman, I. and E. Kross (2014). Exploring "Solomon’s paradox": Self-distancing eliminates the self-other asymmetry in wise reasoning about close relations in younger and older adults, *Psychological Science*, 25(8) 1571-1580
+]
+
+---
+
+class: title title-4
+
+# Rant about _p_-values
+
+The [American Statistical Association (ASA) published a 
+list of principles](https://doi.org/10.1080/00031305.2016.1154108) guiding (mis)interpretation of _p_-values.
+
+> (2) _P_-values do not measure the probability that the studied hypothesis is true
+
+> (3) Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.
+
+> (4) _P_-values and related analyses should not be reported selectively
+
+> (5) _p_-value, or statistical significance, does not measure the size of an effect or the importance of a result

@@ -95,7 +95,10 @@ mod_emm <- emmeans(mod_param1, specs = 'group')
 ftest <- anova(mod_param1)
 # Fix the column labels for easier references
 broom::tidy(ftest)
-
+# Alternative for the one-way ANOVA
+oneway.test(score ~ group, 
+            data = arithmetic, 
+            var.equal = TRUE)
 
 ##
 ## Step 6: Testing contrasts (planned comparisons)
@@ -131,12 +134,16 @@ confint(contrasts_res)
 # Tukey's honest difference
 # Differences and p-values are based on pooled t-tests
 pairwise_diff <- emmeans(mod_param1, pairwise ~ group)
+# This uses Tukey's HSD
 pairwise_diff
 pwpp(mod_emm, type = "response")
 
----
-
-class: title title-3
-# *Post-hoc* tests
-
-emmeans(mod_param1, pairwise ~ group)
+# Alternative function (base R)
+# The function pairwise.t.test let's you run multiple
+# t-tests and adjust p-values
+?p.adjust.methods
+pairwise.t.test(x = score, 
+                g = group,
+                data = arithmetic,
+                pool.sd = TRUE,
+                p.adjust.method = "BH")

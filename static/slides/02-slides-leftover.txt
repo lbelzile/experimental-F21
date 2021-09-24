@@ -1,0 +1,33 @@
+
+---
+  
+layout: false
+name: power
+class: center middle section-title section-title-3 animated fadeIn
+
+# Power
+
+---
+  
+  class: title title-3
+# I cried power!
+
+The null alternative corresponds to a single value: $\mu_a = \cdots = \mu_e$.
+
+--
+  
+  whereas there are infinitely many alternatives...
+
+Power is the ability to detect when the null is false, for a given alternative.
+.pull-left[
+  ![Power with small overlap](img/02/power1-1.png)
+]
+.pull-left[
+  ![Power with large overlap](img/02/power2-1.png)
+]
+
+???
+  
+  In which of the two figures is power the largest?
+  
+
