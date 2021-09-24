@@ -19,8 +19,7 @@ slides: "04-slides"
 
 -   Multiple testing
     -   Family-wise error rate and false discovery rate
-    -   Bonferroni and Šidák corrections
-    -   Benjamini–Hochberg procedure
+    -   Procedures
     -   Practice with **R**
 -   Assumptions of the analysis of variance model
     -   Additivity
@@ -48,12 +47,13 @@ At the end of the session, students should be capable of
 <!--
 - <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons. 
 
+-->
 
 ## Slides
 
-The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
 
-`{{% slide-buttons %}}`{=html}
+{{% slide-buttons %}}
 
 <ul class="nav nav-tabs" id="slide-tabs" role="tablist">
 <li class="nav-item">
@@ -62,37 +62,33 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 <li class="nav-item">
 <a class="nav-link" id="multiple-testing-tab" data-toggle="tab" href="#multiple-testing" role="tab" aria-controls="multiple-testing" aria-selected="false">Multiple testing</a>
 </li>
-<li class="nav-item">
-<a class="nav-link" id="assumptions-tab" data-toggle="tab" href="#assumptions" role="tab" aria-controls="assumptions" aria-selected="false">Assumptions</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="statistical-fallacies-tab" data-toggle="tab" href="#statistical-fallacies" role="tab" aria-controls="statistical-fallacies" aria-selected="false">Statistical fallacies</a>
-</li>
 </ul>
-<div class="tab-content" id="slide-tabs">
-<div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+
+<div id="slide-tabs" class="tab-content">
+
+<div id="introduction" class="tab-pane fade show active" role="tabpanel" aria-labelledby="introduction-tab">
+
 <div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/04-slides.html#1"></iframe>
-</div>
-</div>
-<div class="tab-pane fade" id="multiple-testing" role="tabpanel" aria-labelledby="multiple-testing-tab">
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/04-slides.html#multtest"></iframe>
-</div>
-</div>
-<div class="tab-pane fade" id="assumptions" role="tabpanel" aria-labelledby="assumptions-tab">
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/04-slides.html#graphdiag"></iframe>
-</div>
-</div>
-<div class="tab-pane fade" id="statistical-fallacies" role="tabpanel" aria-labelledby="statistical-fallacies-tab">
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/04-slides.html#fallacies1"></iframe>
-</div>
-</div>
+
+<iframe class="embed-responsive-item" src="/slides/04-slides.html#1">
+</iframe>
+
 </div>
 
--->
+</div>
+
+<div id="multiple-testing" class="tab-pane fade" role="tabpanel" aria-labelledby="multiple-testing-tab">
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="/slides/04-slides.html#multiple-testing">
+</iframe>
+
+</div>
+
+</div>
+
+</div>
 
 ## In-class
 

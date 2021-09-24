@@ -3,7 +3,7 @@
 "content/content/01-content.Rmarkdown" "d1252680d0aefa53ae71c69f865f4821"
 "content/content/02-content.Rmarkdown" "fe998cdbbe2a55bb827ab068ed8ff47f"
 "content/content/03-content.Rmarkdown" "7146316a45d9d30078bb2f55a02db63c"
-"content/content/04-content.Rmarkdown" "968ccfc9a543bc4f23396483e81345d2"
+"content/content/04-content.Rmarkdown" "77d8b3939e2e722f0e5356d98cac89a8"
 "content/evaluations/_index.Rmarkdown" "4d6c07c1735ada0fc3355100f0b5fa2e"
 "content/evaluations/01-problem-set.Rmarkdown" "48d09ef3b16cb5eaf5ea8b0236c21d3b"
 "content/evaluations/02-problem-set.Rmarkdown" "3c8c0719b7f734e73656f55d1a240cec"
