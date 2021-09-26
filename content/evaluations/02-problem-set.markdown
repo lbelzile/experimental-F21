@@ -159,6 +159,8 @@ $$
 
 -->
 
+## References
+
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
 <div id="ref-Bastian:2014" class="csl-entry">

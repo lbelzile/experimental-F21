@@ -4,7 +4,7 @@
     <title>Multiple testing and model assumptions</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-09-24" />
+    <meta name="date" content="2021-09-26" />
     <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -44,22 +44,6 @@ HEC Montréal
 ]
 
 ]
-
----
-
-name: outline
-class: title title-inv-1
-
-# Outline
---
-
-.box-2.medium.sp-after-half[Multiple testing]
-
-
---
-  
-.box-3.medium.sp-after-half[Statistical fallacies and the reproducibility crisis]
-
 
 ---
 
@@ -193,16 +177,16 @@ class: title title-2
 # Notation
 
 Define 
-`$$R_i = \begin{cases} 1 &amp; \text{if we reject }  \mathscr{H}_{0i} \\
+`$$\begin{align}R_i &amp;= \begin{cases} 1 &amp; \text{if we reject }  \mathscr{H}_{0i} \\
 0 &amp; \text{if we fail to reject } \mathscr{H}_{0i}
-\end{cases}$$`
-with `\(R=R_1 + \cdots + R_m\)` the total number of rejections ( `\(0 \leq R \leq m\)` ).
+\end{cases}\\
+V_i &amp;=\begin{cases} 1 &amp; \text{type I error for } \mathscr{H}_{0i}\quad  (R_i=1 \text{ and  }\mathscr{H}_{0i} \text{ is true}) \\ 0 &amp; \text{otherwise} 
+\end{cases}
+\end{align}$$`
 
-`$$V_i =\begin{cases} 1 &amp; \text{type I error for } \mathscr{H}_{0i}\quad  (R_i=1 \text{ and  }\mathscr{H}_{0i} \text{ is true}) \\\
-0 &amp; \text{otherwise} 
-\end{cases}$$`
-
-Thus `\(V = V_1 + \cdots + V_m\)` is the number of null hypothesis rejected by mistake.
+with 
+- `\(R=R_1 + \cdots + R_m\)` the total number of rejections ( `\(0 \leq R \leq m\)` ).
+- `\(V = V_1 + \cdots + V_m\)` the number of null hypothesis rejected by mistake.
 
 ---
 
@@ -289,11 +273,11 @@ Consider `\(m=3\)` tests with raw `\(p\)`-values `\(0.01\)`, `\(0.04\)`, `\(0.02
 --------|--------|---------|---------
 1 | `\(0.01\)` | `\(3 \times 0.01 = 0.03\)` | `\(3 \times 0.01 = 0.03\)`
 2 | `\(0.02\)` | `\(3 \times 0.02 = 0.06\)` | `\(2 \times 0.02 = 0.04\)`
-3 | `\(0.05\)` | `\(3 \times 0.05 = 0.12\)` | `\(1 \times 0.05 = 0.04\)`
+3 | `\(0.04\)` | `\(3 \times 0.04 = 0.12\)` | `\(1 \times 0.04 = 0.04\)`
 
 .small[
 
-Reminder of Holm–Bonferroni:  multiply by `\((m-j+1)\)` the `\(j\)`th smallest `\(p\)`-value `\(p_{(j)}\)` and compare to `\(\alpha\)`.
+Reminder of Holm–Bonferroni:  multiply by `\((m-i+1)\)` the `\(i\)`th smallest `\(p\)`-value `\(p_{(i)}\)`, compare the product to `\(\alpha\)`.
 
 ]
 
@@ -412,7 +396,7 @@ The Benjamini-Hochberg (1995) procedure
 1. Order the _p_-values from the `\(m\)` tests from smallest to largest: `\(p_{(1)} \leq \cdots \leq p_{(m)}\)`
 2. For level `\(q\)`, set 
 `$$k=\max\left\{i: p_{(i)} \leq \frac{i}{m}q\right\}$$`
-3. Reject `\(\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(m)}\)`.
+3. Reject `\(\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(k)}\)`.
 
 ---
 

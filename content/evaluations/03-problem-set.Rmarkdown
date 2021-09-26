@@ -1,8 +1,8 @@
 ---
 title: "Problem set 3"
 linktitle: "Problem set 3"
-date: "2021-09-25"
-due_date: "2021-10-01"
+date: "2021-09-27"
+due_date: "2021-10-04"
 due_time: "11:55 PM"
 menu:
   evaluations:
@@ -13,61 +13,29 @@ toc: true
 bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
 ---
+In this problem set, we consider a multilab replication study [@Elliot:2021]  on verbalization of children during a memorization task; this is an attempt to validate and extend @Flavell:1966. We also look at the Solomon's paradox in @Grossman:2014. The data for both studies can be downloaded from the Open Science Foundation (OSF), but only the first is preregistered.
 
-# Task 1 - Model assumptions
 
-The purpose of this exercise is to explore what happens when the model assumptions of the one-way analysis of variance go wrong using simulations. The interpretation of most statements we encounter (95% of the time) are to be understood in terms of repeated sampling and are valid with the assumption. We can create fake data in **R** and look at the _what if_. This is useful to build your intuition about what could go wrong, keeping in mind that you will have a single realization at end.
+# Task 1 - Assessing reproducibility
 
-The workflow, coded for you `r emo::ji("grinning face")`, is the following:
+1. Have a look at @Elliot:2021 and visit the [Open Science Foundation webpage for the project](https://osf.io/pn4rk/) to check the hierarchy of their folders, the pre-registered study plan, the codebook and the data analysis folder. 
+2. Compare this with @Grossman:2014: do you think you could reproduce the latter? e.g., try to identify the variables that are referenced in the paper using the codebook.
+3. Read the policy of the [Strategic Management Journal](https://onlinelibrary.wiley.com/page/journal/10970266/homepage/forauthors.html). In your words, discuss their editorial choices and identify how they can alleviate part of the problems of the reproducibility crisis.
 
-Keppel and Wickens (p. 149) report some results.
+# Task 2 - Accounting for multiple testing
 
-```{r , include = FALSE, eval = FALSE, echo = FALSE}
+We consider the preplanned comparisons in Study 3 in @Grossman:2014 [download paper](https://journals.sagepub.com/stoken/default+domain/vIg5KBmaiJHKTXfUpXZK/full). The purpose of the exercice is to reproduce Table S4 of the Supplementary material, adjusting for multiplicity.^[
+Technical aside: there are four outcome variables (`COMPR`,`LIMITS`,`PERSP` and `CHANGE`) that are correlated, so this is technically a multivariate problem. We will ignore this purposedly and fit repeatedly one-way ANOVA models for each of the four response separately, for each age group. Thus, we will have four contrasts for each of the eight models (one per outcome and age group).]
 
-simulation_study <- 
-  function(mean = 1:5,
-           sd = 1:5,
-           ngroup = 3L,
-           nsamp = 20L,
-           var.equal = TRUE,
-           ...
-           ){
-    stopifnot()
-    mean <- mean[1:ngroup]
-      tibble(rnorm(nsamp*ngroup)*rep(sd, each = nsamp))
-  
-  }
-```
+Use the [helper code provided](/evaluations/03-problem-set.R).
 
-```{r pvaluedist, include = FALSE, eval = FALSE, echo = FALSE}
-ng <- 4L #number of groups
-nsamp <- 20L #number of observations per group
-ntot <- ng*nsamp #number of observations (total)
-nrep <- 10000L #number of replications
-# Create container to store results
-pval <- vector(mode = "numeric", length = nrep)
-fstat <- vector(mode = "numeric", length = nrep)
-# For-loop: repeat these instructions nrep times
-for(i in 1:nrep){
-  sample <-
-    tibble(response = rnorm(n = ntot), # sample No(0,1) variables
-           group = factor(rep(1:ng, each = nsamp)))
-  # normal data (rnorm), by default with
-  # mean zero, std. dev 1
-  ## Compute the ANOVA F-statistic
-  ftest <- anova(lm(response ~ group, data = sample))
-  # Make table to extract p-values more easily
-  ftest_tidy <- broom::tidy(ftest)
-  # Store the F-statistic and the p-value in the container
-  fstat[i] <- ftest_tidy$statistic[1]
-  pval[i] <- ftest_tidy$p.value[1]
-}
-```
+1. Fill the helper file code by replacing the `#TODO` statements to compute the contrasts in the preplanned comparisons reported in Table S4. Check whether these match the reported values.
+2. Determine the number of tests in the family (think about whether it makes sense to treat each response separately, or to consider tests from other comparisons in Study 3).
+3. A frequent argument is that planned comparisons shouldn't be adjusted for, as it amounts to a decrease in power. In the present case, do you think this is a cogent argument? Justify you answer.
+4. The default method for `emmeans` contrast is to proceed to adjustment using Tukey's honestly significant difference (HSD). Why isn't it appropriate in this context? *Hint* look at the output and change the adjustment from `adjust = "none"` in the call to `emmeans::contrast`.
+5. Using the helper code, obtain adjusted _p_-values using Bonferroni's method and compare them to (a) the raw _p_-values and (b) the Bonferroni-Holm adjusted _p_-values. How many of the planned comparisons are significant at level $\alpha=0.05$ if you modify the _p_-values?
+6. Another way to present the results of the two-sided _t_-test for contrasts is to report confidence intervals rather than _p_-values. Which interval would be the largest between (a) an unadjusted confidence interval and (b) one derived using Bonferroni's method? Justify your answer. *Hint: Bonferroni's method amounts to making the tests at level $\alpha/m$. Try modifying the code to see which is largest.*
 
-# Task 2
 
-Assess the hypothesis of the paper in @ from Problem set 2
+## References
 
-# Task 3
-
-Perform all pairwise comparisons for multiple comparisons and 

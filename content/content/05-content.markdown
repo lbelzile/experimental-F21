@@ -1,13 +1,13 @@
 ---
-title: "Reproducibility crisis and multiple testing"
-linktitle: "4: Reproducibility crisis and multiple testing"
-date: "2021-09-21"
-start_date: "2021-09-20"
-end_date: "2021-09-24"
+title: "Multiple testing and power calculations"
+linktitle: "5: Model assumptions and power calculations"
+date: "2021-09-27"
+start_date: "2021-09-27"
+end_date: "2021-10-01"
 menu:
   content:
     parent: Course content
-    weight: 4
+    weight: 5
 type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
@@ -17,41 +17,39 @@ slides: "04-slides"
 
 ## Content
 
--   Reproducibility crisis
--   Multiple testing
-    -   Family-wise error rate and false discovery rate
-    -   Procedures
-    -   Practice with **R**
+-   Assumptions of the analysis of variance model
+    -   Additivity
+    -   Homogeneity of variance and Levene’s test
+    -   Independence
+-   Triumvirat: sample size, power and effect size
 
 ## Learning objectives
 
 At the end of the session, students should be capable of
 
--   list strategies to enhance reproducibility
--   determining the number of testsin a family that need to be corrected for
--   understand how to correct *p*-values to account for multiple testing
--   grasp the tradeoff between multiple testing and power
+-   produce graphical diagnostics and perform hypothesis tests to check the model assumptions
+-   think critically about the model assumptions as part of the model formulation
+-   deduce the sample size necessary to replicate a study at a given power
+-   understand the interplay between power and effect.
 
 ## Readings
 
--   <i class="fas fa-book"></i> Chapter on the *Reproducibility crisis* of the [Course notes](https://lbelzile.github.io/math80667a/reproducibility-crisis.html)
--   <i class="fas fa-book"></i> Section on *Multiple testing* of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html#multiple-testing)
+-   <i class="fas fa-book"></i> Section *Model assumptions* of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html#model-assumptions)
 
 ## Complementary readings
 
--   <i class="fas fa-book"></i> Section 4.4 of Dean et al. (2017).
--   <i class="fas fa-book"></i> [H. Abdi (2010) Holm’s Sequential Bonferroni Procedure](https://personal.utdallas.edu/~herve/abdi-Holm2010-pretty.pdf)
+-   <i class="fas fa-book"></i> Chapter 5 of Dean et al. (2017).
 
 <!--
 - <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons. 
 
--->
+
 
 ## Slides
 
-The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
 
-{{% slide-buttons %}}
+`{{% slide-buttons %}}`{=html}
 
 <ul class="nav nav-tabs" id="slide-tabs" role="tablist">
 <li class="nav-item">
@@ -61,35 +59,23 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <a class="nav-link" id="multiple-testing-tab" data-toggle="tab" href="#multiple-testing" role="tab" aria-controls="multiple-testing" aria-selected="false">Multiple testing</a>
 </li>
 </ul>
-
-<div id="slide-tabs" class="tab-content">
-
-<div id="introduction" class="tab-pane fade show active" role="tabpanel" aria-labelledby="introduction-tab">
-
+<div class="tab-content" id="slide-tabs">
+<div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
 <div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/04-slides.html#1">
-</iframe>
-
+<iframe class="embed-responsive-item" src="/slides/04-slides.html#1"></iframe>
 </div>
-
 </div>
-
-<div id="multiple-testing" class="tab-pane fade" role="tabpanel" aria-labelledby="multiple-testing-tab">
-
+<div class="tab-pane fade" id="multiple-testing" role="tabpanel" aria-labelledby="multiple-testing-tab">
 <div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/04-slides.html#multiple-testing">
-</iframe>
-
+<iframe class="embed-responsive-item" src="/slides/04-slides.html#multiple-testing"></iframe>
+</div>
+</div>
 </div>
 
-</div>
-
-</div>
 
 ## In-class
 
+-->
 <!-- 
 {{% div fyi %}}
 **Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.

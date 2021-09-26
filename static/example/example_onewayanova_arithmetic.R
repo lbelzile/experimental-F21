@@ -122,6 +122,8 @@ contrasts_res <-
                     method = contrast_specif)
 # Obtain confidence intervals instead of p-values
 confint(contrasts_res)
+# Compare with adjusted intervals
+confint(contrasts_res, adjust = "bonferroni")
 
 ##
 ## Step 7: Multiple testing (post-hoc)
@@ -133,17 +135,37 @@ confint(contrasts_res)
 # This has a default adjustment to correct
 # Tukey's honest difference
 # Differences and p-values are based on pooled t-tests
-pairwise_diff <- emmeans(mod_param1, pairwise ~ group)
+pairwise_diff <- emmeans(mod_param1, 
+                         pairwise ~ group)
 # This uses Tukey's HSD
 pairwise_diff
+# Plot of estimated difference and p-values
 pwpp(mod_emm, type = "response")
 
 # Alternative function (base R)
 # The function pairwise.t.test let's you run multiple
 # t-tests and adjust p-values
 ?p.adjust.methods
+with(data = arithmetic,
 pairwise.t.test(x = score, 
                 g = group,
-                data = arithmetic,
                 pool.sd = TRUE,
-                p.adjust.method = "BH")
+                p.adjust.method = "fdr")
+)
+with(data = arithmetic,
+     pairwise.t.test(x = score, 
+                     g = group,
+                     pool.sd = TRUE,
+                     p.adjust.method = "holm")
+)
+
+TukeyHSD(aov(score ~ group, data = arithmetic))
+# Agricolae package
+tukey_arithmetic <- agricolae::HSD.test(mod_param1, trt = "group")
+scheffe_arithmetic <- agricolae::scheffe.test(mod_param1, trt = "group")
+
+# Alternative: give a vector of p-values and a method
+# can also use n (n>p) if you are only 
+# passing the smallest p-values
+p.adjust(p = pvalues, method = "holm")
+

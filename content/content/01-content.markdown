@@ -163,6 +163,8 @@ During the activity, you will be asked to identify in teams the following:
 -   the treatments
 -   the outcome variable(s)
 
+## References
+
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
 <div id="ref-Berger:2018" class="csl-entry">

@@ -139,6 +139,8 @@ We conducted a Monte Carlo study in class to check the distribution of *p*-value
 
 -->
 
+## References
+
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
 <div id="ref-Dean:2017" class="csl-entry">
