@@ -1,0 +1,152 @@
+---
+title: "Power and model assumptions"
+author: "Léo Belzile"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+                      fig.retina = 3, fig.align = "center")
+```
+```{r packages-data, echo = FALSE, include=FALSE}
+library(tidyverse)
+library(patchwork)
+```
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","freezeframe","panelset"))
+# xaringanExtra::use_clipboard()
+xaringanExtra::use_broadcast()
+```
+
+class: center middle main-title section-title-1
+
+# Power and model assumptions
+
+.class-info[
+
+**Session 5**
+
+.light[MATH 80667A: Experimental Design and Statistical Methods <br>for Quantitative Research in Management <br>
+HEC Montréal
+]
+
+]
+
+---
+
+name: outline
+class: title title-inv-5
+
+# Outline
+--
+
+.box-8.medium.sp-after-half[Power]
+
+--
+
+.box-4.medium.sp-after-half[Hypothesis tests]
+
+--
+
+.box-4.medium.sp-after-half[Power, effect and sample sizes]
+
+--
+
+
+.box-2.medium.sp-after-half[Model assumptions]
+
+
+---
+
+layout: false
+name: power
+class: center middle section-title section-title-3 animated fadeIn
+
+# Power
+
+---
+  
+class: title title-3
+# I cried power!
+
+The null alternative corresponds to a single value: $\mu_a = \cdots = \mu_e$.
+
+--
+  
+  whereas there are infinitely many alternatives...
+
+Power is the ability to detect when the null is false, for a given alternative.
+.pull-left[
+  ![Power with small overlap](img/02/power1-1.png)
+]
+.pull-left[
+  ![Power with large overlap](img/02/power2-1.png)
+]
+
+???
+  
+In which of the two figures is power the largest?
+
+---
+
+class: title title-3
+
+# Parametrization
+
+.box-inv-3.sp-after-half[Analysis of variance with $K$ groups]
+
+.box-inv-3.sp-after-half[Population average of group $j$ is $\mu_j$]
+
+.box-inv-3.sp-after-half[$n_j$ observations for group $j$]
+
+We can parametrize the model in terms of global average in the sample,
+
+\begin{align*}
+\mu = \frac{1}{n}\sum_{j=1}^K\sum_{i=1}^{n_j} \mu_j = \frac{1}{n}\sum_{j=1}^K n_j \mu_j,
+\end{align*}
+where $n=n_1 + \cdots +n_K$ is the total sample size.
+
+
+---
+
+class: title title-3
+
+# What determines power?
+
+--
+
+1. The size of the effects, $\mu_1-\mu$, $\ldots$, $\mu_K-\mu$
+2. The background noise (intrinsic variability, $\sigma^2$)
+3. The level of the test, $\alpha$
+4. The sample size in each group, $n_j$ 
+
+???
+
+The level is fixed, the noise level is oftentimes intrinsic to the measurement.
+
+---
+
+# Power and sample size calculations
+
+Journals and grant agencies oftentimes require an estimate of the sample size needed for a study.
+
+- large enough to pick-up effects of scientific interest (good signal-to-noise)
+- efficient allocation of resources (not too large to waste time/money)
+
+To replicate a study, one likewise needs to find the adequate number of participants needed.

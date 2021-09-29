@@ -25,7 +25,9 @@ slide_details <- tibble::tribble(
 "Cleaning and transforming data", "1YYlLZ90Vas",
 "Summary statistics", "PvHFsiuase0",
 "Creating graphics", "lNUC5_Tws9M",
-"F-statistic table", "7ysgXYx6Rwg"
+"F-statistic table", "7ysgXYx6Rwg",
+"Contrasts and estimated marginal means", "KJ99KgeApNs",
+"Multiple testing", "dM1IkaVFy6w"
 )
 
 ```

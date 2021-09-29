@@ -32,6 +32,8 @@ There’s a set of videos that walks through each section below. To make it easi
 -   [Summary statistics](https://www.youtube.com/watch?v=PvHFsiuase0&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
 -   [Creating graphics](https://www.youtube.com/watch?v=lNUC5_Tws9M&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
 -   [F-statistic table](https://www.youtube.com/watch?v=7ysgXYx6Rwg&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [Contrasts and estimated marginal means](https://www.youtube.com/watch?v=KJ99KgeApNs&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [Multiple testing](https://www.youtube.com/watch?v=dM1IkaVFy6w&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
 
 You can also watch the playlist (and skip around to different sections) here:
 

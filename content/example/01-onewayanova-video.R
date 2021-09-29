@@ -82,3 +82,37 @@ pf(q = anova_tab$statistic[1],
    df1 = 4,
    df2 = 40,
    lower.tail = FALSE)
+
+
+mod <- lm(formula = score ~ group, data = arithmetic)
+## Contrasts and estimated marginal means
+library(emmeans)
+emm_mod <- emmeans(object = mod, specs = "group")
+emm_mod
+pairs(emm_mod)
+pairs(emm_mod, adjust = "none")
+coef(pairs(emm_mod)) #contrasts columns sum to zero
+
+# Comparison between control groups and praise
+# Comparison between control groups and reprove
+# Comparison between praise and reprove
+specif_contrasts <- list(
+  controlvspraised = c(0.5, 0.5, -1, 0, 0),
+  controlvsreproved = c(0.5, 0.5, 0, -1, 0),
+  praisedvsreproved = c(0, 0, 1, -1, 0)
+)
+contrasts_ari <- 
+  contrast(object = emm_mod, 
+         method = specif_contrasts,
+         adjust = "bonferroni")
+contrasts_ari <- 
+  contrast(object = emm_mod, 
+           method = specif_contrasts)
+confint(contrasts_ari)
+
+
+# Multiple testing adjustments
+?p.adjust.methods
+summary_contrasts <- summary(contrasts_ari)
+p.adjust(p = summary$p.value, method = "holm")
+
