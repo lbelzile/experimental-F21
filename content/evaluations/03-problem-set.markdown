@@ -31,7 +31,7 @@ Use the [helper code provided](/evaluations/03-problem-set.R).
 1.  Fill the helper file code by replacing the `#TODO` statements to compute the contrasts in the preplanned comparisons reported in Table S4. Check whether these match the reported values.
 2.  Determine the number of tests in the family (think about whether it makes sense to treat each response separately, or to consider tests from other comparisons in Study 3).
 3.  A frequent argument is that planned comparisons shouldn’t be adjusted for, as it amounts to a decrease in power. In the present case, do you think this is a cogent argument? Justify you answer.
-4.  The default method for `emmeans` contrast is to proceed to adjustment using Tukey’s honestly significant difference (HSD). Why isn’t it appropriate in this context? *Hint* look at the output and change the adjustment from `adjust = "none"` in the call to `emmeans::contrast`.
+4.  The default method for `emmeans` contrast is to proceed to adjustment using Tukey’s honestly significant difference (HSD). Why isn’t it appropriate in this context?
 5.  Using the helper code, obtain adjusted *p*-values using Bonferroni’s method and compare them to (a) the raw *p*-values and (b) the Bonferroni-Holm adjusted *p*-values. How many of the planned comparisons are significant at level `\(\alpha=0.05\)` if you modify the *p*-values?
 6.  Another way to present the results of the two-sided *t*-test for contrasts is to report confidence intervals rather than *p*-values. Which interval would be the largest between (a) an unadjusted confidence interval and (b) one derived using Bonferroni’s method? Justify your answer. *Hint: Bonferroni’s method amounts to making the tests at level `\(\alpha/m\)`. Try modifying the code to see which is largest.*
 

@@ -1,6 +1,6 @@
 ---
-title: "Multiple testing and power calculations"
-linktitle: "5: Model assumptions and power calculations"
+title: "Power calculations and model assumptions"
+linktitle: "5: Power calculations and model assumptions"
 date: "2021-09-27"
 start_date: "2021-09-27"
 end_date: "2021-10-01"
@@ -21,7 +21,7 @@ slides: "04-slides"
     -   Additivity
     -   Homogeneity of variance and Levene’s test
     -   Independence
--   Triumvirat: sample size, power and effect size
+-   Power calculations: sample size, power and effect size, Cohen’s `\(d\)`
 
 ## Learning objectives
 
@@ -35,10 +35,16 @@ At the end of the session, students should be capable of
 ## Readings
 
 -   <i class="fas fa-book"></i> Section *Model assumptions* of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html#model-assumptions)
+-   Kristoffer Magnusson’s [*Understanding Statistical Power and Significance Testing: an interactive visualization*](https://rpsychologist.com/d3/nhst/)
+-   Kristoffer Magnusson’s [*Interpreting Cohen’s `\(d\)` Effect Size*](https://rpsychologist.com/cohend/) (Magnusson, 2021)
 
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> Chapter 5 of Dean et al. (2017).
+
+## R
+
+-   [Computing Cohen’s `\(d\)` in **R**](https://www.datanovia.com/en/lessons/t-test-effect-size-using-cohens-d-measure/)
 
 <!--
 - <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons. 
@@ -94,6 +100,12 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 <div id="ref-Dean:2017" class="csl-entry">
 
 Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+<div id="ref-magnussonCohend" class="csl-entry">
+
+Magnusson, K. (2021). *Interpreting cohen’s d effect size: An interactive visualization* (Version 2.5.1) \[Computer software\]. <https://rpsychologist.com/cohend/>
 
 </div>
 

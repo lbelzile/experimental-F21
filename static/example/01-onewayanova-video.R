@@ -84,8 +84,11 @@ pf(q = anova_tab$statistic[1],
    lower.tail = FALSE)
 
 
-mod <- lm(formula = score ~ group, data = arithmetic)
-## Contrasts and estimated marginal means
+######################################################
+#    Script produced for the one-way ANOVA videos    #
+######################################################
+
+## Part 1: Contrasts and estimated marginal means
 library(emmeans)
 emm_mod <- emmeans(object = mod, specs = "group")
 emm_mod
@@ -111,8 +114,11 @@ contrasts_ari <-
 confint(contrasts_ari)
 
 
-# Multiple testing adjustments
+## Part 2: Multiple testing adjustments
 ?p.adjust.methods
 summary_contrasts <- summary(contrasts_ari)
 p.adjust(p = summary$p.value, method = "holm")
+# Alternative: give a vector of p-values and a method
+# can also use n (n>p) if you are only 
+# passing the smallest p-values
 

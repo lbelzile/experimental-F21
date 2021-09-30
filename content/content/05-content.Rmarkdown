@@ -1,6 +1,6 @@
 ---
-title: "Multiple testing and power calculations"
-linktitle: "5: Model assumptions and power calculations"
+title: "Power calculations and model assumptions"
+linktitle: "5: Power calculations and model assumptions"
 date: "2021-09-27"
 start_date: "2021-09-27"
 end_date: "2021-10-01"
@@ -33,7 +33,7 @@ slide_details <- tibble::tribble(
     - Additivity
     - Homogeneity of variance and Levene's test
     - Independence
-- Triumvirat: sample size, power and effect size
+- Power calculations: sample size, power and effect size, Cohen's $d$
 
 ## Learning objectives
 
@@ -47,11 +47,17 @@ At the end of the session, students should be capable of
 ## Readings
 
 - <i class="fas fa-book"></i> Section *Model assumptions* of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html#model-assumptions)
+- Kristoffer Magnusson's [*Understanding Statistical Power and Significance Testing: an interactive visualization*](https://rpsychologist.com/d3/nhst/)
+- Kristoffer Magnusson's [*Interpreting Cohen's $d$ Effect Size*](https://rpsychologist.com/cohend/) [@magnussonCohend]
 
 
 ## Complementary readings
 
 - <i class="fas fa-book"></i> Chapter 5 of @Dean:2017.
+
+## R
+
+- [Computing Cohen's $d$ in **R**](https://www.datanovia.com/en/lessons/t-test-effect-size-using-cohens-d-measure/)
 
 
 <!--
