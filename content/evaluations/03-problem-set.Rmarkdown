@@ -19,7 +19,7 @@ In this problem set, we consider a multilab replication study [@Elliot:2021]  on
 # Task 1 - Assessing reproducibility
 
 1. Have a look at @Elliot:2021 and visit the [Open Science Foundation webpage for the project](https://osf.io/pn4rk/) to check the hierarchy of their folders, the pre-registered study plan, the codebook and the data analysis folder. 
-2. Compare this with @Grossman:2014: do you think you could reproduce the latter? e.g., try to identify the variables that are referenced in the paper using the codebook.
+2. Compare this with @Grossman:2014: do you think you could reproduce the latter? e.g., try to identify the variables that are referenced in the paper using the codebook available from the [Open Science Foundation webpage for the project](http://osf.io/7xs93).
 3. Read the policy of the [Strategic Management Journal](https://onlinelibrary.wiley.com/page/journal/10970266/homepage/forauthors.html). In your words, discuss their editorial choices and identify how they can alleviate part of the problems of the reproducibility crisis.
 
 # Task 2 - Accounting for multiple testing

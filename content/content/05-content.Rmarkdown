@@ -12,7 +12,7 @@ type: docs
 toc: true
 bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
-slides: "04-slides"
+slides: "05-slides"
 ---
 
 ```{r slides-videos, echo=FALSE, include=FALSE}
@@ -23,17 +23,21 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
-  "", "Multiple testing", "multiple-testing", FALSE
+  "", "Power", "power", FALSE,
+  "", "Effect size", "effect", FALSE,
+  "", "Model assumption", "model-assumption", FALSE,
 )
 ```
 
 ## Content
 
+- Power and the interplay between sample size, effect and power
+- Measures of effect sizes
 - Assumptions of the analysis of variance model 
     - Additivity
     - Homogeneity of variance and Levene's test
     - Independence
-- Power calculations: sample size, power and effect size, Cohen's $d$
+
 
 ## Learning objectives
 
@@ -55,14 +59,6 @@ At the end of the session, students should be capable of
 
 - <i class="fas fa-book"></i> Chapter 5 of @Dean:2017.
 
-## R
-
-- [Computing Cohen's $d$ in **R**](https://www.datanovia.com/en/lessons/t-test-effect-size-using-cohens-d-measure/)
-
-
-<!--
-- <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons. 
-
 
 
 ## Slides
@@ -72,8 +68,15 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 `r blogdown::shortcode("slide-buttons")`
 
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/04-slides.html")
+slide_tabs(slide_details, "/slides/05-slides.html")
 ```
+
+
+<!--
+- <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons. 
+
+
+
 
 
 ## In-class
