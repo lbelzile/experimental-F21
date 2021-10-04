@@ -30,10 +30,10 @@ The following excerpt from the paper explain how sample size for the replication
 
 1.  Read the abstract of the paper. Are your surprised by the findings?
 2.  In your own words, explain why it is incorrect to talk about ‘achieved power’ (aka observed power). *Hint: think back about Task 1*
-3.  Validate the calculation provided in the quote.
-4.  Calculate the sample size necessary to obtain power of `\(0.80\)` and `\(0.90\)` in case the true effect size was `\(d=0.01\)`.
+3.  Validate the calculation provided in the quote using `pwr::pwr.t.test`
+4.  Calculate the sample size necessary to obtain power of `\(0.80\)` and `\(0.90\)` in case the true effect size was `\(d=0.01\)`. Discuss the feasibility of detecting such an effect.
 
-# Task 3
+## References
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 

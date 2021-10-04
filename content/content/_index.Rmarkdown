@@ -8,7 +8,7 @@ type: docs
 weight: 1
 ---
 
-Each class session has a set of complementary readings that you should completed ***before*** class. 
+Each class session has a set of suggested readings that you should completed ***before*** class. 
 
 Some class session may include a YouTube playlist of short videos for each of the lecture sections. The lecture slides are special HTML files made with the **R** package [**xaringan**](https://bookdown.org/yihui/rmarkdown/xaringan.html). On each class session page you'll see buttons for opening the presentation in a new tab or for downloading a PDF of the slides in case you want to print them or store them on your computer:
 

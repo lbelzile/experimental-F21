@@ -34,12 +34,11 @@ At the end of the session, students should be capable of
 
 -   <i class="fas fa-book"></i> Sections 3.1 to 3.3 of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html)
 -   <i class="fas fa-book"></i> Chapter 1 (*Introduction to Data Science*) of [Timbers, Campbell and Lee (2021) Data Sciences: A First Introduction](https://ubc-dsci.github.io/introduction-to-datascience/intro.html)
-    <!--- <i class="fas fa-book"></i> Chapter _Reproducibility Crisis_ of the [Course notes](https://lbelzile.github.io/math80667a/reproducibility-crisis.html)
-    -->
 
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> Chapter 3 and Sections 4.1-4.3 of Dean et al. (2017).
+-   <i class="fas fa-book"></i> Chapter 4 (sections 4.1 to 4.4) of Keppel & Wickens (2004).
 
 ## Slides
 
@@ -146,6 +145,12 @@ We conducted a Monte Carlo study in class to check the distribution of *p*-value
 <div id="ref-Dean:2017" class="csl-entry">
 
 Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+<div id="ref-Keppel/Wickens:2004" class="csl-entry">
+
+Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
 
 </div>
 

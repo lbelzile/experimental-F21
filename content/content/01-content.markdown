@@ -57,10 +57,10 @@ Feel free to inform me in the weekly check-in of your take on these references.
 
 ## Complementary readings
 
-Complementary readings are additional sources of information that are not required readings, but may be useful substitutes. Sometimes, they go beyond the scope of what we cover and in more depth.
+Complementary readings are additional sources of information that are not required readings, but may be useful substitutes. Sometimes, they go beyond the scope of what we cover (i.e., goes into more details).
 
 -   <i class="fas fa-newspaper-o"></i> Abstract of Hariton, E and J.J. Locascio (2018), [*Randomised controlled trials – the gold standard for effectiveness research*](https://doi.org/10.1111/1471-0528.15199). This reference goes over some of the reasons why experiments are preferred to observational studies.
--   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments* (Cox, 1958). Out of print, but addresses the basic concepts using a variety of examples (mostly from agricultural field trials), and particularly well writen.
+-   <i class="fas fa-book"></i> Chapter 1 (*Preliminaries*) in *Planning of experiments* (Cox, 1958). Out of print, but addresses the basic concepts using a variety of examples (mostly from agricultural field trials), and particularly well written.
 -   <i class="fas fa-book"></i> Section 1.4 of *Experimental Design* (Berger et al., 2018). Provides a variety of examples of experiments along with their characteristics.
 
 ## Slides

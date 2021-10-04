@@ -23,9 +23,8 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
-  "", "Power", "power", FALSE,
   "", "Effect size", "effect", FALSE,
-  "", "Model assumption", "model-assumption", FALSE,
+  "", "Power", "power", FALSE,
 )
 ```
 
@@ -58,6 +57,7 @@ At the end of the session, students should be capable of
 ## Complementary readings
 
 - <i class="fas fa-book"></i> Chapter 5 of @Dean:2017.
+- <i class="fas fa-book"></i> Chapter 7 (model assumptions) and Chapter 8 (effect size and power) of @Keppel/Wickens:2004.
 
 
 

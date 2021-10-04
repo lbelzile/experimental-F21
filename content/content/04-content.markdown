@@ -40,6 +40,7 @@ At the end of the session, students should be capable of
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> Section 4.4 of Dean et al. (2017).
+-   <i class="fas fa-book"></i> Chapter 6 of Keppel & Wickens (2004).
 -   <i class="fas fa-book"></i> [H. Abdi (2010) Holm’s Sequential Bonferroni Procedure](https://personal.utdallas.edu/~herve/abdi-Holm2010-pretty.pdf)
 
 <!--
@@ -108,6 +109,12 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <div id="ref-Dean:2017" class="csl-entry">
 
 Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+<div id="ref-Keppel/Wickens:2004" class="csl-entry">
+
+Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
 
 </div>
 

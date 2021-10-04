@@ -42,6 +42,7 @@ At the end of the session, students should be capable of
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> Chapter 5 of Dean et al. (2017).
+-   <i class="fas fa-book"></i> Chapter 7 (model assumptions) and Chapter 8 (effect size and power) of Keppel & Wickens (2004).
 
 ## Slides
 
@@ -54,13 +55,10 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <a class="nav-link active" id="introduction-tab" data-toggle="tab" href="#introduction" role="tab" aria-controls="introduction" aria-selected="true">Introduction</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="power-tab" data-toggle="tab" href="#power" role="tab" aria-controls="power" aria-selected="false">Power</a>
-</li>
-<li class="nav-item">
 <a class="nav-link" id="effect-size-tab" data-toggle="tab" href="#effect-size" role="tab" aria-controls="effect-size" aria-selected="false">Effect size</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="model-assumption-tab" data-toggle="tab" href="#model-assumption" role="tab" aria-controls="model-assumption" aria-selected="false">Model assumption</a>
+<a class="nav-link" id="power-tab" data-toggle="tab" href="#power" role="tab" aria-controls="power" aria-selected="false">Power</a>
 </li>
 </ul>
 
@@ -71,17 +69,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <div class="embed-responsive embed-responsive-16by9">
 
 <iframe class="embed-responsive-item" src="/slides/05-slides.html#1">
-</iframe>
-
-</div>
-
-</div>
-
-<div id="power" class="tab-pane fade" role="tabpanel" aria-labelledby="power-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/05-slides.html#power">
 </iframe>
 
 </div>
@@ -99,11 +86,11 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
-<div id="model-assumption" class="tab-pane fade" role="tabpanel" aria-labelledby="model-assumption-tab">
+<div id="power" class="tab-pane fade" role="tabpanel" aria-labelledby="power-tab">
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/05-slides.html#model-assumption">
+<iframe class="embed-responsive-item" src="/slides/05-slides.html#power">
 </iframe>
 
 </div>
@@ -140,6 +127,12 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <div id="ref-Dean:2017" class="csl-entry">
 
 Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+<div id="ref-Keppel/Wickens:2004" class="csl-entry">
+
+Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
 
 </div>
 

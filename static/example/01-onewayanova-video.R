@@ -73,7 +73,8 @@ ggplot(data = arithmetic,
 ## equality of variance
 
 ## Fit the linear model (equivalent to the one-way ANOVA)
-mod <- lm(formula = score ~ group, data = arithmetic)
+mod <- lm(formula = score ~ group, 
+          data = arithmetic)
 ## Create the table with the test statistic and the p-value
 (anova_tab <- broom::tidy(anova(mod)))
 
@@ -104,21 +105,77 @@ specif_contrasts <- list(
   controlvsreproved = c(0.5, 0.5, 0, -1, 0),
   praisedvsreproved = c(0, 0, 1, -1, 0)
 )
-contrasts_ari <- 
+contrasts_bonf <- 
   contrast(object = emm_mod, 
          method = specif_contrasts,
-         adjust = "bonferroni")
-contrasts_ari <- 
+         adjust = "bonferroni") #Bonferroni
+contrasts_scheffe <- 
   contrast(object = emm_mod, 
-           method = specif_contrasts)
-confint(contrasts_ari)
+           method = specif_contrasts,
+           adjust = "scheffe") # Scheffe adjustment for all contrasts
+contrasts_noadjust <- 
+  contrast(object = emm_mod, 
+           method = specif_contrasts) # no adjustment
+confint(contrasts_noadjust)
 
 
 ## Part 2: Multiple testing adjustments
 ?p.adjust.methods
 summary_contrasts <- summary(contrasts_ari)
-p.adjust(p = summary$p.value, method = "holm")
+p.adjust(p = summary$p.value, method = "holm") # Holm-Bonferroni method
 # Alternative: give a vector of p-values and a method
 # can also use n (n>p) if you are only 
 # passing the smallest p-values
 
+## Part 3: effect size
+# From library emmeans
+effect_size <- 
+  emmeans::eff_size(
+  object = emm_mod,
+  sigma = sigma(mod), 
+  edf = df.residual(mod)
+  )
+
+# effect size for custom contrasts
+effect_size_contrast <- 
+  emmeans::eff_size(
+    object = contrasts_noadjust,
+    sigma = sigma(mod), 
+    edf = df.residual(mod)
+  )
+# Compare with confidence intervals from 
+confint(contrasts_noadjust)
+
+## Part 4: power 
+
+# Size of effect
+f <- pwr::cohen.ES(test = "anov",
+                   size = "small")$effect.size
+# f is R2/(1-R2), and f = sqrt(Delta/n)
+# When k=2 groups, f=d/2 where d is Cohen's d
+pwr_curve <- pwr::pwr.anova.test(
+  k = 5, # number of groups
+  power = 0.8, # power
+  sig.level = 0.05, # level alpha 
+  f = f # size of effect
+)
+plot(pwr_curve)
+
+# Suppose we look instead at what effect size we could detect
+pwr::pwr.anova.test(
+  k = 5, # number of groups
+  power = 0.8, # power
+  sig.level = 0.05, # level alpha 
+  n = 9 # size of effect
+)
+
+# load package (companion to applied regression)
+library(car)
+plot(mod, which = 1:3)
+# Test of equality of variance
+car::leveneTest(mod)
+# quantile-quantile plot
+# If observations are normal
+# points should be aligned
+# points should fall (roughly) 
+qqplot <- car::qqPlot(mod, reps = 1000)

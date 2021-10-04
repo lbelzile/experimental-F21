@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Power, effects and model assumptions</title>
+    <title>Effect size and power</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-01" />
+    <meta name="date" content="2021-10-03" />
     <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -33,7 +33,7 @@
 
 class: center middle main-title section-title-1
 
-# Power and model assumptions
+# Effect size and power
 
 .class-info[
 
@@ -53,16 +53,158 @@ class: title title-inv-1
 # Outline
 --
 
+.box-4.medium.sp-after-half[Effect sizes]
+
+--
+
 .box-7.medium.sp-after-half[Power]
 
---
-
-.box-3.medium.sp-after-half[Effect and sample sizes]
-
---
 
 
-.box-2.medium.sp-after-half[Model assumptions]
+---
+layout: false
+name: effect
+class: center middle section-title section-title-4 animated fadeIn
+
+# Effect size
+
+---
+
+
+class: title title-4
+# Example from the OSC psychology replication
+
+
+
+&gt; The key statistics provided in the paper to test the “depletion” hypothesis is the main effect of a one-way ANOVA with three experimental conditions and confirmatory information processing as the dependent variable ( `\(F(2, 82) = 4.05\)`, `\(p = 0.02\)`, `\(\eta^2 = 0.09\)`). Considering the original effect size and an alpha of `\(0.05\)` the sample size needed to achieve `\(90\)`% power is `\(132\)` subjects.
+
+.small[
+Replication report of Fischer, Greitemeyer, and Frey (2008, JPSP, Study 2) by E.M. Galliani
+]
+
+
+.box-inv-4.medium[Q: What is the sample size for given power?]
+
+---
+
+class: title title-4
+# Measures of effects
+
+`\(F\)`-statistics and `\(p\)`-values are not good summaries of effect size:
+
+- the larger the sample size, the bigger the statistic
+
+Instead use
+
+- standardized differences/measures
+- percentage of variability explained
+
+
+Popularized in the handbook
+&gt; Cohen, Jacob. Statistical Power Analysis for the Behavioral Sciences, 2nd ed., Routhledge, 1988.
+
+
+
+---
+class: title title-4
+# Cohen's _d_
+
+Standardized measure of effect (dimensionless=no units): 
+
+e.g., for a comparison between two groups:
+
+`$$\begin{align*}
+d = \frac{\widehat{\mu}_1 - \widehat{\mu}_2}{\widehat{\sigma}}
+\end{align*}$$`
+where `\(\widehat{\sigma}\)` is the pooled variance.
+
+
+
+.small[Note: a finite sample correction (Hedge) can be used.]
+
+Cohen's _d_ is sometimes reported in terms of effect size
+- small (_d=0.2_), medium (_d=0.5_) or large (_d=0.8_).
+
+???
+
+Note: this is not the `\(t\)`-statistic (the denominator is the estimated standard deviation, not the standard error of the mean
+
+Note that there are multiple versions of Cohen's coefficients. 
+These are the effects of the pwr package.
+The small/medium/large effect size varies depending on the test! See the vignette of pwr for defaults.
+
+---
+class: title title-4
+# Cohen's _f_
+
+With more than two groups, compare the squared difference between overall mean and group mean assuming equal variance
+
+`$$\begin{align*}
+f^2 = \frac{1}{\widehat{\sigma}^2} \sum_{j=1}^k \frac{n_j}{n}(\widehat{\mu}_j - \widehat{\mu})^2,
+\end{align*}$$`
+a weighted sum of squared difference relative to the overall mean `\(\mu\)`.
+
+For `\(k=2\)` groups, `\(f=d/2\)`.
+
+---
+class: title title-4
+# `\(R^2\)` and `\(\eta^2\)`
+
+Can break down the variability for sum of squares as 'total = within + between'.
+
+Define the percentage of variability explained by `\(\text{effect}\)`.
+`$$\eta^2 = \frac{\text{explained variability}}{\text{total variability}}$$`
+
+
+The sample estimate is `\(R^2\)`, the coefficient of determination
+
+&lt;!--
+ Often, you see instead the following reported
+ `$$R^2_p = \frac{\mathsf{SS}_{\text{effect}}}{\mathsf{SS}_{\text{error}}+\mathsf{SS}_{\text{effect}}}.$$`
+
+For one-way ANOVA (no repeated measurements), the two are equivalent.
+--&gt;
+
+---
+class: title title-4
+# Coefficient of determination
+
+For the balanced one-way ANOVA with exhaustive factors=all possible choices in the population, write
+
+`$$\begin{align*}
+R^2 = \frac{F\nu_1}{F\nu_1 + \nu_2}
+\end{align*}$$`
+where `\(\nu_1 = k-1\)` and `\(\nu_2 = n-k\)` for the one-way ANOVA. 
+
+
+For the replication example, `$$R^2 = \frac{4.05\times 2}{4.05\times 2 + 84} = 0.088 \approx 0.09$$` as reported.
+
+
+---
+class: title title-4
+# `\(\omega^2\)` square
+
+Another (populat) measure of effect size.
+
+For one-way ANOVA, a transformation of the `\(F\)`-statistic gives
+
+`$$\begin{align*}
+\omega^2 = \frac{\nu_1 (F-1)}{\nu_1(F-1)+n}
+\end{align*}$$`
+
+???
+
+Since the `\(F\)` statistic is approximately 1 on average, this measure removes the average.
+
+---
+
+class: title title-4
+# Comments on effect estimates
+
+- There are two variants: population quantities (e.g., `\(\eta^2\)`) that depend on unknown parameters and sample estimates (e.g., `\(R^2\)`)
+- In more complicated models, we can look at partial effects (proportion of variance relative to that of errors)
+- Every effect size estimator is random (because its inputs are)
+- Report confidence intervals with estimates whenever possible
 
 
 ---
@@ -200,7 +342,7 @@ What happens to the numerator?
 \end{align*}$$`
 where
 `$$\begin{align*}
-\Delta = \dfrac{\sum_{j=1}^K n_j(\mu_j - \mu)^2}{\sigma^2}.
+\Delta = \dfrac{\sum_{j=1}^K n_j(\mu_j - \mu)^2}{\sigma^2} = nf^2.
 \end{align*}$$`
 
 Under the null hypothesis, `\(\mu_j=\mu\)` for `\(j=1, \ldots, K\)` and `\(\Delta=0\)`.
@@ -262,21 +404,6 @@ Given a value of `\(\Delta\)`, we can compute the tail probability as follows
     lower.tail = FALSE)`
 ]
 
----
-class: title title-7
-# Example from the OSC psychology replication
-
-
-
-&gt; The key statistics provided in the paper to test the “depletion” hypothesis is the main effect of a one-way ANOVA with three experimental conditions and confirmatory information processing as the dependent variable ( `\(F(2, 82) = 4.05\)`, `\(p = 0.02\)`, `\(\eta^2 = 0.09\)`). Considering the original effect size and an alpha of `\(0.05\)` the sample
-size needed to achieve `\(90\)`% power is `\(132\)` subjects.
-
-.small[
-Replication report of Fischer, Greitemeyer, and Frey (2008, JPSP, Study 2) by E.M. Galliani
-]
-
-
-.box-inv-7.medium[Q: What is the sample size for given power?]
 
 ---
 class: title title-7
@@ -411,104 +538,6 @@ When is this relevant? If the observed difference seem important (large), but th
 Not recommended unless the observed differences among
 the means seem important in practice but
 are not statistically significant
-
----
-layout: false
-name: effect
-class: center middle section-title section-title-4 animated fadeIn
-
-# Effect size
-
----
-class: title title-4
-# Measures of effects
-
-Multiple alternatives
-
-- standardized differences/measures
-- percentage of variability explained (ratio of sum of squares or coefficients of determination).
-
-They are all interrelated, but different people have different preferences.
-
-Popularized in the handbook
-&gt; Cohen, Jacob. Statistical Power Analysis for the Behavioral Sciences, 2nd ed., Routhledge, 1988.
-
-
-
----
-class: title title-4
-# Cohen's _d_
-
-Popular standardized measure of effect (dimensionless=no units): 
-
-e.g., for a two-sample `\(t\)`-test between groups (comparing two means):
-
-`$$\begin{align*}
-d = \frac{\widehat{\mu}_1 - \widehat{\mu}_2}{\widehat{\sigma}}
-\end{align*}$$`
-where `\(\widehat{\sigma}\)` is the pooled variance.
-.small[Note: a finite sample correction (Hedge) can be used.]
-
-Cohen's `\(d\)` is sometimes reported in terms of effect size
-- small ( `\(d=0.2\)` ), medium ( `\(d=0.5\)` ) or large ( `\(d=0.8\)` ) effect: these values change from one test to the next (above is for the two-sample _t_-test).
-
-???
-
-Note that there are multiple versions of Cohen's coefficients. 
-These are the effects of the pwr package.
-The small/medium/large effect size varies depending on the test! See the vignette of pwr for defaults.
-
----
-class: title title-4
-# Eta-squared
-
-Can break down the variability for sum of squares as 'total = within + between'.
-Define the percentage of variability explained by `\(\text{effect}\)`.
-`$$\eta^2 = \frac{\mathsf{SS}_{\text{effect}}}{\mathsf{SS}_{\text{total}}},$$`
-Problem: this depends on the variability of the measurement. Often, in more complex design, you see instead the following reported
-`$$\eta^2 = \frac{\mathsf{SS}_{\text{effect}}}{\mathsf{SS}_{\text{error}}+\mathsf{SS}_{\text{effect}}}.$$`
-
-For one-way ANOVA (no repeated measurements), the two are equivalent.
-
----
-class: title title-4
-# Eta-squared
-
-For the balanced one-way ANOVA with exhaustive factors=all possible choices in the population, write
-
-`$$\begin{align*}
-\eta^2 = \frac{F\nu_1}{F\nu_1 + \nu_2}
-\end{align*}$$`
-
-For the replication example, `$$\eta^2 = \frac{4.05\times 2}{4.05\times 2 + 84} = 0.088 \approx 0.09$$`
-
-
----
-class: title title-4
-# Omega square
-
-Yet another measure of effect size.
-
-For one-way ANOVA, a transformation of the `\(F\)`-statistic gives
-
-`$$\begin{align*}
-\omega^2 = \frac{\nu_1 (F-1)}{\nu_1(F-1)+n}
-\end{align*}$$`
-
-Partial versions for more complex designs, etc.
-
-.box-inv-4[Uncertainty matters!]
-
-Every effect size is random (because inputs are)
-
-Report confidence intervals with estimates.
-
----
-layout: false
-name: model-assumptions
-class: center middle section-title section-title-2 animated fadeIn
-
-# Model assumptions
 
 
     </textarea>

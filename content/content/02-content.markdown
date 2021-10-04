@@ -41,6 +41,7 @@ At the end of the session, students should be capable of
 ## Complementary readings
 
 -   <i class="fas fa-file-o"></i> [Laboratory 4: ANOVA by Matthew Crump (illustrations)](https://www.crumplab.com/rstatsmethods/articles/Stats2/Lab4_ANOVA.html)
+-   <i class="fas fa-book"></i> Chapter 3 of Keppel & Wickens (2004).
 
 ## Slides
 
@@ -129,3 +130,13 @@ This material by [Dr. Andrew Heiss](https://www.andrewheiss.com/) nicely goes o
 -->
 
 ## References
+
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+
+<div id="ref-Keppel/Wickens:2004" class="csl-entry">
+
+Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
+
+</div>
+
+</div>
