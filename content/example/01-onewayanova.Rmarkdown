@@ -27,7 +27,9 @@ slide_details <- tibble::tribble(
 "Creating graphics", "lNUC5_Tws9M",
 "F-statistic table", "7ysgXYx6Rwg",
 "Contrasts and estimated marginal means", "KJ99KgeApNs",
-"Multiple testing", "dM1IkaVFy6w"
+"Multiple testing", "dM1IkaVFy6w",
+"Effect size", "hD7HBU1EyDk",
+"Power", "W7mUTKruk_s"
 )
 
 ```

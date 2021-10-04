@@ -128,54 +128,50 @@ p.adjust(p = summary$p.value, method = "holm") # Holm-Bonferroni method
 # passing the smallest p-values
 
 ## Part 3: effect size
-# From library emmeans
-effect_size <- 
-  emmeans::eff_size(
-  object = emm_mod,
-  sigma = sigma(mod), 
-  edf = df.residual(mod)
-  )
+emm_mod <- emmeans(object = mod, specs = "group")
 
+omega_sq <- function(model){
+ stopifnot("lm" %in% class(model))
+  anovaF <- summary(model)$fstatistic
+   Fstat <- anovaF["value"]
+   nu1 <- anovaF["numdf"]
+  nu1*(Fstat[1] - 1)  / (nu1*(Fstat[1] - 1) + nobs(mod))
+}
+
+omeg2 <- omega_sq(mod)
+summary_mod <- summary(mod)
+rsquared <- summary_mod$r.squared
+# Cohen's f
+f <- sqrt(rsquared / (1 - rsquared))
+
+# effect size for pairwise difference
+effect_size <- emmeans::eff_size(object = emm_mod,
+                                 sigma = sigma(mod),
+                                 edf = df.residual(mod))
 # effect size for custom contrasts
-effect_size_contrast <- 
-  emmeans::eff_size(
-    object = contrasts_noadjust,
-    sigma = sigma(mod), 
-    edf = df.residual(mod)
-  )
-# Compare with confidence intervals from 
+emmeans::eff_size(object = contrasts_noadjust,
+                  method = "identity",
+                  sigma = sigma(mod),
+                  edf = df.residual(mod))
 confint(contrasts_noadjust)
 
-## Part 4: power 
+## Part 4: power
 
-# Size of effect
-f <- pwr::cohen.ES(test = "anov",
-                   size = "small")$effect.size
-# f is R2/(1-R2), and f = sqrt(Delta/n)
+# The pwr package uses Cohen's estimates
+# Cohen's f is R2/(1-R2), and f = sqrt(Delta/n)
 # When k=2 groups, f=d/2 where d is Cohen's d
-pwr_curve <- pwr::pwr.anova.test(
-  k = 5, # number of groups
-  power = 0.8, # power
-  sig.level = 0.05, # level alpha 
-  f = f # size of effect
-)
+f_medium <- pwr::cohen.ES(test = "anov", 
+                          size = "medium")
+
+# Compute number of observations to detect
+#  differences given effect size
+pwr_curve <- 
+  pwr::pwr.anova.test(k = 5, 
+                     f = f_medium$effect.size, 
+                     power = 0.9)
+# Plot the power curve (power as fn of sample size)
 plot(pwr_curve)
-
-# Suppose we look instead at what effect size we could detect
-pwr::pwr.anova.test(
-  k = 5, # number of groups
-  power = 0.8, # power
-  sig.level = 0.05, # level alpha 
-  n = 9 # size of effect
-)
-
-# load package (companion to applied regression)
-library(car)
-plot(mod, which = 1:3)
-# Test of equality of variance
-car::leveneTest(mod)
-# quantile-quantile plot
-# If observations are normal
-# points should be aligned
-# points should fall (roughly) 
-qqplot <- car::qqPlot(mod, reps = 1000)
+pwr::pwr.anova.test(k = 5, #number of groups
+                    n = 9, #number of obs per group
+                    power = 0.9, # power,
+                    sig.level = 0.05) # level
