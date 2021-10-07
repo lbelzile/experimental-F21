@@ -1,6 +1,6 @@
 ---
-title: "One-way analysis of variance"
-linktitle: "1. One way ANOVA"
+title: "Introduction"
+linktitle: "1. Introduction"
 date: "2021-09-11"
 menu:
   example:
@@ -14,8 +14,6 @@ bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
 ---
 
-<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
-<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 <link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
@@ -31,11 +29,6 @@ There’s a set of videos that walks through each section below. To make it easi
 -   [Cleaning and transforming data](https://www.youtube.com/watch?v=1YYlLZ90Vas&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
 -   [Summary statistics](https://www.youtube.com/watch?v=PvHFsiuase0&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
 -   [Creating graphics](https://www.youtube.com/watch?v=lNUC5_Tws9M&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [F-statistic table](https://www.youtube.com/watch?v=7ysgXYx6Rwg&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Contrasts and estimated marginal means](https://www.youtube.com/watch?v=KJ99KgeApNs&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Multiple testing](https://www.youtube.com/watch?v=dM1IkaVFy6w&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Effect size](https://www.youtube.com/watch?v=hD7HBU1EyDk&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Power](https://www.youtube.com/watch?v=W7mUTKruk_s&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
 
 You can also watch the playlist (and skip around to different sections) here:
 
@@ -68,7 +61,7 @@ Depending on the format (particularly if you have SAS, SPSS or Stata formatted d
 
 We consider data from Baumann et al. (1992). The abstract of the paper provides a brief description of the study
 
-> This study investigated the effectiveness of explicit instruction in think aloud as a means to promote elementary students’ comprehension monitoring abilities. Sixty-six fourth-grade students were randomly assigned to one of three experimental groups: (a) a Think-Aloud (TA) group, in which students were taught various comprehension monitoring strategies for reading stories (e.g., self-questioning, prediction, retelling, rereading) through the medium of thinking aloud; (b) a Directed Reading-Thinking Activity (DRTA) group, in which students were taught a predict-verify strategy for reading and responding to stories; or (c) a Directed Reading Activity (DRA) group, an instructed control, in which students engaged in a noninteractive, guided reading of stories. The primary quantitative analyses involved two planned orthogonal contrasts—effect of instruction (TA + DRTA vs. 2 x DRA) and intensity of instruction (TA vs. DRTA)—for three whole-sample dependent measures: (a) an error detection test, (b) a comprehension monitoring questionnaire, and (c) a modified cloze test.
+> This study investigated the effectiveness of explicit instruction in think aloud as a means to promote elementary students’ comprehension monitoring abilities. Sixty-six fourth-grade students were randomly assigned to one of three experimental groups: (a) a Think-Aloud (TA) group, in which students were taught various comprehension monitoring strategies for reading stories (e.g., self-questioning, prediction, retelling, rereading) through the medium of thinking aloud; (b) a Directed Reading-Thinking Activity (DRTA) group, in which students were taught a predict-verify strategy for reading and responding to stories; or (c) a Directed Reading Activity (DRA) group, an instructed control, in which students engaged in a noninteractive, guided reading of stories.
 
 We have multiple columns for each of the tests (pre-intervention and post-intervention) from Baumann et al. (1992). For the time being, we focus on the first, `pretest`, which was used to act as control and to ensure that the random allocation of students to the three treatment groups resulted in similar average performances. This allows allows us to perform paired comparisons at a later stage by subtracting post- and pre-intervention scores to check their progress.
 
@@ -234,109 +227,14 @@ ggplot(data = reading,
 
 <div class="figure">
 
-<img src="/example/01-onewayanova_files/figure-html/graphics-1.png" alt="Results of pretest 1 based on treatment allocation." width="672" />
+<img src="/example/01-introduction_files/figure-html/graphics-1.png" alt="Results of pretest 1 based on treatment allocation." width="672" />
 <p class="caption">
 Figure 1: Results of pretest 1 based on treatment allocation.
 </p>
 
 </div>
 
-## Hypothesis testing
-
-We are now ready to compute the one-way analysis of variance table, which includes quantities that enter the *F*-statistic (named after its large-sample null distribution, which is an *F*-distribution). The *F* stands for Fisher, who pioneered much of the work on experimental design.
-
-We use the `lm` function function to fit the model: an analysis of variance is a special case of linear model, in which the explanatory variables are categorical variables.
-The first argument of the function is a formula `response ~ treatment`, where `treatment` is the factor or categorical variable indicating the treatment.
-
-The function `anova` is a method: when applied to the result of a call to `lm`, it produces an analysis of variance table including amount other things the following relevant information:
-
-1.  the value of the test statistic (`F value`)
-2.  the between and within sum of square (these are quantities that enter in the formula of the statistic)
-3.  the degrees of freedom of the *F* null distribution (column `Df`): these specify the parameters of the large-sample approximation for the null distribution, which is our default benchmark.
-4.  The *p*-value (`Pr(>F)`), which gives the probability of observing an outcome as extreme if there was no difference.
-
-We need to decide beforehand the level of the test (typically 5% or lower): this is the percentage of times we will reject the null hypothesis when its true based on observing an extreme outcome. We are asked to perform a binary decision (reject or fail to reject): if the *p*-value is less than the level, we ‘reject’ the null hypothesis of equal (population) means.
-
-``` r
-pretest1_anova <- lm(formula = pretest1 ~ group,
-                     data = reading)
-anova_table <- anova(pretest1_anova)
-# Save the output in a tibble with more meaningful column names
-anova_tab <- broom::tidy(anova_table)
-# Elements include `statistic`, `df`, `p.value`
-```
-
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<caption>
-Table 2: Analysis of variance table
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-Terms
-</th>
-<th style="text-align:right;">
-Degrees of freedom
-</th>
-<th style="text-align:right;">
-Sum of squares
-</th>
-<th style="text-align:right;">
-Mean square
-</th>
-<th style="text-align:right;">
-Statistic
-</th>
-<th style="text-align:right;">
-p-value
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-group
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-20.58
-</td>
-<td style="text-align:right;">
-10.288
-</td>
-<td style="text-align:right;">
-1.13
-</td>
-<td style="text-align:right;">
-0.33
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Residuals
-</td>
-<td style="text-align:right;">
-63
-</td>
-<td style="text-align:right;">
-572.45
-</td>
-<td style="text-align:right;">
-9.087
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-</tbody>
-</table>
-
-There isn’t strong evidence of difference in strength between groups prior to intervention. We can report the findings as follows:
-
-We carried a one-way analysis for the pre-test results to ensure that the group abilities are the same in each treatment group; results show no significant differences at the 5% level ($F$ (2, 63) = 1.13, `\(p\)` = 0.329).
+## References
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 

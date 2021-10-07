@@ -4,7 +4,7 @@
     <title>One way ANOVA</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-04" />
+    <meta name="date" content="2021-10-06" />
     <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -561,7 +561,7 @@ The pairwise differences (_p_-values) and confidence intervals for groups `\(j\)
 `\begin{align*}
 t = \frac{(\widehat{\mu}_j - \widehat{\mu}_k) - 0}{\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)}
 \end{align*}`
-which has a null `\(\mathcal{T}(n-k)\)` distribution.
+which has a null `\(\mathsf{St}(n-k)\)` distribution.
 
 The standard error `\(\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)\)` uses the pooled variance estimate, i.e., the within sum of squares divided by `\(n-K\)`
 

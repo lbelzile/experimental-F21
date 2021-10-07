@@ -1,0 +1,71 @@
+---
+title: "Analysis of variance for two factors"
+linktitle: "6: Analysis of variance for two factors"
+date: "2021-10-04"
+start_date: "2021-10-04"
+end_date: "2021-10-08"
+menu:
+  content:
+    parent: Course content
+    weight: 6
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "06-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "Effect size", "effect", FALSE,
+  "", "Power", "power", FALSE,
+)
+```
+
+## Content
+
+- Two way designs
+- Blocking factor
+- Interactions
+- Power, effect size and contrasts for two way designs
+
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+- test whether an interaction term is significant
+- estimate the sample size needed for a two way study
+- explain the benefit of blocking factors and concomitant variables
+- correctly report findings for a two-way analysis of variance
+
+## Readings
+
+- Chapters [26](https://dzchilds.github.io/stats-for-bio/two-way-anova-intro.html) and [27](https://dzchilds.github.io/stats-for-bio/two-way-anova-in-r.html) from APS 240: **Data Analysis and Statistics with R**
+
+
+## Complementary readings
+
+- <i class="fas fa-book"></i> Chapter 6 of @Dean:2017.
+- <i class="fas fa-book"></i> Chapters 10 to 12 of @Keppel/Wickens:2004.
+
+<!--
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/05-slides.html")
+```
+
+-->
+
+## References

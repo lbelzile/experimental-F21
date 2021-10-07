@@ -590,7 +590,7 @@ The pairwise differences (_p_-values) and confidence intervals for groups $j$ an
 \begin{align*}
 t = \frac{(\widehat{\mu}_j - \widehat{\mu}_k) - 0}{\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)}
 \end{align*}
-which has a null $\mathcal{T}(n-k)$ distribution.
+which has a null $\mathsf{St}(n-k)$ distribution.
 
 The standard error $\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)$ uses the pooled variance estimate, i.e., the within sum of squares divided by $n-K$
 
