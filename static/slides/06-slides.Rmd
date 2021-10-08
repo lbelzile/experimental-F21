@@ -1,0 +1,637 @@
+---
+title: "Two-way designs"
+author: "Léo Belzile"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: false
+      countIncrementalSlides: false
+      ratio: "16:9"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE, 
+                      fig.retina = 3, 
+                      fig.align = "center",
+                      fig.width = 10,
+                      fig.asp = 0.618,
+                      out.width = "70%")
+```
+```{r packages-data, echo = FALSE, include=FALSE}
+library(knitr)
+options(knitr.kable.NA = '')
+options(tidyverse.quiet = TRUE)
+options(knitr.table.format = "html")
+library(tidyverse)
+library(patchwork)
+```
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","freezeframe","panelset","clipboard","broadcast"))
+```
+
+class: center middle main-title section-title-1
+
+# ANOVA for two factor experiments
+
+.class-info[
+
+**Session 6**
+
+.light[MATH 80667A: Experimental Design and Statistical Methods <br>for Quantitative Research in Management <br>
+HEC Montréal
+]
+
+]
+
+---
+
+name: outline
+class: title title-inv-1
+
+# Outline
+--
+
+
+.box-4.medium.sp-after-half[Factorial designs and interactions]
+
+--
+
+.box-5.medium.sp-after-half[Model formulation]
+
+--
+
+.box-6.medium.sp-after-half[Effect size, contrasts and power]
+
+
+---
+
+
+
+layout: false
+name: factorial-interaction
+class: center middle section-title section-title-4 animated fadeIn
+
+# Factorial designs and interactions
+
+---
+
+
+class: title title-4
+
+# Example from the OSC psychology replication
+
+> People can be influenced by the prior consideration of a numerical anchor when forming numerical judgments. [...]  The anchor provides an initial starting point from which estimates are adjusted, and a large body of research demonstrates that adjustment is usually insufficient, leading estimates to be biased towards the initial anchor.
+
+.small[
+[Replication of Study 4a of Janiszewski & Uy (2008, Psychological Science) by J. Chandler](https://osf.io/aaudl/)
+]
+
+???
+
+People can be influenced by the prior consideration of a numerical anchor when forming numerical judgments. The anchor provides an initial starting point from which estimates are adjusted, and a large body of research demonstrates that adjustment is usually insufficient, leading estimates to be biased towards the initial anchor. Extending this work, Janiszewski and Uy (2008) conceptualized people's attempt to adjust following presentation of an anchor as movement along a subjective representation scale by a certain number of units. Precise numbers (e.g. 9.99) imply a finer-resolution scale than round numbers (e.g. 10). Consequently, adjustment along a subjectively finer resolution scale will result in less objective adjustment than adjustment by the same number of units along a subjectively coarse resolution scale. 
+
+In three experimental studies the authors demonstrate this predicted basic effect and rule out various alternative explanations. Two additional studies (4a and b) found that this effect was especially strong when people were explicitly given more motivation to adjust their estimates (e.g., by implying that the initial anchor substantially overestimated the price). 
+
+---
+class: title title-4
+# Motivating example
+
+
+Consider a study on the retention of information to children age 4 to which we read a story two hours after the reading.
+
+We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) to impact their retention.
+
+
+.large[
+
+```{r, echo=FALSE, warning=FALSE, cache = TRUE}
+library(gt)
+library(gtsummary)
+# list of all the icons used in table
+path_figure <- list(
+  "img/06/icons8-smiling-100.png",
+  "img/06/icons8-disappointed-100.png",
+  "img/06/icons8-neutral-100.png"
+)
+# making table with gt
+list(
+ ending = c("happy", "sad", "neutral"),
+  complexity = c("complicated", "average", "simple")
+) %>%
+  purrr::cross_df() %>%
+  dplyr::mutate(response = rep(1:3, each = 3)) %>%
+  tidyr::pivot_wider(id_cols = complexity, 
+                     names_from = ending,
+                     values_from = response) %>%
+  gt() %>%
+  # cols_hide(columns = c(ending)) %>%
+  data_color(
+    columns = c(happy,sad,neutral),#c(complicated,normal,simple),
+    colors = scales::col_factor(
+      palette = c("#bae1ff","#ffdfba","#ffb3ba"),
+      domain = NULL,
+      ordered = TRUE,
+      reverse = TRUE
+    ),
+    alpha = 0.8
+  ) %>%
+  text_transform(
+    locations = cells_body(columns = c(happy)),
+    fn = function(x) {
+      local_image(filename = path_figure[[1]])
+    }) %>%
+   text_transform(
+    locations = cells_body(columns = c(sad)),
+    fn = function(x) {
+      local_image(filename = path_figure[[2]])
+    }) %>%
+   text_transform(
+    locations = cells_body(columns = c(neutral)),
+    fn = function(x) {
+      local_image(filename = path_figure[[3]])
+    }) %>%
+  cols_width(c(happy,sad,neutral) ~ px(60))
+```
+
+]
+
+---
+class: title title-4
+# Why factorial designs?
+
+To study the impact of story complexity and ending, we could run a series of one-way ANOVA.
+
+Factorial design is more efficient: can study the impact of multiple variables.
+
+???
+
+To study each interaction (complexity, story book ending) we would need to make three group for each comparison in rows, and one in each column. So a total of 6 one-way ANOVA each with 3 groups
+
+---
+class: title title-4
+
+# Estimates
+
+- **Factorial design**: study with multiple factors (subgroups)
+- **simple effects**: difference between levels of one in a fixed combination of others (change in difficulty for happy ending)
+- **main effects**: differences relative to average for each condition of a factor (happy vs neutral vs sad ending)
+- **interaction effects**: when simple effects differ depending on levels of another factor
+
+
+???
+
+Simple effects are estimates from each ANOVA (either ending or difficulty of story) - so comparisons of cells within a given row or column
+
+Main effects are row/column averages
+
+Interactions effects are difference relative to the row or column average
+
+---
+class: title title-4
+# Interaction
+
+An interaction is present when the effect of one factor depends on the levels of another factor.
+
+
+
+
+```{r interaction_plots2, echo = FALSE, fig.asp=0.5, cache=TRUE}
+set.seed(1234)
+data_fake <- tibble::tibble(
+  "ending" = factor(c("happy","sad","neutral")),
+  "complexity" = factor(c("complicated","average","simple"))) %>%
+  purrr::cross_df()  %>%
+  mutate(image = rep(unlist(path_figure), length.out = 9),
+         mean = 10 + rnorm(n = 9)
+        )
+
+g1 <- ggplot(data = data_fake,
+       aes(x=complexity, y = mean)) +
+  geom_line(aes(group = ending, linetype = ending), 
+            alpha = 0.1) +
+  ggimage::geom_image(aes(image = image),
+                      size = 0.1, 
+                      by = "width", 
+                      asp = 1.618) +
+  # geom_point(size = 2.6, aes(shape = ending)) +
+  theme_classic() + 
+  theme(legend.position = "bottom") +
+  labs(title = "Lines are not parallel = interaction")
+g2 <- ggplot(data = data_fake,
+       aes(x=ending, 
+           y = mean,
+           group = complexity, 
+           color = complexity)) +
+   scale_color_manual(
+    values = c("#ffdfba","#ffb3ba","#bae1ff")) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2.6, shape = 15) +
+  theme_classic() + 
+  theme(legend.position = "bottom")
+
+g1 + g2
+```
+
+---
+class: title title-4
+# Lack of interaction
+
+```{r interaction_plots1, echo = FALSE, fig.asp = 0.5, out.width = '60%', cache = TRUE}
+set.seed(1234)
+data_fake <- tibble::tibble(
+  "ending" = factor(c("happy","sad","neutral")),
+  "complexity" = factor(c("complicated","average","simple"))) %>%
+  purrr::cross_df()  %>%
+  mutate(image = rep(unlist(path_figure), length.out = 9),
+         mean = 10 + rep(rnorm(n = 3), each = 3) + rep(rexp(n = 3, rate = 1/3), length.out = 9)
+         # c(4,5,6,9,10,11,8,9,10)
+        )
+
+g1 <- ggplot(data = data_fake,
+       aes(x=complexity, y = mean)) +
+  geom_line(aes(group = ending, linetype = ending), 
+            alpha = 0.1) +
+  ggimage::geom_image(aes(image = image),
+                      size = 0.1, 
+                      by = "width", 
+                      asp = 1.618) +
+  # geom_point(size = 2.6, aes(shape = ending)) +
+  theme_classic() + 
+  theme(legend.position = "bottom") +
+  labs(title = "Lines are parallel = no interaction")
+g2 <- ggplot(data = data_fake,
+       aes(x=ending, 
+           y = mean,
+           group = complexity, 
+           color = complexity)) +
+   scale_color_manual(
+    values = c("#ffdfba","#ffb3ba","#bae1ff")) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2.6, shape = 15) +
+  theme_classic() + 
+  theme(legend.position = "bottom")
+
+g1 + g2
+```
+
+.small[
+In practice, the sample average are uncertain! 
+
+- Plot averages with confidence intervals or $\pm 1$ standard error.
+]
+???
+
+If lines are parallel, there is no interaction
+
+---
+
+layout: false
+name: formulation
+class: center middle section-title section-title-5 animated fadeIn
+
+# Model formulation
+
+---
+class: title title-5
+# Formulation of the two-way ANOVA
+
+Two factors: $A$ (complexity) and $B$ (ending) with $a$ and $b$ levels.
+
+Write the average response $Y_{ijk}$ of the $k$th measurement in the group $(A_i, B_j)$ as
+$$Y_{ijk} = \mu_{ij} + \varepsilon_{ijk}$$
+where 
+
+- $Y_{ijk}$ is the $k$th replicate for $i$th level of factor $A$ and $j$th level of factor $B$
+- $\varepsilon_{ijk}$ are independent error terms with mean zero and variance $\sigma^2$.
+
+.box-inv-5.wide[Two-way ANOVA model with interaction: one average for each subgroup]
+
+---
+class: title title-5
+# Hypothesis tests
+
+.box-inv-5.sp-after-half[
+Interaction between factors $A$ and $B$
+]
+
+$\mathscr{H}_0$: no interaction between factors $A$ and $B$ vs $\mathscr{H}_a$: there is an interaction
+
+.box-inv-5.sp-after-half[
+Main effect of factor $A$
+]
+
+$\mathscr{H}_0$: $\mu_{1.} = \cdots = \mu_{a.}$ vs $\mathscr{H}_a$: at least two marginal means of $A$ are different
+.box-inv-5.sp-after-half[
+Main effect of factor $B$
+]
+
+$\mathscr{H}_0$: $\mu_{.1} = \cdots = \mu_{.b}$ vs $\mathscr{H}_a$: at least two marginal means of $B$ are different
+
+---
+class: title title-5
+# Reparametrization
+
+.small[
+- Mean of $A_i$ (average of row $i$): 
+$$\mu_{i.} = \frac{\mu_{i1} + \cdots + \mu_{ib}}{b}$$
+- Mean of $B_j$ (average of column $j$):
+$$\mu_{.j} = \frac{\mu_{1j} + \cdots + \mu_{aj}}{a}$$
+- Overall average:
+$$\mu = \frac{\sum_{i=1}^a \sum_{j=1}^b \mu_{ij}}{ab}$$
+]
+---
+class: title title-5
+# Formulation of the two-way ANOVA
+
+Write the model for a response variable $Y$ in terms of two factors $A_i$, $B_j$.
+
+$$Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \varepsilon_{ijk}$$
+with the parameters in the sum-to-zero constraints
+
+- $\alpha_i = \mu_{i.} - \mu$
+    - mean of level $A_i$ minus overall mean.
+- $\beta_j  = \mu_{.j} - \mu$
+    - mean of level $B_j$ minus overall mean.
+- $(\alpha\beta)_{ij} = \mu_{ij} - \mu_{i.} - \mu_{.j} + \mu$
+    - the interaction term for $A_i$ and $B_j$.
+
+???
+
+Specify the sum over any $i$ and $j$ of $(\alpha\beta)_{ij}$ is zero.
+
+---
+
+class: title title-5
+# Breaking down the variability
+
+For a **balanced** design, we can decompose the variability around sample means:
+
+$$\begin{align*}\mathsf{SS}_{\text{total}} &= \mathsf{SS}_{\text{model}} + \mathsf{SS}_{\mathsf{res}}
+\\&= \mathsf{SS}_{A} + \mathsf{SS}_{B} + \mathsf{SS}_{AB}+ \mathsf{SS}_{\mathsf{res}}\end{align*}$$
+
+.box-inv-5.large[Board work]
+
+---
+class: title title-5
+# Analysis of variance table
+
+.small[
+
+| term | degrees of freedom | mean square | $F$ | 
+|------|--------|------|--------|
+| $A$  | $a-1$   | $\mathsf{MS}_{A}=\mathsf{SS}_A/(a-1)$ | $\mathsf{MS}_{A}/\mathsf{MS}_{\text{res}}$ |
+| $B$  | $b-1$   | $\mathsf{MS}_{B}=\mathsf{SS}_B/(b-1)$ | $\mathsf{MS}_{B}/\mathsf{MS}_{\text{res}}$ |
+| $AB$ | $(a-1)(b-1)$ | $\mathsf{MS}_{AB}=\mathsf{SS}_{AB}/\{(a-1)(b-1)\}$ | $\mathsf{MS}_{AB}/\mathsf{MS}_{\text{res}}$ |
+| residuals | $n-ab$ | $\mathsf{MS}_{\text{res}}=\mathsf{SS}_{\text{res}}/ (n-ab)$ | |
+| total | $n-1$ | | 
+
+]
+
+
+
+.box-inv-5.sp-before[
+Factors are crossed, replicates are nested within $AB$ groups
+]
+
+---
+class: title title-5
+# Example: Fiber strength
+
+We consider a $5 \times 3$ factorial design (no interaction term).
+
+Consider five levels of application of potash
+
+- $T_1=36$, $T_2=54$, $T_3=72$, $T_4=108$ and $T_5=144$ lb K<sub>2</sub>O per acre, applied to a cotton crop. 
+
+The response is a measure of single-fiber strength, an average of a number of tests on the cotton from each plot.
+
+There were three blocks each containing five plots.
+
+---
+class: title title-5
+# Data on fiber strength
+
+.pull-left[
+
+```{r kableData, echo = FALSE}
+CoxCochran <- data.frame(
+  block = factor(rep(paste("block", 1:3), each = 5L)),
+  treatment = factor(rep(paste0("T", 1:5), length.out = 15L)),
+  measurements = c(7.62, 8.14, 7.76, 7.17, 7.46, 8.00, 8.15,
+                   7.73, 7.57, 7.68, 7.93, 7.87, 7.74, 7.80, 7.21)
+)
+knitr::kable(digits = c(0, rep(2, 5L)), 
+               caption = "Reordered data",
+  x = pivot_wider(data = CoxCochran,
+              values_from = measurements, 
+              names_from = treatment)
+)
+
+twowayANOVA <- lm(measurements ~ treatment + block, 
+                  data = CoxCochran)
+CoxCochran$residuals <- resid(twowayANOVA)
+```
+
+]
+
+.pull-right[
+
+```{r residualsTable, echo = FALSE}
+tab_resid <- CoxCochran %>% 
+  select(!measurements) %>%
+  pivot_wider(values_from = residuals, 
+              names_from = treatment)
+knitr::kable(digits = c(0, rep(2, 5L)), 
+               caption = "Residuals",
+  x = tab_resid
+)
+```
+
+
+
+]
+
+
+
+???
+From Cox (1958) Planning of experiments
+
+Sources of variability:
+ - cultivation and harvesting of the crop
+ - selection of fibers for the test
+ - strength testing
+ 
+---
+class: title title-5
+# Analysis of variance table
+
+```{r ANOVAtabCox, eval = TRUE, echo = FALSE}
+knitr::kable(car::Anova(twowayANOVA, type = "II"),
+             digits = c(3,0,3,3),
+             col.names = c("sum of squares",
+                           "df","F", "p-value"))
+```
+
+---
+class: title title-5
+# Some pending questions
+
+- Intuition behind degrees of freedom for the residuals?
+- No interaction term (why?)
+- Why blocking?
+
+--
+
+| $A$ \\ $B$ | $b_1$ | $b_2$ | $b_3$ | $b_4$ | $b_5$ | sum |
+|---|:---:|:---:|:---:|:---:|:--:|:--:|
+| $a_1$ | $AB_{11}$ | $AB_{12}$ | $AB_{13}$ |  $AB_{14}$ | $\mathsf{X}$ | $A_1$ |
+| $a_2$ | $AB_{21}$ | $AB_{22}$ | $AB_{23}$ | $AB_{24}$ | $\mathsf{X}$ | $A_2$ |
+| $a_3$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ |
+| **sum** | $B_1$ | $B_2$ | $B_3$ | $B_4$ | $\mathsf{X}$ | total |
+
+.tiny[ 
+Terms with $\mathsf{X}$ are fully determined by row/column/total averages
+
+]
+
+---
+
+
+
+---
+class: title title-5
+# Example from Keppel and Wichern (table)
+
+Consider errors by monkeys under three drug conditions ( $A$ ) and two degrees of food deprivation ( $B$ )
+
+
+.box-inv-5.sp-after-half[
+Data for the $3 \times 2$ factorial design
+]
+
+
+|  $A$ \\  $B$  | 1h deprivation | 24h deprivation|
+|----|:-----:|:-----:|
+| **Control** | 1, 4, 0, 7 | 15, 6, 10, 13 |
+| **Drug 1** | 13, 5, 7, 15 | 6, 18, 9, 15 |
+| **Drug 2** | 9, 16, 18, 13 | 14, 7, 6, 13 |
+
+.box-inv-5[**R** Demonstration]
+
+---
+
+layout: false
+name: effect-size-contrast-power
+class: center middle section-title section-title-6 animated fadeIn
+
+# Effect size, contrasts and power
+
+---
+class: title title-6
+# Noncentrality parameters
+
+Consider a balanced design with $n=a \times b \times k$ observations 
+
+For the mean squared errors, the expected values are
+
+$$\mathsf{E}(\mathsf{MS}_A) = \sigma^2 + \frac{bn}{a-1} \sum_{i=1}^a \alpha_i^2$$
+$$\mathsf{E}(\mathsf{MS}_{AB}) = \sigma^2 + \frac{n}{(a-1)(b-1)} \sum_{j=1}^b\sum_{i=1}^a (\alpha\beta)_{ij}^2$$
+
+
+Under the null hypothesis of no mean effect / interaction, these are thus unbiased estimators of the error variance.
+
+???
+
+$k$ replications for each level
+Under the null hypothesis of no mean effect / interaction, these are thus unbiased estimators of the error variance
+
+---
+class: title title-6
+# Effect size
+
+- We can report an estimate of the effect size for either of the main effects, for the interaction or overall.
+
+- For a power calculation, do the calculations with each effect (whose size is of **scientific interest** and select the largest sample size per group.
+
+- Given $F$ statistics and degrees of freedom, we can find different measures: Cohen's $f$, (partial) $\eta^2$ and $\omega^2$.
+- Check the book for formulae and `effectsize` for estimates in **R**.
+- Estimators of variability are noisy and biased
+
+---
+
+class: title title-6
+# Omega-squared and partial version
+
+.pull-left[
+The proportion of variance explained by the effect $T$ is 
+$$\omega^2_{\text{effect}} = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{total}}}.$$
+where $\sigma^2_{\text{total}}=\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{error}}$.
+
+]
+.pull-right[
+The partial $\omega^2$ for an effect is 
+$$\omega^2_{\langle \text{effect}\rangle} = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{effect}} + \sigma^2_{\text{resid}}}.$$
+
+These get replaced by estimates based on $F$ statistics and degrees of freedom (see Keppel & Wickens, p. 233).
+
+]
+
+The **R** package `effectsize` reports estimates with confidence intervals 
+
+.footnotesize[Reference: Steiger (2004), Psychological Methods]
+
+???
+
+The confidence intervals are based on the F distribution, by changing the noncentrality parameter and inverting the distribution function (pivot method). Since there is a one-to-one correspondance with Cohen's f, and a bijection between the latter and omega_sq_partial or eta_sq_partial. This yields asymmetric intervals.
+
+
+---
+class: title title-6
+# One way for the two-way
+
+We can cast the two-way model with an interaction as a one-way ANOVA with $ab$ levels.
+
+- Sometimes useful for using custom contrasts
+- Used for some procedures that do not support two-way designs (unequal variance model) or Levene's test
+
+---
+class: title title-6
+# Contrasts for the main effects
+
+In the interaction model, we cast the main effect in terms of parameters
+
+Say the order of the coefficients is drug ( $A$ ) and deprivation ( $B$ ).
+
+| test | $\mu_{11}$ | $\mu_{21}$ | $\mu_{31}$ | $\mu_{21}$ | $\mu_{22}$ | $\mu_{23}$ |
+|:--|--:|--:|--:|--:|--:|--:|
+| main effect $A$ (1 vs 2) |  $1$ | $-1$ | $0$ |  $1$ | $-1$ | $0$ |
+| main effect $A$ (1 vs 3) |    $1$ |  $0$ | $-1$ |  $1$ | $0$ | $-1$ |
+| main effect $B$ (1 vs 2) |    $1$ |  $1$ | $1$ |  $-1$ | $-1$ | $-1$ |
+| interaction $AB$ (1 vs 2) | $-1$ | $2$ | $-1$ | $1$ | $-2$ | $1$ |
+| interaction $AB$ (1 vs 3) | $-1$ | $2$ | $-1$ | $1$ | $-2$ | $1$ |
+
+---
+class: title title-6
+# Testing hypothesis of interest
+
+We only tests hypothesis that are of interest
+
+- If there is a significant interaction, the marginal means are not of interest
+- Rather, compute the simple effects.
+- What is the number of hypothesis of interest? Often, this is pairwise comparisons within each level of the other factor
+    - much less than $\binom{ab}{2}$ pairwise comparisons
+- Scheffé's method for all custom contrasts still applicable, but may be conservative
+- Tukey's method also continues to hold (or generalization thereof)
+- Omnibus procedures for controlling the FWER  (Holm-Bonferroni) may be more powerful.

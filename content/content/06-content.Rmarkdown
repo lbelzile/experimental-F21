@@ -23,8 +23,9 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
-  "", "Effect size", "effect", FALSE,
-  "", "Power", "power", FALSE,
+  "", "Factorial designs and interactions", "factorial-interaction", FALSE,
+  "", "Model formulation", "formulation", FALSE,
+  "", "Effect size, contrasts and power", "effect-size-contrast-power", FALSE,
 )
 ```
 
@@ -39,7 +40,10 @@ slide_details <- tibble::tribble(
 
 At the end of the session, students should be capable of
 
+- explain the benefits of factorial designs over one-way analysis of variance
+- explain the concept of interaction and produce plots of estimated marginal means
 - test whether an interaction term is significant
+- compute (partial) effect sizes in **R**
 - estimate the sample size needed for a two way study
 - explain the benefit of blocking factors and concomitant variables
 - correctly report findings for a two-way analysis of variance
@@ -54,7 +58,9 @@ At the end of the session, students should be capable of
 - <i class="fas fa-book"></i> Chapter 6 of @Dean:2017.
 - <i class="fas fa-book"></i> Chapters 10 to 12 of @Keppel/Wickens:2004.
 
-<!--
+## In class
+
+We covered three examples in class: one two-way design with a blocking factor (no interaction), a balanced design with fictious data from @Keppel/Wickens:2004 (Table 11.8) and finally data from a replication study (unbalanced). The code for these examples can be found in the [**R** script](/example/06-twowayanova.R).
 
 ## Slides
 
@@ -63,9 +69,8 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 `r blogdown::shortcode("slide-buttons")`
 
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/05-slides.html")
+slide_tabs(slide_details, "/slides/06-slides.html")
 ```
 
--->
 
 ## References

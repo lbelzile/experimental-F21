@@ -1,0 +1,14 @@
+base
+gt
+gtsummary
+ggplot2
+patchwork
+knitr
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
