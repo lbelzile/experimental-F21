@@ -620,7 +620,7 @@ Say the order of the coefficients is drug ( $A$ ) and deprivation ( $B$ ).
 | main effect $A$ (1 vs 3) |    $1$ |  $0$ | $-1$ |  $1$ | $0$ | $-1$ |
 | main effect $B$ (1 vs 2) |    $1$ |  $1$ | $1$ |  $-1$ | $-1$ | $-1$ |
 | interaction $AB$ (1 vs 2) | $-1$ | $2$ | $-1$ | $1$ | $-2$ | $1$ |
-| interaction $AB$ (1 vs 3) | $-1$ | $2$ | $-1$ | $1$ | $-2$ | $1$ |
+
 
 ---
 class: title title-6

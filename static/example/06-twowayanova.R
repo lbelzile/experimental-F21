@@ -4,6 +4,12 @@ url <- "https://edsm.rbind.io/data/KW_tab11p8.txt"
 monkey <- read.table(url, 
                      header = TRUE,
                      stringsAsFactors = TRUE)
+# Sum to zero parametrization for each factor
+linmod <- lm(errors ~ deprivation*drug, 
+             data = monkey,
+             contrasts = list(deprivation = contr.sum,
+                              drug = contr.sum))
+# Compare the coefficients with this
 linmod <- lm(errors ~ deprivation*drug, 
              data = monkey)
 # Anova table
@@ -13,7 +19,42 @@ effectsize::cohens_f(linmod, partial = TRUE)
 effectsize::omega_squared(linmod, partial = TRUE)
 effectsize::eta_squared(linmod, partial = TRUE)
 
+# Computing estimated marginal means, contrasts
+# Sum over each row, column is zero for coefficients
+# Main-effect-of-B contrast: B1-B2
+library(emmeans)
+emmB_monkey <- emmeans(linmod, ~ deprivation)
+summary(contrast(emmB_monkey, 
+                 list("1h vs 24h" = c(1, -1))), 
+        infer = c(TRUE, TRUE))
+pairs(emmB_monkey)
+# AB-interaction contrast: 
+# Difference between drug2 vs control
+# comparing deprivation 24h vs 1h
+# AB32-AB12-AB31+AB21 = 0 
+emmAB_monkey = emmeans(linmod, ~ drug:deprivation) 
+emmAB_monkey
+# Display to see order of AB combos for contrast coefficients
+summary(contrast(emmAB_monkey, 
+        list(AB = c(-1, 0, 1, 1, 0, -1)), 
+        infer = c(TRUE, TRUE)))
+        #infer option: two booleans 
+        #first for CI (yes/no)
+        #second for t-test and p-values
+# Multiple comparisons: A
+emmA_monkey <- emmeans(linmod, ~ drug)
 
+# lsmeans for B and 99% CIs
+# Tukey’s method: adjust for pairwise contrast
+summary(contrast(emmA_monkey, 
+                 method = "pairwise", 
+                 adjust = "tukey"),
+        infer = c(TRUE, TRUE), level = 0.99)
+# Dunnett’s method
+summary(contrast(emmA_monkey, 
+                 method="trt.vs.ctrl", 
+                 adj = "mvt", ref = 1),
+        infer = c(TRUE, TRUE))
 
 
 # Replication of Study 4a of 
