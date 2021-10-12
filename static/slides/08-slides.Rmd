@@ -1,0 +1,99 @@
+---
+title: "Linear models"
+author: "Léo Belzile"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: "libs"
+    chakra: "libs/remark-latest.min.js"
+    css: ["default", "css/ath-slides.css", "css/ath-inferno-fonts.css", "css/animate.css"]
+    seal: false
+    anchor_sections: false
+    nature:
+      highlightStyle: github
+      highlightLines: false
+      countIncrementalSlides: false
+      ratio: "16:9"
+      navigation:
+        scroll: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, 
+                      message = FALSE, 
+                      fig.retina = 3, 
+                      fig.align = "center",
+                      fig.width = 10,
+                      fig.asp = 0.618,
+                      out.width = "70%")
+```
+```{r packages-data, echo = FALSE, include=FALSE}
+library(knitr)
+options(knitr.kable.NA = '')
+options(tidyverse.quiet = TRUE)
+options(knitr.table.format = "html")
+library(tidyverse)
+library(patchwork)
+```
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","freezeframe","panelset","clipboard","broadcast"))
+```
+
+class: center middle main-title section-title-1
+
+# Linear models
+
+.class-info[
+
+**Session 8**
+
+.light[MATH 80667A: Experimental Design and Statistical Methods <br>for Quantitative Research in Management <br>
+HEC Montréal
+]
+
+]
+
+---
+
+name: outline
+class: title title-inv-1
+
+# Outline
+--
+
+
+.box-4.medium.sp-after-half[Model formulation]
+
+--
+
+.box-5.medium.sp-after-half[Sum of square decompositions for unbalanced designs]
+
+---
+
+.box-6.medium.sp-after-half[Analysis of trend]
+--
+
+.box-7.medium.sp-after-half[Diagnostic plots]
+
+---
+layout: false
+name: model-formulation
+class: center middle section-title section-title-4 animated fadeIn
+
+# Linear model
+
+---
+
+
+class: title title-4
+
+# IJLR: It's just a linear regression...
+
+All models we covered so fall ($t$-tests, one- and two-way ANOVA, factorial designs, latin squares) are all very special
+instances of the linear regression model.
+
+The latter says that the expected 
+
+

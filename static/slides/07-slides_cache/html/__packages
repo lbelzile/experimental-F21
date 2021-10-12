@@ -1,10 +1,7 @@
 base
-gt
-gtsummary
-ggplot2
-patchwork
 knitr
 tidyverse
+ggplot2
 tibble
 tidyr
 readr
@@ -12,5 +9,6 @@ purrr
 dplyr
 stringr
 forcats
-gganimate
-pwr
+patchwork
+gt
+gtsummary

@@ -15,15 +15,25 @@ csl: "../../static/bib/apa.csl"
 ---
 
 
-# Task 1 - Selective reporting and biased effect sizes
+## Task 1 - Selective reporting and biased effect sizes
 
 Check out [*Understanding $p$-values Through Simulations*](https://rpsychologist.com/pvalue/) by Kristopher Magnusson. 
 
-1. Play with the app and report back whatever you learned in the process.
-2. What happens if you move the curve and start selectively reporting studies that show statistical significance (only 5% chance!) using the $p$-hacking tool? In particular, look at the discrepancy between the true effect size and the reported effect size. How might this affect calculations such as the one of Task 2?
+The app aims to show why estimated effect sizes are biased upward by postulating that only studies achieving statistical significance get reported. 
+
+If there is no difference between groups (Cohen's $d$ is zero), the average reported effect size $\widehat{d}$ for the subset of studies that show 'statistical significance' at the 5% level is very large.
+
+More interesting is the case where the null is false and the true Cohen's $d$ is smallish: shift the curve by increments of 0.1
+
+1. Play with the app by modifying (in turn) the following parameters. Does it alleviate part of the effect size bias (the last value in the table)?
+	a. increase the sample size per group
+	b. increase the true effect size by shifting the curve to the right. 
+	c. The $p$-hack tool is used to add an observation to each sample for which the value was 'not statistically significant' initially until it becomes significant. Note that studies for which initial estimates showed significance are not affected. This point is related to a statistical fallacy: if you peak at the data as you collect observations and make the analysis sequentially until you achieve statistical significance, estimated are biased unless you account explicitly for this stopping rule through conditioning.
+
+How might this selective reporting affect calculations such as the one of Task 2? 
 
 
-# Task 2 - Power calculation for a replication study
+## Task 2 - Power calculation for a replication study
 
 @Johnson:2014 performs a replication study of Schnall, Benton, and Harvey (2008) who conjectured that physical cleanliness reduces the severity of moral judgments. 
 The following excerpt from the paper explain how sample size for the replication were calculated.

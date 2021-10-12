@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Two-way designs</title>
+    <title>General factorial designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
     <meta name="date" content="2021-10-12" />
@@ -37,11 +37,11 @@
 
 class: center middle main-title section-title-1
 
-# ANOVA for two factor experiments
+# General factorial designs
 
 .class-info[
 
-**Session 6**
+**Session 7**
 
 .light[MATH 80667A: Experimental Design and Statistical Methods &lt;br&gt;for Quantitative Research in Management &lt;br&gt;
 HEC Montréal
@@ -58,26 +58,33 @@ class: title title-inv-1
 --
 
 
-.box-4.medium.sp-after-half[Factorial designs and interactions]
+.box-4.medium.sp-after-half[Examples of factorial designs]
 
 --
 
-.box-5.medium.sp-after-half[Model formulation]
+.box-5.medium.sp-after-half[Custom contrasts and pairwise comparisons]
 
 --
 
-.box-6.medium.sp-after-half[Effect size, contrasts and power]
+.box-6.medium.sp-after-half[Marginal means]
 
 
 ---
 
+.box-7.medium.sp-after-half[Diagnostic plots]
 
 
+---
+
+.box-8.medium.sp-after-half[Blocking]
+
+
+---
 layout: false
-name: factorial-interaction
+name: factorial-designs
 class: center middle section-title section-title-4 animated fadeIn
 
-# Factorial designs and interactions
+# Examples of factorial designs
 
 ---
 
@@ -110,12 +117,12 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
 
 .large[
 
-<div id="qhwsofwpvj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="njofyqempt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qhwsofwpvj .gt_table {
+#njofyqempt .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -140,7 +147,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-left-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_heading {
+#njofyqempt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -152,7 +159,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-right-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_title {
+#njofyqempt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -162,7 +169,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-bottom-width: 0;
 }
 
-#qhwsofwpvj .gt_subtitle {
+#njofyqempt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -172,13 +179,13 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-top-width: 0;
 }
 
-#qhwsofwpvj .gt_bottom_border {
+#njofyqempt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_col_headings {
+#njofyqempt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -193,7 +200,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-right-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_col_heading {
+#njofyqempt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -213,7 +220,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   overflow-x: hidden;
 }
 
-#qhwsofwpvj .gt_column_spanner_outer {
+#njofyqempt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,15 +232,15 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   padding-right: 4px;
 }
 
-#qhwsofwpvj .gt_column_spanner_outer:first-child {
+#njofyqempt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qhwsofwpvj .gt_column_spanner_outer:last-child {
+#njofyqempt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qhwsofwpvj .gt_column_spanner {
+#njofyqempt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -245,7 +252,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   width: 100%;
 }
 
-#qhwsofwpvj .gt_group_heading {
+#njofyqempt .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -267,7 +274,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   vertical-align: middle;
 }
 
-#qhwsofwpvj .gt_empty_group_heading {
+#njofyqempt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -282,15 +289,15 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   vertical-align: middle;
 }
 
-#qhwsofwpvj .gt_from_md > :first-child {
+#njofyqempt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qhwsofwpvj .gt_from_md > :last-child {
+#njofyqempt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qhwsofwpvj .gt_row {
+#njofyqempt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -309,7 +316,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   overflow-x: hidden;
 }
 
-#qhwsofwpvj .gt_stub {
+#njofyqempt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -321,7 +328,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   padding-left: 12px;
 }
 
-#qhwsofwpvj .gt_summary_row {
+#njofyqempt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -331,7 +338,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   padding-right: 5px;
 }
 
-#qhwsofwpvj .gt_first_summary_row {
+#njofyqempt .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -341,7 +348,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-top-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_grand_summary_row {
+#njofyqempt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -351,7 +358,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   padding-right: 5px;
 }
 
-#qhwsofwpvj .gt_first_grand_summary_row {
+#njofyqempt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -361,11 +368,11 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-top-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_striped {
+#njofyqempt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qhwsofwpvj .gt_table_body {
+#njofyqempt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -374,7 +381,7 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-bottom-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_footnotes {
+#njofyqempt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -388,13 +395,13 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-right-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_footnote {
+#njofyqempt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qhwsofwpvj .gt_sourcenotes {
+#njofyqempt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -408,41 +415,41 @@ We expect the ending (happy/sad/neutral) and the complexity (easy/average/hard) 
   border-right-color: #D3D3D3;
 }
 
-#qhwsofwpvj .gt_sourcenote {
+#njofyqempt .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qhwsofwpvj .gt_left {
+#njofyqempt .gt_left {
   text-align: left;
 }
 
-#qhwsofwpvj .gt_center {
+#njofyqempt .gt_center {
   text-align: center;
 }
 
-#qhwsofwpvj .gt_right {
+#njofyqempt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qhwsofwpvj .gt_font_normal {
+#njofyqempt .gt_font_normal {
   font-weight: normal;
 }
 
-#qhwsofwpvj .gt_font_bold {
+#njofyqempt .gt_font_bold {
   font-weight: bold;
 }
 
-#qhwsofwpvj .gt_font_italic {
+#njofyqempt .gt_font_italic {
   font-style: italic;
 }
 
-#qhwsofwpvj .gt_super {
+#njofyqempt .gt_super {
   font-size: 65%;
 }
 
-#qhwsofwpvj .gt_footnote_marks {
+#njofyqempt .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -525,13 +532,13 @@ An interaction is present when the effect of one factor depends on the levels of
 
 
 
-&lt;img src="06-slides_files/figure-html/interaction_plots2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="07-slides_files/figure-html/interaction_plots2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: title title-4
 # Lack of interaction
 
-&lt;img src="06-slides_files/figure-html/interaction_plots1-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="07-slides_files/figure-html/interaction_plots1-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 .small[
 In practice, the sample average are uncertain! 
@@ -619,18 +626,6 @@ with the parameters in the sum-to-zero constraints
 Specify the sum over any `\(i\)` and `\(j\)` of `\((\alpha\beta)_{ij}\)` is zero.
 
 ---
-class: title title-5
-# Sum-to-zero parametrization
-
-The model in terms of `\(\alpha\)`, `\(\beta\)` and `\((\alpha\beta)\)` is overparametrized.
-
-For the sum-to-zero constraint, impose that 
-
-`$$\sum_{i=1}^a \alpha_i=0, \quad \sum_{j=1}^b \beta_j=0, \quad \sum_{i=1}^a (\alpha\beta)_{ij}=0,  \sum_{j=1}^b (\alpha\beta)_{ij}=0.$$`
-
-which imposes `\(1 + 1 + b + a\)` constraints.
-
----
 
 class: title title-5
 # Breaking down the variability
@@ -640,9 +635,7 @@ For a **balanced** design, we can decompose the variability around sample means:
 `$$\begin{align*}\mathsf{SS}_{\text{total}} &amp;= \mathsf{SS}_{\text{model}} + \mathsf{SS}_{\mathsf{res}}
 \\&amp;= \mathsf{SS}_{A} + \mathsf{SS}_{B} + \mathsf{SS}_{AB}+ \mathsf{SS}_{\mathsf{res}}\end{align*}$$`
 
-???
-
-This stems from the orthogonality between the factors.
+.box-inv-5.large[Board work]
 
 ---
 class: title title-5

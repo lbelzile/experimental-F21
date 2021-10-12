@@ -5,13 +5,11 @@ monkey <- read.table(url,
                      header = TRUE,
                      stringsAsFactors = TRUE)
 # Sum to zero parametrization for each factor
+#  mu + alpha (row) + beta (column) + [alpha*beta] (cell)
 linmod <- lm(errors ~ deprivation*drug, 
              data = monkey,
              contrasts = list(deprivation = contr.sum,
                               drug = contr.sum))
-# Compare the coefficients with this
-linmod <- lm(errors ~ deprivation*drug, 
-             data = monkey)
 # Anova table
 anova(linmod)
 # Effect sizes with confidence intervals (90% by default)
@@ -56,6 +54,8 @@ summary(contrast(emmA_monkey,
                  adj = "mvt", ref = 1),
         infer = c(TRUE, TRUE))
 
+## Diagnostic plots
+## 
 
 # Replication of Study 4a of 
 # Janiszewski & Uy (2008, Psychological Science) 

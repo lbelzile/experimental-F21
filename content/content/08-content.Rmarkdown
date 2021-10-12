@@ -1,0 +1,72 @@
+---
+title: "Linear model"
+linktitle: "8: Linear model"
+date: "2021-10-23"
+start_date: "2021-10-25"
+end_date: "2021-10-29"
+menu:
+  content:
+    parent: Course content
+    weight: 8
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "08-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "Factorial designs and interactions", "factorial-interaction", FALSE,
+  "", "Model formulation", "formulation", FALSE,
+  "", "Effect size, contrasts and power", "effect-size-contrast-power", FALSE,
+)
+```
+
+## Content
+
+- Formulation
+- Sum of square decomposition for unbalanced designs
+- Diagnostic plots
+- Analysis of trend
+
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+- fit general
+- correctly specify a factorial design with unbalanced samples (sum-to-zero parametrization, sum of squares)
+- fit a polynomial model for a single continuous factor and test for degree
+
+## Readings
+
+- 
+
+
+## Complementary readings
+
+- <i class="fas fa-book"></i> [*The ANOVA controversy* by Falk Scholer](http://wight.seg.rmit.edu.au/fscholer/anova.php)
+- <i class="fas fa-book"></i> Chapters 8 of @Fox:2015
+
+## In class
+
+We covered three examples in class: one two-way design with a blocking factor (no interaction), a balanced design with fictious data from @Keppel/Wickens:2004 (Table 11.8) and finally data from a replication study (unbalanced). The code for these examples can be found in the [**R** script](/example/06-twowayanova.R).
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/06-slides.html")
+```
+
+
+## References

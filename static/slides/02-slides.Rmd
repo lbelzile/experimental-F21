@@ -260,7 +260,7 @@ glimpse(arithmetic)
 .pull-right[
 ```{r panel-chunk-1a, eval = TRUE, echo = FALSE}
 # load data
-url <- "../data/arithmetic.csv"
+url <- "https://edsm.rbind.io/data/arithmetic.csv"
 # Comment 
 library(tidyverse) # Load libraries
 # Load and reformat data
@@ -382,7 +382,7 @@ The null distribution tells us what are the plausible values for the statistic a
 - what can we expect to see **by chance** if there is **no difference** between groups.
 
 ```{r nullF, cache = TRUE, eval = TRUE, echo = FALSE, fig.width = 7, fig.height = 4}
-stat <- broom::tidy(anova(lm(data = arithmetic, formula = y ~ group)))$statistic[1]
+stat <- broom::tidy(anova(lm(data = arithmetic, formula = score ~ group)))$statistic[1]
 nrep <- 4999L
 bootnull <- rep(0, nrep)
 set.seed(1234)
@@ -391,7 +391,7 @@ for(i in 1:nrep){
    broom::tidy(
    anova(
      with(arithmetic,
-          lm(y ~ sample(group,
+          lm(score ~ sample(group,
                         size = nrow(arithmetic))
              )
           )

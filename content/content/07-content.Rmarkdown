@@ -1,0 +1,73 @@
+---
+title: "Factorial designs"
+linktitle: "7: Factorial designs"
+date: "2021-10-12"
+start_date: "2021-10-11"
+end_date: "2021-10-15"
+menu:
+  content:
+    parent: Course content
+    weight: 7
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "07-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "", "", FALSE,
+  "", "", "", FALSE,
+  "", "", "", FALSE,
+)
+```
+
+## Content
+
+- Three-way analysis of variance
+- Randomized block designs and latin squares
+
+
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+- specify a factorial design based on data availability and purpose
+- correctly specify hypothesis of interest
+- list under which circumstances blocking is adequate
+- understand the estimability problem (zero-cells)
+- correctly parametrize and interpret a three-way analysis of variance model
+
+## Readings
+
+- 
+
+
+## Complementary readings
+
+- <i class="fas fa-book"></i> Chapters 7 and 10 of @Dean:2017
+- <i class="fas fa-book"></i> Chapter 8 of @Fox:2015
+
+## In class
+
+<!--
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/07-slides.html")
+```
+
+-->
+
+## References
