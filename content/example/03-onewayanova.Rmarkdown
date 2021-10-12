@@ -52,6 +52,7 @@ library(tidyverse)
 url <- "https://edsm.rbind.io/data/reading.csv"
 reading <- readr::read_csv(url, show_col_types = FALSE)
 reading$group <- factor(reading$group)
+suppressPackageStartupMessages(library(effectsize))
 ```
 
 ## Hypothesis testing
@@ -186,8 +187,7 @@ contrasts_list <- list(
 contrasts_post <- 
   contrast(object = emmeans_post,
            method = contrasts_list)
-contrasts_summary_post <- 
-  summary(contrasts_post)
+contrasts_summary_post <- summary(contrasts_post)
 ```
 ```{r print-contrasts, echo = FALSE, eval = TRUE}
 kable(contrasts_post,
@@ -236,7 +236,7 @@ contrasts_post <-
            adjust = "none") #default for custom contrasts
 raw_pval <- summary(contrasts_post)$p.value
 p.adjust(p = raw_pval, method = "bonferroni")
-p.adjust(p = raw_pval, method = "holm")
+p.adjust(p = raw_pval, method = "holm") #Bonferroni-Holm method
 ```
 
 If we look at the _p_-values with the Scheffé's method for custom contrasts, we get `r round(summary(contrasts_post)$p.value[1], 3)` for contrast 1 and `r round(summary(contrasts_post)$p.value[2], 3)` for contrast 2: since we are only making two tests here, these are much bigger than the $p$-values from Holm's method which are `r round(p.adjust(p = raw_pval, method = "holm")[1],2)` and `r round(p.adjust(p = raw_pval, method = "holm")[2],2)`. To try and avoid making type I error, we need to be more stringent to decide on rejection and this translates into bigger $p$-values, so lower power to detect. Try to use the less stringent method that still controls for the family wise error rate to preserve your power!
@@ -251,8 +251,7 @@ The **R** package `effectsize` allows for easy conversion between the different 
 # Estimated effect size for global test
 effectsize::cohens_f(mod_post, ci = 0.9)
 # Estimated effect size for contrasts
-contrasts_parameters <- 
-  parameters::model_parameters(contrasts_post)
+contrasts_parameters <- parameters::model_parameters(contrasts_post)
 effectsize::cohens_f(contrasts_parameters, ci = 0.9)
 # Compute omega-square (partial variability) for contrasts instead
 effectsize::omega_squared(contrasts_parameters)
@@ -326,7 +325,9 @@ This seems to have been successful since the maximum score is `r max(reading$pos
 # test for equality of variance
 car::leveneTest(posttest1 ~ group, data = reading)
 # Quantile-quantile plot
-car::qqPlot(mod_post, ylab = 'empirical quantiles')
+car::qqPlot(x = mod_post, # lm object
+            ylab = 'empirical quantiles', # change y-axis label
+            id = FALSE) # Don't print to console 'outlying' observations
 # Residual plot (linearity, but useless for one way ANOVA)
 car::residualPlot(mod_post)
 ```
@@ -346,7 +347,6 @@ that captures the individual variability. This amounts to doing a paired compari
 It helps with the analysis because it absorbs the baseline strength of individual students: by subtracting their records, we get their individual average out of the equation and thus there is less variability.
 
 ```{r concomitant, eval = TRUE, echo = TRUE}
-
 anova_post_c <- lm(posttest1 ~ offset(pretest1) + group,
                    data = reading) 
 anova_tab_c <- broom::tidy(anova(anova_post_c)) #anova table

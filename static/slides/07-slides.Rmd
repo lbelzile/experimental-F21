@@ -75,17 +75,18 @@ class: title title-inv-1
 .box-6.medium.sp-after-half[Marginal means]
 
 
----
+--
 
 .box-7.medium.sp-after-half[Diagnostic plots]
 
 
----
+--
 
 .box-8.medium.sp-after-half[Blocking]
 
 
 ---
+
 layout: false
 name: factorial-designs
 class: center middle section-title section-title-4 animated fadeIn

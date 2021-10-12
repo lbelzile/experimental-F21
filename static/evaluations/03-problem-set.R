@@ -26,12 +26,14 @@ alpha <- 0.05 # unadjusted level
 # We fit the model separately for each response
 # technically, could use a multivariate ANOVA...
 # but this comes later
-mod_old1 <- lm(limits ~ condition,
-               data = gks3_data,
-               subset = (age == "old"))
+mod_old_limits <- 
+  lm(formula = limits ~ condition,
+     data = gks3_data,
+     subset = (age == "old"))
 # Specify the model with pairwise differences
-mod_emm_old1 <- emmeans::emmeans(mod_old1,
-                                 specs = 'condition')
+mod_emm_old_limits <- 
+  emmeans::emmeans(mod_old_limits,
+                   specs = 'condition')
 
 # TODO repeat this for the 7 other models
 # with other response variables (replace 'limits' with 'compr', etc.) - 
@@ -46,14 +48,16 @@ contrast_specif <- list(
   # See slides week 2 for examples
   # Take 'other' as the average of the two
 )
+# The contrasts are the same for ecah response and subgroup, so the
+# above block of code only appears once
 
 
 # Compute the contrasts
 # TODO use the naming convention to match
 # names in allcontrasts below
 # repeat this for the 7 others
-contrasts_res_old1 <-
-  emmeans::contrast(object = mod_emm_old1,
+contrasts_res_old_limits <-
+  emmeans::contrast(object = mod_emm_old_limits,
                     method = contrast_specif,
                     adjust = "none")
 # By default there is no adjustment for custom contrasts
@@ -63,7 +67,7 @@ contrasts_res_old1 <-
 
 # once you have defined each
 # pool all tests together
-# TODO uncomment lines 67-74 after having defined the objects
+# TODO uncomment lines 68-75 after having defined the objects
 allcontrasts <- rbind(
   # broom::tidy(contrasts_res_old1),
   # broom::tidy(contrasts_res_old2),
@@ -76,7 +80,7 @@ allcontrasts <- rbind(
 )
 
 #TODO enter the correct number of comparisons
-m <- #number of tests in the family
+m <- #number of tests in the family 
   
 # Compare confidence intervals
 # with and without Bonferroni adjustment
@@ -89,7 +93,7 @@ allcontrasts <- allcontrasts %>%
 
 
 # Consider multiplicity adjustment
-# See ?p.adjust.method and ?p.adjust
+# See ?p.adjust
 # p.adjust(p = allcontrasts$p.value, method = "", n = m)
 
 # TODO compute the number of tests

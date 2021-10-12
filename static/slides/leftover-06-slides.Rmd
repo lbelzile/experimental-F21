@@ -1,0 +1,104 @@
+
+---
+class: title title-5
+# Example: Fiber strength
+
+We consider a $5 \times 3$ factorial design (no interaction term).
+
+Consider five levels of application of potash
+
+- $T_1=36$, $T_2=54$, $T_3=72$, $T_4=108$ and $T_5=144$ lb K<sub>2</sub>O per acre, applied to a cotton crop. 
+
+The response is a measure of single-fiber strength, an average of a number of tests on the cotton from each plot.
+
+There were three blocks each containing five plots.
+
+---
+class: title title-5
+# Data on fiber strength
+
+.pull-left[
+
+```{r kableData, echo = FALSE}
+CoxCochran <- data.frame(
+  block = factor(rep(paste("block", 1:3), each = 5L)),
+  treatment = factor(rep(paste0("T", 1:5), length.out = 15L)),
+  measurements = c(7.62, 8.14, 7.76, 7.17, 7.46, 8.00, 8.15,
+                   7.73, 7.57, 7.68, 7.93, 7.87, 7.74, 7.80, 7.21)
+)
+knitr::kable(digits = c(0, rep(2, 5L)), 
+               caption = "Reordered data",
+  x = pivot_wider(data = CoxCochran,
+              values_from = measurements, 
+              names_from = treatment)
+)
+
+twowayANOVA <- lm(measurements ~ treatment + block, 
+                  data = CoxCochran)
+CoxCochran$residuals <- resid(twowayANOVA)
+```
+
+]
+
+.pull-right[
+
+```{r residualsTable, echo = FALSE}
+tab_resid <- CoxCochran %>% 
+  select(!measurements) %>%
+  pivot_wider(values_from = residuals, 
+              names_from = treatment)
+knitr::kable(digits = c(0, rep(2, 5L)), 
+               caption = "Residuals",
+  x = tab_resid
+)
+```
+
+
+
+]
+
+
+
+???
+From Cox (1958) Planning of experiments
+
+Sources of variability:
+ - cultivation and harvesting of the crop
+ - selection of fibers for the test
+ - strength testing
+ 
+---
+class: title title-5
+# Analysis of variance table
+
+```{r ANOVAtabCox, eval = TRUE, echo = FALSE}
+knitr::kable(car::Anova(twowayANOVA, type = "II"),
+             digits = c(3,0,3,3),
+             col.names = c("sum of squares",
+                           "df","F", "p-value"))
+```
+
+---
+class: title title-5
+# Some pending questions
+
+- Intuition behind degrees of freedom for the residuals?
+- No interaction term (why?)
+- Why blocking?
+
+--
+
+| $A$ \\ $B$ | $b_1$ | $b_2$ | $b_3$ | $b_4$ | $b_5$ | sum |
+|---|:---:|:---:|:---:|:---:|:--:|:--:|
+| $a_1$ | $AB_{11}$ | $AB_{12}$ | $AB_{13}$ |  $AB_{14}$ | $\mathsf{X}$ | $A_1$ |
+| $a_2$ | $AB_{21}$ | $AB_{22}$ | $AB_{23}$ | $AB_{24}$ | $\mathsf{X}$ | $A_2$ |
+| $a_3$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ | $\mathsf{X}$ |
+| **sum** | $B_1$ | $B_2$ | $B_3$ | $B_4$ | $\mathsf{X}$ | total |
+
+.tiny[ 
+Terms with $\mathsf{X}$ are fully determined by row/column/total averages
+
+]
+
+---
+
