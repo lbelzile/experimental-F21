@@ -39,20 +39,20 @@ slide_details <- tibble::tribble(
 
 At the end of the session, students should be capable of
 
-- specify a factorial design based on data availability and purpose
-- correctly specify hypothesis of interest
+- interpret a factorial design
+- use randomized block designs to reduce the error
+- correctly specify hypothesis of interest and tests for interactions
 - list under which circumstances blocking is adequate
-- understand the estimability problem (zero-cells)
+- understand the estimability problem (e.g., zero-cells)
 - correctly parametrize and interpret a three-way analysis of variance model
 
 ## Readings
 
-- 
+- <i class="fas fa-book"></i> Chapters 7 and 10 of @Dean:2017
 
 
 ## Complementary readings
 
-- <i class="fas fa-book"></i> Chapters 7 and 10 of @Dean:2017
 - <i class="fas fa-book"></i> Chapter 8 of @Fox:2015
 
 ## In class

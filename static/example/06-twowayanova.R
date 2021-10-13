@@ -1,15 +1,24 @@
 # Class 6: Example of two-way ANOVA
-# 
+
+
+
 url <- "https://edsm.rbind.io/data/KW_tab11p8.txt"
 monkey <- read.table(url, 
                      header = TRUE,
                      stringsAsFactors = TRUE)
-# Sum to zero parametrization for each factor
+# Sum-to-zero parametrization for each factor
+# This overrides the default parametrization of linear models
+# so that contr.treatment is replaced with 
+options(contrasts = c("contr.sum", "contr.poly"))
 #  mu + alpha (row) + beta (column) + [alpha*beta] (cell)
 linmod <- lm(errors ~ deprivation*drug, 
-             data = monkey,
-             contrasts = list(deprivation = contr.sum,
-                              drug = contr.sum))
+             data = monkey)
+# The following is not needed because of global call
+# lm(errors ~ deprivation*drug, 
+#   data = monkey, 
+# contrasts = list(deprivation = contr.sum,
+#                  drug = contr.sum))
+
 # Anova table
 anova(linmod)
 # Effect sizes with confidence intervals (90% by default)
@@ -110,7 +119,7 @@ linmod_main <- lm(mean2 ~ anchortype + magnitude,
                   data = JU_data) # no interaction
 # Note the syntax: A*B is equivalent to A + B + A:B
 # meaning interaction of A and B
-anova(linmod_main, linmod_inter)
+car::Anova(linmod_main, linmod_inter, type = "3")
 # No evidence of interaction
 # CAREFUL: with unbalanced samples, 
 # we lose important properties. 
@@ -129,3 +138,23 @@ emm_magn <- emmeans(object = linmod_inter,
                     specs = "magnitude")
 emm_all  <- emmeans(object = linmod_inter, 
                     specs = c("anchortype", "magnitude"))
+
+
+# Cox and Cochran
+# Randomized block experiment
+block_f <- factor(paste("block", 1:3))
+treat_f <- factor(paste("Treatment", 1:5))
+df <- data.frame(
+  expand.grid(treatment = treat_f, 
+              block = block_f),
+         strength = c(7.62, 8.14, 7.76, 7.17, 7.46,
+           8.00, 8.15, 7.73, 7.57, 7.68,
+           7.93, 7.87, 7.74, 7.80, 7.21))
+# Without blocking
+anova(lm(strength ~ treatment, data = df))
+# With blocking - note the decrease in sum of square
+# albeit the evidence for difference in treatment isn't stronger
+# because the two additional parameters to estimate 
+anova(lm(strength ~ treatment + block, data = df))
+# We cannot fit an interaction because there is only one replication per unit
+# We need 15 observations for each mean parameter, none left for variance!

@@ -3,19 +3,21 @@
 #############################################
 
 
-i <- 1L # Pick a number between 1 and 37
-options(tidyverse.quiet = TRUE, effectsize.quiet = TRUE, car.quiet = TRUE)
-library(tidyverse) # data manipulation
-library(emmeans) # for contrasts
-library(car) # diagnostics plots
-suppressPackageStartupMessages(library(effectsize)) # effect size estimates
+i <- 1L # TODO replace this number by the one associated to your ID
+options(tidyverse.quiet = TRUE)
+library(tidyverse) # data manipulation and grammar of graphics
+library(emmeans) # estimated marginal means and contrasts
+library(car, quietly = TRUE) # diagnostics plots
+library(effectsize) # effect size estimates
 
 url <- "https://edsm.rbind.io/data/RisenGilovichRepBalanced.csv"
 data <- read_csv(file = url,
-                   col_types = "fiff") %>% 
-        subset(lab == i)
+                   col_types = "fiff") %>%  #f = factor, i = integer
+        subset(lab == i) 
+# If you remove the subsetting, you would get the whole experiment
+
 # likelihood is response (Likert scale from 1 to 10)
-# gender is a covariate
+# gender is a categorical covariate
 # condition is the experimental factor 
 # lab is the identifier of the replication laboratory
 
