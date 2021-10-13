@@ -24,20 +24,20 @@ slides: "07-slides"
 
 At the end of the session, students should be capable of
 
--   specify a factorial design based on data availability and purpose
--   correctly specify hypothesis of interest
+-   interpret a factorial design
+-   use randomized block designs to reduce the error
+-   correctly specify hypothesis of interest and tests for interactions
 -   list under which circumstances blocking is adequate
--   understand the estimability problem (zero-cells)
+-   understand the estimability problem (e.g., zero-cells)
 -   correctly parametrize and interpret a three-way analysis of variance model
 
 ## Readings
 
--   
+-   <i class="fas fa-book"></i> Chapters 7 and 10 of Dean et al. (2017)
 
 ## Complementary readings
 
--   <i class="fas fa-book"></i> Chapters 7 and 10 of Dean et al. (2017)
--   <i class="fas fa-book"></i> Chapter 8 of (**Fox:2015?**)
+-   <i class="fas fa-book"></i> Chapter 8 of Fox (2015)
 
 ## In class
 
@@ -94,6 +94,12 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 <div id="ref-Dean:2017" class="csl-entry">
 
 Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+<div id="ref-Fox:2015" class="csl-entry">
+
+Fox, J. (2015). *Applied regression analysis and generalized linear models*. SAGE Publications. <https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254>
 
 </div>
 

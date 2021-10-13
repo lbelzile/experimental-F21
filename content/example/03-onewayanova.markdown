@@ -370,8 +370,7 @@ contrasts_list <- list(
 contrasts_post <- 
   contrast(object = emmeans_post,
            method = contrasts_list)
-contrasts_summary_post <- 
-  summary(contrasts_post)
+contrasts_summary_post <- summary(contrasts_post)
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -528,7 +527,7 @@ p.adjust(p = raw_pval, method = "bonferroni")
     ## [1] 0.02920552 0.08313211
 
 ``` r
-p.adjust(p = raw_pval, method = "holm")
+p.adjust(p = raw_pval, method = "holm") #Bonferroni-Holm method
 ```
 
     ## [1] 0.02920552 0.04156606
@@ -540,20 +539,6 @@ If we look at the *p*-values with the Scheffé’s method for custom contrasts, 
 The `\(F\)`-statistic and the estimated contrasts are not on standardized scales: the score on post-test 1 depends on the number of inclusions and the estimated `\(t\)`-statistics would have been on average smaller if we had simply collected more information (because the more information, the more certain we are). These are not good measures of effect: for this, we want a standardized difference that is independent of the sample size. There are two class of standardized measures: percentage of variance explained ($\eta^2$, `\(\omega^2\)`) and measures of difference (Cohen’s `\(d\)` or `\(f\)`).
 
 The **R** package `effectsize` allows for easy conversion between the different measures and provides estimates from the statistic along with confidence intervals, which is particularly useful. For example, if we wanted to compute Cohen’s `\(f\)` for the global test of equality of variance, we get
-
-    ## Registered S3 methods overwritten by 'parameters':
-    ##   method                           from      
-    ##   as.double.parameters_kurtosis    datawizard
-    ##   as.double.parameters_skewness    datawizard
-    ##   as.double.parameters_smoothness  datawizard
-    ##   as.numeric.parameters_kurtosis   datawizard
-    ##   as.numeric.parameters_skewness   datawizard
-    ##   as.numeric.parameters_smoothness datawizard
-    ##   print.parameters_distribution    datawizard
-    ##   print.parameters_kurtosis        datawizard
-    ##   print.parameters_skewness        datawizard
-    ##   summary.parameters_kurtosis      datawizard
-    ##   summary.parameters_skewness      datawizard
 
     ## For one-way between subjects designs, partial eta squared is equivalent to eta squared.
     ## Returning eta squared.
@@ -590,13 +575,13 @@ group
 0.41
 </td>
 <td style="text-align:right;">
-0.9
+0.95
 </td>
 <td style="text-align:right;">
 0.16
 </td>
 <td style="text-align:right;">
-0.61
+Inf
 </td>
 </tr>
 </tbody>
@@ -627,13 +612,13 @@ Upper limit
 0.08
 </td>
 <td style="text-align:right;">
-0.9
+0.95
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0.20
+1
 </td>
 </tr>
 <tr>
@@ -641,13 +626,13 @@ Upper limit
 0.05
 </td>
 <td style="text-align:right;">
-0.9
+0.95
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-0.16
+1
 </td>
 </tr>
 </tbody>
@@ -718,12 +703,12 @@ car::leveneTest(posttest1 ~ group, data = reading)
 
 ``` r
 # Quantile-quantile plot
-car::qqPlot(mod_post, ylab = 'empirical quantiles')
+car::qqPlot(x = mod_post, # lm object
+            ylab = 'empirical quantiles', # change y-axis label
+            id = FALSE) # Don't print to console 'outlying' observations
 ```
 
 <img src="/example/03-onewayanova_files/figure-html/testequalvariance-1.png" width="672" />
-
-    ## [1] 57 63
 
 ``` r
 # Residual plot (linearity, but useless for one way ANOVA)

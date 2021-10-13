@@ -41,6 +41,7 @@ At the end of the session, students should be capable of
 
 ## Complementary readings
 
+-   <i class="fas fa-book"></i> (Chapter 3 of Harrer et al., 2021)(https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/effects.html)
 -   <i class="fas fa-book"></i> Chapter 5 of Dean et al. (2017).
 -   <i class="fas fa-book"></i> Chapter 7 (model assumptions) and Chapter 8 (effect size and power) of Keppel & Wickens (2004).
 
@@ -127,6 +128,12 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <div id="ref-Dean:2017" class="csl-entry">
 
 Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+<div id="ref-Harrer:2021" class="csl-entry">
+
+Harrer, M., Cuijpers, P., A, F. T., & Ebert, D. D. (2021). *Doing meta-analysis with R: A hands-on guide* (1st ed.). Chapman & Hall/CRC Press.
 
 </div>
 
