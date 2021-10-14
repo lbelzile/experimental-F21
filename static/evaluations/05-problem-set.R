@@ -82,6 +82,16 @@ emmeans::eff_size(cell_means,
          sigma = sigma(model),   # standard deviation (ASSUMED EQUAL VARIANCE)
          edf = df.residual(model))
 
+
+# If all you have is the statistic and sample sizes, you can use the 'compute.es' package to convert these to effect sizes
+# e.g. compute.es::mes converts mean + SD with sample sizes to Cohen's d
+compute.es::tes(n.1 = 14, 
+                n.2 = 14,
+                t = summary(marg_pairs)$t.ratio)
+# Largely agrees with above for
+# male unprepared - male prepared
+
+## Effect size computed using effectsize package
 # Omega-squared is less biased estimator 
 # of percentage of variability than eta-squared
 # Here, we would account for gender (not an experimental factor)
@@ -94,6 +104,8 @@ om_sq  <-
 # only report lower bound - these are very small 
 # may be rounded to zero when printed ...
 # upper bound on fraction of variance is automatically 1
+# 
+
 
 # IN YOUR REPORT, CLEARLY INDICATE
 # - the coefficient used (f, eta-squared, omega-squared)
