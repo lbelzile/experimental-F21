@@ -1,4 +1,4 @@
-  brand power time  y
+  brand power time  percentage
     1     1     1  73.8
     1     1     1  65.5
     1     1     2  70.3

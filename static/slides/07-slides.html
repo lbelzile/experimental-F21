@@ -4,7 +4,7 @@
     <title>General factorial designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-13" />
+    <meta name="date" content="2021-10-15" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -23,6 +23,8 @@
     <script src="libs/freezeframe-5.0.2/freezeframe.min.js"></script>
     <script src="libs/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
     <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/ath-slides.css" type="text/css" />
     <link rel="stylesheet" href="css/ath-inferno-fonts.css" type="text/css" />
     <link rel="stylesheet" href="css/animate.css" type="text/css" />
@@ -66,16 +68,8 @@ class: title title-inv-1
 
 --
 
-.box-5.medium.sp-after-half[Custom contrasts and pairwise comparisons]
+.box-5.medium.sp-after-half[Custom contrasts and marginal means]
 
---
-
-.box-6.medium.sp-after-half[Marginal means]
-
-
---
-
-.box-7.medium.sp-after-half[Diagnostic plots]
 
 
 ---
@@ -188,11 +182,175 @@ Randomly allocate to treatment within block
 
 ---
 
+class: title title-3
+# Block-treatment design
+
+Without interaction,
+
+`$$\underset{\text{response}}{Y_{ij}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking}}{\beta_j}+ \underset{\text{error}}{\varepsilon_{ij}}$$`
+
+Compromise between 
+
+- reduced variability for residuals
+- loss of degrees of freedom due to estimation of `\(\beta\)`'s.
+
+---
+class: title title-3
+# Example: Resting metabolic rate
+From Dean, Voss and Draguljić (2017), Example 10.4.1 (p. 311)
+
+&gt; experiment that was run to compare the effects of inpatient and outpatient protocols on the in-laboratory measurement of resting metabolic rate (RMR) in humans. A previous study had indicated measurements of RMR on elderly individuals to be 8% higher using an outpatient protocol than with an inpatient protocol. If the measurements depend on the protocol, then comparison of the results of studies conducted by different laboratories using different protocols would be difficult. The experimenters hoped to conclude that the effect on RMR of different protocols was negligible.
+
+???
+
+The experimental treatments consisted of three protocols: (1) an inpatient protocol in which meals
+were controlled—the patient was fed the evening meal and spent the night in the laboratory, then RMR
+was measured in the morning; (2) an outpatient protocol in which meals were controlled—the patient
+was fed the same evening meal at the laboratory but spent the night at home, then RMR was measured
+in the morning; and (3) an outpatient protocol in which meals were not strictly controlled—the patient
+was instructed to fast for 12 hours prior to measurement of RMR in the morning.
+
+---
+
+.panelset[
+
+.panel[.panel-name[Clean]
+
+```r
+library(tidyverse)
+url &lt;- "https://edsm.rbind.io/data/resting_metabolic_rate.txt"
+# Load data, transform integers to factors (categorical)
+resting &lt;- read.table(url, header = TRUE) %&gt;%
+  mutate(subject = factor(subject), #blocking factor
+         protocol = factor(protocol),
+         rate = rate/1000)
+```
+]
+  .panel[.panel-name[Fit]       
+
+```r
+# Force sum-to-zero parametrization for unordered factors
+options(contrasts = c("contr.sum", "contr.poly"))
+# Fit model with blocking
+model_block &lt;- lm(rate ~ subject + protocol, data = resting)
+# One-way ANOVA (no blocking
+model_raw &lt;- lm(rate ~ protocol, data = resting)
+# anova(model_block)
+# anova(model_raw)
+```
+]
+
+  .panel[.panel-name[Plot]       
+
+```r
+resting %&gt;% 
+  group_by(subject, protocol) %&gt;%
+  summarize(rate = mean(rate)) %&gt;%
+ggplot(aes(x = subject,
+           y = rate,
+           group = protocol,
+           color = protocol)) +
+     geom_line() + 
+     labs(y = "mean resting\n metabolic rate") + 
+     theme(legend.position = "bottom")
+```
+]
+]
+---
+class: title title-3
+# Interaction plot
+
+![](07-slides_files/figure-html/plotblocking-1.png)
+
+---
+class: title title-3
+# Impact of blocking
+.panelset[
+.panel[.panel-name[ANOVA table (with blocking)]
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Analysis of variance table - with blocking&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Degrees of freedom &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sum of squares &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Mean square &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; subject &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37.42 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; protocol &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.795 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Residuals &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.panel[.panel-name[ANOVA table (without blocking)]
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Analysis of variance table - without blocking&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Degrees of freedom &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sum of squares &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Mean square &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; protocol &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.982 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Residuals &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24.35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+]
+
+---
 layout: false
 name: factorial-designs
 class: center middle section-title section-title-4 animated fadeIn
 
-# More complex factorial designs
+# Multifactorial designs
 
 ---
 
@@ -276,11 +434,101 @@ class: title title-4
 # Interaction plot
 
 An interaction plot for a  `\(2 \times 2 \times 2\)` factorial design from Petty, Cacioppo and Heesacker (1981)
-&lt;img src="07-slides_files/figure-html/interactionpetty-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="07-slides_files/figure-html/interactionpetty-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ???
 
-p.472 of Keppel and Wichens
+p.472 of Keppel and Wickens
+
+
+---
+class: title title-4
+#  The microwave popcorn experiment
+
+What is the best brand of microwave popcorn? 
+
+- **Factors**
+	- brand (two national, one local)
+	- power: 500W and 600W
+	- time: 4, 4.5 and 5 minutes
+- **Response**: &lt;s&gt;weight&lt;/s&gt;, &lt;s&gt;volume&lt;/s&gt;, &lt;s&gt;number&lt;/s&gt;, percentage of popped kernels.
+	- Pilot study showed average of 70% overall popped kernels (10% standard dev), timing values reasonable
+	- Power calculation suggested at least `\(r=4\)` replicates, but researchers proceeded with `\(r=2\)`...
+	
+---
+
+
+.panelset[
+.panel[.panel-name[Data cleaning]
+
+
+```r
+library(tidyverse)
+url &lt;- "https://edsm.rbind.io/data/popcorn.txt"
+popcorn &lt;- read.table(url, 
+                      header = TRUE, 
+                      stringsAsFactor = TRUE) %&gt;% 
+   mutate(brand = factor(brand), 
+	  power = factor(power, labels = c("500","600")), 
+	  time = factor(time, labels = c("4","4.5","5"))) %&gt;%
+   rename(percentage = y)
+```
+]
+
+.panel[.panel-name[ANOVA]
+
+```r
+# Sum-to-zero parametrization
+options(contrast = "contr.sum")
+# Fit model with three-way interaction
+model &lt;- lm(percentage ~ brand*power*time, data = popcorn)
+# ANOVA table
+anova_table &lt;- anova(model) # 'anova' is for balanced designs
+# Check model assumptions
+# plots + tests meaningless with r=2 replications per group...
+# except for quantile-quantile plot
+car::qqPlot(model, # points should be on straight line!
+	    id = FALSE, 
+	    ylab = 'studentized residuals')
+```
+]
+
+.panel[.panel-name[QQ-plot]
+![](07-slides_files/figure-html/popcorn_qqplot-1.png)
+All points fall roughly on a straight line.
+
+]
+
+.panel[.panel-name[**R** code]
+
+```r
+popcorn %&gt;% 
+ group_by(brand, time, power) %&gt;% 
+ summarize(mean_percentage = mean(percentage)) %&gt;% 
+ ggplot(aes(x = power, 
+            y = mean_percentage, 
+            col = time, 
+            group = time)) + 
+    geom_line() + 
+    facet_wrap(~brand) + 
+    labs(y = "percentage of\n popped kernels",
+         col = "time (min)", 
+         x = "power (W)") + 
+    theme_bw() + 
+    theme(legend.position = "bottom")
+```
+]
+
+
+.panel[.panel-name[Interaction plot]
+
+![](07-slides_files/figure-html/popcorn_plot-1.png)
+No three-way interaction (hard to tell with `\(r=2\)` replications).
+]
+
+
+]
 
 ---
 
@@ -303,19 +551,284 @@ class: title title-4
 
 ]
 
+---
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Analysis of variance table for microwave-popcorn&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Degrees of freedom &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sum of squares &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Mean square &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; brand &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 331.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165.55 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.180 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 455.11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 455.11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.035 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; time &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1554.58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 777.29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.002 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; brand:power &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 196.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 98.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.349 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; brand:time &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1433.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 358.46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.09 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.016 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; power:time &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23.85 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.765 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; brand:power:time &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11.83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.967 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Residuals &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1577.87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87.66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
-#  The microwave popcorn experiment
+class: title title-4
+# Omitting terms in a factorial design
 
-What is the best brand of microwave popcorn? 
+The more levels and factors, the more parameters to estimate (and replications needed)
+- Costly to get enough observations / power
+- The assumption of normality becomes more critical when `\(r=2\)`!
 
-- **Factors**
-	- brand (two national, one local)
-	- power: 500W and 600W
-	- time: 4, 4.5 and 5 minutes
-- **Response**: &lt;s&gt;weight&lt;/s&gt;, &lt;s&gt;volume&lt;/s&gt;, &lt;s&gt;number&lt;/s&gt;, percentage of popped kernels.
-- Pilot study showed average of 70% overall popped kernels (10% standard dev), timing values reasonable
+It may be useful not to consider some interactions if they are known or (strongly) suspected not to be present
 
+- If important interactions are omitted from the model, biased estimates/output!
+
+---
+
+class: title title-4
+# Latin square
+
+A latin square is a blocked design with one treatment with `\(T\)` levels and two blocking factors with also `\(T\)` levels each.
+
+Experiment arranged so that treatment is assigned once to each row/column. Letters correspond to the different treatments: 
+
+| |  col 1 | col 2 | col 3 | col 4|
+|--|:---:|:---:|:---:|:---:|
+| **row 1** | `\(A\)` | `\(B\)` | `\(C\)` | `\(D\)` |
+| **row 2** | `\(B\)` | `\(C\)` | `\(D\)` | `\(A\)` |
+| **row 3** | `\(C\)` | `\(D\)` | `\(A\)` | `\(B\)` |
+| **row 4** | `\(D\)` | `\(A\)` | `\(B\)` | `\(C\)` |
+
+---
+
+class: title title-4
+# Example of a `\(4 \times 4\)` latin square
+
+The model takes the form
+`$$\underset{\text{response}}{Y_{ijk}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking (row)}}{\beta_j} + \underset{\text{blocking (col)}}{\gamma_k} + \underset{\text{error}}{\varepsilon_{ijk}}$$`
+
+--
+
+There are `\(1+3\times(K-1)\)` mean parameters to estimate, and **no interaction**.
+
+--
+
+.box-inv-4.sp-after-half[
+
+Only look at treatment effect `\(\alpha_i\)`.
+
+]
+
+
+???
+Link with Sudokus!
+
+- This is a very efficient design, but degrees of freedom of residuals tend to be low.
+- Can have replications.
+- The figure shown is one of many possible latin squares (we can permute rows and columns)
+- Treatment is randomly allocated
+
+---
+
+layout: false
+name: contrasts
+class: center middle section-title section-title-5 animated fadeIn
+
+# Custom contrasts and marginal means
+
+
+---
+class: title title-5
+# Guidelines for the interpretation of effects
+
+Start with the most complicated term (top down)
+
+- If the three-way interaction `\(ABC\)` is significative:
+   - don't interpret main effects or two-way interactions!
+   - comparison is done cell by cell within each level
+- If the `\(ABC\)` term isn't significative:
+	- can marginalize and interpret lower order terms
+
+--
+
+.box-inv-5[Analytical comparisons]
+
+- Preplanned
+- *Post-hoc*: after seeing that the three-way interaction isn't significative, compare all pairwise differences within two-way.
+
+---
+
+class: title title-5
+
+# What contrasts are of interest?
+
+- Can view a three-way ANOVA as a series of one-way ANOVA or two-way ANOVAs...
+
+Depending on the goal, could compare for variable `\(A\)`
+- marginal contrast `\(\psi_A\)` (averaging over `\(B\)` and `\(C\)`)
+- marginal conditional contrast for particular subgroup: `\(\psi_A\)` within `\(c_1\)`
+- contrast involving two variables: `\(\psi_{AB}\)`
+- contrast differences between treatment at `\(\psi_A \times B\)`, averaging over `\(C\)`.
+- etc.
+
+See [helper code](https://edsm.rbind.io/examples/example_threewayanova_contrasts.R) and chapter 22 of Keppel &amp; Wickens (2004) for a detailed example.
+---
+class: title title-5
+# Effects and contrasts for microwave-popcorn
+
+Following preplanned comparisons
+
+- Which combo (brand, power, time) gives highest popping rate? (pairwise comparisons of all combos)
+- Best brand overall (marginal means marginalizing over power and time, assuming no interaction)
+- Effect of time and power on percentage of popped kernels 
+   - pairwise comparison of time `\(\times\)` power
+   - main effect of power
+   - main effect of time
+
+---
+
+class: title title-5
+# Preplanned comparisons using `emmeans`
+
+
+Let `\(A\)`=brand, `\(B\)`=power, `\(C\)`=time
+
+Compare difference between percentage of popped kernels for 4.5 versus 5 minutes, for brands 1 and 2
+
+`$$\mu_{1.2} -\mu_{1.3} - \mu_{2.2} - \mu_{2.3}$$`
+
+.small[
+
+```r
+library(emmeans)
+# marginal means
+emm_popcorn_AC &lt;- emmeans(model, specs = c("brand","time"))
+contrast_list &lt;- list(brand12with4.5vs5min = c(0, 0, 0, 1, -1, 0, -1, 1,0))
+contrast(emm_popcorn_AC,  # marginal mean (no time)
+	  method = contrast_list) # list of contrasts
+```
+
+```
+##  contrast             estimate   SE df t.ratio p.value
+##  brand12with4.5vs5min    -28.4 9.36 18  -3.039  0.0071
+## 
+## Results are averaged over the levels of: power
+```
+
+
+]
+
+---
+
+class: title title-5
+# Preplanned comparisons
+
+
+At level 99% with Tukey's method, compare all three times (4, 4.5 and 5 minutes)
+
+- Careful! Potentially misleading because there is a `brand * time` interaction present.
+
+
+```r
+# List of variables to keep go in `specs`: keep only time
+emm_popcorn_C &lt;- emmeans(model, specs = "time")
+pairs(emm_popcorn_C, adjust = "tukey", level = 0.99, infer = TRUE)
+```
+
+```
+##  contrast estimate   SE df lower.CL upper.CL t.ratio p.value
+##  4 - 4.5     -6.97 3.82 18   -19.68     5.75  -1.823  0.1906
+##  4 - 5        9.08 3.82 18    -3.63    21.80   2.376  0.0705
+##  4.5 - 5     16.05 3.82 18     3.34    28.76   4.199  0.0015
+## 
+## Results are averaged over the levels of: brand, power 
+## Confidence level used: 0.99 
+## Conf-level adjustment: tukey method for comparing a family of 3 estimates 
+## P value adjustment: tukey method for comparing a family of 3 estimates
+```
+
+---
+class: title title-5
+# Semipartial effect sizes
+
+Normally, partial effect sizes are of the form  
+- if only experimental factors, `\(\sigma^2_{\text{effect}} / (\sigma^2_{\text{effect}} + \sigma^2_{\text{res}})\)` for the given `\(\text{effect}\)`
+- if only blocking factors, use total effect size `\(\sigma^2_{\text{effect}} / \sigma^2_{\text{total}}\)`
+- if a mix, include variance of all blocking factors and interactions (only with effect!) in denominator.
+
+If `\(A\)` is effect of interest, `\(B\)` is a blocking factor and `\(C\)` is another experimental factor, use
+`$$\text{semipartial } \omega_A^2 = \frac{\sigma^2_A}{\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{res}}}.$$`
+
+---
+
+class: title title-5
+# Power for complex studies
+
+One can estimate (semi)partial effects and proceed as if you had a one-way ANOVA by specifying the missing ingredients.
+
+- In more general settings, it may be easier to simulate from the fitted model directly and calculate the power as you change the number of observations per group.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

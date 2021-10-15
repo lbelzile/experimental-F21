@@ -18,6 +18,8 @@ output:
         scroll: false
 editor_options: 
   chunk_output_type: console
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
 ---
 
 ```{r setup, include=FALSE}
@@ -25,9 +27,10 @@ knitr::opts_chunk$set(warning = FALSE,
                       message = FALSE, 
                       fig.retina = 3, 
                       fig.align = "center",
-                      fig.width = 10,
-                      fig.asp = 0.618,
-                      out.width = "70%")
+                      out.width="70%",
+                      fig.asp = 0.5
+                      )
+                      
 ```
 ```{r packages-data, echo = FALSE, include=FALSE}
 library(knitr)
@@ -72,16 +75,8 @@ class: title title-inv-1
 
 --
 
-.box-5.medium.sp-after-half[Custom contrasts and pairwise comparisons]
+.box-5.medium.sp-after-half[Custom contrasts and marginal means]
 
---
-
-.box-6.medium.sp-after-half[Marginal means]
-
-
---
-
-.box-7.medium.sp-after-half[Diagnostic plots]
 
 
 ---
@@ -194,11 +189,125 @@ Randomly allocate to treatment within block
 
 ---
 
+class: title title-3
+# Block-treatment design
+
+Without interaction,
+
+$$\underset{\text{response}}{Y_{ij}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking}}{\beta_j}+ \underset{\text{error}}{\varepsilon_{ij}}$$
+
+Compromise between 
+
+- reduced variability for residuals
+- loss of degrees of freedom due to estimation of $\beta$'s.
+
+---
+class: title title-3
+# Example: Resting metabolic rate
+From Dean, Voss and Draguljić (2017), Example 10.4.1 (p. 311)
+
+> experiment that was run to compare the effects of inpatient and outpatient protocols on the in-laboratory measurement of resting metabolic rate (RMR) in humans. A previous study had indicated measurements of RMR on elderly individuals to be 8% higher using an outpatient protocol than with an inpatient protocol. If the measurements depend on the protocol, then comparison of the results of studies conducted by different laboratories using different protocols would be difficult. The experimenters hoped to conclude that the effect on RMR of different protocols was negligible.
+
+???
+
+The experimental treatments consisted of three protocols: (1) an inpatient protocol in which meals
+were controlled—the patient was fed the evening meal and spent the night in the laboratory, then RMR
+was measured in the morning; (2) an outpatient protocol in which meals were controlled—the patient
+was fed the same evening meal at the laboratory but spent the night at home, then RMR was measured
+in the morning; and (3) an outpatient protocol in which meals were not strictly controlled—the patient
+was instructed to fast for 12 hours prior to measurement of RMR in the morning.
+
+---
+
+.panelset[
+
+.panel[.panel-name[Clean]
+```{r cleanblocking, echo = TRUE}
+library(tidyverse)
+url <- "https://edsm.rbind.io/data/resting_metabolic_rate.txt"
+# Load data, transform integers to factors (categorical)
+resting <- read.table(url, header = TRUE) %>%
+  mutate(subject = factor(subject), #blocking factor
+         protocol = factor(protocol),
+         rate = rate/1000)
+```
+]
+  .panel[.panel-name[Fit]       
+```{r fitblocking, echo = TRUE} 
+# Force sum-to-zero parametrization for unordered factors
+options(contrasts = c("contr.sum", "contr.poly"))
+# Fit model with blocking
+model_block <- lm(rate ~ subject + protocol, data = resting)
+# One-way ANOVA (no blocking
+model_raw <- lm(rate ~ protocol, data = resting)
+# anova(model_block)
+# anova(model_raw)
+```
+]
+
+  .panel[.panel-name[Plot]       
+```{r plotblocking, echo = TRUE, fig.show = 'hide', out.width = '50%'} 
+resting %>% 
+  group_by(subject, protocol) %>%
+  summarize(rate = mean(rate)) %>%
+ggplot(aes(x = subject,
+           y = rate,
+           group = protocol,
+           color = protocol)) +
+     geom_line() + 
+     labs(y = "mean resting\n metabolic rate") + 
+     theme(legend.position = "bottom")
+```
+]
+]
+---
+class: title title-3
+# Interaction plot
+
+![](`r knitr::fig_chunk("plotblocking", "png")`)
+
+---
+class: title title-3
+# Impact of blocking
+.panelset[
+.panel[.panel-name[ANOVA table (with blocking)]
+```{r printanovaBlockin1, echo = FALSE, eval = TRUE}
+knitr::kable(anova(model_block),
+             digits = c(0,2,2,2,3),
+             caption = "Analysis of variance table - with blocking",
+             col.names = c("Degrees of freedom",
+                           "Sum of squares",
+                           "Mean square",
+                           "F statistic",
+                           "p-value")) %>%
+  kableExtra::kable_styling(position = "center")# %>%
+#  kableExtra::cell_spec(c(2,4), bold = TRUE, color = "black", background = "yellow")
+```
+]
+
+.panel[.panel-name[ANOVA table (without blocking)]
+```{r printanovaBlockin2, echo = FALSE, eval = TRUE}
+knitr::kable(anova(model_raw),
+             digits = c(0,2,2,2,3),
+             caption = "Analysis of variance table - without blocking",
+             col.names = c("Degrees of freedom",
+                           "Sum of squares",
+                           "Mean square",
+                           "F statistic",
+                           "p-value")) %>%
+  kableExtra::kable_styling(position = "center") 
+```
+]
+
+
+]
+
+---
 layout: false
 name: factorial-designs
 class: center middle section-title section-title-4 animated fadeIn
 
-# More complex factorial designs
+# Multifactorial designs
 
 ---
 
@@ -287,7 +396,8 @@ class: title title-4
 # Interaction plot
 
 An interaction plot for a  $2 \times 2 \times 2$ factorial design from Petty, Cacioppo and Heesacker (1981)
-```{r interactionpetty, echo = FALSE, out.width = '60%', fig.width = 4}
+
+```{r interactionpetty, echo = FALSE}
 petty <- tibble(agreement = c(0.04,0.75,-0.1,-0.66,0.61,0.05,-0.46,-0.24),
        "strength" = factor(rep(rep(c("strong","weak"), each = 2), length.out = 8)),
        "involvement" = relevel(factor(rep(c("low","high"), length.out = 8)), ref = "low"),
@@ -295,13 +405,100 @@ petty <- tibble(agreement = c(0.04,0.75,-0.1,-0.66,0.61,0.05,-0.46,-0.24),
 ggplot(data = petty, 
  aes(x = involvement, y = agreement, col = strength, group = strength)) + 
 geom_line(stat = "identity") + 
-facet_wrap(~style) + labs(y = "mean agreement rating") + 
+facet_wrap(~style) + labs(y = "mean agreement\n rating") + 
 theme_bw() + theme(legend.position = "bottom")
 ```
 
 ???
 
-p.472 of Keppel and Wichens
+p.472 of Keppel and Wickens
+
+
+---
+class: title title-4
+#  The microwave popcorn experiment
+
+What is the best brand of microwave popcorn? 
+
+- **Factors**
+	- brand (two national, one local)
+	- power: 500W and 600W
+	- time: 4, 4.5 and 5 minutes
+- **Response**: <s>weight</s>, <s>volume</s>, <s>number</s>, percentage of popped kernels.
+	- Pilot study showed average of 70% overall popped kernels (10% standard dev), timing values reasonable
+	- Power calculation suggested at least $r=4$ replicates, but researchers proceeded with $r=2$...
+	
+---
+
+
+.panelset[
+.panel[.panel-name[Data cleaning]
+
+```{r popcorn, echo = TRUE, eval = TRUE}
+library(tidyverse)
+url <- "https://edsm.rbind.io/data/popcorn.txt"
+popcorn <- read.table(url, 
+                      header = TRUE, 
+                      stringsAsFactor = TRUE) %>% 
+   mutate(brand = factor(brand), 
+	  power = factor(power, labels = c("500","600")), 
+	  time = factor(time, labels = c("4","4.5","5"))) %>%
+   rename(percentage = y)
+```
+]
+
+.panel[.panel-name[ANOVA]
+```{r popcorn_qqplot, echo = TRUE, fig.show = 'hide'}
+# Sum-to-zero parametrization
+options(contrast = "contr.sum")
+# Fit model with three-way interaction
+model <- lm(percentage ~ brand*power*time, data = popcorn)
+# ANOVA table
+anova_table <- anova(model) # 'anova' is for balanced designs
+# Check model assumptions
+# plots + tests meaningless with r=2 replications per group...
+# except for quantile-quantile plot
+car::qqPlot(model, # points should be on straight line!
+	    id = FALSE, 
+	    ylab = 'studentized residuals')
+
+```
+]
+
+.panel[.panel-name[QQ-plot]
+![](`r knitr::fig_chunk("popcorn_qqplot", "png",)`)
+All points fall roughly on a straight line.
+
+]
+
+.panel[.panel-name[**R** code]
+```{r popcorn_plot, echo = TRUE, fig.show = 'hide', message = FALSE}
+popcorn %>% 
+ group_by(brand, time, power) %>% 
+ summarize(mean_percentage = mean(percentage)) %>% 
+ ggplot(aes(x = power, 
+            y = mean_percentage, 
+            col = time, 
+            group = time)) + 
+    geom_line() + 
+    facet_wrap(~brand) + 
+    labs(y = "percentage of\n popped kernels",
+         col = "time (min)", 
+         x = "power (W)") + 
+    theme_bw() + 
+    theme(legend.position = "bottom")
+```
+]
+
+
+.panel[.panel-name[Interaction plot]
+
+![](`r knitr::fig_chunk("popcorn_plot", "png")`)
+No three-way interaction (hard to tell with $r=2$ replications).
+]
+
+
+]
 
 ---
 
@@ -324,127 +521,68 @@ class: title title-4
 
 ]
 
-
 ---
-class: title title-4
-#  The microwave popcorn experiment
-
-What is the best brand of microwave popcorn? 
-
-- **Factors**
-	- brand (two national, one local)
-	- power: 500W and 600W
-	- time: 4, 4.5 and 5 minutes
-- **Response**: <s>weight</s>, <s>volume</s>, <s>number</s>, percentage of popped kernels.
-	- Pilot study showed average of 70% overall popped kernels (10% standard dev), timing values reasonable
-	- Power calculation revealed $r=4$ replicates, but proceeded with $r=2$...
-	
----
-class: title title-4
-# Time to popcorn
-Data available from @Dean:2017
-
-```{r popcorn, echo = TRUE}
-library(tidyverse)
-#url <- "https://edsm.rbind.io/data/popcorn.txt"
-url <- "http://deanvossdraguljic.ietsandbox.net/DeanVossDraguljic/R-data/popcorn.microwave.txt"
-popcorn <- read.table(url, header = TRUE, stringsAsFactor = TRUE)
-popcorn %>% 
-   mutate(brand = factor(brand), 
-	  power = factor(power, labels = c("500","600")), 
-	  time = factor(time, labels = c("4","4.5","5"))
-	  )
-options(contrast = "contr.sum")
-model <- lm(y ~ brand*power*time, data = popcorn)
-anova_table <- anova(model) # balanced design
-```
-
----
-# ANOVA table for microwave-popcorn
 
 ```{r printanovaPopcorn, echo = FALSE, eval = TRUE}
 knitr::kable(anova_table,
-             digits = c(2,2,2,3),
-             caption = "Analysis of variance table",
-             col.names = c("Terms",
-                           "Degrees of freedom",
+             digits = c(0,2,2,2,3),
+             caption = "Analysis of variance table for microwave-popcorn",
+             col.names = c("Degrees of freedom",
                            "Sum of squares",
                            "Mean square",
-                           "Statistic",
+                           "F statistic",
                            "p-value")) %>%
   kableExtra::kable_styling(position = "center")
 ```
 
 ---
 class: title title-4
-# Guidelines for the interpretation of effects
-
-Start with the most complicated term (top down)
--If the three-way interaction $ABC$ is significative:
-	- don't interpret main effects or two-way interactions!
-	- comparison is done celle by cell within each level
-- If the $ABC$ term isn't significative:
-	- can marginalize and interpret lower order terms
-	
-## Analytical comparisons
-
-- Preplanned
-- *Post-hoc*: after seeing that the three-way interaction isn't significative, compare all pairwise differences within two-way.
-
----
-class: title title-4
-
-# What contrasts are of interest?
-
-- Can view a three-way ANOVA as a series of one-way ANOVA or two-way ANOVAs...
-
-Depending on the goal, could compare for variable $A$
-- $
-
----
-
-class: title title-4
 # Omitting terms in a factorial design
 
-The more levels and factors, the more terms to estimate (and replications needed)
+The more levels and factors, the more parameters to estimate (and replications needed)
 - Costly to get enough observations / power
 - The assumption of normality becomes more critical when $r=2$!
 
 It may be useful not to consider some interactions if they are known or (strongly) suspected not to be present
 
 - If important interactions are omitted from the model, biased estimates/output!
----
-
-# Block-treatment design
-
-Without interaction,
-
-$$\underset{\text{response}}{Y_{ij}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking}}{\beta_j}+ \underset{\text{error}}{\varepsilon_{ij}}$$
-
 
 ---
+
+class: title title-4
 # Latin square
 
 A latin square is a blocked design with one treatment with $T$ levels and two blocking factors with also $T$ levels each.
 
 Experiment arranged so that treatment is assigned once to each row/column. Letters correspond to the different treatments: 
 
-.center.small[
+| |  col 1 | col 2 | col 3 | col 4|
+|--|:---:|:---:|:---:|:---:|
+| **row 1** | $A$ | $B$ | $C$ | $D$ |
+| **row 2** | $B$ | $C$ | $D$ | $A$ |
+| **row 3** | $C$ | $D$ | $A$ | $B$ |
+| **row 4** | $D$ | $A$ | $B$ | $C$ |
 
-|:---:|:---:|:---:|:---:|
-| $A$ | $B$ | $C$ | $D$ |
-| $B$ | $C$ | $D$ | $A$ |
-| $C$ | $D$ | $A$ | $B$ |
-| $D$ | $A$ | $B$ | $C$ |
+---
 
-.box-inv-4.small.sp-after-half[Example of a 4 latin square]
-]
+class: title title-4
+# Example of a $4 \times 4$ latin square
+
 The model takes the form
 $$\underset{\text{response}}{Y_{ijk}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking (row)}}{\beta_j} + \underset{\text{blocking (col)}}{\gamma_k} + \underset{\text{error}}{\varepsilon_{ijk}}$$
 
+--
+
 There are $1+3\times(K-1)$ mean parameters to estimate, and **no interaction**.
 
-Only effect of Interest is that of the treatment variables, $\alpha_i$.
+--
+
+.box-inv-4.sp-after-half[
+
+Only look at treatment effect $\alpha_i$.
+
+]
+
 
 ???
 Link with Sudokus!
@@ -453,4 +591,132 @@ Link with Sudokus!
 - Can have replications.
 - The figure shown is one of many possible latin squares (we can permute rows and columns)
 - Treatment is randomly allocated
+
+---
+
+layout: false
+name: contrasts
+class: center middle section-title section-title-5 animated fadeIn
+
+# Custom contrasts and marginal means
+
+
+---
+class: title title-5
+# Guidelines for the interpretation of effects
+
+Start with the most complicated term (top down)
+
+- If the three-way interaction $ABC$ is significative:
+   - don't interpret main effects or two-way interactions!
+   - comparison is done cell by cell within each level
+- If the $ABC$ term isn't significative:
+	- can marginalize and interpret lower order terms
+
+--
+
+.box-inv-5[Analytical comparisons]
+
+- Preplanned
+- *Post-hoc*: after seeing that the three-way interaction isn't significative, compare all pairwise differences within two-way.
+
+---
+
+class: title title-5
+
+# What contrasts are of interest?
+
+- Can view a three-way ANOVA as a series of one-way ANOVA or two-way ANOVAs...
+
+Depending on the goal, could compare for variable $A$
+- marginal contrast $\psi_A$ (averaging over $B$ and $C$)
+- marginal conditional contrast for particular subgroup: $\psi_A$ within $c_1$
+- contrast involving two variables: $\psi_{AB}$
+- contrast differences between treatment at $\psi_A \times B$, averaging over $C$.
+- etc.
+
+See [helper code](https://edsm.rbind.io/examples/example_threewayanova_contrasts.R) and chapter 22 of Keppel & Wickens (2004) for a detailed example.
+---
+class: title title-5
+# Effects and contrasts for microwave-popcorn
+
+Following preplanned comparisons
+
+- Which combo (brand, power, time) gives highest popping rate? (pairwise comparisons of all combos)
+- Best brand overall (marginal means marginalizing over power and time, assuming no interaction)
+- Effect of time and power on percentage of popped kernels 
+   - pairwise comparison of time $\times$ power
+   - main effect of power
+   - main effect of time
+
+---
+
+class: title title-5
+# Preplanned comparisons using `emmeans`
+
+
+Let $A$=brand, $B$=power, $C$=time
+
+Compare difference between percentage of popped kernels for 4.5 versus 5 minutes, for brands 1 and 2
+
+$$\mu_{1.2} -\mu_{1.3} - \mu_{2.2} - \mu_{2.3}$$
+
+.small[
+```{r plannedcomparisonspopcorn, echo = TRUE}
+library(emmeans)
+# marginal means
+emm_popcorn_AC <- emmeans(model, specs = c("brand","time"))
+contrast_list <- list(brand12with4.5vs5min = c(0, 0, 0, 1, -1, 0, -1, 1,0))
+contrast(emm_popcorn_AC,  # marginal mean (no time)
+	  method = contrast_list) # list of contrasts
+```
+
+```{r Scheffebyhand, echo = FALSE, eval = FALSE}
+# Scheffé adjustment by hand 
+# emmeans is off because of marginalization - 
+# could be solved but specifying the 18 dim vector for contrast...
+Scrit <- sqrt(17*qf(0.99, 17, 18)) # 18 cells, but all in terms of 17 combos of differences
+# qf() is 99% quantile of F distribution 
+# with 17 df and 18 df=(degrees of freedom of residual, 36 obs - 18 param)
+# with(contrast_popcorn, c(lower = estimate - Scrit*SE, upper = estimate + Scrit*SE))
+```
+]
+
+---
+
+class: title title-5
+# Preplanned comparisons
+
+
+At level 99% with Tukey's method, compare all three times (4, 4.5 and 5 minutes)
+
+- Careful! Potentially misleading because there is a `brand * time` interaction present.
+
+```{r plannedcomparisons2popcorn, echo = TRUE}
+# List of variables to keep go in `specs`: keep only time
+emm_popcorn_C <- emmeans(model, specs = "time")
+pairs(emm_popcorn_C, adjust = "tukey", level = 0.99, infer = TRUE)
+
+```
+
+---
+class: title title-5
+# Semipartial effect sizes
+
+Normally, partial effect sizes are of the form  
+- if only experimental factors, $\sigma^2_{\text{effect}} / (\sigma^2_{\text{effect}} + \sigma^2_{\text{res}})$ for the given $\text{effect}$
+- if only blocking factors, use total effect size $\sigma^2_{\text{effect}} / \sigma^2_{\text{total}}$
+- if a mix, include variance of all blocking factors and interactions (only with effect!) in denominator.
+
+If $A$ is effect of interest, $B$ is a blocking factor and $C$ is another experimental factor, use
+$$\text{semipartial } \omega_A^2 = \frac{\sigma^2_A}{\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{res}}}.$$
+
+---
+
+class: title title-5
+# Power for complex studies
+
+One can estimate (semi)partial effects and proceed as if you had a one-way ANOVA by specifying the missing ingredients.
+
+- In more general settings, it may be easier to simulate from the fitted model directly and calculate the power as you change the number of observations per group.
 
