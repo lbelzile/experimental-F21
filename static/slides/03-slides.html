@@ -4,13 +4,17 @@
     <title>One way ANOVA</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-15" />
+    <meta name="date" content="2021-10-16" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view-0.2.6/tile-view.js"></script>
     <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
     <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
     <script src="libs/freezeframe-5.0.2/freezeframe.min.js"></script>
     <script src="libs/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
     <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
@@ -559,13 +563,111 @@ class: title title-3
 The pairwise differences (_p_-values) and confidence intervals for groups `\(j\)` and `\(k\)` are based on the _t_-statistic:
 
 `\begin{align*}
-t = \frac{(\widehat{\mu}_j - \widehat{\mu}_k) - 0}{\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)}
+t = \frac{\text{estimated} - \text{postulated difference}}{\text{uncertainty}}= \frac{(\widehat{\mu}_j - \widehat{\mu}_k) - (\mu_j - \mu_k)}{\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)}
 \end{align*}`
 which has a null `\(\mathsf{St}(n-k)\)` distribution.
 
-The standard error `\(\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)\)` uses the pooled variance estimate, i.e., the within sum of squares divided by `\(n-K\)`
+The standard error `\(\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)\)` uses the pooled variance estimate (based on all groups).
+
+---
+class: title title-3
+# Null distribution
 
 
+The blue area defines the set of values for which we fail to reject null `\(\mathscr{H}_0\)`.
+
+All values of `\(t\)` falling in the red aread lead to rejection at level `\(5\)`%.
+
+&lt;img src="03-slides_files/figure-html/tcurve-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: title title-3
+
+# _t_-tests
+
+If we postulate `\(\Delta_{jk} = \mu_j - \mu_k = 0\)`, the test statistic becomes
+
+`\begin{align*}
+t = \frac{(\widehat{\Delta}_{jk}) - 0}{\mathsf{se}(\widehat{\Delta}_{jk})}
+\end{align*}`
+
+The `\(p\)`-value is `\(p = 1- \Pr(-|t| \leq \mathsf{St}_{n-k} \leq |t|)\)`.
+
+
+The larger the values of `\(t\)` (positive or negative), the more evidence against the null hypothesis.
+
+---
+
+class: title title-3
+# Critical values
+
+For a test at level `\(\alpha\)` (two-sided), fail to reject all values of the test statistic `\(t\)` that are in interval
+
+`$$\mathfrak{t}_{n-k}(\alpha/2) \leq t \leq \mathfrak{t}_{n-k}(1-\alpha/2)$$`
+
+Because of symmetry around zero, `\(\mathfrak{t}_{n-k}(1-\alpha/2) = -\mathfrak{t}_{n-k}(\alpha/2)\)`.
+
+- We call `\(\mathfrak{t}_{n-k}(1-\alpha/2)\)` a **critical value**. 
+- in **R**, `qt(1-alpha/2, df = n - k)` where `n` is the number of observations and `k` the number of groups
+
+---
+class: title title-3
+# Confidence interval 
+
+.small[
+
+Let `\(\Delta_{jk}=\mu_j - \mu_k\)` denote the population difference, `\(\widehat{\Delta}_{jk}\)` the estimated difference (difference in sample averages) and `\(\mathsf{se}(\widehat{\Delta}_{jk})\)` the estimated standard error.
+
+The region for which we fail to reject the null is 
+`\begin{align*}
+\mathfrak{t}_{n-k}(\alpha/2) \leq  \frac{\widehat{\Delta}_{jk} - \Delta_{jk}}{\mathsf{se}(\widehat{\Delta}_{jk})} \leq \mathfrak{t}_{n-k}(1-\alpha/2)
+\end{align*}`
+which rearranged gives the `\((1-\alpha)\)` confidence interval for the (unknown) difference `\(\Delta_{jk}\)`.
+
+`\begin{align*}
+\widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(\alpha/2) \leq \Delta_{jk} \leq \widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(1-\alpha/2)
+\end{align*}`
+and the reported confidence interval is `\([ \widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(\alpha/2), \widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(1-\alpha/2)]\)`.
+]
+
+---
+class: title title-3
+# Example
+
+Consider the `arithmetic` data and the pairwise difference between praised (group C) and reproved (group D). 
+.small[
+- Sample average are `\(\widehat{\mu}_C = 27.4\)` and `\(\widehat{\mu}_D = 23.4\)`, the pooled standard deviation is `\(1.15\)`
+- The estimated average difference between groups `\(C\)` and `\(D\)` is `\(\widehat{\Delta}_{CD} = 4\)`.
+- The standard error for the difference between groups is `\(\mathsf{se}(\widehat{\Delta}_{CD}) = 1.6216\)`
+- If `\(\mathscr{H}_0: \Delta=0\)`, the `\(t\)` statistic is `\(t=4/1.6216=2.467\)`.
+- The critical values for a test at level `\(\alpha = 5\)`% are `\(-2.021\)` and `\(2.021\)` (`qt(0.975, df = 45 - 5)`)
+- Since `\(|t| &gt; 2.021\)`, reject `\(\mathscr{H}_0\)`: the two population are statistically significant at level `\(\alpha=5\)`%
+- The confidence interval is [ `\(4-1.6216\times 2.021, 4+1.6216\times 2.021\)` ] = [ `\(0.723, 7.28\)` ]
+- The `\(p\)`-value is `\(p=0.018\)`. We reject the null at level `\(\alpha=5\)`% since `\(0.018 &lt; 0.05\)`.
+
+]
+
+---
+class: title title-3
+
+# Pairwise differences in **R**
+
+
+```r
+library(tidyverse) # data manipulation
+library(emmeans) # marginal means and contrasts
+url &lt;- "https://edsm.rbind.io/data/arithmetic.csv" 
+# load data, define column type (factor and integer)
+arithmetic &lt;- read_csv(url, col_types = "fi") 
+# fit one-way ANOVA model
+model &lt;- lm(score ~ group, data = arithmetic)
+# Compute average of groups with model specification
+margmeans &lt;- emmeans::emmeans(model, specs = "group")
+# Contrasts (default to pairwise comparisons) - no adjustment
+contrast(margmeans, adjust = 'none', infer = TRUE) 
+#infer = TRUE for confidence intervals
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

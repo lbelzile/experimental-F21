@@ -42,6 +42,7 @@ At the end of the session, students should be capable of
 -   <i class="fas fa-book"></i> Section 4.4 of Dean et al. (2017).
 -   <i class="fas fa-book"></i> Chapter 6 of Keppel & Wickens (2004).
 -   <i class="fas fa-book"></i> [H. Abdi (2010) Holm’s Sequential Bonferroni Procedure](https://personal.utdallas.edu/~herve/abdi-Holm2010-pretty.pdf)
+-   <i class="fas fa-video-camera"></i> [*P*-Hacking: Crash Course Statistics](https://www.youtube.com/watch?v=Gx0fAjNHb1M)
 -   The British Ecological Society (BES) publishes Guides to Better Sciences, among which the excellent [Reproducible Code](https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf?utm_source=web&utm_medium=web&utm_campaign=better_science).
 
 <!--
