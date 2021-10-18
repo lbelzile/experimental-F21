@@ -4,7 +4,7 @@
     <title>One way ANOVA</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-16" />
+    <meta name="date" content="2021-10-17" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -52,16 +52,13 @@ HEC Montréal
 ---
 
 name: outline
-class: title title-inv-5
+class: title title-inv-2
 
 # Outline
 --
 
-.box-2.medium.sp-after-half[Recap]
 
---
-
-.box-8.medium.sp-after-half[F tests]
+.box-2.medium.sp-after-half[Hypothesis tests for ANOVA]
 
 --
 
@@ -78,7 +75,7 @@ layout: false
 name: recap
 class: center middle section-title section-title-2 animated fadeIn
 
-# Refresher on hypothesis tests
+# Hypothesis tests for ANOVA
 
 ---
 
@@ -86,62 +83,60 @@ class: title title-2
 
 # General recipe of hypothesis testing
 
-.pull-left[
 
-.box-2.sp-after-half[
+.box-2.sp-after-half.large[
 (1) Define variables
 ]
 
-.box-2.sp-after-half[
+.box-2.sp-after-half.large[
 (2) Write down hypotheses
 ]
 
-.box-2.sp-after-half[
+---
+
+class: title title-2
+# General recipe of hypothesis testing
+
+
+.box-2.sp-after-half.large[
 (3) Choose/compute a test statistic
 ]
 
-.box-2.sp-after-half[
-(4) Benchmark
-]
-
-]
-
-.pull-right[
-
-.box-2.sp-after-half[
-(5) Compute the _p_-value
-]
-.box-inv-2.sp-after-half[
-(6) Conclude (reject/fail to reject)
-]
-.box-2.sp-after-half[
-(7) Report findings
-]
-
+.box-2.sp-after-half.large[
+(4) Compare statistic to null distribution
 ]
 
 ---
 
 class: title title-2
 
-# Level
+# General recipe of hypothesis testing
 
-.box-2.sp-after-half[
-Level = probability of judicial error 
+.box-2.sp-after-half.large[
+(5) Compute _p_-value / confidence interval
+]
+.box-2.sp-after-half.large[
+(6) Conclude (reject/fail to reject)
+]
 
+---
 
-Analyst fixes **level** `\(\alpha\)`
+class: title title-2
+
+# Level = probability of condemning an innocent
+
+.box-2.sp-after-half.large[
+Fix **level** `\(\alpha\)`
 **before** the experiment.
 ]
 
-.box-inv-2.sp-after-half[
+.box-inv-2.sp-after-half.large[
 
-Choose `\(\alpha\)` as small as possible (don't condemn the innocent!)
-
-(typical value is 5%)
+Choose small `\(\alpha\)` (typical value is 5%)
 ]
 
-.box-2.sp-after-half[
+
+.box-2.sp-after-half.large[
 Reject `\(\mathscr{H}_0\)` if p-value less than `\(\alpha\)`
 ]
 
@@ -155,62 +150,10 @@ Question: why can't we fix `\(\alpha=0\)`?
 ---
 
 class: title title-2
-# Errors
-
-
-&lt;img src="03-slides_files/figure-html/nullvsalternative-1.png" width="792" style="display: block; margin: auto;" /&gt;
-
-???
-
-- Talk about cutoff values
-- Discuss the tradeoff between type I and type II errors
-
----
-
-class: title title-2
-
-# Confidence intervals
-
-Test statistics are standardized, 
-- Good for comparisons with benchmark
-- typically meaningless (standardized = unitless quantities)
-
-Two options for reporting: 
-
-- `\(p\)`-value: probability of more extreme outcome if no mean difference
-- confidence interval: set of all values for which we fail to reject the null hypothesis at level `\(\alpha\)` for the given sample
-
----
-class: title title-2
-
-# Interpretation of confidence intervals
-
-
-.box-7.sp-after-half[ confidence interval = [lower, upper] units]
-
-.small[
-Interpretation: under the null, if we repeat the experiments 95%, of intervals will contain the true value (if model correctly calibrated)]
-
-
-.box-7.sp-after-half[Analogy: coin toss]
-
-&lt;img src="img/03/confint.png" title="100 confidence intervals" alt="100 confidence intervals" width="50%" height="40%" style="display: block; margin: auto;" /&gt;
-
----
-
-layout: false
-name: f-test
-class: center middle section-title section-title-8 animated fadeIn
-
-# One way analysis of variance
-
----
-
-class: title title-8
 
 # F-test for one way ANOVA
 
-.box-inv-8.medium[Global null hypothesis]
+.box-inv-2.medium[Global null hypothesis]
 
 No difference between treatments
 
@@ -224,26 +167,9 @@ No difference between treatments
 
 ---
 
-class: title title-8
+class: title title-2
 
-# _F_-test statistic
-
-.box-8.medium[Omnibus test]
-
-With `\(K\)` groups and `\(n\)` observations, the statistic is
-
-`\begin{align*}
-F =  \frac{\text{between sum of squares}/(K-1)}{\text{within sum of squares}/(n-K)}
-\end{align*}`
-
-
-The null distribution (benchmark) is `\(F(K-1, n-K)\)`.
-
----
-
-class: title title-8
-
-# Why does it work?
+# Building a statistic
 
 .small[
 Denote
@@ -253,26 +179,26 @@ Denote
 
 ]
 
-.box-8[Decomposing variability into bits]
+.box-2[Decomposing variability into bits]
 
 `\begin{align*}
 \underset{\text{total sum of squares}}{\sum_{i}\sum_{k} (y_{ik} - \widehat{\mu})^2} &amp;= \underset{\text{within sum of squares}}{\sum_i \sum_k (y_{ik} - \widehat{\mu}_k)^2} +  \underset{\text{between sum of squares}}{\sum_k n_i (\widehat{\mu}_k - \widehat{\mu})^2}.
 \end{align*}`
 
 .pull-left-3[
-.box-inv-8[null model]
+.box-inv-2[null model]
 ]
 .pull-middle-3[
-.box-inv-8[alternative model]
+.box-inv-2[alternative model]
 ]
 .pull-right-3[
-.box-inv-8[added variability]
+.box-inv-2[added variability]
 ]
 
 ---
 
 
-class: title title-8
+class: title title-2
 
 # Degrees of freedom
 
@@ -281,10 +207,215 @@ The parameters of the null distribution are called **degrees of freedom**
 - `\(K-1\)` is the number of constraints imposed by the null
 - `\(n-K\)` is the number of observations minus number of mean parameters estimated under alternative
 
-Idea of _F_-statistic: under the null, both numerator and denominator are variance estimators.
+---
 
-- but the numerator is more variable...
+class: title title-2
+
+# _F_-test statistic
+
+.box-2.medium[Omnibus test]
+
+With `\(K\)` groups and `\(n\)` observations, the statistic is
+
+`\begin{align*}
+F =  \frac{\text{between sum of squares}/(K-1)}{\text{within sum of squares}/(n-K)}
+\end{align*}`
+
+
+The null distribution (benchmark) is `\(\mathsf{F}(K-1, n-K)\)`.
+
+---
+
+class: title title-2
+
+# Intuition behind _F_-test
+
+Idea of _F_-statistic: under the null, both numerator and denominator are estimators of the variance.
+
 - the `\(F\)` ratio should be approximately one on average
+- the numerator is more variable (so skewed null distribution)...
+
+
+---
+
+class: title title-2
+
+# Pairwise differences and _t_-tests
+
+
+The pairwise differences (_p_-values) and confidence intervals for groups `\(j\)` and `\(k\)` are based on the _t_-statistic:
+
+`\begin{align*}
+t = \frac{\text{estimated} - \text{postulated difference}}{\text{uncertainty}}= \frac{(\widehat{\mu}_j - \widehat{\mu}_k) - (\mu_j - \mu_k)}{\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)}
+\end{align*}`
+which has a Student-_t_ null distribution, denoted `\(\mathsf{St}(n-k)\)`.
+
+The standard error `\(\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)\)` uses the pooled variance estimate (based on all groups).
+
+---
+
+class: title title-2
+
+# _t_-tests
+
+If we postulate `\(\delta_{jk} = \mu_j - \mu_k = 0\)`, the test statistic becomes
+
+`\begin{align*}
+t = \frac{\widehat{\delta}_{jk} - 0}{\mathsf{se}(\widehat{\delta}_{jk})}
+\end{align*}`
+
+The `\(p\)`-value is `\(p = 1- \Pr(-|t| \leq T \leq |t|)\)` for `\(T \sim \mathsf{St}_{n-k}\)`.
+   - probability of statistic being more extreme than `\(t\)`
+
+
+The larger the values of `\(t\)` (positive or negative), the more evidence against the null hypothesis.
+---
+class: title title-2
+# Example
+
+Consider the pairwise average difference in scores between the praised (group C) and the reproved (group D) of the `arithmetic` study.
+
+
+- Sample averages are `\(\widehat{\mu}_C = 27.4\)` and `\(\widehat{\mu}_D = 23.4\)`
+- The estimated pooled standard deviation for the five groups is `\(1.15\)`
+- The estimated average difference between groups `\(C\)` and `\(D\)` is `\(\widehat{\delta}_{CD} = 4\)`.
+- The standard error for the difference is `\(\mathsf{se}(\widehat{\delta}_{CD}) = 1.6216\)`
+---
+class: title title-2
+# Example
+
+- If `\(\mathscr{H}_0: \delta_{CD}=0\)`, the `\(t\)` statistic is 
+`$$t=\frac{\widehat{\delta}_{CD} - 0}{\mathsf{se}(\widehat{\delta}_{CD})} = \frac{4}{1.6216}=2.467$$`
+- The `\(p\)`-value is `\(p=0.018\)`. 
+- We reject the null at level `\(\alpha=5\)`% since `\(0.018 &lt; 0.05\)`.
+- Conclude that there is a significant difference at level `\(\alpha=0.05\)` between the average scores of subpopulations `\(C\)` and `\(D\)`.
+
+
+---
+
+class: title title-2
+# Null distribution
+
+
+The blue area defines the set of values for which we fail to reject null `\(\mathscr{H}_0\)`.
+
+All values of `\(t\)` falling in the red aread lead to rejection at level `\(5\)`%.
+
+&lt;img src="03-slides_files/figure-html/tcurve-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: title title-2
+# Critical values
+
+For a test at level `\(\alpha\)` (two-sided), fail to reject all values of the test statistic `\(t\)` that are in interval
+
+`$$\mathfrak{t}_{n-k}(\alpha/2) \leq t \leq \mathfrak{t}_{n-k}(1-\alpha/2)$$`
+
+Because of symmetry around zero, `\(\mathfrak{t}_{n-k}(1-\alpha/2) = -\mathfrak{t}_{n-k}(\alpha/2)\)`.
+
+- We call `\(\mathfrak{t}_{n-k}(1-\alpha/2)\)` a **critical value**. 
+- in **R**, `qt(1-alpha/2, df = n - k)` where `n` is the number of observations and `k` the number of groups
+
+---
+class: title title-2
+# Confidence interval 
+
+.small[
+
+Let `\(\delta_{jk}=\mu_j - \mu_k\)` denote the population difference, `\(\widehat{\delta}_{jk}\)` the estimated difference (difference in sample averages) and `\(\mathsf{se}(\widehat{\delta}_{jk})\)` the estimated standard error.
+
+The region for which we fail to reject the null is 
+`\begin{align*}
+\mathfrak{t}_{n-k}(\alpha/2) \leq  \frac{\widehat{\delta}_{jk} - \delta_{jk}}{\mathsf{se}(\widehat{\delta}_{jk})} \leq \mathfrak{t}_{n-k}(1-\alpha/2)
+\end{align*}`
+which rearranged gives the `\((1-\alpha)\)` confidence interval for the (unknown) difference `\(\delta_{jk}\)`.
+
+`\begin{align*}
+\widehat{\delta}_{jk} + \mathsf{se}(\widehat{\delta}_{jk})\mathfrak{t}_{n-k}(\alpha/2) \leq \delta_{jk} \leq \widehat{\delta}_{jk} + \mathsf{se}(\widehat{\delta}_{jk})\mathfrak{t}_{n-k}(1-\alpha/2)
+\end{align*}`
+
+]
+
+---
+class: title title-2
+
+# Interpretation of confidence intervals
+
+The reported confidence interval is `$$[\widehat{\delta}_{jk} + \mathsf{se}(\widehat{\delta}_{jk})\mathfrak{t}_{n-k}(\alpha/2), \widehat{\delta}_{jk} + \mathsf{se}(\widehat{\delta}_{jk})\mathfrak{t}_{n-k}(1-\alpha/2)].$$`
+.small[
+Each bound is of the form
+
+$$ \text{estimate} + \text{critical value} \times \text{standard error}$$
+
+]
+.box-2.sp-after-half[ confidence interval = [lower, upper] units]
+
+
+If we replicate the experiment and compute confidence intervals each time
+- on average, 95% of those intervals will contain the true value if the assumptions underlying the model are met.
+
+
+---
+class: title title-2
+
+# Interpretation in a picture: coin toss analogy
+.small[
+Each interval either contains the true value (black horizontal line) or doesn't.
+]
+&lt;img src="03-slides_files/figure-html/unnamed-chunk-1-1.png" title="100 confidence intervals" alt="100 confidence intervals" width="70%" style="display: block; margin: auto;" /&gt;
+---
+
+
+
+class: title title-2
+
+# Why confidence intervals?
+
+Test statistics are standardized, 
+- Good for comparisons with benchmark
+- typically meaningless (standardized = unitless quantities)
+
+Two options for reporting: 
+
+- `\(p\)`-value: probability of more extreme outcome if no mean difference
+- confidence intervals: set of all values for which we fail to reject the null hypothesis at level `\(\alpha\)` for the given sample
+
+
+---
+class: title title-2
+# Example
+
+
+- Mean difference of `\(\widehat{\delta}_{CD}=4\)`,  with `\(\mathsf{se}(\widehat{\delta}_{CD})=1.6216\)`.
+- The critical values for a test at level `\(\alpha = 5\)`% are `\(-2.021\)` and `\(2.021\)` 
+   - `qt(0.975, df = 45 - 5)`
+- Since `\(|t| &gt; 2.021\)`, reject `\(\mathscr{H}_0\)`: the two population are statistically significant at level `\(\alpha=5\)`%.
+- The confidence interval is `$$[4-1.6216\times 2.021, 4+1.6216\times 2.021] = [0.723, 7.28]$$`
+
+The postulated value `\(\delta_{CD}=0\)` is not in the interval: reject `\(\mathscr{H}_0\)`.
+
+---
+class: title title-2
+
+# Pairwise differences in **R**
+
+
+```r
+library(tidyverse) # data manipulation
+library(emmeans) # marginal means and contrasts
+url &lt;- "https://edsm.rbind.io/data/arithmetic.csv" 
+# load data, define column type (factor and integer)
+arithmetic &lt;- read_csv(url, col_types = "fi") 
+# fit one-way ANOVA model
+model &lt;- lm(score ~ group, data = arithmetic)
+# Compute average of groups with model specification
+margmeans &lt;- emmeans::emmeans(model, specs = "group")
+# Contrasts (default to pairwise comparisons) - no adjustment
+contrast(margmeans, adjust = 'none', infer = TRUE) 
+#infer = TRUE for confidence intervals
+```
 
 ---
 
@@ -357,7 +488,7 @@ lm(response ~ group, contrasts = contr.sum(group))
 ```
 ]
 
-Warning: Intercept `\(\neq \widehat{\mu}\)` unless the sample is balanced
+Warning: Intercept `\(\neq \widehat{\mu}\)` unless the sample is balanced.
 
 ---
 class: title title-4
@@ -504,7 +635,7 @@ Similarly, for `\(\mathscr{H}_{02}: \frac{1}{2}(\mu_{\text{control}_1}+\mu_{\tex
 
 ]
 
-The contrast vector `\(\left(\frac{1}{2}, \frac{1}{2}, -1, 0, 0\right)\)` sums to zero.
+The entries of the contrast vector `\(\left(\frac{1}{2}, \frac{1}{2}, -1, 0, 0\right)\)` sum to zero.
 
 Equivalent formulation is obtained by picking `\((1,1,-2,0,0)\)`
 
@@ -552,122 +683,7 @@ emmeans(modlin, pairwise ~ group)
 
 If there were no differences between the groups, how many do we expect to find significant by chance with `\(\alpha = 0.1\)`?
 
----
 
-class: title title-3
-
-# Pairwise differences and _t_-tests
-
-.box-inv-3.left[Technical aside]
-
-The pairwise differences (_p_-values) and confidence intervals for groups `\(j\)` and `\(k\)` are based on the _t_-statistic:
-
-`\begin{align*}
-t = \frac{\text{estimated} - \text{postulated difference}}{\text{uncertainty}}= \frac{(\widehat{\mu}_j - \widehat{\mu}_k) - (\mu_j - \mu_k)}{\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)}
-\end{align*}`
-which has a null `\(\mathsf{St}(n-k)\)` distribution.
-
-The standard error `\(\mathsf{se}(\widehat{\mu}_j - \widehat{\mu}_k)\)` uses the pooled variance estimate (based on all groups).
-
----
-class: title title-3
-# Null distribution
-
-
-The blue area defines the set of values for which we fail to reject null `\(\mathscr{H}_0\)`.
-
-All values of `\(t\)` falling in the red aread lead to rejection at level `\(5\)`%.
-
-&lt;img src="03-slides_files/figure-html/tcurve-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-
----
-class: title title-3
-
-# _t_-tests
-
-If we postulate `\(\Delta_{jk} = \mu_j - \mu_k = 0\)`, the test statistic becomes
-
-`\begin{align*}
-t = \frac{(\widehat{\Delta}_{jk}) - 0}{\mathsf{se}(\widehat{\Delta}_{jk})}
-\end{align*}`
-
-The `\(p\)`-value is `\(p = 1- \Pr(-|t| \leq \mathsf{St}_{n-k} \leq |t|)\)`.
-
-
-The larger the values of `\(t\)` (positive or negative), the more evidence against the null hypothesis.
-
----
-
-class: title title-3
-# Critical values
-
-For a test at level `\(\alpha\)` (two-sided), fail to reject all values of the test statistic `\(t\)` that are in interval
-
-`$$\mathfrak{t}_{n-k}(\alpha/2) \leq t \leq \mathfrak{t}_{n-k}(1-\alpha/2)$$`
-
-Because of symmetry around zero, `\(\mathfrak{t}_{n-k}(1-\alpha/2) = -\mathfrak{t}_{n-k}(\alpha/2)\)`.
-
-- We call `\(\mathfrak{t}_{n-k}(1-\alpha/2)\)` a **critical value**. 
-- in **R**, `qt(1-alpha/2, df = n - k)` where `n` is the number of observations and `k` the number of groups
-
----
-class: title title-3
-# Confidence interval 
-
-.small[
-
-Let `\(\Delta_{jk}=\mu_j - \mu_k\)` denote the population difference, `\(\widehat{\Delta}_{jk}\)` the estimated difference (difference in sample averages) and `\(\mathsf{se}(\widehat{\Delta}_{jk})\)` the estimated standard error.
-
-The region for which we fail to reject the null is 
-`\begin{align*}
-\mathfrak{t}_{n-k}(\alpha/2) \leq  \frac{\widehat{\Delta}_{jk} - \Delta_{jk}}{\mathsf{se}(\widehat{\Delta}_{jk})} \leq \mathfrak{t}_{n-k}(1-\alpha/2)
-\end{align*}`
-which rearranged gives the `\((1-\alpha)\)` confidence interval for the (unknown) difference `\(\Delta_{jk}\)`.
-
-`\begin{align*}
-\widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(\alpha/2) \leq \Delta_{jk} \leq \widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(1-\alpha/2)
-\end{align*}`
-and the reported confidence interval is `\([ \widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(\alpha/2), \widehat{\Delta}_{jk} + \mathsf{se}(\widehat{\Delta}_{jk})\mathfrak{t}_{n-k}(1-\alpha/2)]\)`.
-]
-
----
-class: title title-3
-# Example
-
-Consider the `arithmetic` data and the pairwise difference between praised (group C) and reproved (group D). 
-.small[
-- Sample average are `\(\widehat{\mu}_C = 27.4\)` and `\(\widehat{\mu}_D = 23.4\)`, the pooled standard deviation is `\(1.15\)`
-- The estimated average difference between groups `\(C\)` and `\(D\)` is `\(\widehat{\Delta}_{CD} = 4\)`.
-- The standard error for the difference between groups is `\(\mathsf{se}(\widehat{\Delta}_{CD}) = 1.6216\)`
-- If `\(\mathscr{H}_0: \Delta=0\)`, the `\(t\)` statistic is `\(t=4/1.6216=2.467\)`.
-- The critical values for a test at level `\(\alpha = 5\)`% are `\(-2.021\)` and `\(2.021\)` (`qt(0.975, df = 45 - 5)`)
-- Since `\(|t| &gt; 2.021\)`, reject `\(\mathscr{H}_0\)`: the two population are statistically significant at level `\(\alpha=5\)`%
-- The confidence interval is [ `\(4-1.6216\times 2.021, 4+1.6216\times 2.021\)` ] = [ `\(0.723, 7.28\)` ]
-- The `\(p\)`-value is `\(p=0.018\)`. We reject the null at level `\(\alpha=5\)`% since `\(0.018 &lt; 0.05\)`.
-
-]
-
----
-class: title title-3
-
-# Pairwise differences in **R**
-
-
-```r
-library(tidyverse) # data manipulation
-library(emmeans) # marginal means and contrasts
-url &lt;- "https://edsm.rbind.io/data/arithmetic.csv" 
-# load data, define column type (factor and integer)
-arithmetic &lt;- read_csv(url, col_types = "fi") 
-# fit one-way ANOVA model
-model &lt;- lm(score ~ group, data = arithmetic)
-# Compute average of groups with model specification
-margmeans &lt;- emmeans::emmeans(model, specs = "group")
-# Contrasts (default to pairwise comparisons) - no adjustment
-contrast(margmeans, adjust = 'none', infer = TRUE) 
-#infer = TRUE for confidence intervals
-```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

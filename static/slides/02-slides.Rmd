@@ -334,9 +334,8 @@ One-way analysis of variance uses an $F$ statistic.
 
 ```{r aov, eval = FALSE, echo = TRUE}
 #one way analysis of variance
-aov(data = arithmetic, 
+lm(data = arithmetic, 
          formula = score ~ group)
-# can replace 'aov' by 'lm'
 ```
 
 - In **R**, the function `anova` prints the analysis of variance table.

@@ -4,7 +4,7 @@
     <title>Two-way designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-16" />
+    <meta name="date" content="2021-10-17" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -829,7 +829,6 @@ class: title title-5
 
 - Intuition behind degrees of freedom for the residuals?
 - No interaction term (why?)
-- Why blocking?
 
 --
 
@@ -844,9 +843,6 @@ class: title title-5
 Terms with `\(\mathsf{X}\)` are fully determined by row/column/total averages
 
 ]
-
----
-
 
 
 ---
@@ -911,12 +907,12 @@ class: title title-6
 ---
 
 class: title title-6
-# Omega-squared and partial version
+# (Partial) `\(\omega^2\)`
 
 .pull-left[
 The proportion of variance explained by the effect `\(T\)` is 
 `$$\omega^2_{\text{effect}} = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{total}}}.$$`
-where `\(\sigma^2_{\text{total}}=\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{error}}\)`.
+where `\(\sigma^2_{\text{total}}=\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{error}}.\)`
 
 ]
 .pull-right[
@@ -929,7 +925,7 @@ These get replaced by estimates based on `\(F\)` statistics and degrees of freed
 
 The **R** package `effectsize` reports estimates with confidence intervals 
 
-.footnotesize[Reference: Steiger (2004), Psychological Methods]
+.small[Reference for confidence intervals: Steiger (2004), Psychological Methods]
 
 ???
 
@@ -951,14 +947,15 @@ class: title title-6
 
 In the interaction model, we cast the main effect in terms of parameters
 
-Say the order of the coefficients is drug ( `\(A\)` ) and deprivation ( `\(B\)` ).
+Say the order of the coefficients is drug ( `\(A\)`, 3 levels) and deprivation ( `\(B\)`, 2 levels).
 
-| test | `\(\mu_{11}\)` | `\(\mu_{21}\)` | `\(\mu_{31}\)` | `\(\mu_{21}\)` | `\(\mu_{22}\)` | `\(\mu_{23}\)` |
+| test | `\(\mu_{11}\)` | `\(\mu_{12}\)` | `\(\mu_{21}\)` | `\(\mu_{22}\)` | `\(\mu_{31}\)` | `\(\mu_{32}\)` |
 |:--|--:|--:|--:|--:|--:|--:|
-| main effect `\(A\)` (1 vs 2) |  `\(1\)` | `\(-1\)` | `\(0\)` |  `\(1\)` | `\(-1\)` | `\(0\)` |
-| main effect `\(A\)` (1 vs 3) |    `\(1\)` |  `\(0\)` | `\(-1\)` |  `\(1\)` | `\(0\)` | `\(-1\)` |
-| main effect `\(B\)` (1 vs 2) |    `\(1\)` |  `\(1\)` | `\(1\)` |  `\(-1\)` | `\(-1\)` | `\(-1\)` |
-| interaction `\(AB\)` (1 vs 2) | `\(-1\)` | `\(2\)` | `\(-1\)` | `\(1\)` | `\(-2\)` | `\(1\)` |
+| main effect `\(A\)` (1 vs 2) |  `\(1\)` | `\(1\)` | `\(-1\)` |  `\(-1\)` | `\(0\)` | `\(0\)` |
+| main effect `\(A\)` (1 vs 3) |    `\(1\)` |  `\(1\)` | `\(0\)` | `\(0\)` | `\(-1\)` |  `\(-1\)` |
+| main effect `\(B\)` (1 vs 2) |    `\(1\)` |  `\(-1\)` | `\(1\)` |  `\(-1\)` | `\(1\)` | `\(-1\)` |
+| interaction `\(AB\)` (1 vs 2, 1 vs 2) | `\(1\)` | `\(-1\)` | `\(-1\)` | `\(1\)` | `\(0\)` | `\(0\)` |
+| interaction `\(AB\)` (1 vs 3, 1 vs 2) |  `\(1\)` | `\(-1\)` | `\(0\)` | `\(0\)` | `\(-1\)` | `\(1\)` |
 
 
 ---

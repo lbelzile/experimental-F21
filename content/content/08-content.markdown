@@ -17,9 +17,8 @@ slides: "08-slides"
 
 ## Content
 
--   Formulation
+-   ANOVA as a linear model
 -   Sum of square decomposition for unbalanced designs
--   Diagnostic plots
 -   Analysis of trend
 
 ## Learning objectives
@@ -37,11 +36,7 @@ At the end of the session, students should be capable of
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> [*The ANOVA controversy* by Falk Scholer](http://wight.seg.rmit.edu.au/fscholer/anova.php)
--   <i class="fas fa-book"></i> Chapters 8 of (**Fox:2015?**)
-
-## In class
-
-We covered three examples in class: one two-way design with a blocking factor (no interaction), a balanced design with fictious data from Keppel & Wickens (2004) (Table 11.8) and finally data from a replication study (unbalanced). The code for these examples can be found in the [**R** script](/example/06-twowayanova.R).
+-   <i class="fas fa-book"></i> Chapters 8 of Fox (2015)
 
 ## Slides
 
@@ -70,7 +65,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/06-slides.html#1">
+<iframe class="embed-responsive-item" src="/slides/08-slides.html#1">
 </iframe>
 
 </div>
@@ -81,7 +76,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/06-slides.html#factorial-interaction">
+<iframe class="embed-responsive-item" src="/slides/08-slides.html#factorial-interaction">
 </iframe>
 
 </div>
@@ -92,7 +87,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/06-slides.html#formulation">
+<iframe class="embed-responsive-item" src="/slides/08-slides.html#formulation">
 </iframe>
 
 </div>
@@ -103,7 +98,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/06-slides.html#effect-size-contrast-power">
+<iframe class="embed-responsive-item" src="/slides/08-slides.html#effect-size-contrast-power">
 </iframe>
 
 </div>
@@ -116,9 +111,9 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
-<div id="ref-Keppel/Wickens:2004" class="csl-entry">
+<div id="ref-Fox:2015" class="csl-entry">
 
-Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
+Fox, J. (2015). *Applied regression analysis and generalized linear models*. SAGE Publications. <https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254>
 
 </div>
 

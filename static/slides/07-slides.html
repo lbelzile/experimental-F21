@@ -4,7 +4,7 @@
     <title>General factorial designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-15" />
+    <meta name="date" content="2021-10-17" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -31,6 +31,7 @@
   </head>
   <body>
     <textarea id="source">
+
 
 
 
@@ -187,7 +188,7 @@ class: title title-3
 
 Without interaction,
 
-`$$\underset{\text{response}}{Y_{ij}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking}}{\beta_j}+ \underset{\text{error}}{\varepsilon_{ij}}$$`
+`$$\underset{\text{response}}{Y_{ij}\vphantom{\beta_j}} = \mu + \underset{\text{treatment}}{\alpha_i\vphantom{\beta_j}} + \underset{\text{blocking}}{\beta_j}+ \underset{\text{error}}{\varepsilon_{ij}\vphantom{\beta_j}}$$`
 
 Compromise between 
 
@@ -243,10 +244,8 @@ model_raw &lt;- lm(rate ~ protocol, data = resting)
   .panel[.panel-name[Plot]       
 
 ```r
-resting %&gt;% 
-  group_by(subject, protocol) %&gt;%
-  summarize(rate = mean(rate)) %&gt;%
-ggplot(aes(x = subject,
+ggplot(data = resting,
+       aes(x = subject,
            y = rate,
            group = protocol,
            color = protocol)) +
@@ -471,8 +470,7 @@ popcorn &lt;- read.table(url,
                       stringsAsFactor = TRUE) %&gt;% 
    mutate(brand = factor(brand), 
 	  power = factor(power, labels = c("500","600")), 
-	  time = factor(time, labels = c("4","4.5","5"))) %&gt;%
-   rename(percentage = y)
+	  time = factor(time, labels = c("4","4.5","5")))
 ```
 ]
 
@@ -495,7 +493,9 @@ car::qqPlot(model, # points should be on straight line!
 ]
 
 .panel[.panel-name[QQ-plot]
-![](07-slides_files/figure-html/popcorn_qqplot-1.png)
+
+&lt;img src="07-slides_files/figure-html/popcorn_qqplot-1.png" width="35%" style="display: block; margin: auto;" /&gt;
+
 All points fall roughly on a straight line.
 
 ]
@@ -770,13 +770,6 @@ contrast(emm_popcorn_AC,  # marginal mean (no time)
 	  method = contrast_list) # list of contrasts
 ```
 
-```
-##  contrast             estimate   SE df t.ratio p.value
-##  brand12with4.5vs5min    -28.4 9.36 18  -3.039  0.0071
-## 
-## Results are averaged over the levels of: power
-```
-
 
 ]
 
@@ -795,18 +788,6 @@ At level 99% with Tukey's method, compare all three times (4, 4.5 and 5 minutes)
 # List of variables to keep go in `specs`: keep only time
 emm_popcorn_C &lt;- emmeans(model, specs = "time")
 pairs(emm_popcorn_C, adjust = "tukey", level = 0.99, infer = TRUE)
-```
-
-```
-##  contrast estimate   SE df lower.CL upper.CL t.ratio p.value
-##  4 - 4.5     -6.97 3.82 18   -19.68     5.75  -1.823  0.1906
-##  4 - 5        9.08 3.82 18    -3.63    21.80   2.376  0.0705
-##  4.5 - 5     16.05 3.82 18     3.34    28.76   4.199  0.0015
-## 
-## Results are averaged over the levels of: brand, power 
-## Confidence level used: 0.99 
-## Conf-level adjustment: tukey method for comparing a family of 3 estimates 
-## P value adjustment: tukey method for comparing a family of 3 estimates
 ```
 
 ---
