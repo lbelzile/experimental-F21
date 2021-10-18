@@ -31,9 +31,8 @@ slide_details <- tibble::tribble(
 
 ## Content
 
-- Formulation
+- ANOVA as a linear model
 - Sum of square decomposition for unbalanced designs
-- Diagnostic plots
 - Analysis of trend
 
 ## Learning objectives
@@ -54,9 +53,6 @@ At the end of the session, students should be capable of
 - <i class="fas fa-book"></i> [*The ANOVA controversy* by Falk Scholer](http://wight.seg.rmit.edu.au/fscholer/anova.php)
 - <i class="fas fa-book"></i> Chapters 8 of @Fox:2015
 
-## In class
-
-We covered three examples in class: one two-way design with a blocking factor (no interaction), a balanced design with fictious data from @Keppel/Wickens:2004 (Table 11.8) and finally data from a replication study (unbalanced). The code for these examples can be found in the [**R** script](/example/06-twowayanova.R).
 
 ## Slides
 
@@ -65,7 +61,7 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 `r blogdown::shortcode("slide-buttons")`
 
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/06-slides.html")
+slide_tabs(slide_details, "/slides/08-slides.html")
 ```
 
 

@@ -1,4 +1,6 @@
 library(tidyverse) #load package
+library(emmeans)
+library(nlme)
 
 # Fetch data
 url <- "https://edsm.rbind.io/data/teller.txt"
@@ -8,7 +10,7 @@ tellers <- read.table(url, header = TRUE) %>%
          nweeks = factor(nweeks))
 # Set sum-to-zero parametrization as default for factors
 options(contrasts = c("contr.sum", "contr.poly"))
-lm(error ~ nweeks*course, data = tellers)
+model <- lm(error ~ nweeks*course, data = tellers)
 
 # Plot error per week!
 
@@ -26,3 +28,5 @@ tellers %>%
   labs(y = "",
        subtitle = "average monthly error (USD)",
        x = "number of weeks of 1-1 training")
+
+

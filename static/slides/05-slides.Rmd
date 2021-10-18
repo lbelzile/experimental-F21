@@ -153,13 +153,13 @@ For $k=2$ groups, $f=d/2$.
 class: title title-4
 # $R^2$ and $\eta^2$
 
-Can break down the variability for sum of squares as 'total = within + between'.
+Can break down the variability between that explained by effect, $\sigma^2_{\text{effect}}$ and the total variance $\sigma^2$.
 
 Define the percentage of variability explained by $\text{effect}$.
-$$\eta^2 = \frac{\text{explained variability}}{\text{total variability}}$$
+$$\eta^2 = \frac{\text{explained variability}}{\text{total variability}}= \frac{\sigma^2_{\text{effect}}}{\sigma^2}$$
 
 
-The sample estimate is $R^2$, the coefficient of determination
+The most commonly used sample estimate of $\eta^2$ is $R^2$, the coefficient of determination.
 
 <!--
  Often, you see instead the following reported
@@ -177,7 +177,7 @@ For the balanced one-way ANOVA with exhaustive factors=all possible choices in t
 $$\begin{align*}
 R^2 = \frac{F\nu_1}{F\nu_1 + \nu_2}
 \end{align*}$$
-where $\nu_1 = k-1$ and $\nu_2 = n-k$ for the one-way ANOVA. 
+where $\nu_1 = k-1$ and $\nu_2 = n-k$ are the degrees of freedom for the one-way ANOVA. 
 
 
 For the replication example, $$R^2 = \frac{4.05\times 2}{4.05\times 2 + 84} = 0.088 \approx 0.09$$ as reported.
@@ -187,9 +187,9 @@ For the replication example, $$R^2 = \frac{4.05\times 2}{4.05\times 2 + 84} = 0.
 class: title title-4
 # $\omega^2$ square
 
-Another (popular) measure of effect size.
+$R^2$ is a biased estimator so too large. Another (popular) estimator of $\eta^2$ that is recommended in Keppel & Wickens (2004) is $\omega^2$.
 
-For one-way ANOVA, a transformation of the $F$-statistic gives
+For one-way ANOVA, the latter is obtained from the $F$-statistic as
 
 $$\begin{align*}
 \omega^2 = \frac{\nu_1 (F-1)}{\nu_1(F-1)+n}
@@ -204,10 +204,10 @@ Since the $F$ statistic is approximately 1 on average, this measure removes the 
 class: title title-4
 # Comments on effect estimates
 
-- There are two variants: population quantities (e.g., $\eta^2$) that depend on unknown parameters and sample estimates (e.g., $R^2$)
+- There are two variants: population quantities (e.g., $\eta^2$) that depend on unknown parameters and sample estimates (e.g., $R^2$, $\omega^2$)
 - In more complicated models, we can look at partial effects (proportion of variance relative to that of errors)
 - Every effect size estimator is random (because its inputs are)
-- Report confidence intervals with estimates whenever possible
+- We can report confidence intervals with estimates, but these are hopelessly wide in most settings.
 
 
 ---

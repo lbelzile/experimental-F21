@@ -691,6 +691,8 @@ Are measurements additive? After assigning the pre-test 1, the experimenters adj
 
 This seems to have been successful since the maximum score is 15 out of 16 intrusions, while there were two students who scored 16 on the pre-test.
 
+The next step is checking that the variability is the same in each group. Assuming equal variance is convenient because we can use more information (the whole sample) to estimate the level of uncertainty rather than solely the observations from each group. The more observations we use to estimate the variance, the more reliable our measure is (assuming that the variance were equal in each group to begin with).
+
 ``` r
 # test for equality of variance
 car::leveneTest(posttest1 ~ group, data = reading)
@@ -728,6 +730,23 @@ oneway.test(posttest1 ~ group, data = reading)
     ## 
     ## data:  posttest1 and group
     ## F = 6.9878, num df = 2.00, denom df = 41.13, p-value = 0.00244
+
+# Model with unequal variance
+
+# Trick: estimate the variance separately
+
+# in each of the 10 subgroups
+
+# emmeans will automatically adjust comparisons
+
+mod2 \<- nlme::gls(error \~ nweeks*course,
+data = tellers,
+weights = varIdent(form = \~1 \| nweeks*course))
+# weights = varIdent(…) is used to model the variance
+# assumed different for each of the nweeks*course subgroups
+# Compute pairwise differences with Tukey’s HSD
+# (called Games-Howell in the case of unequal variances.
+emmeans(mod2, pairwise \~ nweeks*course)
 
 ## Auxiliary and concomitant observation
 

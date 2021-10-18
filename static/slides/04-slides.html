@@ -4,7 +4,7 @@
     <title>Multiple testing and model assumptions</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-12" />
+    <meta name="date" content="2021-10-16" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -61,7 +61,24 @@ class: title title-2
 
 # Scientifist, investigate!
 
-Having found a significant difference between group means, you proceed to look at all pairwise differences: `\(\binom{K}{2}\)` tests for `\(K\)` groups.
+- Consider the Cartoon *Significant* by Randall Munroe (https://xkcd.com/882/)
+
+.center.small[
+![](img/04/xkcd_882_4.png)
+
+]
+.small[
+It highlights two problems: lack of accounting for multiple testing and selective reporting.
+]
+
+---
+
+class: title title-2
+# How many tests
+
+Consider a one-way ANOVA with `\(K\)` groups.
+
+Having found a significant difference between group means (global null), you proceed to look at all pairwise differences: `\(\binom{K}{2}\)` tests for `\(K\)` groups.
 - 3 tests if `\(K=3\)` groups
 - 10 tests if `\(K=5\)` groups
 - 45 tests if `\(K=10\)`
@@ -77,6 +94,7 @@ Gone fishing
 - Having found no difference between group, you decide to stratify with another categorical variable and perform the comparisons for each level (subgroup analysis)
  
 The more tests you perform, the larger the type I error.
+
 
 ---
 
@@ -191,6 +209,22 @@ with
 ---
 
 class: title title-2
+# Decision rule
+
+Classify the decision on the `\(m\)` tests in a table based on whether the null hypothesis is true or false.
+
+We reject the null hypothesis `\(\mathscr{H}_0\)` if the _p_-value is less than the level, `\(p &lt; \alpha\)`.
+
+|Truth \ Decision         | Reject null hypothesis   | Fail to reject null|
+|:------------------------|:------------------------:|:------------------:|
+| `\(\mathscr{H}_0\)` is true | `\(R-V\)` correct rejections | `\(-\)` |
+| `\(\mathscr{H}_a\)` is true | `\(V\)` type I errors | `\(-\)` |
+| Total                   | `\(R\)` rejections | `\(m-R\)` non-rejections | 
+
+
+---
+
+class: title title-2
 # Familywise error rate
 
 The familywise error rate is the probability of making at least one type I error per family
@@ -207,7 +241,7 @@ class: title title-2
 # Bonferroni's procedure
 
 Consider a family of `\(m\)` hypothesis tests and perform each test at level `\(\alpha/m\)`.
-- reject `\(H_{i0}\)` if the associated _p_-value `\(p_i \leq \alpha/m\)`.
+- reject i$th null `\(\mathscr{H}_{i0}\)` if the associated _p_-value `\(p_i \leq \alpha/m\)`.
 - build confidence intervals similarly with `\(1-\alpha/m\)` quantiles.
 
 If the (raw) `\(p\)`-values are reported, reject `\(\mathscr{H}_{0i}\)` if `\(m \times p_i \geq \alpha\)` (i.e., multiply reported `\(p\)`-values by `\(m\)`)
@@ -232,6 +266,9 @@ associated to null hypothesis `\(\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(m)}\
 
 Coupling Holm's method with Bonferroni's procedure: compare `\(p_{(1)}\)` to `\(\alpha_{(1)} = \alpha/m\)`, `\(p_{(2)}\)` to `\(\alpha_{(2)}=\alpha/(m-1)\)`, etc.
 
+.box-inv-2.sp-after-half.medium[
+Holm-Bonferroni procedure is **always** more powerful than Bonferroni
+]
 
 ---
 
@@ -324,8 +361,8 @@ Specialized to the one-way ANOVA setting
 All methods assume (require) equal variance and independent observations.
 
 .small[
-- **Tukey**'s honestly significant difference (HSD) method: best choice to compare all pairwise differences, based on the largest possible pairwise mean differences, with extensions for unbalanced samples.
-- **Scheffé**'s method: applies to any contrast (properties depends on `\(n\)` and `\(K\)`, not the number of test). Better than Bonferroni if `\(m\)` is large. Can be used for any design, but not powerful.
+- **Tukey**'s honestly significant difference (HSD) method: to compare (all) pairwise differences between subgroups, based on the largest possible pairwise mean differences, with extensions for unbalanced samples.
+- **Scheffé**'s method: applies to any contrast (properties depends on sample size `\(n\)` and number of groups `\(K\)`, not the number of test). Better than Bonferroni if `\(m\)` is large. Can be used for any design, but not powerful.
 - **Dunnett**'s method: only for all pairwise contrasts relative to a specific baseline (control).
 ]
 
@@ -394,8 +431,8 @@ class: title title-2
 The Benjamini-Hochberg (1995) procedure 
 
 1. Order the _p_-values from the `\(m\)` tests from smallest to largest: `\(p_{(1)} \leq \cdots \leq p_{(m)}\)`
-2. For level `\(q\)`, set 
-`$$k=\max\left\{i: p_{(i)} \leq \frac{i}{m}q\right\}$$`
+2. For level `\(\alpha\)` (e.g., `\(\alpha=5\)`%), set 
+`$$k=\max\left\{i: p_{(i)} \leq \frac{i}{m}\alpha\right\}$$`
 3. Reject `\(\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(k)}\)`.
 
 ---
@@ -407,7 +444,7 @@ class: title title-2
 
 Plot the `\(m\)` `\(p\)`-values against their rank.
 
-To ensure `\(\textsf{FDR}\leq q\)`, reject null hypotheses corresponding to `\(p\)`-value that fall below the line of slope `\(q/m\)`.
+To ensure `\(\textsf{FDR}\leq q\)`, reject null hypotheses corresponding to `\(p\)`-value that fall below the line of slope `\(\alpha/m\)`.
 
 
 
@@ -417,12 +454,44 @@ To ensure `\(\textsf{FDR}\leq q\)`, reject null hypotheses corresponding to `\(p
 class: title title-2
 # Exercice
 
-&lt;img src="img/04/Grossman-S3.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="img/04/Grossman-S3.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 .tiny[
 &gt; Grossman, I. and E. Kross (2014). Exploring "Solomon’s paradox": Self-distancing eliminates the self-other asymmetry in wise reasoning about close relations in younger and older adults, *Psychological Science*, 25(8) 1571-1580
 ]
+???
+Problem set: Reproduce Grossman and Kross (2014) Supplementary material table, but accounting for multiple testing
 
+---
+class:title title-2
+
+# Summary  (1/2)
+
+- Researchers often carry lots of hypothesis testing tests
+   - the more you look, the more you find!
+- Thus want to control probability of making a judicial mistake among all `\(m\)` tests performed
+   - (family-wise error rate, FWER) 
+- Less stringent criterion: control for the **proportion** of condemned (rejections) that were innocent 
+   - (false discovery rate, FDR)
+   - useful if you don't care about making some mistakes, but perform loads of test (potentially millions)
+
+   
+---
+class:title title-2
+
+# Summary (2/2)
+
+- ANOVA specific solutions: assumes normal data, equal variance, balanced samples...
+   - Tukey's HSD (all pairwise differences), 
+   - Dunnett's method (only differences relative to a reference category)
+   - Scheffé's method (all contrasts)
+- General methods
+   - FWER: Bonferroni (suboptimal), Bonferroni-Holm (more powerful)
+   - FDR: Benjamini-Hochberg
+
+Downside of adjustment is loss of power (but more robust findings).
 ---
 
 class: title title-4
