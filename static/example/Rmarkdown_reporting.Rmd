@@ -1,0 +1,56 @@
+---
+title: "Rmarkdown for reporting"
+author: "Léo Belzile"
+date: "18/10/2021"
+output: "bookdown::html_document2"
+---
+
+To get the cross-references, use one of the modern output formats (see <https://rmd4sci.njtierney.com/start.html>. You must install the `bookdown` package before using `install.packages("bookdown")`.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, # don't print the code
+                      warning = FALSE, # don't print warning messages
+                      message = FALSE, 
+                      error = FALSE,
+                      fig.retina = 3, 
+                      fig.align = "center",
+                      out.width="80%",
+                      fig.asp = 0.618 # golden rule
+                      )
+options(knitr.kable.NA = '')
+options(tidyverse.quiet = TRUE)
+```
+
+# R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using [**R** Markdown](http://rmarkdown.rstudio.com) see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+model <- lm(dist ~ speed, data = cars)
+knitr::kable(x = anova(model), 
+             caption = "Analysis of variance table for the `cars` dataset",
+             digits = c(0,2,2,3,4))
+```
+
+Table \@ref(tab:cars) shows the analysis of variance table for the model with distance as a function of speed.
+
+# Including Plots
+
+You can also embed plots, for example:
+
+```{r plotspeedvsdist}
+#| fig.width: 5
+#| fig.cap: "Speed of cars and distance taken to stop (circa 1920)."
+library(tidyverse)
+ggplot(data = cars, 
+       mapping = aes(x = speed, y = dist)) + 
+   geom_point() + 
+   theme_classic() + 
+   labs(x = "speed (in mph)", 
+        y = "stopping distance (in feets)")
+```
+
+The average speed of the cars in the experiment is M=`r mean(cars$speed)` (SD=`r round(sd(cars$speed), 2)`) miles per hour. Figure \@ref(fig:plotspeedvsdist) shows the distance it takes to stop the car as a function of its speed. 
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
