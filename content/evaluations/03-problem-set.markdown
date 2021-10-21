@@ -26,13 +26,13 @@ In this problem set, we consider a multilab replication study (Elliott et al., 2
 
 We consider the preplanned comparisons in Study 3 in Grossmann & Kross (2014) (click to download [the paper](https://journals.sagepub.com/stoken/default+domain/vIg5KBmaiJHKTXfUpXZK/full) and the [Supplementary material](https://journals.sagepub.com/doi/suppl/10.1177/0956797614535400/suppl_file/DS_10.11770956797614535400_SupplementalMethodandResults.pdf)). The purpose of the exercice is to reproduce Table S4 of the Supplementary material, adjusting for multiplicity.[^1]
 
-Use the [helper code provided](/evaluations/03-problem-set.R).
+Use the [helper code provided](/evaluations/03-problem-set.R). The code is a bit messy because there are four models for each of the two age groups.
 
 1.  Fill the helper file code by replacing the `#TODO` statements to compute the contrasts in the preplanned comparisons reported in Table S4. Check whether these match the reported values.[^2]
-2.  Determine the number of tests in the family (think about whether it makes sense to treat each response separately, or to consider tests from other comparisons in Study 3).
+2.  Determine the number of tests in the family (how many tests were of interest to researcher in Table S4)?
 3.  A frequent argument is that planned comparisons shouldn’t be adjusted for, as it amounts to a decrease in power. In the present case, do you think this is a cogent argument? Justify you answer.
 4.  Using the helper code, obtain adjusted *p*-values using Bonferroni’s method and compare them to (a) the raw *p*-values and (b) the Bonferroni-Holm adjusted *p*-values. How many of the planned comparisons are significant at level `\(\alpha=0.05\)` if you modify the *p*-values?
-5.  Another way to present the results of the two-sided *t*-test for contrasts is to report confidence intervals rather than *p*-values. Which interval would be the largest between (a) an unadjusted confidence interval and (b) one derived using Bonferroni’s method? Justify your answer. *Hint: Bonferroni’s method amounts to making the tests at level `\(\alpha/m\)`. Try modifying the code to see which is largest.*
+5.  Another way to present the results of the two-sided *t*-test for contrasts is to report confidence intervals rather than *p*-values. Which interval would be the largest between (a) an unadjusted confidence interval and (b) one derived using Bonferroni’s method? Justify your answer. *Hint: Bonferroni’s method amounts to making the tests at level `\(\alpha/m\)`. Try modifying the level in the code for the confidence intervals to see which is largest.*
 
 ## References
 
@@ -61,4 +61,4 @@ Grossmann, I., & Kross, E. (2014). Exploring Solomon’s paradox: Self-distancin
 [^1]: 
     Technical aside: there are four outcome variables (`COMPR`,`LIMITS`,`PERSP` and `CHANGE`) that are correlated, so this is technically a multivariate problem. We will ignore this purposedly and fit repeatedly one-way ANOVA models for each of the four response separately, for each age group. Thus, we will have four contrasts for each of the eight models (one per outcome and age group).
 
-[^2]: The sign may be different depending on how you set up the contrasts.
+[^2]: The sign may be different from the paper depending on how you set up the contrasts, but the conclusion is the same.

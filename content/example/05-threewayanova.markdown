@@ -1,6 +1,6 @@
 ---
 title: "Three-way analysis of variance"
-linktitle: "5. One way ANOVA"
+linktitle: "5. Three way ANOVA"
 date: "2021-10-19"
 menu:
   example:

@@ -4,11 +4,11 @@
 
 
 i <- 1L # TODO replace this number by the one associated to your ID
-options(tidyverse.quiet = TRUE)
-library(tidyverse) # data manipulation and grammar of graphics
+# Install these packages first
+suppressPackageStartupMessages(library(tidyverse)) # data manipulation and grammar of graphics
 library(emmeans) # estimated marginal means and contrasts
-library(car, quietly = TRUE) # diagnostics plots
-library(effectsize) # effect size estimates
+suppressPackageStartupMessages(library(car)) # diagnostics plots
+suppressPackageStartupMessages(library(effectsize)) # effect size estimates
 
 url <- "https://edsm.rbind.io/data/RisenGilovichRepBalanced.csv"
 data <- read_csv(file = url,
@@ -78,18 +78,12 @@ marg_pairs <- contrast(marg_means, method = "pairwise")
 pairs(marg_means)
 
 ## Effect size computed from emmeans package
+# Basically Cohen's d with Delta/sigma, where
+# sigma is the value you provide
 emmeans::eff_size(cell_means, 
          sigma = sigma(model),   # standard deviation (ASSUMED EQUAL VARIANCE)
          edf = df.residual(model))
 
-
-# If all you have is the statistic and sample sizes, you can use the 'compute.es' package to convert these to effect sizes
-# e.g. compute.es::mes converts mean + SD with sample sizes to Cohen's d
-compute.es::tes(n.1 = 14, 
-                n.2 = 14,
-                t = summary(marg_pairs)$t.ratio)
-# Largely agrees with above for
-# male unprepared - male prepared
 
 ## Effect size computed using effectsize package
 # Omega-squared is less biased estimator 
@@ -97,7 +91,7 @@ compute.es::tes(n.1 = 14,
 # Here, we would account for gender (not an experimental factor)
 om_sq  <- 
   effectsize::omega_squared(model = model, 
-                            partial = TRUE, # partial effect (SS_effect) vs SS_effect + SS_resid
+                            partial = TRUE,
                             ci = 0.8, # level of confint
                             alternative = "greater") # alternative - default to 'greater'
 # Note that the confidence interval is one-sided so
@@ -108,32 +102,6 @@ om_sq  <-
 
 
 # IN YOUR REPORT, CLEARLY INDICATE
-# - the coefficient used (f, eta-squared, omega-squared)
-# - whether it is a partial measure (partial = effect vs effect + residuals)
-# - the confidence interval level (if one-sided, etc.)
-
-## Diagnostics plots and tests
-# With all data, we would necessarily reject null, 
-# but not so with data from a single lab
-# Overall evidence is nearly the same, so it doesn't matter
-car::leveneTest(likelihood ~ gender*condition, data = data)
-oneway.test(likelihood ~ gender*condition, data = data)
-
-
-# Default R plots are produced with
-# plot(model)
-
-# Fancier graphs with helper for interpretation
-# (note "Influential Observations" -> Outliers, is hard to interpret
-# in the present context because all points have the same 'leverage')
-# a consequence of balanced samples in the ANOVA
-performance::check_model(model)
-
-## Remark regarding the QQ-plot (expert opinion on the matter)
-# Based on an analysis of the full data
-# Observations are discrete (likelihood is on a scale of 1 to 10)
-# Some evidence of accumulation at extremes (problem with additivity?)
-# otherwise, staircase pattern is due to discreteness
-# Because of bounds, observations are too light-tailed.
-# Quantile-quantile plots: points should be on a line
-car::qqPlot(model, id = FALSE, ylab = "empirical quantiles")
+# - the coefficient used (one of Cohen's f, eta-squared, omega-squared, etc.) or Cohen's d for contrasts
+# - whether it is a partial measure (default for factorial elements)
+# - when relevant (e.g., Cohen's d, the confidence interval with the level)
