@@ -1,6 +1,6 @@
 ---
 title: "One-way analysis of variance"
-linktitle: "3. One way ANOVA"
+linktitle: "3. One-way ANOVA"
 date: "2021-09-29"
 menu:
   example:
@@ -34,19 +34,19 @@ csl: "../../static/bib/apa.csl"
 
 The code created in the video [can be downloaded here](/example/01-onewayanova-video.R).
 
-There’s a set of videos that walks through each section below. To make it easier for you to jump around the video examples, I cut the long video into smaller pieces and included them all in [one YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H).
+There’s a set of videos that walks through each section below. To make it easier for you to jump around the video examples, I cut the long video into smaller pieces and included them all in [one YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc).
 
--   [F-statistic table](https://www.youtube.com/watch?v=7ysgXYx6Rwg&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Contrasts and estimated marginal means](https://www.youtube.com/watch?v=KJ99KgeApNs&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Multiple testing](https://www.youtube.com/watch?v=dM1IkaVFy6w&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Effect size](https://www.youtube.com/watch?v=hD7HBU1EyDk&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Power](https://www.youtube.com/watch?v=W7mUTKruk_s&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [ANOVA table](https://www.youtube.com/watch?v=7ysgXYx6Rwg&list=PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc)
+-   [Contrasts and estimated marginal means](https://www.youtube.com/watch?v=KJ99KgeApNs&list=PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc)
+-   [Multiple testing](https://www.youtube.com/watch?v=dM1IkaVFy6w&list=PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc)
+-   [Effect size](https://www.youtube.com/watch?v=hD7HBU1EyDk&list=PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc)
+-   [Power](https://www.youtube.com/watch?v=W7mUTKruk_s&list=PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc)
 
 You can also watch the playlist (and skip around to different sections) here:
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 </div>
@@ -638,13 +638,19 @@ Upper limit
 </tbody>
 </table>
 
-This standardized quantity is hard to interpret (because it is unitless), but Cohen’s conventional effect size for such a test is 0.35 for large effects. Keep in mind that effect size are noisy (they are uncertain because they are based on a random sample, from which we try to extract a signal from some noise).
+This standardized quantity is hard to interpret (because it is unitless), but Cohen’s conventional effect size for such a test is 0.35 for large effects.
+
+The coefficients of variability all measure the proportion of variability that is explained by the factor `\(\sigma^2_A\)`, say, relative to the total `\(\sigma^2_A + \sigma^2_{\text{resid}}\)`. Keppel & Wickens (2004) suggest reporting `\(\widehat{\omega}^2\)` as effect size as it is less biased than its counterparts `\(\widehat{\eta}^2\)` and `\(\widetilde{f}^2=\widehat{\eta}^2/(1-\widehat{\eta}^2)\)`. We can thus convert `\(\widehat{\omega}^2\)` to `\(f\)` via the formula `\(\widehat{\omega}^2/(1-\widehat{\omega}^2)\)` and use the latter estimator for power analysis.
+
+Effect size are useful for power calculations, to get of sense of the magnitude of an effect (whether a difference is practically relevant or scientifically meaningful has nothing to do with its statistical significance). It is also used in meta-analysis, in which similar studies are pooled together to get more reliable estimates of the true effect.
+
+Keep in mind that effect size are noisy (they are uncertain because they are based on a random sample, from which we try to extract a signal from some noise). The confidence intervals (sometimes one-sided) reflect this.
 
 ## Power
 
 If we have an estimate of the power, we can try to see how many observations we would need to make sure that we detect a different 80%, 90% or 95% of the time. An alternative is to use the sample size and see what effect size we could detect for a given power. Generally, we can find one unknown if we specify any three of (1) the level `\(\alpha\)`, (2) the power, (3) the effect size and (4) the sample size. The calculation is made assuming balanced samples (the same number of individuals in each group), as this setup maximizes power if the variability of each group is the same.
 
-If we consider Cohen’s `\(f\)` for the contrasts, obtainable via `effectsize::cohens_f(contrasts_parameters,)`, we can get a feeling for the potential size of the difference between the `DRTA` and `TA` methods. As a conservative estimate, plug-in the lower bound of Cohen’s `\(f\)` for the effect (0.04) and see how many observations are needed
+If we consider Cohen’s `\(f\)` for the contrasts, obtainable via `effectsize::cohens_f(contrasts_parameters)`, we can get a feeling for the potential size of the difference between the `DRTA` and `TA` methods. As a conservative estimate, plug-in the lower bound of Cohen’s `\(f\)` for the effect (0.04) and see how many observations are needed
 
 ``` r
 # compute effect size with 22 observations
@@ -675,8 +681,7 @@ plot(power_contrasts)
 
 <img src="/example/03-onewayanova_files/figure-html/powercurve2-1.png" width="672" />
 
-The answer is 55 observations per group, thus we need to more than triple the sample size to get this increase in power.
-The nonlinear power curve clearly shows how power increases with the sample size: we don’t expect to catch small differences unless we had very large sample size.
+The answer is 55 observations per group, thus we need to more than triple the sample size to get this increase in power. The nonlinear power curve clearly shows how power increases with the sample size: we don’t expect to catch small differences unless we had very large sample size.
 
 ## Model assumptions
 
@@ -730,23 +735,6 @@ oneway.test(posttest1 ~ group, data = reading)
     ## 
     ## data:  posttest1 and group
     ## F = 6.9878, num df = 2.00, denom df = 41.13, p-value = 0.00244
-
-# Model with unequal variance
-
-# Trick: estimate the variance separately
-
-# in each of the 10 subgroups
-
-# emmeans will automatically adjust comparisons
-
-mod2 \<- nlme::gls(error \~ nweeks*course,
-data = tellers,
-weights = varIdent(form = \~1 \| nweeks*course))
-# weights = varIdent(…) is used to model the variance
-# assumed different for each of the nweeks*course subgroups
-# Compute pairwise differences with Tukey’s HSD
-# (called Games-Howell in the case of unequal variances.
-emmeans(mod2, pairwise \~ nweeks*course)
 
 ## Auxiliary and concomitant observation
 
@@ -843,6 +831,12 @@ Residuals
 <div id="ref-Baumann:1992" class="csl-entry">
 
 Baumann, J. F., Seifert-Kessell, N., & Jones, L. A. (1992). Effect of think-aloud instruction on elementary students’ comprehension monitoring abilities. *Journal of Reading Behavior*, *24*(2), 143–172. <https://doi.org/10.1080/10862969209547770>
+
+</div>
+
+<div id="ref-Keppel/Wickens:2004" class="csl-entry">
+
+Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
 
 </div>
 

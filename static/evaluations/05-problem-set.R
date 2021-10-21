@@ -2,17 +2,15 @@
 ## Two-way ANOVA with gender and condition ##
 #############################################
 
+# Install packages
 packages <- c("tidyverse",
               "emmeans",
               "car",
               "effectsize",
-              "performance",
-              "pwr",
-              "compute.es")
-for(pack in packages){
-  if(! require(pack)){
-    install.packages(pack)
-  }
+              "WebPower")
+uninstalled <- packages[!packages %in% installed.packages()[,"Package"]]
+for(i in seq_along(uninstalled)){
+  install.packages(packages[i])
 }
 
 i <- 1L # TODO replace this number by the one associated to your ID
@@ -34,7 +32,7 @@ data <- read_csv(file = url,
 # lab is the identifier of the replication laboratory
 
 ##########################################################
-## 1) Plot data (bar plot)
+## 1) Plot data (bar plot with proportions, since response is discrete)
 ggplot(data = data, 
        mapping = aes(x = likelihood,
                      group = condition,
@@ -59,10 +57,7 @@ with(data, table(gender, condition))
 model <- lm(likelihood ~ gender*condition, data = data)
 # Model coefficients: mu, alpha, beta, (alpha*beta)
 coef(model)
-# Model summary with coefficients and t-tests
-summary(model)
-# Because it is a 2^2 factorial experiment, inferences agree
-# with the ANOVA table
+# ANOVA table for the balanced design
 anova_tab <- anova(model) 
 
 ## If interaction is statistically significant
@@ -101,19 +96,20 @@ emmeans::eff_size(cell_means,
 # Omega-squared is less biased estimator 
 # of percentage of variability than eta-squared
 # Here, we would account for gender (not an experimental factor)
-om_sq  <- 
-  effectsize::omega_squared(model = model, 
+om_sq  <- effectsize::omega_squared(model = model, 
                             partial = TRUE,
                             ci = 0.8, # level of confint
-                            alternative = "greater") # alternative - default to 'greater'
-# Note that the confidence interval is one-sided so
-# only report lower bound - these are very small 
-# may be rounded to zero when printed ...
-# upper bound on fraction of variance is automatically 1
-# 
+                            alternative = "greater") 
+# Convert this to Cohen's f
+om_to_f <- function(omegasq){
+  sqrt(omegasq / (1 - omegasq))
+}
+om_to_f(om_sq$Omega2_partial)
+# Note that you get NaN (not a number) if omegasq was negative
+# the true ratio cannot be negative, the estimate can be...
+# report zero in such cases.
 
-
-# IN YOUR REPORT, CLEARLY INDICATE
-# - the coefficient used (one of Cohen's f, eta-squared, omega-squared, etc.) or Cohen's d for contrasts
+# In publications, include
+# - the coefficient used for effect size of main effects (one of Cohen's f, eta-squared, omega-squared (better), etc.) or Cohen's d for contrasts
 # - whether it is a partial measure (default for factorial elements)
-# - when relevant (e.g., Cohen's d, the confidence interval with the level)
+# - when relevant (e.g., Cohen's d), the confidence interval with the level of the CI

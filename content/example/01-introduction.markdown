@@ -22,19 +22,19 @@ csl: "../../static/bib/apa.csl"
 
 The code created in the video [can be downloaded here](/example/01-onewayanova-video.R).
 
-There’s a set of videos that walks through each section below. To make it easier for you to jump around the video examples, I cut the long video into smaller pieces and included them all in [one YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H).
+There’s a set of videos that walks through each section below. To make it easier for you to jump around the video examples, I cut the long video into smaller pieces and included them all in [one YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45).
 
--   [RStudio interface](https://www.youtube.com/watch?v=utGd_kt0pdw&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Loading data](https://www.youtube.com/watch?v=mMcSFqGal0w&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Cleaning and transforming data](https://www.youtube.com/watch?v=1YYlLZ90Vas&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Summary statistics](https://www.youtube.com/watch?v=PvHFsiuase0&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
--   [Creating graphics](https://www.youtube.com/watch?v=lNUC5_Tws9M&list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H)
+-   [RStudio interface](https://www.youtube.com/watch?v=utGd_kt0pdw&list=PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45)
+-   [Loading data](https://www.youtube.com/watch?v=mMcSFqGal0w&list=PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45)
+-   [Cleaning and transforming data](https://www.youtube.com/watch?v=1YYlLZ90Vas&list=PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45)
+-   [Summary statistics](https://www.youtube.com/watch?v=PvHFsiuase0&list=PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45)
+-   [Creating graphics](https://www.youtube.com/watch?v=lNUC5_Tws9M&list=PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45)
 
 You can also watch the playlist (and skip around to different sections) here:
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 </div>

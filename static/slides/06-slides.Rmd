@@ -369,19 +369,6 @@ which imposes $1 + 1 + b + a$ constraints.
 ---
 
 class: title title-5
-# Breaking down the variability
-
-For a **balanced** design, we can decompose the variability around sample means:
-
-$$\begin{align*}\mathsf{SS}_{\text{total}} &= \mathsf{SS}_{\text{model}} + \mathsf{SS}_{\mathsf{res}}
-\\&= \mathsf{SS}_{A} + \mathsf{SS}_{B} + \mathsf{SS}_{AB}+ \mathsf{SS}_{\mathsf{res}}\end{align*}$$
-
-???
-
-This stems from the orthogonality between the factors.
-
----
-class: title title-5
 # Analysis of variance table
 
 .small[
@@ -511,25 +498,7 @@ class: center middle section-title section-title-6 animated fadeIn
 # Effect size, contrasts and power
 
 ---
-class: title title-6
-# Noncentrality parameters
 
-Consider a balanced design with $n=a \times b \times k$ observations 
-
-For the mean squared errors, the expected values are
-
-$$\mathsf{E}(\mathsf{MS}_A) = \sigma^2 + \frac{bn}{a-1} \sum_{i=1}^a \alpha_i^2$$
-$$\mathsf{E}(\mathsf{MS}_{AB}) = \sigma^2 + \frac{n}{(a-1)(b-1)} \sum_{j=1}^b\sum_{i=1}^a (\alpha\beta)_{ij}^2$$
-
-
-Under the null hypothesis of no mean effect / interaction, these are thus unbiased estimators of the error variance.
-
-???
-
-$k$ replications for each level
-Under the null hypothesis of no mean effect / interaction, these are thus unbiased estimators of the error variance
-
----
 class: title title-6
 # Effect size
 
@@ -542,7 +511,7 @@ class: title title-6
 
 We can express the overall variability of the response around the global mean as
 $$\sigma^2_{\text{total}} = \sigma^2_A + \sigma^2_{B} + \sigma^2_{AB} + \sigma^2_{\text{resid}}.$$
-where $\sigma^2_A = a^{-1}\sum_{i=1}^a \alpha_i^2$, $sigma^2_{AB} = (ab)^{-1} \sum_{i=1}^a \sum_{j=1}^b (\alpha\beta)^2_{ij}$, etc.
+where $\sigma^2_A = a^{-1}\sum_{i=1}^a \alpha_i^2$, $\sigma^2_{AB} = (ab)^{-1} \sum_{i=1}^a \sum_{j=1}^b (\alpha\beta)^2_{ij}$, etc.
 
 ---
 
@@ -556,13 +525,22 @@ These variance quantities are **unknown**, so need to be estimated somehow.
 
 ---
 class: title title-6
-# Partial $\omega^2$
+# Partial effect size (variance)
 
-The partial $\omega^2$ for an effect is an estimator of
-$$\omega^2_{\langle \text{effect}\rangle} = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{effect}} + \sigma^2_{\text{resid}}}.$$
-The estimator $\widehat{\omega}^2_{\langle \text{effect} \rangle}, estimated using the $F$ statistic and degrees of freedom of the effect, is less biased than its counterparts. Estimates are based on the formula
+Effect size are often reported in terms of variability via the ratio
+$$\frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{effect}} + \sigma^2_{\text{resid}}}.$$
 
-$$\widehat{\omega}^2_{\langle \text{effect} \rangle} = \frac{\text{df}_{\text{effect}}(F_{\text{effect}}-1)}{\text{df}_{\text{effect}}(F_{\text{effect}}-1) + n}$$
+- Both $\widehat{\eta}^2_{\langle \text{effect} \rangle}$ and $\widehat{\omega}^2_{\langle \text{effect} \rangle}$ are estimators of this quantity and obtained from the $F$ statistic and degrees of freedom of the effect.
+
+- $\widehat{\omega}^2_{\langle \text{effect} \rangle}$ is less biased than $\eta^2_{\langle \text{effect} \rangle}$. 
+
+
+---
+class: title title-6
+# Estimation of partial $\omega^2$
+
+
+$$\widehat{\omega}^2_{\langle \text{effect} \rangle} = \frac{\text{df}_{\text{effect}}(F_{\text{effect}}-1)}{\text{df}_{\text{effect}}(F_{\text{effect}}-1) + n},$$
 where $n$ is the overall sample size.
 
 In **R**, `effectsize::omega_squared` reports these estimates with one-sided confidence intervals. 
@@ -579,7 +557,8 @@ class: title title-6
 Given the estimated $\widehat{\omega}^2_{\langle \text{effect} \rangle}$, convert it into an estimate of Cohen's partial $f^2_{\langle \text{effect} \rangle}$ via
 $$\widehat{f}^2_{\langle \text{effect} \rangle} = \frac{\widehat{\omega}^2_{\langle \text{effect}}\rangle }{1-\widehat{\omega}^2_{\langle \text{effect}}\rangle }.$$
 
-This estimator is less biased than the usual value reported, $\widetilde{f}^2 = n^{-1}F_{\text{effect}}\text{df}_{\text{effect}}$, from e.g., `effectsize::cohens_f( partial = TRUE)`
+Note that `effectsize::cohens_f` returns $\widetilde{f}^2 = n^{-1}F_{\text{effect}}\text{df}_{\text{effect}}$, a transformation of $\widehat{\eta}^2_{\langle \text{effect}\rangle}$.
+
 ---
 class: title title-6
 # Power for factorial experiments
@@ -587,19 +566,18 @@ class: title title-6
 - G*Power and **R** alternatives require Cohen's $f$ (or $f^2$) to estimate power.
 - Calculation based on $F$ distribution with 
    - $\nu_1=\text{df}_{\text{effect}}$ degrees of freedom
-   - $\nu_2 = n - n_g$, where $n_g$ is the number of mean parameters estimated ($n_g = ab$ for the two-way interaction). 
+   - $\nu_2 = n - n_g$, where $n_g$ is the number of mean parameters estimated. 
    - noncentrality parameter $\phi = Nf^2_{\langle \text{effect}\rangle}$
 
 
-In **R**, use 
-```{r, echo = TRUE}
-WebPower::wp.kanova(power=, ndf =, f=sqrt(omega.sq/(1-omega.sq)), alph=0.05, ng=)
+In **R**, if `a` and `b` denote the levels and `omega.sq` $\omega^2_p$, then the power for the interaction is
+```{r, echo = TRUE, eval = FALSE}
+fhat <- sqrt(omega.sq/(1-omega.sq))
+WebPower::wp.kanova(power = 0.8, f = fhat, ndf = (a-1)*(b-1), ng = ab)
 ```
 ---
 class: title title-6
-# Why not use $\widetilde{f}$ directly?
-
-ADD EXAMPLE
+# Illustration of the bias
 
 ---
 class: title title-6

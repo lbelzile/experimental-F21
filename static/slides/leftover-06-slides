@@ -16,6 +16,22 @@ People can be influenced by the prior consideration of a numerical anchor when f
 
 In three experimental studies the authors demonstrate this predicted basic effect and rule out various alternative explanations. Two additional studies (4a and b) found that this effect was especially strong when people were explicitly given more motivation to adjust their estimates (e.g., by implying that the initial anchor substantially overestimated the price). 
 
+
+class: title title-5
+# Breaking down the variability
+
+For a **balanced** design, we can decompose the variability around sample means:
+
+
+$$\begin{align*}\mathsf{SS}_{\text{total}} &= \mathsf{SS}_{\text{model}} + \mathsf{SS}_{\mathsf{res}}
+\\&= \mathsf{SS}_{A} + \mathsf{SS}_{B} + \mathsf{SS}_{AB}+ \mathsf{SS}_{\mathsf{res}}\end{align*}$$
+
+???
+
+This stems from the orthogonality between the factors.
+
+---
+
 ---
 class: title title-5
 # Example: Fiber strength
@@ -139,5 +155,25 @@ Data for the $3 \times 2$ factorial design
 | **Drug 2** | 9, 16, 18, 13 | 14, 7, 6, 13 |
 
 .box-inv-5[**R** Demonstration]
+
+---
+
+class: title title-6
+# Noncentrality parameters
+
+Consider a balanced design with $n=a \times b \times k$ observations 
+
+For the mean squared errors, the expected values are
+
+$$\mathsf{E}(\mathsf{MS}_A) = \sigma^2 + \frac{bn}{a-1} \sum_{i=1}^a \alpha_i^2$$
+$$\mathsf{E}(\mathsf{MS}_{AB}) = \sigma^2 + \frac{n}{(a-1)(b-1)} \sum_{j=1}^b\sum_{i=1}^a (\alpha\beta)_{ij}^2$$
+
+
+Under the null hypothesis of no mean effect / interaction, these are thus unbiased estimators of the error variance.
+
+???
+
+$k$ replications for each level
+Under the null hypothesis of no mean effect / interaction, these are thus unbiased estimators of the error variance
 
 ---

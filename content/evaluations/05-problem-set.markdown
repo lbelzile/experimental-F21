@@ -2,7 +2,7 @@
 title: "Problem set 5"
 linktitle: "Problem set 5"
 date: "2021-10-12"
-due_date: "2021-10-21"
+due_date: "2021-10-25"
 due_time: "11:55 PM"
 menu:
   evaluations:
@@ -23,16 +23,23 @@ You do not need to hand in anything for this part of the assignment.
 
 ## Task 2 - Scientific writing
 
-Your job is to put these suggestions into application for Study 2 of Risen & Gilovich (2008). [full text here](https://psycnet-apa-org.proxy2.hec.ca/fulltext/2008-09787-004.pdf) The data is taken from one of multiple replication studies and has been modified to make it balanced.[^1]
-Since there were concerns from the original authors, the reanalysis focused on the undergraduate subsample and consists of a 2x2 analysis of variance with condition and gender as factors.
+Your job is to put these suggestions into application for a replication of Study 2 of Risen & Gilovich (2008, [full text here](https://psycnet-apa-org.proxy2.hec.ca/fulltext/2008-09787-004.pdf)). The data is taken from the Study 18 of [Many Labs 2](https://doi.org/10.1177%2F2515245918810225) (Klein et al., 2018) and has been cleaned for the purpose of the exercice and to ensure each replication is balanced.[^1]
+Since there were concerns from the original authors, the reanalysis focused on the undergraduate subsample and consists of a 2x2 analysis of variance with condition (prepared vs unprepared) and gender as factors.
 
-The statistics of interest, beyond the global null test of no effect for sex or gender, is the comparison between condition (prepared vs unprepared) either marginally (if there is no interaction) or within each gender group (if there is an interaction).
+The statistics of interest, beyond the interaction between gender and condition, is the comparison between condition (prepared vs unprepared) either marginally (if there is no interaction) or within each gender group (if there is an interaction).
 
-1.  Report on the two-way analysis performed in [this code](/evaluations/05-problem-set.R). Pick the [replication dataset associated to your student ID](/evaluations/05-problem-set-id2021.txt)
-    -   Justify and describe the results of your analyses as if you had to write them in an article.
-    -   Check the assumptions of the test you are using.
-    -   Insert only relevant output (statistics, tables, graphs) in your written report.
-2.  If you had to repeat this experiment, what sample size would you use? Justify your answer.
+1.  Report on the two-way analysis performed in [this code](/evaluations/05-problem-set.R). Pick the [replication dataset associated to your student ID](/evaluations/05-problem-set-id2021.txt). **You are asked to produce an output similar to that of the two penultimate paragraphs of study 18 on p.461 of Klein et al. (2018) **, i.e. describe the results of your analyses as if you had to write them in an article. Insert only relevant output (statistics, tables, graphs) in your written report.
+
+Things worth reporting:
+
+-   A graphic showing the raw data.
+-   Sample mean, sample size and standard deviation of each group.
+-   The `\(F\)` statistic for the interaction, along with the `\(p\)`-value and a measure of variability (e.g., `\(\omega^2_{p}\)`) with a description.
+-   If there is an interaction, the difference in likelihood scores between unprepared and prepared for each of female and male (so two contrasts, with the confidence interval, (ajusted) *p*-values with the name of the adjustment method, and an effect size (Cohen’s `\(d\)`) along with confidence intervals for the latter.
+-   If there is no significant interaction, the difference of unprepared vs prepared overall, with the same as before.
+-   Conclude as to the relevance or presence of the postulated psychological effect.
+
+2.  If you had to replicate this experiment, what sample size would you use? Justify your choice of effect size.[^2]
 
 ## References
 
@@ -41,6 +48,12 @@ The statistics of interest, beyond the global null test of no effect for sex or 
 <div id="ref-Kelley/Preacher:2012" class="csl-entry">
 
 Kelley, K., & Preacher, K. (2012). On effect size. *Psychological Methods*, *17*(2), 137–152. <https://doi.org/10.1037/a0028086>
+
+</div>
+
+<div id="ref-ManyLabs2:2018" class="csl-entry">
+
+Klein, R. A., Vianello, M., Hasselman, F., Adams, B. G., Reginald B. Adams, Jr., Alper, S., Aveyard, M., Axt, J. R., Babalola, M. T., Bahník, Š., Batra, R., Berkics, M., Bernstein, M. J., Berry, D. R., Bialobrzeska, O., Binan, E. D., Bocian, K., Brandt, M. J., Busching, R., … Nosek, B. A. (2018). Many labs 2: Investigating variation in replicability across samples and settings. *Advances in Methods and Practices in Psychological Science*, *1*(4), 443–490. <https://doi.org/10.1177/2515245918810225>
 
 </div>
 
@@ -65,3 +78,5 @@ Wilkinson, L. (1999). Statistical methods in psychology journals: Guidelines and
 </div>
 
 [^1]: For the sake of the exercise, never do this at home unless you want to throw information away! We will see how to properly analyze unbalanced designs latter.
+
+[^2]: Hint: there are multiple alternatives and estimators of the latter, including the original study, your dataset, the replication study. Think about which is the most reliable. Another option is to use the lower bound of a confidence interval for `\(\omega^2_p\)` as proxy or simply compute the sample for a larger power.
