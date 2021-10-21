@@ -102,66 +102,26 @@ threewaycontrast <- emmeans(model, specs = c("feedback", "material","age")) %>%
                                0, 0, 0, 1, -0.5, -0.5, -1, 0.5, 0.5)))
 summary(threewaycontrast, adjust = "scheffe", scheffe.rank = 17)
 
-# Effect sizes and power
-eff_size(object = threewaycontrast, 
-         sigma = sigma(model),
-         edf = df.residual(model),
-         method = 'identity')
-model_effects <- effectsize::cohens_f(model, partial = TRUE)
-model_effects$CI_low
+library(effectsize)
+library(WebPower)
 
+# Need to compute an effect size for the contrasts or other quantities
+omega_sq <- effectsize::omega_squared(model, partial = TRUE)
+omega_sq_contrast <- (1.993^2-1) / ((1.993^2-1) + 90)
 
+# The value of omega-square (partial) for the three-way interaction is 0.01418
+# Need to convert omega-square (partial) to Cohen's f (partial)
 
-
-
-#' Compute power for a factorial experiment
-#' @param cohenF2 effect size as Cohen's F squared
-#' @param factorLevels vector giving the number of levels of each factor
-#' @param dims vector indicating the index of the effects (multiple for interactions)
-#' @param nrep number of replications for a balanced design
-#' @param level level of test, default to 0.05 
-#' @example 
-#' # Consider a 3x3x2 experiment
-#' cohenF <- 0.2 # small effect
-#' factorLevels <- c(3,3,2)
-#' dims <- c(2,3) # interaction between B and C
-power_factorial <- function(cohenF2, 
-                            factorLevels, 
-                            dims,
-                            nrep, 
-                            level = 0.05, 
-                            plot = TRUE){
-  # Degrees of freedom of residuals (variance estimation) is  n - ngroups
-  dims <- unique(dims)
-  stopifnot(isTRUE(all(dims %in% 1:length(factorLevels))))
-  ngroups <- prod(factorLevels)
-  df1 <- prod(factorLevels[dims] - 1)
-  repEffect <- prod(factorLevels[-dims])
-  power <- rep(0, length(nrep))
-  for(i in seq_along(nrep)){
-  cutoff <- qf(p = 1 - level, 
-               df1 = df1, 
-               df2 = (nrep[i] - 1)*ngroups)
-  power[i] <- pf(cutoff, 
-     df1 = df1, 
-     df2 = (nrep[i] - 1)*ngroups, 
-     ncp = nrep[i]*repEffect*cohenF2, 
-     lower.tail = FALSE)
-  }
-  return(data.frame(power = power, n = ngroups*nrep, nrep = nrep))
-}
-cohenFobs <- effectsize::cohens_f_squared(model, 
-                                  partial = TRUE)
-# Observed power for interaction
-power_by_hand <- power_factorial(cohenF = cohenFobs$Cohens_f2_partial[7], 
-                                 factorLevels = c(3,3,2), 
-                                 dims = 1:3, 
-                                 nrep = 5:600)
-ggplot(data = power_by_hand, 
-       aes(x = n, y = power)) + 
-  geom_hline(yintercept = c(0.8, 0.9, 0.99),
-             alpha = 0.1) +
-  geom_line() + 
-  theme_classic()
-
-
+cohens_f <- sqrt(omega_sq$Omega2_partial/(1-omega_sq$Omega2_partial))
+cohens_f_alt <- effectsize::cohens_f(model, partial = TRUE)$Cohens_f_partial
+cohens_f_contrast <- sqrt(omega_sq_contrast / (1-omega_sq_contrast))
+?WebPower::wp.kanova()
+# Power calculation
+# Contrast
+wp.kanova(ndf = 1, f = cohens_f_contrast, ng = 18, power = 0.8)
+# 14*18 = 252
+# Three-way interaction
+wp.kanova(ndf = 4, f = cohens_f_alt[7], ng = 18, power = 0.8)
+# 47*18 = 846 observations
+# Main effect (feedback)
+wp.kanova(ndf = 2, f = cohens_f[1], ng = 18, power = 0.8)

@@ -17,10 +17,10 @@ csl: "../../static/bib/apa.csl"
 
 ```{r slides-videos, echo=FALSE, include=FALSE}
 source(here::here("R", "youtube-playlist.R"))
-playlist_id <- "PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H"
+playlist_id <- "PLUB8VZzxA8IvHyjTG5P7ZfyTQWEUbFhcc"
 slide_details <- tibble::tribble(
 ~title, ~youtube_id,
-"F-statistic table", "7ysgXYx6Rwg",
+"ANOVA table", "7ysgXYx6Rwg",
 "Contrasts and estimated marginal means", "KJ99KgeApNs",
 "Multiple testing", "dM1IkaVFy6w",
 "Effect size", "hD7HBU1EyDk",
@@ -281,13 +281,19 @@ kable(effectsize::omega_squared(
   kableExtra::kable_styling(position = "center")
 ```
 
-This standardized quantity is hard to interpret (because it is unitless), but Cohen's conventional effect size for such a test is 0.35 for large effects. Keep in mind that effect size are noisy (they are uncertain because they are based on a random sample, from which we try to extract a signal from some noise).
+This standardized quantity is hard to interpret (because it is unitless), but Cohen's conventional effect size for such a test is 0.35 for large effects. 
+
+The coefficients of variability all measure the proportion of variability that is explained by the factor $\sigma^2_A$, say, relative to the total $\sigma^2_A + \sigma^2_{\text{resid}}$. @Keppel/Wickens:2004 suggest reporting $\widehat{\omega}^2$ as effect size as it is less biased than its counterparts $\widehat{\eta}^2$ and $\widetilde{f}^2=\widehat{\eta}^2/(1-\widehat{\eta}^2)$. We can thus convert $\widehat{\omega}^2$ to $f$ via the formula $\widehat{\omega}^2/(1-\widehat{\omega}^2)$ and use the latter estimator for power analysis.
+
+Effect size are useful for power calculations, to get of sense of the magnitude of an effect (whether a difference is practically relevant or scientifically meaningful has nothing to do with its statistical significance). It is also used in meta-analysis, in which similar studies are pooled together to get more reliable estimates of the true effect.
+
+Keep in mind that effect size are noisy (they are uncertain because they are based on a random sample, from which we try to extract a signal from some noise). The confidence intervals (sometimes one-sided) reflect this.
 
 ## Power
 
 If we have an estimate of the power, we can try to see how many observations we would need to make sure that we detect a different 80%, 90% or 95% of the time. An alternative is to use the sample size and see what effect size we could detect for a given power. Generally, we can find one unknown if we specify any three of (1) the level $\alpha$, (2) the power, (3) the effect size and (4) the sample size. The calculation is made assuming balanced samples (the same number of individuals in each group), as this setup maximizes power if the variability of each group is the same.
 
-If we consider Cohen's $f$ for the contrasts, obtainable via `effectsize::cohens_f(contrasts_parameters,)`, we can get a feeling for the potential size of the difference between the `DRTA` and `TA` methods. As a conservative estimate, plug-in the lower bound of Cohen's $f$ for the effect (0.04) and see how many observations are needed
+If we consider Cohen's $f$ for the contrasts, obtainable via `effectsize::cohens_f(contrasts_parameters)`, we can get a feeling for the potential size of the difference between the `DRTA` and `TA` methods. As a conservative estimate, plug-in the lower bound of Cohen's $f$ for the effect (0.04) and see how many observations are needed
 
 ```{r powereffect, eval = TRUE, echo = TRUE}
 # compute effect size with 22 observations
@@ -305,8 +311,7 @@ power_contrasts <-
 plot(power_contrasts)
 ```
 
-The answer is 55 observations per group, thus we need to more than triple the sample size to get this increase in power.
-The nonlinear  power curve clearly shows how power increases with the sample size: we don't expect to catch small differences unless we had very large sample size. 
+The answer is 55 observations per group, thus we need to more than triple the sample size to get this increase in power. The nonlinear  power curve clearly shows how power increases with the sample size: we don't expect to catch small differences unless we had very large sample size. 
 
 ## Model assumptions
 
@@ -340,6 +345,7 @@ If we were worried about the possibility of unequal variances, we could fit the 
 oneway.test(posttest1 ~ group, data = reading)
 ```
 
+```{r gls, echo = FALSE, eval = FALSE}
 # Model with unequal variance
 # Trick: estimate the variance separately 
 # in each of the 10 subgroups
@@ -352,6 +358,7 @@ mod2 <- nlme::gls(error ~ nweeks*course,
 # Compute pairwise differences with Tukey's HSD 
 # (called Games-Howell in the case of unequal variances.
 emmeans(mod2, pairwise ~ nweeks*course)
+```
 
 ## Auxiliary and concomitant observation
 

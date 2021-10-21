@@ -87,23 +87,6 @@ class: center middle section-title section-title-4 animated fadeIn
 
 ---
 
-
-class: title title-4
-
-# Example from the OSC psychology replication
-
-> People can be influenced by the prior consideration of a numerical anchor when forming numerical judgments. [...]  The anchor provides an initial starting point from which estimates are adjusted, and a large body of research demonstrates that adjustment is usually insufficient, leading estimates to be biased towards the initial anchor.
-
-.small[
-[Replication of Study 4a of Janiszewski & Uy (2008, Psychological Science) by J. Chandler](https://osf.io/aaudl/)
-]
-
-???
-
-People can be influenced by the prior consideration of a numerical anchor when forming numerical judgments. The anchor provides an initial starting point from which estimates are adjusted, and a large body of research demonstrates that adjustment is usually insufficient, leading estimates to be biased towards the initial anchor. Extending this work, Janiszewski and Uy (2008) conceptualized people's attempt to adjust following presentation of an anchor as movement along a subjective representation scale by a certain number of units. Precise numbers (e.g. 9.99) imply a finer-resolution scale than round numbers (e.g. 10). Consequently, adjustment along a subjectively finer resolution scale will result in less objective adjustment than adjustment by the same number of units along a subjectively coarse resolution scale. 
-
-In three experimental studies the authors demonstrate this predicted basic effect and rule out various alternative explanations. Two additional studies (4a and b) found that this effect was especially strong when people were explicitly given more motivation to adjust their estimates (e.g., by implying that the initial anchor substantially overestimated the price). 
-
 ---
 class: title title-4
 # Motivating example
@@ -519,27 +502,6 @@ Terms with $\mathsf{X}$ are fully determined by row/column/total averages
 
 ]
 
-
----
-class: title title-5
-# Example from Keppel and Wichern (table)
-
-Consider errors by monkeys under three drug conditions ( $A$ ) and two degrees of food deprivation ( $B$ )
-
-
-.box-inv-5.sp-after-half[
-Data for the $3 \times 2$ factorial design
-]
-
-
-|  $A$ \\  $B$  | 1h deprivation | 24h deprivation|
-|----|:-----:|:-----:|
-| **Control** | 1, 4, 0, 7 | 15, 6, 10, 13 |
-| **Drug 1** | 13, 5, 7, 15 | 6, 18, 9, 15 |
-| **Drug 2** | 9, 16, 18, 13 | 14, 7, 6, 13 |
-
-.box-inv-5[**R** Demonstration]
-
 ---
 
 layout: false
@@ -574,47 +536,70 @@ class: title title-6
 - We can report an estimate of the effect size for either of the main effects, for the interaction or overall.
 
 - For a power calculation, do the calculations with each effect (whose size is of **scientific interest** and select the largest sample size per group.
+---
+class: title title-6
+# Breaking down the variability
 
-- Given $F$ statistics and degrees of freedom, we can find different measures: Cohen's $f$, (partial) $\eta^2$ and $\omega^2$.
-- Check the book for formulae and `effectsize` for estimates in **R**.
-- Estimators of variability are noisy and biased
+We can express the overall variability of the response around the global mean as
+$$\sigma^2_{\text{total}} = \sigma^2_A + \sigma^2_{B} + \sigma^2_{AB} + \sigma^2_{\text{resid}}.$$
+where $\sigma^2_A = a^{-1}\sum_{i=1}^a \alpha_i^2$, $sigma^2_{AB} = (ab)^{-1} \sum_{i=1}^a \sum_{j=1}^b (\alpha\beta)^2_{ij}$, etc.
 
 ---
 
 class: title title-6
-# (Partial) $\omega^2$
+# Partial Cohen's $f$
 
-.pull-left[
-The proportion of variance explained by the effect $T$ is 
-$$\omega^2_{\text{effect}} = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{total}}}.$$
-where $\sigma^2_{\text{total}}=\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{error}}.$
+The **population** version of Cohen's partial $f$ measures the proportion of variability that is explained by a main effect or an interaction, e.g.,
 
-]
-.pull-right[
-The partial $\omega^2$ for an effect is 
+$$f_{\langle A \rangle}= \frac{\sigma^2_A}{\sigma^2_{\text{resid}}}, \qquad f_{\langle AB \rangle} = \frac{\sigma^2_{AB}}{\sigma^2_{\text{resid}}}.$$
+These variance quantities are **unknown**, so need to be estimated somehow.
+
+---
+class: title title-6
+# Partial $\omega^2$
+
+The partial $\omega^2$ for an effect is an estimator of
 $$\omega^2_{\langle \text{effect}\rangle} = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{effect}} + \sigma^2_{\text{resid}}}.$$
+The estimator $\widehat{\omega}^2_{\langle \text{effect} \rangle}, estimated using the $F$ statistic and degrees of freedom of the effect, is less biased than its counterparts. Estimates are based on the formula
 
-These get replaced by estimates based on $F$ statistics and degrees of freedom (see Keppel & Wickens, p. 233).
+$$\widehat{\omega}^2_{\langle \text{effect} \rangle} = \frac{\text{df}_{\text{effect}}(F_{\text{effect}}-1)}{\text{df}_{\text{effect}}(F_{\text{effect}}-1) + n}$$
+where $n$ is the overall sample size.
 
-]
-
-The **R** package `effectsize` reports estimates with confidence intervals 
+In **R**, `effectsize::omega_squared` reports these estimates with one-sided confidence intervals. 
 
 .small[Reference for confidence intervals: Steiger (2004), Psychological Methods]
 
 ???
 
-The confidence intervals are based on the F distribution, by changing the noncentrality parameter and inverting the distribution function (pivot method). Since there is a one-to-one correspondance with Cohen's f, and a bijection between the latter and omega_sq_partial or eta_sq_partial. This yields asymmetric intervals.
-
-
+The confidence intervals are based on the F distribution, by changing the non-centrality parameter and inverting the distribution function (pivot method). Since there is a one-to-one correspondence with Cohen's f, and a bijection between the latter and omega_sq_partial or eta_sq_partial. This yields asymmetric intervals.
 ---
 class: title title-6
-# One way for the two-way
+# Converting $\omega^2$ to Cohen's $f$
 
-We can cast the two-way model with an interaction as a one-way ANOVA with $ab$ levels.
+Given the estimated $\widehat{\omega}^2_{\langle \text{effect} \rangle}$, convert it into an estimate of Cohen's partial $f^2_{\langle \text{effect} \rangle}$ via
+$$\widehat{f}^2_{\langle \text{effect} \rangle} = \frac{\widehat{\omega}^2_{\langle \text{effect}}\rangle }{1-\widehat{\omega}^2_{\langle \text{effect}}\rangle }.$$
 
-- Sometimes useful for using custom contrasts
-- Used for some procedures that do not support two-way designs (unequal variance model) or Levene's test
+This estimator is less biased than the usual value reported, $\widetilde{f}^2 = n^{-1}F_{\text{effect}}\text{df}_{\text{effect}}$, from e.g., `effectsize::cohens_f( partial = TRUE)`
+---
+class: title title-6
+# Power for factorial experiments
+
+- G*Power and **R** alternatives require Cohen's $f$ (or $f^2$) to estimate power.
+- Calculation based on $F$ distribution with 
+   - $\nu_1=\text{df}_{\text{effect}}$ degrees of freedom
+   - $\nu_2 = n - n_g$, where $n_g$ is the number of mean parameters estimated ($n_g = ab$ for the two-way interaction). 
+   - noncentrality parameter $\phi = Nf^2_{\langle \text{effect}\rangle}$
+
+
+In **R**, use 
+```{r, echo = TRUE}
+WebPower::wp.kanova(power=, ndf =, f=sqrt(omega.sq/(1-omega.sq)), alph=0.05, ng=)
+```
+---
+class: title title-6
+# Why not use $\widetilde{f}$ directly?
+
+ADD EXAMPLE
 
 ---
 class: title title-6

@@ -1,0 +1,46 @@
+---
+title: "Two-way analysis of variance"
+linktitle: "4. One way ANOVA"
+date: "2021-10-20"
+menu:
+  example:
+    parent: Examples
+    weight: 4
+type: docs
+toc: true
+editor_options: 
+  chunk_output_type: console
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+---
+
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "youtube-playlist.R"))
+playlist_id <- "PLUB8VZzxA8ItJKq70HCdYrRcsDUsJYKhb"
+slide_details <- tibble::tribble(
+~title, ~youtube_id,
+"Analysis of variance", "pxQgRTWwITI",
+"Interaction plots", "rYudu_vns6I",
+"Contrast and marginal means", "0ifni3rNOss",
+"Effect size and power", "jcqpe3Z-YNs"
+)
+
+```
+
+# Videos
+
+The code created in the video [can be downloaded here](/example/04-twowayanova-video.R).
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id, example = TRUE)
+```
+
+
+# Notebook
+
+We reproduce the results of Study 1 of @Maglio/Polman:2014. Data were obtained from 
+
+> We carried out a 2 (orientation: toward, away from) × 4 (station: Spadina, St. George, Bloor-Yonge, Sherbourne) analysis of variance (ANOVA) on closeness ratings
+
+## References

@@ -1,4 +1,21 @@
 
+
+class: title title-4
+
+# Example from the OSC psychology replication
+
+> People can be influenced by the prior consideration of a numerical anchor when forming numerical judgments. [...]  The anchor provides an initial starting point from which estimates are adjusted, and a large body of research demonstrates that adjustment is usually insufficient, leading estimates to be biased towards the initial anchor.
+
+.small[
+[Replication of Study 4a of Janiszewski & Uy (2008, Psychological Science) by J. Chandler](https://osf.io/aaudl/)
+]
+
+???
+
+People can be influenced by the prior consideration of a numerical anchor when forming numerical judgments. The anchor provides an initial starting point from which estimates are adjusted, and a large body of research demonstrates that adjustment is usually insufficient, leading estimates to be biased towards the initial anchor. Extending this work, Janiszewski and Uy (2008) conceptualized people's attempt to adjust following presentation of an anchor as movement along a subjective representation scale by a certain number of units. Precise numbers (e.g. 9.99) imply a finer-resolution scale than round numbers (e.g. 10). Consequently, adjustment along a subjectively finer resolution scale will result in less objective adjustment than adjustment by the same number of units along a subjectively coarse resolution scale. 
+
+In three experimental studies the authors demonstrate this predicted basic effect and rule out various alternative explanations. Two additional studies (4a and b) found that this effect was especially strong when people were explicitly given more motivation to adjust their estimates (e.g., by implying that the initial anchor substantially overestimated the price). 
+
 ---
 class: title title-5
 # Example: Fiber strength
@@ -102,3 +119,25 @@ Terms with $\mathsf{X}$ are fully determined by row/column/total averages
 
 ---
 
+
+---
+class: title title-5
+# Example from Keppel and Wichern (table)
+
+Consider errors by monkeys under three drug conditions ( $A$ ) and two degrees of food deprivation ( $B$ )
+
+
+.box-inv-5.sp-after-half[
+Data for the $3 \times 2$ factorial design
+]
+
+
+|  $A$ \\  $B$  | 1h deprivation | 24h deprivation|
+|----|:-----:|:-----:|
+| **Control** | 1, 4, 0, 7 | 15, 6, 10, 13 |
+| **Drug 1** | 13, 5, 7, 15 | 6, 18, 9, 15 |
+| **Drug 2** | 9, 16, 18, 13 | 14, 7, 6, 13 |
+
+.box-inv-5[**R** Demonstration]
+
+---
