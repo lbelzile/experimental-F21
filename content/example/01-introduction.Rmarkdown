@@ -17,7 +17,7 @@ csl: "../../static/bib/apa.csl"
 
 ```{r slides-videos, echo=FALSE, include=FALSE}
 source(here::here("R", "youtube-playlist.R"))
-playlist_id <- "PLUB8VZzxA8It9TOT1em71xjGZM-Fcvm4H"
+playlist_id <- "PLUB8VZzxA8ItkTK2mUO0VDQkPhqsyNw45"
 slide_details <- tibble::tribble(
 ~title, ~youtube_id,
 "RStudio interface", "utGd_kt0pdw",

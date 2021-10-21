@@ -2,6 +2,18 @@
 ## Two-way ANOVA with gender and condition ##
 #############################################
 
+packages <- c("tidyverse",
+              "emmeans",
+              "car",
+              "effectsize",
+              "performance",
+              "pwr",
+              "compute.es")
+for(pack in packages){
+  if(! require(pack)){
+    install.packages(pack)
+  }
+}
 
 i <- 1L # TODO replace this number by the one associated to your ID
 options(tidyverse.quiet = TRUE)
