@@ -1,12 +1,14 @@
 ---
-title: Installing R, RStudio, tidyverse, and tinytex
+title: Installation
 author: Andrew Heiss
 date: "2021-09-01"
 menu:
-  example
+  example:
+      parent: Overview
+      weight: 1
 type: docs
 toc: true
-weight: 1
+
 ---
 
 

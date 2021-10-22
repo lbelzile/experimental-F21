@@ -24,10 +24,8 @@ content:
 example:
   - name: Overview
     weight: 1
-  - name: Simulated data
-    weight: 2
   - name: Examples
-    weight: 3
+    weight: 2
 evaluations:
   - name: Evaluations
     weight: 1

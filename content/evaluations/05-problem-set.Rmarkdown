@@ -29,15 +29,18 @@ Since there were concerns from the original authors, the reanalysis focused on t
 
 The statistics of interest, beyond the interaction between gender and condition, is the comparison between condition (prepared vs unprepared) either marginally (if there is no interaction) or within each gender group (if there is an interaction).
 
-1. Report on the two-way analysis performed in [this code](/evaluations/05-problem-set.R). Pick the [replication dataset associated to your student ID](/evaluations/05-problem-set-id2021.txt). **You are asked to produce an output similar to that of the two penultimate paragraphs of study 18 on p.461 of @ManyLabs2:2018 **, i.e. describe the results of your analyses as if you had to write them in an article. Insert only relevant output (statistics, tables, graphs) in your written report.
+1. Report on the two-way analysis performed in [this code](/evaluations/05-problem-set.R). Pick the [replication dataset associated to your student ID](/evaluations/05-problem-set-id2021.txt). **You are asked to produce an output similar to that of the two penultimate paragraphs of study 18 on p.461 of @ManyLabs2:2018, i.e. describe the results of your analyses as if you had to write them in an article**. Insert only relevant output (statistics, tables, graphs) in your written report.
 
 Things worth reporting:
 
 - A graphic showing the raw data.
 - Sample mean, sample size and standard deviation of each group.
-- The $F$ statistic for the interaction, along with the $p$-value and a measure of variability (e.g., $\omega^2_{p}$) with a description.
-- If there is an interaction, the difference in likelihood scores between unprepared and prepared for each of female and male (so two contrasts, with the confidence interval, (ajusted) _p_-values with the name of the adjustment method, and an effect size (Cohen's $d$) along with confidence intervals for the latter.
-- If there is no significant interaction, the difference of unprepared vs prepared overall, with the same as before.
+- The $F$ statistic for the interaction, along with the $p$-value and a measure of variability (e.g., partial $\omega^2$) with a description.
+- If there is an interaction, the difference in likelihood scores between unprepared and prepared for each of female and male. If there is no significant interaction, the difference of unprepared vs prepared overall. In either case, report
+   - the estimated differences for the contrast (_t_ tests) with a (possibly adjusted) confidence interval
+   - (possibly ajusted) _p_-values for the contrast(s)
+   - the name of the adjustment method, if applicable
+   -  an effect size (Cohen's $d$) along with a confidence interval for the latter.
 - Conclude as to the relevance or presence of the postulated psychological effect.
 
 2. If you had to replicate this experiment, what sample size would you use? Justify your choice of effect size.^[Hint: there are multiple alternatives and estimators of the latter, including the original study, your dataset, the replication study. Think about which is the most reliable. Another option is to use the lower bound of a confidence interval for $\omega^2_p$ as proxy or simply compute the sample for a larger power.]

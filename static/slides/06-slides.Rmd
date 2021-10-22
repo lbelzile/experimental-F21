@@ -563,14 +563,14 @@ Note that `effectsize::cohens_f` returns $\widetilde{f}^2 = n^{-1}F_{\text{effec
 class: title title-6
 # Power for factorial experiments
 
-- G*Power and **R** alternatives require Cohen's $f$ (or $f^2$) to estimate power.
+- $\mathrm{G}^{\star}\mathrm{Power}$ and **R** packages takee Cohen's $f$ (or $f^2$) as input .
 - Calculation based on $F$ distribution with 
    - $\nu_1=\text{df}_{\text{effect}}$ degrees of freedom
    - $\nu_2 = n - n_g$, where $n_g$ is the number of mean parameters estimated. 
    - noncentrality parameter $\phi = Nf^2_{\langle \text{effect}\rangle}$
 
 
-In **R**, if `a` and `b` denote the levels and `omega.sq` $\omega^2_p$, then the power for the interaction is
+In **R**, if `a` and `b` denote the number of levels of each factor and `omega.sq` is $\omega^2_{\langle AB \rangle}$, then the sample size needed to detect this effect with power of 80% is
 ```{r, echo = TRUE, eval = FALSE}
 fhat <- sqrt(omega.sq/(1-omega.sq))
 WebPower::wp.kanova(power = 0.8, f = fhat, ndf = (a-1)*(b-1), ng = ab)
