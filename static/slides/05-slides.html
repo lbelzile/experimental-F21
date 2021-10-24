@@ -4,7 +4,7 @@
     <title>Effect size and power</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-16" />
+    <meta name="date" content="2021-10-23" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -83,12 +83,33 @@ Replication report of Fischer, Greitemeyer, and Frey (2008, JPSP, Study 2) by E.
 ]
 
 
-.box-inv-4.medium[Q: What is the sample size for given power?]
+.box-inv-4.medium.sp-after-half[Q: What is the sample size for given power?]
+.box-inv-4.medium.sp-after-half[Q: How big is this effect?]
+
+---
+class: title title-4
+# Does it matter?
+
+.box-inv-4.medium[
+Statistical significance `\(\neq\)` practical relevance
+]
+
+With large enough sample size, **any** sized difference between treatments becomes statistically significant.
+
+But whether this is important depends on the scientific question.
+
+.box-inv-4[Example]
+
+- What is the minimum difference between two treatments that would be large enough to justify commercialization of a drug?
+- Tradeoff between efficacy of new treatment vs status quo, cost of drug, etc.
+
 
 ---
 
 class: title title-4
 # Measures of effects
+
+
 
 `\(F\)`-statistics and `\(p\)`-values are not good summaries of effect size:
 
@@ -103,7 +124,45 @@ Instead use
 Popularized in the handbook
 &gt; Cohen, Jacob. Statistical Power Analysis for the Behavioral Sciences, 2nd ed., Routhledge, 1988.
 
+---
 
+class: title title-4
+
+# Illustrating effect size (differences)
+
+
+&lt;img src="05-slides_files/figure-html/effectsize-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+.tiny[
+The plot shows null (thick) and true distributions (dashed) for sample mean with small (left) and large (right) samples. The effect size (distance between means) is the same.
+]
+---
+class: title title-4
+# Estimands, estimators, estimates
+
+- `\(\mu_i\)` is the (unknown) population mean of group `\(i\)` (parameter, or estimand)
+- `\(\widehat{\mu}_i\)` is a formula (an estimator) that takes data as input and returns a numerical value (an estimate).
+- throughout, use hats to denote estimated quantities:
+
+.pull-left-3[
+&lt;img src="img/05/estimand.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+]
+.pull-middle-3[
+&lt;img src="img/05/estimator.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right-3[
+&lt;img src="img/05/estimate.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+
+.tiny[
+Left to right: parameter `\(\mu\)` (target), estimator `\(\widehat{\mu}\)` (recipe) and estimate `\(\widehat{\mu}=10\)` (numerical value, proxy)
+]
+
+???
+
+From Twitter, @simongrund89
 
 ---
 class: title title-4
@@ -111,15 +170,13 @@ class: title title-4
 
 Standardized measure of effect (dimensionless=no units): 
 
-e.g., for a comparison between two groups:
+Assuming equal variance `\(\sigma^2\)`, compare mean of two groups `\(i\)` and `\(j\)`:
 
 `$$\begin{align*}
-d = \frac{\widehat{\mu}_1 - \widehat{\mu}_2}{\widehat{\sigma}}
+d = \frac{\mu_i - \mu_j}{\sigma}
 \end{align*}$$`
-where `\(\widehat{\sigma}\)` is the pooled variance.
 
-
-
+The usual estimator `\(\widehat{d}\)` uses sample average of groups and the pooled variance `\(\widehat{\sigma}\)`.
 .small[Note: a finite sample correction (Hedge) can be used.]
 
 Cohen's _d_ is sometimes reported in terms of effect size
@@ -137,10 +194,10 @@ The small/medium/large effect size varies depending on the test! See the vignett
 class: title title-4
 # Cohen's _f_
 
-With more than two groups, compare the squared difference between overall mean and group mean assuming equal variance
+With more than two groups and assuming equal variance `\(\sigma^2\)`, compare the squared difference between overall mean and group mean
 
 `$$\begin{align*}
-f^2 = \frac{1}{\widehat{\sigma}^2} \sum_{j=1}^k \frac{n_j}{n}(\widehat{\mu}_j - \widehat{\mu})^2,
+f^2 = \frac{1}{\sigma^2} \sum_{j=1}^k \frac{n_j}{n}(\mu_j - \mu)^2,
 \end{align*}$$`
 a weighted sum of squared difference relative to the overall mean `\(\mu\)`.
 
@@ -148,63 +205,76 @@ For `\(k=2\)` groups, `\(f=d/2\)`.
 
 ---
 class: title title-4
-# `\(R^2\)` and `\(\eta^2\)`
+# Effect size: proportion of variance
 
-Can break down the variability between that explained by effect, `\(\sigma^2_{\text{effect}}\)` and the total variance `\(\sigma^2\)`.
-
-Define the percentage of variability explained by `\(\text{effect}\)`.
-`$$\eta^2 = \frac{\text{explained variability}}{\text{total variability}}= \frac{\sigma^2_{\text{effect}}}{\sigma^2}$$`
+Break down the variability `\(\sigma^2_{\text{total}} = \sigma^2_{\text{resid}} + \sigma^2_{\text{effect}}\)` and define the percentage of variability explained by the `\(\text{effect}\)`.
+`$$\eta^2 = \frac{\text{explained variability}}{\text{total variability}}= \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{total}}}$$`
 
 
-The most commonly used sample estimate of `\(\eta^2\)` is `\(R^2\)`, the coefficient of determination.
+Often, you see instead the partial value
+`$$\eta^2_p = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{error}}+\sigma^2_{\text{effect}}}.$$`
 
-&lt;!--
- Often, you see instead the following reported
- `$$R^2_p = \frac{\mathsf{SS}_{\text{effect}}}{\mathsf{SS}_{\text{error}}+\mathsf{SS}_{\text{effect}}}.$$`
+.small[
+Note: for a one-way ANOVA (no repeated measurements), the two are equivalent.
+]
 
-For one-way ANOVA (no repeated measurements), the two are equivalent.
---&gt;
 
 ---
 class: title title-4
 # Coefficient of determination
 
-For the balanced one-way ANOVA with exhaustive factors=all possible choices in the population, write
+For the balanced one-way ANOVA, typical estimator is
 
 `$$\begin{align*}
-R^2 = \frac{F\nu_1}{F\nu_1 + \nu_2}
+\widehat{R}{}^2 = \frac{F\nu_1}{F\nu_1 + \nu_2}
 \end{align*}$$`
 where `\(\nu_1 = k-1\)` and `\(\nu_2 = n-k\)` are the degrees of freedom for the one-way ANOVA. 
 
-
-For the replication example, `$$R^2 = \frac{4.05\times 2}{4.05\times 2 + 84} = 0.088 \approx 0.09$$` as reported.
+- `\(\widehat{R}{}^2\)` is an upward biased estimator (too large).
+- People frequently write `\(\eta^2\)` when they mean `\(\widehat{R}{}^2\)`
+- for the replication, `\(\widehat{R}{}^2 = (4.05\times 2)/(4.05\times 2 + 82) = 0.09\)`
 
 
 ---
 class: title title-4
 # `\(\omega^2\)` square
 
-`\(R^2\)` is a biased estimator so too large. Another (popular) estimator of `\(\eta^2\)` that is recommended in Keppel &amp; Wickens (2004) is `\(\omega^2\)`.
+Another estimator of `\(\eta^2\)` that is recommended in Keppel &amp; Wickens (2004) for power calculations is `\(\widehat{\omega}^2\)`.
 
 For one-way ANOVA, the latter is obtained from the `\(F\)`-statistic as
 
 `$$\begin{align*}
-\omega^2 = \frac{\nu_1 (F-1)}{\nu_1(F-1)+n}
+\widehat{\omega}^2 = \frac{\nu_1 (F-1)}{\nu_1(F-1)+n}
 \end{align*}$$`
 
+- for the replication, `\(\widehat{\omega}^2 = \frac{3.05\times 2}{3.05\times 2 + 84} = 0.0677.\)`
+- if the value returned is negative, report zero.
 ???
 
 Since the `\(F\)` statistic is approximately 1 on average, this measure removes the average.
+
+---
+class: title title-4
+# Converting `\(\eta^2\)` to Cohen's `\(f\)`
+
+The software we will use take an estimate of Cohen's `\(f\)` (or `\(f^2\)`) as input for the effect size.
+
+Convert from one to the other:
+
+`$$f^2=\frac{\eta^2}{1-\eta^2}.$$`
+
+
+If we plug-in estimated values `\(\widehat{R}{}^2\)` and `\(\widehat{\omega}^2\)`, we get `\(\widehat{f} = 0.314\)` and `\(\widetilde{f} = 0.27\)`.
 
 ---
 
 class: title title-4
 # Comments on effect estimates
 
-- There are two variants: population quantities (e.g., `\(\eta^2\)`) that depend on unknown parameters and sample estimates (e.g., `\(R^2\)`, `\(\omega^2\)`)
+- There are two variants: population quantities (e.g., `\(\eta^2\)`) that depend on unknown parameters and sample estimates (e.g., `\(\widehat{R}^2\)`, `\(\widehat{\omega}^2\)`)
 - In more complicated models, we can look at partial effects (proportion of variance relative to that of errors)
-- Every effect size estimator is random (because its inputs are)
-- We can report confidence intervals with estimates, but these are hopelessly wide in most settings.
+- Every effect size estimator is random (because its inputs are): **hugely uncertain**
+- We can report confidence intervals with estimates (mostly for Cohen's `\(d\)`, but these are hopelessly wide in most settings).
 
 
 ---
@@ -221,18 +291,15 @@ class: title title-7
 
 # I cried power!
 
-The null alternative corresponds to a single value: `\(\mu_1 = \cdots = \mu_K\)`, 
-whereas there are infinitely many alternatives...
-
---
+The null alternative corresponds to a single value (equality in mean), whereas there are infinitely many alternatives...
 
 
 .pull-left[
-  ![Power with small overlap](img/02/power1-1.png)
+&lt;img src="05-slides_files/figure-html/powercurve1-1.png" width="80%" style="display: block; margin: auto;" /&gt;
   .small.center[Power is the ability to detect when the null is false, for a given alternative (dashed).]
 ]
 .pull-right[
-  ![Power with large overlap](img/02/power2-1.png)
+&lt;img src="05-slides_files/figure-html/powercurve2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
  .small.center[ Power is the area in white under the dashed curved, beyond the cutoff. ]
 ]
 
@@ -312,7 +379,7 @@ Journals and grant agencies oftentimes require an estimate of the sample size ne
 - large enough to pick-up effects of scientific interest (good signal-to-noise)
 - efficient allocation of resources (don't waste time/money)
 
-Same for study replication: how many participants needed?
+Same for replication studies: how many participants needed?
 
 ---
 class: title title-7
@@ -390,7 +457,7 @@ The plot shows the null and alternative distributions. The noncentral F is shift
 class: title title-7
 # Computing power
 
-Given a value of `\(\Delta\)`, we can compute the tail probability as follows
+Given a value of `\(\Delta=nf^2\)`, we can compute the tail probability as follows
 
 1. Compute the cutoff point: the value under `\(\mathscr{H}_0\)` that leads to rejection at level `\(\alpha\)`. .box-inv-7.sp-before.sp-after[
 `cutoff &lt;- qf(p = 1-alpha, df1 = df1, df2 = df2)`
@@ -428,7 +495,7 @@ class: title title-7
 library(pwr)
 power_curve &lt;- 
  pwr.anova.test(
-  f = sqrt(0.09/(1-0.09)), 
+  f = 0.314, #from R-squared
   k = 3, 
   power = 0.9,
   sig.level = 0.05)
@@ -437,7 +504,9 @@ plot(power_curve)
 
 .tiny[
 
-Convert `\(\eta^2\)` to Cohen's `\(f\)` (the effect size reported in `pwr`) via `\(f^2=\eta^2/(1-\eta^2)\)`. Explained later in the slides.
+Recall: convert `\(\eta^2\)` to Cohen's `\(f\)` (the effect size reported in `pwr`) via `\(f^2=\eta^2/(1-\eta^2)\)`
+
+Using `\(\widetilde{f}\)` instead (from `\(\widehat{\omega}^2\)`) yields `\(n=59\)` observations per group!
 
 ]
 
@@ -446,46 +515,7 @@ Convert `\(\eta^2\)` to Cohen's `\(f\)` (the effect size reported in `pwr`) via 
 &lt;img src="05-slides_files/figure-html/powercurvefig-1.png" width="504" style="display: block; margin: auto;" /&gt;
 ]
 ---
-class: title title-7
-# Power calculations with unknowns
 
-Need to specify the following parameters: 
-
-.box-inv-7.sp-after-half[
-
-Level `\(\alpha\)` (usually 5%)
-
-]
-.center[adjust if you plan to correct for multiple testing!
-]
-.box-inv-7.sp-before.sp-after-half[
-
-Variance `\(\sigma^2\)`
-
-]
-run a pilot study or look up plausible values from the literature
-.box-inv-7.sp-before.sp-after-half[
-
-Mean difference size `\(\mu_i - \mu\)`
-]
-
----
-class: title title-7
-# Estimating mean differences
-
-If you care for a difference of `\(D\)` units between groups, the smallest value of `\(\Delta\)` (**worst case analysis**) is when 
-
-- one group has mean difference `\(\mu_1 - \mu = -D/2\)`, 
-- another has `\(\mu_2 - \mu = D/2\)` and 
-- the rest with zero difference.
-
-
-With a balanced design, we thus get 
-`$$\begin{align*}
-\Delta = \frac{n}{k\sigma^2}\sum_{j=1}^{k}(\mu_j-\mu)^2 = \frac{n}{k\sigma^2}\left(\frac{D^2}{4} + \frac{D^2}{4}\right) = \frac{nD^2}{2k\sigma^2}.
-\end{align*}$$`
-
----
 class: title title-7
 # Effect size estimates
 

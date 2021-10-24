@@ -42,7 +42,7 @@ Things worth reporting:
     -   an effect size (Cohen’s `\(d\)`) along with a confidence interval for the latter.
 -   Conclude as to the relevance or presence of the postulated psychological effect.
 
-2.  If you had to replicate this experiment, what sample size would you use? Justify your choice of effect size.[^2]
+2.  If you had to replicate this experiment, what sample size would you use? Justify your choice of value for the effect size.[^2]
 
 ## References
 

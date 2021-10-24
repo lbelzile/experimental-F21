@@ -45,7 +45,7 @@ At the end of the session, students should be capable of
 
 ## In class
 
-We covered three examples in class: one two-way design with a blocking factor (no interaction), a balanced design with fictious data from Keppel & Wickens (2004) (Table 11.8) and finally data from a replication study (unbalanced). The code for these examples can be found in the [**R** script](/example/06-twowayanova.R).
+We covered three examples in class: one two-way design with a blocking factor (no interaction), a balanced design with fictious data from Keppel & Wickens (2004) (Table 11.8) and finally data from a replication study (unbalanced). The code for these examples can be found in the [**R** script](/content/06-twowayanova.R).
 
 ## Slides
 

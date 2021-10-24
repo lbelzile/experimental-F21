@@ -362,9 +362,9 @@ The model in terms of $\alpha$, $\beta$ and $(\alpha\beta)$ is overparametrized.
 
 For the sum-to-zero constraint, impose that 
 
-$$\sum_{i=1}^a \alpha_i=0, \quad \sum_{j=1}^b \beta_j=0, \quad \sum_{i=1}^a (\alpha\beta)_{ij}=0,  \sum_{j=1}^b (\alpha\beta)_{ij}=0.$$
+$$\sum_{i=1}^a \alpha_i=0, \quad \sum_{j=1}^b \beta_j=0, \quad  \sum_{j=1}^b (\alpha\beta)_{ij}=0, \quad \sum_{i=1}^a (\alpha\beta)_{ij}=0.$$
 
-which imposes $1 + 1 + b + a$ constraints.
+which imposes $1 +  a + b$ constraints.
 
 ---
 

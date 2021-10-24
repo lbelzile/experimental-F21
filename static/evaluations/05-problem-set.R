@@ -20,7 +20,7 @@ library(emmeans) # estimated marginal means and contrasts
 suppressPackageStartupMessages(library(car)) # diagnostics plots
 suppressPackageStartupMessages(library(effectsize)) # effect size estimates
 
-url <- "https://edsm.rbind.io/data/RisenGilovichRepBalanced.csv"
+url <- "https://edsm.rbind.io/data/RG08rep_bal.csv"
 data <- read_csv(file = url,
                    col_types = "fiff") %>%  #f = factor, i = integer
         subset(lab == i) 

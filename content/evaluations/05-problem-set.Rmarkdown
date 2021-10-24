@@ -43,7 +43,7 @@ Things worth reporting:
    -  an effect size (Cohen's $d$) along with a confidence interval for the latter.
 - Conclude as to the relevance or presence of the postulated psychological effect.
 
-2. If you had to replicate this experiment, what sample size would you use? Justify your choice of effect size.^[Hint: there are multiple alternatives and estimators of the latter, including the original study, your dataset, the replication study. Think about which is the most reliable. Another option is to use the lower bound of a confidence interval for $\omega^2_p$ as proxy or simply compute the sample for a larger power.]
+2. If you had to replicate this experiment, what sample size would you use? Justify your choice of value for the effect size.^[Hint: there are multiple alternatives and estimators of the latter, including the original study, your dataset, the replication study. Think about which is the most reliable. Another option is to use the lower bound of a confidence interval for $\omega^2_p$ as proxy or simply compute the sample for a larger power.]
 
 
 

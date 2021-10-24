@@ -1,6 +1,6 @@
 ---
-title: "Power calculations and model assumptions"
-linktitle: "5: Power calculations and model assumptions"
+title: "Effect size and power"
+linktitle: "5: Effect size and power"
 date: "2021-09-27"
 start_date: "2021-09-27"
 end_date: "2021-10-01"
@@ -17,25 +17,34 @@ slides: "05-slides"
 
 ## Content
 
--   Power and the interplay between sample size, effect and power
 -   Measures of effect sizes
--   Assumptions of the analysis of variance model
-    -   Additivity
-    -   Homogeneity of variance and Levene’s test
-    -   Independence
+-   The interplay between sample size, effect and power
+    <!--
+    - Assumptions of the analysis of variance model 
+        - Additivity
+        - Homogeneity of variance and Levene's test
+        - Independence
+    -->
 
 ## Learning objectives
 
 At the end of the session, students should be capable of
 
--   produce graphical diagnostics and perform hypothesis tests to check the model assumptions
--   think critically about the model assumptions as part of the model formulation
+<!--
+- produce graphical diagnostics and perform hypothesis tests to check the model assumptions
+- think critically about the model assumptions as part of the model formulation
+-->
+
+-   report effect size for a statistic
 -   deduce the sample size necessary to replicate a study at a given power
 -   understand the interplay between power and effect.
 
 ## Readings
 
--   <i class="fas fa-book"></i> Section *Model assumptions* of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html#model-assumptions)
+<!--
+- <i class="fas fa-book"></i> Section *Model assumptions* of the [Course notes](https://lbelzile.github.io/math80667a/onewayanova.html#model-assumptions)
+-->
+
 -   Kristoffer Magnusson’s [*Understanding Statistical Power and Significance Testing: an interactive visualization*](https://rpsychologist.com/d3/nhst/)
 -   Kristoffer Magnusson’s [*Interpreting Cohen’s `\(d\)` Effect Size*](https://rpsychologist.com/cohend/) (Magnusson, 2021)
 
