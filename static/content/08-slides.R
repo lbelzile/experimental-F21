@@ -64,4 +64,57 @@ car::Anova(model, type = '3')
 #  gender | condition + interaction, 
 #  but constraining average of gender to be the same
 
-#  but constraining the average of 
+
+
+# Polynomial models
+
+# Load data
+url <- "https://edsm.rbind.io/data/bean.txt"
+beans <- read.table(url, header = TRUE)
+g1 <- ggplot(data = beans,
+             aes(x = time, y = length)) + 
+  # add horizontal jittering for clarity
+  geom_point(position = position_jitter(width = 0.5)) +
+  theme_classic() +
+  labs(y = 'length (cm)',
+       x = 'time (hours)')
+# Print plot
+g1 
+# Fit models of different orders using lm
+model3 <- lm(length ~ poly(time, degree = 3), 
+             data = beans) #cubic model
+model2 <- lm(length ~ poly(time, degree = 2), 
+             data = beans) #quadratic
+model1 <- lm(length ~ poly(time, degree = 1), 
+             data = beans) #linear
+model_anov <- lm(length ~ factor(time), 
+                 data = beans) #one-way ANOVA
+
+# Testing between nested model: can we simplify the cubic model?
+# Model 3 is equivalent to ANOVA
+anova(model3, model_anov)
+# drop cubic term?
+anova(model2, model3) 
+# drop quadratic + cubic?
+anova(model1, model3) 
+
+# Add fitted line with confidence interval
+g1 + stat_smooth(method = "lm", fullrange = FALSE,
+                 formula = y ~ poly(x, 3),
+                 col = 2)
+
+# Pairwise differences using Tukey's method
+pairwise_diff <- 
+  contrast(
+    emmeans(model_anov, 
+            specs = "time"),
+    method = "pairwise",
+    adjust = "tukey",
+    level = 0.99,
+    infer = c(TRUE, FALSE))
+
+knitr::kable(summary(pairwise_diff)[,c(1,2,5,6)],
+             colnames = c("contrast","difference",
+                          "lower CI","upper CI"),
+             digits = c(0,2,2,2),
+             caption = "Pairwise differences\nwith 99% CI (Tukey's method)")

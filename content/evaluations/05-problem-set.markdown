@@ -24,7 +24,7 @@ You do not need to hand in anything for this part of the assignment.
 ## Task 2 - Scientific writing
 
 Your job is to put these suggestions into application for a replication of Study 2 of Risen & Gilovich (2008, [full text here](https://psycnet-apa-org.proxy2.hec.ca/fulltext/2008-09787-004.pdf)). The data is taken from the Study 18 of [Many Labs 2](https://doi.org/10.1177%2F2515245918810225) (Klein et al., 2018) and has been cleaned for the purpose of the exercice and to ensure each replication is balanced.[^1]
-Since there were concerns from the original authors, the reanalysis focused on the undergraduate subsample and consists of a 2x2 analysis of variance with condition (prepared vs unprepared) and gender as factors.
+Since there were concerns from the original authors, the reanalysis focused on the undergraduate subsample and consists of a 2x2 analysis of variance with condition (prepared vs unprepared) and gender (male and female) as factors.
 
 The statistics of interest, beyond the interaction between gender and condition, is the comparison between condition (prepared vs unprepared) either marginally (if there is no interaction) or within each gender group (if there is an interaction).
 

@@ -1,6 +1,6 @@
 ---
-title: "Linear model"
-linktitle: "8: Linear model"
+title: "Unbalanced designs, polynomial regression"
+linktitle: "8: Unbalanced designs, polynomial regression"
 date: "2021-10-23"
 start_date: "2021-10-25"
 end_date: "2021-10-29"
@@ -15,28 +15,25 @@ csl: "../../static/bib/apa.csl"
 slides: "08-slides"
 ---
 
-## Content
-
--   ANOVA as a linear model
--   Sum of square decomposition for unbalanced designs
--   Analysis of trend
-
 ## Learning objectives
 
 At the end of the session, students should be capable of
 
--   fit general
--   correctly specify a factorial design with unbalanced samples (sum-to-zero parametrization, sum of squares)
+-   List differences between balanced and unbalanced designs
 -   fit a polynomial model for a single continuous factor and test for degree
 
 ## Readings
 
--   
+-   Section 8.8.1 of Dean et al. (2017)
 
 ## Complementary readings
 
+-   <i class="fas fa-book"></i> Chapter 8 of Dean et al. (2017)
+-   <i class="fas fa-book"></i> Chapters 5 and 14 of Keppel & Wickens (2004)
 -   <i class="fas fa-book"></i> [*The ANOVA controversy* by Falk Scholer](http://wight.seg.rmit.edu.au/fscholer/anova.php)
--   <i class="fas fa-book"></i> Chapters 8 of Fox (2015)
+    <!--
+    - <i class="fas fa-book"></i> Chapters 8 of @Fox:2015
+    -->
 
 ## Slides
 
@@ -49,13 +46,10 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <a class="nav-link active" id="introduction-tab" data-toggle="tab" href="#introduction" role="tab" aria-controls="introduction" aria-selected="true">Introduction</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="factorial-designs-and-interactions-tab" data-toggle="tab" href="#factorial-designs-and-interactions" role="tab" aria-controls="factorial-designs-and-interactions" aria-selected="false">Factorial designs and interactions</a>
+<a class="nav-link" id="unbalanced-designs-tab" data-toggle="tab" href="#unbalanced-designs" role="tab" aria-controls="unbalanced-designs" aria-selected="false">Unbalanced designs</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="model-formulation-tab" data-toggle="tab" href="#model-formulation" role="tab" aria-controls="model-formulation" aria-selected="false">Model formulation</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="effect-size-contrasts-and-power-tab" data-toggle="tab" href="#effect-size-contrasts-and-power" role="tab" aria-controls="effect-size-contrasts-and-power" aria-selected="false">Effect size, contrasts and power</a>
+<a class="nav-link" id="polynomial-regression-tab" data-toggle="tab" href="#polynomial-regression" role="tab" aria-controls="polynomial-regression" aria-selected="false">Polynomial regression</a>
 </li>
 </ul>
 
@@ -72,33 +66,22 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
-<div id="factorial-designs-and-interactions" class="tab-pane fade" role="tabpanel" aria-labelledby="factorial-designs-and-interactions-tab">
+<div id="unbalanced-designs" class="tab-pane fade" role="tabpanel" aria-labelledby="unbalanced-designs-tab">
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/08-slides.html#factorial-interaction">
+<iframe class="embed-responsive-item" src="/slides/08-slides.html#unbalanced-designs">
 </iframe>
 
 </div>
 
 </div>
 
-<div id="model-formulation" class="tab-pane fade" role="tabpanel" aria-labelledby="model-formulation-tab">
+<div id="polynomial-regression" class="tab-pane fade" role="tabpanel" aria-labelledby="polynomial-regression-tab">
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/08-slides.html#formulation">
-</iframe>
-
-</div>
-
-</div>
-
-<div id="effect-size-contrasts-and-power" class="tab-pane fade" role="tabpanel" aria-labelledby="effect-size-contrasts-and-power-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/08-slides.html#effect-size-contrast-power">
+<iframe class="embed-responsive-item" src="/slides/08-slides.html#polynomial">
 </iframe>
 
 </div>
@@ -106,14 +89,28 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 </div>
 
 </div>
+
+## In class
+
+We will do an overview of the topics covered so far in the course, followed by a Q&A period.
+We will play with unbalanced data using the Replication of Study 4a of Janiszewski & Uy (2008, Psychological Science) by J. Chandler
+[(download data)](/data/Janizewski.csv)
+
+A script containing the **R** code generated in the slides can be [downloaded here](/content/08-slides.R)
 
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
-<div id="ref-Fox:2015" class="csl-entry">
+<div id="ref-Dean:2017" class="csl-entry">
 
-Fox, J. (2015). *Applied regression analysis and generalized linear models*. SAGE Publications. <https://us.sagepub.com/en-us/nam/applied-regression-analysis-and-generalized-linear-models/book237254>
+Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+
+</div>
+
+<div id="ref-Keppel/Wickens:2004" class="csl-entry">
+
+Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
 
 </div>
 

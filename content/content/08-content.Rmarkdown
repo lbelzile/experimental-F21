@@ -1,6 +1,6 @@
 ---
-title: "Linear model"
-linktitle: "8: Linear model"
+title: "Unbalanced designs, polynomial regression"
+linktitle: "8: Unbalanced designs, polynomial regression"
 date: "2021-10-23"
 start_date: "2021-10-25"
 end_date: "2021-10-29"
@@ -23,36 +23,30 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
-  "", "Factorial designs and interactions", "factorial-interaction", FALSE,
-  "", "Model formulation", "formulation", FALSE,
-  "", "Effect size, contrasts and power", "effect-size-contrast-power", FALSE,
+  "", "Unbalanced designs", "unbalanced-designs", FALSE,
+  "", "Polynomial regression", "polynomial", FALSE
 )
 ```
-
-## Content
-
-- ANOVA as a linear model
-- Sum of square decomposition for unbalanced designs
-- Analysis of trend
 
 ## Learning objectives
 
 At the end of the session, students should be capable of
 
-- fit general
-- correctly specify a factorial design with unbalanced samples (sum-to-zero parametrization, sum of squares)
+- List differences between balanced and unbalanced designs 
 - fit a polynomial model for a single continuous factor and test for degree
 
 ## Readings
 
-- 
-
+- Section 8.8.1 of @Dean:2017
 
 ## Complementary readings
 
+- <i class="fas fa-book"></i> Chapter 8 of @Dean:2017
+- <i class="fas fa-book"></i> Chapters 5 and 14 of @Keppel/Wickens:2004
 - <i class="fas fa-book"></i> [*The ANOVA controversy* by Falk Scholer](http://wight.seg.rmit.edu.au/fscholer/anova.php)
+<!--
 - <i class="fas fa-book"></i> Chapters 8 of @Fox:2015
-
+-->
 
 ## Slides
 
@@ -64,5 +58,12 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 slide_tabs(slide_details, "/slides/08-slides.html")
 ```
 
+## In class
+
+We will do an overview of the topics covered so far in the course, followed by a Q&A period.
+We will play with unbalanced data using the Replication of Study 4a of Janiszewski & Uy (2008, Psychological Science) by J. Chandler
+[(download data)](/data/Janizewski.csv)
+
+A script containing the **R** code generated in the slides can be [downloaded here](/content/08-slides.R)
 
 ## References
