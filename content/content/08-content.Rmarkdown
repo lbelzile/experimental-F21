@@ -17,14 +17,15 @@ slides: "08-slides"
 
 ```{r slides-videos, echo=FALSE, include=FALSE}
 source(here::here("R", "slide-tabs.R"))
+source(here::here("R", "youtube-playlist.R"))
 
-playlist_id <- ""
+playlist_id <- "PLUB8VZzxA8IvW4nMt4LWk8JmAejj5wJdH"
 
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
-  "", "Introduction", "1", TRUE,
-  "", "Unbalanced designs", "unbalanced-designs", FALSE,
-  "", "Polynomial regression", "polynomial", FALSE
+   "", "Introduction", "1", TRUE,
+  "Rss0bSmONz0", "Unbalanced designs", "unbalanced-designs", FALSE,
+  "HTXUHpa6Eio", "Polynomial regression", "polynomial", FALSE
 )
 ```
 
@@ -32,8 +33,29 @@ slide_details <- tibble::tribble(
 
 At the end of the session, students should be capable of
 
-- List differences between balanced and unbalanced designs 
-- fit a polynomial model for a single continuous factor and test for degree
+- Explain why balanced designs are prefered
+- Understand impacts of unbalanced designs on estimation and testing
+- fit a polynomial model for a single continuous factor and test for simpler alternatives
+
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/08-slides.html")
+```
+
+A script containing the **R** code generated in the slides can be [downloaded here](/content/08-slides.R)
+
+
+## Videos
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id)
+```
 
 ## Readings
 
@@ -48,22 +70,12 @@ At the end of the session, students should be capable of
 - <i class="fas fa-book"></i> Chapters 8 of @Fox:2015
 -->
 
-## Slides
-
-The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
-
-`r blogdown::shortcode("slide-buttons")`
-
-```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/08-slides.html")
-```
-
 ## In class
 
 We will do an overview of the topics covered so far in the course, followed by a Q&A period.
 We will play with unbalanced data using the Replication of Study 4a of Janiszewski & Uy (2008, Psychological Science) by J. Chandler
 [(download data)](/data/Janizewski.csv)
 
-A script containing the **R** code generated in the slides can be [downloaded here](/content/08-slides.R)
+
 
 ## References

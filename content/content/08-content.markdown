@@ -19,21 +19,9 @@ slides: "08-slides"
 
 At the end of the session, students should be capable of
 
--   List differences between balanced and unbalanced designs
--   fit a polynomial model for a single continuous factor and test for degree
-
-## Readings
-
--   Section 8.8.1 of Dean et al. (2017)
-
-## Complementary readings
-
--   <i class="fas fa-book"></i> Chapter 8 of Dean et al. (2017)
--   <i class="fas fa-book"></i> Chapters 5 and 14 of Keppel & Wickens (2004)
--   <i class="fas fa-book"></i> [*The ANOVA controversy* by Falk Scholer](http://wight.seg.rmit.edu.au/fscholer/anova.php)
-    <!--
-    - <i class="fas fa-book"></i> Chapters 8 of @Fox:2015
-    -->
+-   Explain why balanced designs are prefered
+-   Understand impacts of unbalanced designs on estimation and testing
+-   fit a polynomial model for a single continuous factor and test for simpler alternatives
 
 ## Slides
 
@@ -90,13 +78,43 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
+A script containing the **R** code generated in the slides can be [downloaded here](/content/08-slides.R)
+
+## Videos
+
+Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8IvW4nMt4LWk8JmAejj5wJdH).
+
+-   [Introduction](https://www.youtube.com/watch?v=&list=PLUB8VZzxA8IvW4nMt4LWk8JmAejj5wJdH)
+-   [Unbalanced designs](https://www.youtube.com/watch?v=Rss0bSmONz0&list=PLUB8VZzxA8IvW4nMt4LWk8JmAejj5wJdH)
+-   [Polynomial regression](https://www.youtube.com/watch?v=HTXUHpa6Eio&list=PLUB8VZzxA8IvW4nMt4LWk8JmAejj5wJdH)
+
+You can also watch the playlist (and skip around to different sections) here:
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=PLUB8VZzxA8IvW4nMt4LWk8JmAejj5wJdH" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+
+</div>
+
+## Readings
+
+-   Section 8.8.1 of Dean et al. (2017)
+
+## Complementary readings
+
+-   <i class="fas fa-book"></i> Chapter 8 of Dean et al. (2017)
+-   <i class="fas fa-book"></i> Chapters 5 and 14 of Keppel & Wickens (2004)
+-   <i class="fas fa-book"></i> [*The ANOVA controversy* by Falk Scholer](http://wight.seg.rmit.edu.au/fscholer/anova.php)
+    <!--
+    - <i class="fas fa-book"></i> Chapters 8 of @Fox:2015
+    -->
+
 ## In class
 
 We will do an overview of the topics covered so far in the course, followed by a Q&A period.
 We will play with unbalanced data using the Replication of Study 4a of Janiszewski & Uy (2008, Psychological Science) by J. Chandler
 [(download data)](/data/Janizewski.csv)
-
-A script containing the **R** code generated in the slides can be [downloaded here](/content/08-slides.R)
 
 ## References
 

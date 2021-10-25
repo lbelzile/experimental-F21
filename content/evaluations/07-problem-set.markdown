@@ -14,9 +14,7 @@ bibliography: "../../static/bib/references.bib"
 csl: "../../static/bib/apa.csl"
 ---
 
-## Task 1 -
-
-## Task 2 - Optimal sample allocation with unequal variance
+## Task 1 - Optimal sample allocation with unequal variance
 
 We consider for simplicity two treatments, `\(A\)` and `\(B\)`
 The standard error of the average difference between treatment `\(A\)` and control `\(B\)` for `\(Y_{iA} \sim \mathsf{No}(\mu_A, \sigma_A^2)\)` `\((i=1, \ldots, n_A)\)` and `\(Y_{iB} \sim \mathsf{No}(\mu_B, \sigma_B^2)\)` is
@@ -52,8 +50,6 @@ ggplot(data = data,
 -   What is the optimum share of cases for `\(A\)` versus `\(B\)` more generally?[^1] Explain why this result is logical.
 -   Using the optimal fraction you identified, by how much does the standard error decreases if we increase the sample size hundred-fold, i.e., we go from 10 to 1 000 observations?
 -   Do you think we can act on the standard deviation `\(\text{std. dev}\)` term as experimenter? Why or why not?
-
-–>
 
 ## References
 

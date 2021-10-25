@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Unbalanced designs and trend analysis</title>
+    <title>Unbalanced designs and polynomial regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-24" />
+    <meta name="date" content="2021-10-25" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -37,7 +37,7 @@
 
 class: center middle main-title section-title-1
 
-# Unbalanced designs and trend analysis
+# Unbalanced designs and polynomial regression
 
 .class-info[
 
@@ -58,17 +58,17 @@ class: title title-inv-1
 --
 
 
-.box-5.large.sp-after-half[Seeking balance]
+.box-5.large.sp-after-half[Unbalanced designs]
 
 --
 
-.box-7.large.sp-after-half[Analysis of trend]
+.box-7.large.sp-after-half[Polynomial regression]
 ---
 layout: false
-name: model-formulation
-class: center middle section-title section-title-5 animated fadeIn
+name: unbalanced-designs
+class: center middle section-title section-title-5
 
-# Seeking balance
+# Unbalanced designs
 
 ---
 class: title title-5
@@ -114,7 +114,7 @@ https://doi.org/10.1016/j.ijantimicag.2020.106063
 ---
 
 class: title title-5
-# Why balance?
+# Why seek balance?
 
 Two main reasons
 
@@ -698,21 +698,23 @@ People can be influenced by the prior consideration of a numerical anchor when f
 In three experimental studies the authors demonstrate this predicted basic effect and rule out various alternative explanations. Two additional studies (4a and b) found that this effect was especially strong when people were explicitly given more motivation to adjust their estimates (e.g., by implying that the initial anchor substantially overestimated the price). 
 
 ---
-
-
+layout: false
+name: polynomial
+class: center middle section-title section-title-7
+# Polynomial regression
 ---
-class: title title-5
+class: title title-7
 
 # IJLR: It's Just a Linear Regression...
 
-All models we covered so fall ( `\(t\)`-tests, factorial designs, latin squares) are all special
+All ANOVA models we covered so fall ( `\(t\)`-tests, factorial designs, latin squares) are all special
 instances of the linear regression model.
 
 The latter says that 
 `$$\underset{\text{average response}\vphantom{l}}{\textsf{E}(Y_{i}\vphantom{\beta_p})}  = \underset{\text{linear (i.e., additive) combination of explanatories}}{\beta_0 + \beta_1 \mathrm{X}_{1i} + \cdots + \beta_p \mathrm{X}_{pi}}$$`
 
 ---
-class: title title-5
+class: title title-7
 # What about factors?
 
 The software eats **numbers**, not labels.
@@ -720,28 +722,21 @@ The software eats **numbers**, not labels.
 What happens under the hood with the sum-to-zero constraint?
 
 Assuming that level `\(a\)` of factor `\(A\)` does not appear in the coefficient table, including `\(A\)` requires adding `\((a-1)\)` vectors `\(\mathbf{X}_{j}\)` where
-`$$\mathrm{X}_{ij} = \begin{cases} 1 &amp; A = j, \\ -1 &amp; A = a, \\ 0 &amp; \text{otherwise}.\end{cases}$$`
+`$$\mathrm{X}_{ij} = \begin{cases} \hphantom{-}1 &amp; A = j, \\ -1 &amp; A = a, \\ \hphantom{-}0 &amp; \text{otherwise}.\end{cases}$$`
 
 Check `model.matrix()` on a linear model object in **R**.
-
----
-class: title title-7
-# Analysis of trend
-
-
-
 
 ---
 class: title title-7
 
 # Beyond ANOVA
 
-Consider linear model with a single **continuous** `\(\mathbf{x}\)` experimental factor as explanatory.
+Consider linear model with a single **continuous** explanatory, where `\(\mathrm{X}\)` is an experimental factor.
 
-Assume that `\(Y_i \sim \mathsf{No}\{f(\mathbf{X}_i), \sigma^2\}\)` where the expected value of `\(Y_i\)`, `\(f(\mathbf{X}_i)\)`, is a smooth function.
+We assume that `\(Y_i \sim \mathsf{No}\{\text{smooth function}(\mathrm{X}_i), \sigma^2\}\)`.
 
-We approximate `\(f(\mathbf{X}_i)\)` by a `\(p\)`th order polynomial,
-$$ \mathsf{E}(Y_i)= \beta_0 + \beta_1 \mathrm{x}_i + \cdots + \beta_p\mathrm{x}_i^p
+Approximate the smooth function of `\(\mathrm{X}\)` by a `\(p\)`th order polynomial,
+$$ \mathsf{E}(Y_i)= \beta_0 + \beta_1 \mathrm{X}_i + \cdots + \beta_p\mathrm{X}_i^p$$
 
 ---
 class: title title-7
@@ -751,12 +746,169 @@ Example 8.8 of Dean, Voss and Draguljić
 
 &gt; What is the optimal soaking time of beans prior to planting? 
 
-Experimental factor: time (in hours), one of
-
+.small[
+Experimental factor: time (in hours), either 12, 18, 24 and 30 hours (equally spaced).
+]
 
 ```r
-url &lt;- "http://deanvossdraguljic.ietsandbox.net/DeanVossDraguljic/R-data/bean.txt"
+url &lt;- "https://edsm.rbind.io/data/bean.txt"
+beans &lt;- read.table(url, header = TRUE)
+g1 &lt;- ggplot(data = beans,
+       aes(x = time, y = length)) + 
+    geom_point(position = position_jitter(width = 0.5)) +
+  theme_classic() +
+  labs(y = 'length (mm)',
+       x = 'time (hours)')
 ```
+
+---
+class: title title-7
+# Beans data
+
+&lt;img src="08-slides_files/figure-html/unnamed-chunk-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+.small[
+Soaking times are jittered to avoid overplotting.
+]
+---
+class: title title-7
+# Trend model or ANOVA?
+
+Fitting the cubic model is equivalent to a one-way ANOVA with time (four levels) with `\(r = 17\)` replications.
+
+In each case, there are four parameters. For time `\(\texttt{time}\in \{12,18,24,30\}\)` hours associated to level `\(j\)` of the categorical variable:
+`$$\mathsf{E}(\texttt{length}) = \mu + \alpha_j = \beta_0 + \beta_1 \texttt{time} + \beta_2 \texttt{time}^2 + \beta_3 \texttt{time}^3.$$`
+
+
+The difference is that we cannot interpolate with the one-way ANOVA for times between 12 and 30.
+
+---
+class: title title-7
+# Testing for higher-order terms
+
+Test nested models using `\(F\)` tests: null `\(\subset\)` alternative
+
+
+In the model 
+`$$\mathsf{E}(\texttt{length}) = \beta_0 + \beta_1 \texttt{time} + \beta_2 \texttt{time}^2 + \beta_3\texttt{time}^3$$`
+
+- `\(\mathscr{H}_0: \beta_3=0\)`, the coefficient associated to the cubic term `\(\texttt{time}^3\)`.
+- `\(\mathscr{H}_0: \beta_2 = \beta_3=0\)`, compare cubic vs linear model.
+
+---
+
+class: title title-7
+# Fitting polynomials in **R**
+
+```r
+model3 &lt;- lm(length ~ poly(time, degree = 3), 
+            data = beans) #cubic model
+model2 &lt;- lm(length ~ poly(time, degree = 2), 
+            data = beans) #quadratic
+model1 &lt;- lm(length ~ poly(time, degree = 1), 
+            data = beans) #linear
+model_anov &lt;- lm(length ~ factor(time), 
+                 data = beans) #one-way ANOVA
+```
+.small[
+The function `poly` uses orthogonal polynomial (more stable numerically).
+]
+---
+class: title title-7
+# Model comparisons (_F_ tests)
+
+```r
+# Model 3 is equivalent to ANOVA
+anova(model3, model_anov)
+# drop cubic term?
+anova(model2, model3) #H0: beta3=0
+# drop quadratic + cubic?
+anova(model1, model3) #H0: beta2 = beta3=0
+```
+
+We cannot simplify the cubic model: `\(p\)`-value less than `\(0.001407\)`.
+---
+class: title title-7
+# Fitted model
+
+&lt;img src="08-slides_files/figure-html/plotbeanswithfit-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title title-7
+# Pairwise comparisons
+
+Compute pairwise differences with Tukey's method
+
+.pull-left.small[
+
+```r
+library(emmeans)
+pairwise_diff &lt;- 
+ contrast(
+  emmeans(model_anov, 
+          specs = "time"),
+  method = "pairwise",
+  adjust = "tukey",
+  level = 0.99,
+  infer = c(TRUE, FALSE))
+```
+]
+
+.pull-right.small[
+&lt;table&gt;
+&lt;caption&gt;Pairwise differences
+with 99% CI (Tukey's method)&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; contrast &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; difference &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; lower CI &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; upper CI &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 - 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -12.47 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -16.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -8.79 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 - 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -13.59 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -17.27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -9.91 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 - 30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -15.35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -19.04 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -11.67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 18 - 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -4.80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.57 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 18 - 30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -2.88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -6.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.80 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 24 - 30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.76 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5.45 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.92 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.small[
+Every soaking time is significantly better than 12 hours
+]
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

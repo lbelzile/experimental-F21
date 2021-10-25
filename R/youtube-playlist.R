@@ -25,3 +25,4 @@ youtube_list <- function(video_df, playlist_id, example = FALSE) {
   
   cat(final)
 }
+

@@ -24,8 +24,6 @@ Download [the starter code](/evaluations/06-problem-set.R) and answer the follow
 
 1.  Produce a plot of the monthly error per teller as a function of the number of weeks of one-on-one training.
 2.  Produce a quantile-quantile plot of the residuals and use Levene’s test to check whether the variance in each subgroup is the same. Report on these preliminary checks.
-    -   if there is no evidence of unequal variance, proceed as usual
-    -   if there is heterogeneity, use `gls` to fit the model with unequal variance in each groups.
 3.  Assess whether there an interaction between number of weeks of one-on-one training and the formal training.
 4.  Compute pairwise contrasts between weeks of one-on-one supervision for the case of people with formal training.
 5.  Compare the difference in errors between 8 and 4 weeks of one-to-one supervision, for people with and without formal training.

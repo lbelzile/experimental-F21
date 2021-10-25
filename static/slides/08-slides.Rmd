@@ -1,5 +1,5 @@
 ---
-title: "Linear models"
+title: "Unbalanced designs and polynomial regression"
 author: "Léo Belzile"
 date: "`r Sys.Date()`"
 output:
@@ -43,7 +43,7 @@ xaringanExtra::use_xaringan_extra(c("tile_view","freezeframe","panelset","clipbo
 
 class: center middle main-title section-title-1
 
-# Linear models
+# Unbalanced designs and polynomial regression
 
 .class-info[
 
@@ -64,33 +64,406 @@ class: title title-inv-1
 --
 
 
-.box-4.medium.sp-after-half[Model formulation]
+.box-5.large.sp-after-half[Unbalanced designs]
 
 --
 
-.box-5.medium.sp-after-half[Seeking balance]
-
---
-
-.box-6.medium.sp-after-half[Analysis of trend]
---
-
-.box-7.medium.sp-after-half[Diagnostic plots]
-
+.box-7.large.sp-after-half[Polynomial regression]
 ---
-
 layout: false
-name: model-formulation
-class: center middle section-title section-title-4 animated fadeIn
+name: unbalanced-designs
+class: center middle section-title section-title-5
 
-# Linear model
+# Unbalanced designs
+
+---
+class: title title-5
+# Premise
+
+So far, we have exclusively considered balanced samples 
+
+.box-inv-5.large.sp-after-half.sp-before[
+balanced = same number of observational units in each sub-groups
+]
+
+Most experiments (even planned) end up with unequal sample sizes.
+
+---
+
+class: title title-5
+# Noninformative drop-out
+
+Unbalanced samples may be due to many causes, including randomization (need not balance) and loss-to-follow up (dropout)
+
+If dropout is random, not a  problem
+- Example of Baumannn, Seifert-Kessel, Jones (1992): 
+   > Because of illness and transfer to another school, incomplete data were obtained for one subject each from the TA and DRTA group 
+
+---
+
+class: title title-5
+# Problematic drop-out or exclusion
+
+If loss of units due to treatment or underlying conditions, problematic!
+
+Rosensaal (2021) rebuking a study on the effectiveness of  hydrochloriquine as treatment for Covid19 and reviewing allocation:
+   > Of these 26, six were excluded (and incorrectly labelled as lost to follow-up): three were transferred to the ICU, one died, and two terminated treatment or were discharged
+
+Sick people excluded from the treatment group! then claim it is better.
+
+Worst: "The index [treatment] group and control group were drawn from different centres."
+
+???
+
+Review of: “Hydroxychloroquine and azithromycin as a treatment of COVID-19: results of an open-label non-randomized clinical trial Gautret et al 2010, DOI:10.1016/j.ijantimicag.2020.105949
+https://doi.org/10.1016/j.ijantimicag.2020.106063
+---
+
+class: title title-5
+# Why seek balance?
+
+Two main reasons
+
+
+1. Power considerations: with equal variance in each group, balanced samples gives the best allocation
+2. Simplicity of interpretation and calculations: the interpretation of the $F$ test in a linear regression is unambiguous
+
+
+---
+
+class: title title-5
+# Finding power in balance
+
+Consider a t-test for assessing the difference between treatments $A$ and $B$ with equal variability
+$$t= \frac{\text{estimated difference}}{\text{estimated variability}} = \frac{(\widehat{\mu}_A - \widehat{\mu}_B) - 0}{\mathsf{se}(\widehat{\mu}_A - \widehat{\mu}_B)}.$$
+
+The standard error of the average difference is 
+$$\sqrt{\frac{\text{std. dev}_A}{\text{nb of obs. in }A} + \frac{\text{std. dev}_B}{\text{nb of obs. in }B}} = \sqrt{\frac{\sigma}{n_A} + \frac{\sigma}{n_B}}$$
+
+---
+class: title title-5
+# Optimal allocation of ressources
+
+```{r stderrordiffcurve, echo = FALSE, eval = TRUE, out.width = '65%', fig.retina = 3, fig.width = 5, fig.height = 3}
+stdfun <- function(n, n1){sqrt(1/n1 + 1/(n-n1))}
+ggplot(data = tibble( n1 = 1:99, stderror = stdfun(n = 100, n1 = 1:99)),
+       mapping = aes(x = n1, y = stderror)) + 
+   geom_line() + 
+   theme_classic() + 
+   labs(y = "std. error / std. dev", 
+        x = "sample size for group A | n = 100")
+```
+.small[
+The allocation  of $n=n_A + n_B$ units that minimizes the std error is $n_A = n_B = n/2$.
+]
+
+---
+class: title title-5
+# Example: tempting fate
+
+We consider data from Multi Lab 2, a replication study that examined Risen and Gilovich (2008) who
+.small[
+> explored the belief that tempting fate increases bad outcomes. They tested whether people judge the likelihood of a negative outcome to be higher when they have imagined themselves [...] tempting fate [...] (by not reading before class) or  not [tempting] fate (by coming to class prepared). Participants then estimated how likely it was that [they] would be called on by the professor (scale from 1, not at all likely, to 10, extremely likely).
+]
+
+The replication data gathered in 37 different labs focuses on a 2 by 2 factorial design with gender (male vs female) and condition (prepared vs unprepared) administered to undergraduates.
 
 ---
 
 
-class: title title-4
+.panelset[
 
-# Example from the OSC psychology replication
+.panel[.panel-name[Load data]
+```{r loaddata, echo = TRUE, eval = TRUE, cache = TRUE}
+# This is a 2x2 factorial design
+# The response is 'likelihod'
+# the explanatories are 'condition' and 'gender'
+library(tidyverse)
+url1 <- "https://edsm.rbind.io/data/RG08rep.csv"
+RS_unb <- read_csv(url1, col_types = c("iiff"))
+# Data artificially balanced for the sake
+# of illustration purposes
+url2 <- "https://edsm.rbind.io/data/RG08rep_bal.csv"
+RS_bal <- read_csv(url2, col_types = c("iiff"))
+```
+
+]
+
+.panel[.panel-name[Check balance]
+
+.pull-left.small[
+```{r sampsize, echo = TRUE, eval = TRUE, cache = TRUE}
+summary_stats <- 
+  RS_unb %>% 
+  group_by(condition) %>% 
+  summarize(nobs = n(),
+            mean = mean(likelihood))
+```
+]
+.pull-right[
+
+```{r tabsampsize, echo = FALSE, eval = TRUE, cache = TRUE}
+knitr::kable(summary_stats,
+   caption = "Summary statistics",
+   digits = c(0,0,3))
+```
+  
+]
+]
+
+.panel[.panel-name[Marginal means]
+
+.pull-left.small[
+
+```{r emms, echo = TRUE, eval = TRUE}
+options(contrasts = c("contr.sum", 
+                      "contr.poly"))
+model <- lm(likelihood ~ gender*condition,
+            data = RS_unb)
+library(emmeans)
+emm <- emmeans(model, 
+               specs = "condition")
+```
+]
+.pull-right[
+
+```{r tabmargmeans, echo = FALSE, eval = TRUE, cache = TRUE}
+knitr::kable(summary(emm)[,c(1:3)],
+             caption = "Marginal means for condition",
+             digits = c(0,3,4))
+```
+.small[
+Note unequal standard errors.
+]
+]
+]
+]
+---
+class: title title-5
+# Explaining the discrepancies
+
+Estimated marginal means are based on equiweighted groups:
+$$\widehat{\mu} = \frac{1}{4}\left( \widehat{\mu}_{11} + \widehat{\mu}_{12} + \widehat{\mu}_{21} + \widehat{\mu}_{22}\right)$$
+where $\widehat{\mu}_{ij} = n_{ij}^{-1} \sum_{r=1}^{n_{ij}} y_{ijr}$.
+
+The sample mean is the sum of observations divided by the sample size.
+
+The two coincide when $n_{11} = \cdots = n_{22}$.
+
+---
+class: title title-5
+# Why equal weight?
+
+.medium[
+
+- The ANOVA and contrast analyses, in the case of unequal sample sizes, are generally based on marginal means (same weight for each subgroup)
+- This choice is justified because research questions generally concern comparisons of means across experimental groups.
+
+
+]
+---
+class: title title-5
+# Revisiting the $F$ statistic
+
+Statistical tests contrast competing **nested** models:
+
+- an alternative (full) model
+- a null model, which imposes restrictions (a simplification of the alternative models)
+
+The numerator of the $F$-statistic compares the sum of square of a model with (given) main effect, etc. to a model without.
+
+---
+class: title title-5
+# What is explained by condition?
+
+Consider the $2 \times 2$ factorial design with factors $A$: `gender` and $B$: `condition` (prepared vs unprepared) without interaction.
+
+What is the share of variability (sum of squares) explained by the experimental condition?
+---
+class: title title-5
+# Comparing differences in sum of squares (1)
+
+Consider a balanced sample
+
+```{r balancedanova, echo = TRUE, eval = FALSE}
+anova(lm(likelihood ~ 1, data = RS_bal), 
+      lm(likelihood ~ condition, data = RS_bal))
+# When gender is present
+anova(lm(likelihood ~ gender, data = RS_bal), 
+      lm(likelihood ~ gender + condition, data = RS_bal))
+
+```
+
+.small[
+The difference in sum of squares is 141.86 in both cases.
+]
+
+---
+class: title title-5
+# Comparing differences in sum of squares (2)
+
+Consider an unbalanced sample
+
+```{r unbalancedanova, echo = TRUE, eval = FALSE}
+anova(lm(likelihood ~ 1, data = RS_unb), 
+      lm(likelihood ~ condition, data = RS_unb))
+# When gender is present      
+anova(lm(likelihood ~ gender, data = RS_unb), 
+      lm(likelihood ~ gender + condition, data = RS_unb))
+    
+```
+
+.small[
+The differences of sum of squares are respectively 330.95 and 332.34.
+]
+
+---
+
+class: title title-5
+# Orthogonality
+
+Balanced designs yield orthogonal factors: the improvement in the goodness of fit (characterized by change in sum of squares) is the same regardless of other factors.
+
+So effect of $B$ and $B \mid A$ (read $B$ given $A$) is the same.
+
+- test for $B \mid A$ compares $\mathsf{SS}(A, B) - \mathsf{SS}(A)$
+- for balanced design, $\mathsf{SS}(A, B) = \mathsf{SS}(A) + \mathsf{SS}(B)$ (factorization).
+
+We lose this property with unbalanced samples: there are distinct formulations of ANOVA.
+
+---
+
+class: title title-5
+# Analysis of variance - Type I (sequential)
+
+The default method in **R** with `anova` is the sequential decomposition: in the order of the variables $A$, $B$ in the formula 
+
+- So $F$ tests are for tests of effect of 
+  - $A$, based on $\mathsf{SS}(A)$
+  - $B \mid A$, based on $\mathsf{SS}(A, B) - \mathsf{SS}(A)$
+  - $AB \mid A, B$ based on $\mathsf{SS}(A, B, AB) - \mathsf{SS}(A, B)$
+
+
+.box-inv-5[Ordering matters]
+
+Since the order in which we list the variable is **arbitrary**, these $F$ tests are not of interest.
+
+---
+
+class: title title-5
+# Analysis of variance - Type II
+
+Impact of 
+- $A \mid B$  based on $\mathsf{SS}(A, B) - \mathsf{SS}(B)$
+- $B \mid A$ based on $\mathsf{SS}(A, B) - \mathsf{SS}(A)$
+- $AB \mid A, B$ based on $\mathsf{SS}(A, B, AB) - \mathsf{SS}(A, B)$
+- tests invalid if there is an interaction.
+- In **R**, use `car::Anova(model, type = 2)`
+
+---
+
+class: title title-5
+# Analysis of variance - Type III
+
+Most commonly used approach
+
+- Improvement due to $A \mid B, AB$, $B \mid A, AB$ and $AB \mid A, B$
+- What is improved by adding a factor, interaction, etc. given the rest 
+- may require imposing equal mean for rows for $A \mid B, AB$, etc. 
+   - (**requires** sum-to-zero parametrization)
+- valid in the presence of interaction
+- but $F$-tests for main effects are not of interest
+- In **R**, use `car::Anova(model, type = 3)`
+
+---
+class: title title-5
+# ANOVA for unbalanced data
+.pull-left.small[
+
+```{r allmods, echo = TRUE, eval = FALSE}
+model <- 
+  lm(likelihood ~ condition*gender,
+     data = RS_unb)
+# Three distinct decompositions
+anova(model) #type 1
+car::Anova(model, type = 2)
+car::Anova(model, type = 3)
+```
+
+```{r anovatabs1, echo = FALSE}
+knitr::kable(anova(model)[,c(1:2,4)],
+caption = "ANOVA (type I)", 
+             digits = c(0,2,1))
+```
+]
+
+
+.pull-right.small[
+```{r anovatabs2, echo = FALSE}
+knitr::kable(car::Anova(model, type = 2)[,c(2,1,3)],
+caption = "ANOVA (type II)", 
+             digits = c(0,2,1))
+knitr::kable(car::Anova(model, type = 3)[-1,c(2,1,3)],
+caption = "ANOVA (type III)", 
+             digits = c(0,2,1))
+```
+
+]
+---
+class: title title-5
+# ANOVA for balanced data
+.pull-left.small[
+
+```{r allmodsb, echo = TRUE, eval = FALSE}
+model2 <- 
+  lm(likelihood ~ condition*gender,
+     data = RS_bal)
+anova(model2) #type 1
+car::Anova(model2, type = 2)
+car::Anova(model2, type = 3)
+# Same answer - orthogonal!
+```
+
+```{r anovatabs1b, echo = FALSE}
+model2 <- 
+  lm(likelihood ~ condition*gender,
+     data = RS_bal)
+knitr::kable(anova(model2)[,c(1:2,4)],
+caption = "ANOVA (type I)", 
+             digits = c(0,2,1))
+```
+]
+
+
+.pull-right.small[
+```{r anovatabs2b, echo = FALSE}
+knitr::kable(car::Anova(model2, type = 2)[,c(2,1,3)],
+caption = "ANOVA (type II)", 
+             digits = c(0,2,1))
+knitr::kable(car::Anova(model2, type = 3)[-1,c(2,1,3)],
+caption = "ANOVA (type III)", 
+             digits = c(0,2,1))
+```
+
+]
+---
+class: title title-5
+# Recap
+
+- If each observation has the same variability, a balanced sample maximizes power.
+- Balanced designs have interesting properties:
+   - estimated marginal means coincide with (sub)samples averages
+   - the tests of effects are unambiguous
+   - for unbalanced samples, we work with marginal means and type 3 ANOVA
+   - if empty cells (no one assigned to a combination of treatment), cannot estimate corresponding coefficients (typically higher order interactions)
+
+---
+
+class: title title-5
+
+# Practice  
+
+From the OSC psychology replication
 
 > People can be influenced by the prior consideration of a numerical anchor when forming numerical judgments. [...]  The anchor provides an initial starting point from which estimates are adjusted, and a large body of research demonstrates that adjustment is usually insufficient, leading estimates to be biased towards the initial anchor.
 
@@ -105,15 +478,173 @@ People can be influenced by the prior consideration of a numerical anchor when f
 In three experimental studies the authors demonstrate this predicted basic effect and rule out various alternative explanations. Two additional studies (4a and b) found that this effect was especially strong when people were explicitly given more motivation to adjust their estimates (e.g., by implying that the initial anchor substantially overestimated the price). 
 
 ---
-
-class: title title-4
+layout: false
+name: polynomial
+class: center middle section-title section-title-7
+# Polynomial regression
+---
+class: title title-7
 
 # IJLR: It's Just a Linear Regression...
 
-All models we covered so fall ( $t$-tests, one- and two-way ANOVA, factorial designs, latin squares) are all very special
+All ANOVA models we covered so fall ( $t$-tests, factorial designs, latin squares) are all special
 instances of the linear regression model.
 
 The latter says that 
-$$\underset{\text{average response}}{\textsf{E}(Y_{i})} = \underset{\text{linear combination of explanatories}}{\beta_0 + \beta_1 \mathrm{X}_{1i} + \cdots + \beta_p \mathrm{X}_{pi}}$$
+$$\underset{\text{average response}\vphantom{l}}{\textsf{E}(Y_{i}\vphantom{\beta_p})}  = \underset{\text{linear (i.e., additive) combination of explanatories}}{\beta_0 + \beta_1 \mathrm{X}_{1i} + \cdots + \beta_p \mathrm{X}_{pi}}$$
+
+---
+class: title title-7
+# What about factors?
+
+The software eats **numbers**, not labels.
+
+What happens under the hood with the sum-to-zero constraint?
+
+Assuming that level $a$ of factor $A$ does not appear in the coefficient table, including $A$ requires adding $(a-1)$ vectors $\mathbf{X}_{j}$ where
+$$\mathrm{X}_{ij} = \begin{cases} \hphantom{-}1 & A = j, \\ -1 & A = a, \\ \hphantom{-}0 & \text{otherwise}.\end{cases}$$
+
+Check `model.matrix()` on a linear model object in **R**.
+
+---
+class: title title-7
+
+# Beyond ANOVA
+
+Consider linear model with a single **continuous** explanatory, where $\mathrm{X}$ is an experimental factor.
+
+We assume that $Y_i \sim \mathsf{No}\{\text{smooth function}(\mathrm{X}_i), \sigma^2\}$.
+
+Approximate the smooth function of $\mathrm{X}$ by a $p$th order polynomial,
+$$ \mathsf{E}(Y_i)= \beta_0 + \beta_1 \mathrm{X}_i + \cdots + \beta_p\mathrm{X}_i^p$$
+
+---
+class: title title-7
+# Example: Bean soaking
+
+Example 8.8 of Dean, Voss and Draguljić
+
+> What is the optimal soaking time of beans prior to planting? 
+
+.small[
+Experimental factor: time (in hours), either 12, 18, 24 and 30 hours (equally spaced).
+]
+```{r loadbeans}
+url <- "https://edsm.rbind.io/data/bean.txt"
+beans <- read.table(url, header = TRUE)
+g1 <- ggplot(data = beans,
+       aes(x = time, y = length)) + 
+    geom_point(position = position_jitter(width = 0.5)) +
+  theme_classic() +
+  labs(y = 'length (mm)',
+       x = 'time (hours)')
+```
+
+---
+class: title title-7
+# Beans data
+
+```{r out.width = '70%', fig.width = 6, fig.height = 4, echo=FALSE, fig.retina = 3}
+g1
+```
+.small[
+Soaking times are jittered to avoid overplotting.
+]
+---
+class: title title-7
+# Trend model or ANOVA?
+
+Fitting the cubic model is equivalent to a one-way ANOVA with time (four levels) with $r = 17$ replications.
+
+In each case, there are four parameters. For time $\texttt{time}\in \{12,18,24,30\}$ hours associated to level $j$ of the categorical variable:
+$$\mathsf{E}(\texttt{length}) = \mu + \alpha_j = \beta_0 + \beta_1 \texttt{time} + \beta_2 \texttt{time}^2 + \beta_3 \texttt{time}^3.$$
 
 
+The difference is that we cannot interpolate with the one-way ANOVA for times between 12 and 30.
+
+---
+class: title title-7
+# Testing for higher-order terms
+
+Test nested models using $F$ tests: null $\subset$ alternative
+
+
+In the model 
+$$\mathsf{E}(\texttt{length}) = \beta_0 + \beta_1 \texttt{time} + \beta_2 \texttt{time}^2 + \beta_3\texttt{time}^3$$
+
+- $\mathscr{H}_0: \beta_3=0$, the coefficient associated to the cubic term $\texttt{time}^3$.
+- $\mathscr{H}_0: \beta_2 = \beta_3=0$, compare cubic vs linear model.
+
+---
+
+class: title title-7
+# Fitting polynomials in **R**
+```{r comparenested, eval = TRUE}
+model3 <- lm(length ~ poly(time, degree = 3), 
+            data = beans) #cubic model
+model2 <- lm(length ~ poly(time, degree = 2), 
+            data = beans) #quadratic
+model1 <- lm(length ~ poly(time, degree = 1), 
+            data = beans) #linear
+model_anov <- lm(length ~ factor(time), 
+                 data = beans) #one-way ANOVA
+```
+.small[
+The function `poly` uses orthogonal polynomial (more stable numerically).
+]
+---
+class: title title-7
+# Model comparisons (_F_ tests)
+```{r comparemodels, eval = FALSE}
+# Model 3 is equivalent to ANOVA
+anova(model3, model_anov)
+# drop cubic term?
+anova(model2, model3) #H0: beta3=0
+# drop quadratic + cubic?
+anova(model1, model3) #H0: beta2 = beta3=0
+```
+
+We cannot simplify the cubic model: $p$-value less than $0.001407$.
+---
+class: title title-7
+# Fitted model
+
+```{r plotbeanswithfit, echo = FALSE, out.width = '70%', fig.width = 7, fig.height = 4}
+g1 + stat_smooth(method = "lm", fullrange = FALSE,
+                 formula = y ~ poly(x, 3),
+                 col = 2)
+```
+
+---
+class: title title-7
+# Pairwise comparisons
+
+Compute pairwise differences with Tukey's method
+
+.pull-left.small[
+```{r pairwisebeans, eval = TRUE}
+library(emmeans)
+pairwise_diff <- 
+ contrast(
+  emmeans(model_anov, 
+          specs = "time"),
+  method = "pairwise",
+  adjust = "tukey",
+  level = 0.99,
+  infer = c(TRUE, FALSE))
+```
+]
+
+.pull-right.small[
+```{r printtab, echo = FALSE}
+knitr::kable(summary(pairwise_diff)[,c(1,2,5,6)],
+             col.names = c("contrast","difference",
+                          "lower CI","upper CI"),
+             digits = c(0,2,2,2),
+             caption = "Pairwise differences\nwith 99% CI (Tukey's method)")
+```  
+
+.small[
+Every soaking time is significantly better than 12 hours
+]
+]
