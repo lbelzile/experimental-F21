@@ -4,7 +4,7 @@
     <title>Two-way designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-23" />
+    <meta name="date" content="2021-10-25" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -888,14 +888,14 @@ Note that `effectsize::cohens_f` returns `\(\widetilde{f}^2 = n^{-1}F_{\text{eff
 class: title title-6
 # Power for factorial experiments
 
-- `\(\mathrm{G}^{\star}\mathrm{Power}\)` and **R** packages takee Cohen's `\(f\)` (or `\(f^2\)`) as input .
+- `\(\mathrm{G}^{\star}\mathrm{Power}\)` and **R** packages take Cohen's `\(f\)` (or `\(f^2\)`) as inputs.
 - Calculation based on `\(F\)` distribution with 
    - `\(\nu_1=\text{df}_{\text{effect}}\)` degrees of freedom
    - `\(\nu_2 = n - n_g\)`, where `\(n_g\)` is the number of mean parameters estimated. 
-   - noncentrality parameter `\(\phi = Nf^2_{\langle \text{effect}\rangle}\)`
+   - noncentrality parameter `\(\phi = nf^2_{\langle \text{effect}\rangle}\)` where \text{effect} is either `\(A\)`, `\(B\)` or `\(AB\)`.
 
 
-In **R**, if `a` and `b` denote the number of levels of each factor and `omega.sq` is `\(\omega^2_{\langle AB \rangle}\)`, then the sample size needed to detect this effect with power of 80% is
+Example: if `a` and `b` denote the number of levels of each factor and `omega.sq` is `\(\omega^2_{\langle AB \rangle}\)`, then the sample size needed to detect the interaction with power of 80% is
 
 ```r
 fhat &lt;- sqrt(omega.sq/(1-omega.sq))
