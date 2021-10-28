@@ -1,6 +1,6 @@
 ---
-title: "Problem set 6"
-linktitle: "Problem set 6"
+title: "Problem set 7"
+linktitle: "Problem set 7"
 date: "2021-10-28"
 due_date: "2021-11-09"
 due_time: "11:55 PM"
@@ -16,12 +16,12 @@ csl: "../../static/bib/apa.csl"
 
 ## Task 1 - Optimal sample allocation with unequal variance
 
-We consider for simplicity two treatments, $A$ and $B$
-The standard error of the average difference between treatment $A$ and control $B$ for $Y_{iA} \sim \mathsf{No}(\mu_A, \sigma_A^2)$ $(i=1, \ldots, n_A)$ and $Y_{iB} \sim \mathsf{No}(\mu_B, \sigma_B^2)$ is
+We consider for simplicity one experimental factor with two levels, $A$ for treatment and $B$ for control.
+The standard error of the average difference between treatment $A$ and $B$ for $Y_{iA} \sim \mathsf{No}(\mu_A, \sigma_A^2)$ $(i=1, \ldots, n_A)$ and $Y_{iB} \sim \mathsf{No}(\mu_B, \sigma_B^2)$ is
 $$\mathsf{se}(\widehat{\mu}_A - \widehat{\mu}_B = \sqrt{ \frac{\widehat{\sigma}^2_A}{n_A} + \frac{\widehat{\sigma}^2_B}{n_B}}$$
 where $\sigma^2_A$ and $\sigma^2_B$ are the variance in each of the sub-populations.
 
-```{r }
+```{r, eval = FALSE}
 # Function to estimate the standard error of a pairwise difference
 
 stderror_pairwisediff <- function(nobs, sigmaA, sigmaB){
@@ -33,8 +33,11 @@ stderror_pairwisediff <- function(nobs, sigmaA, sigmaB){
    )
  }
 # Call function with placeholder arguments 
-data <- stderror_pairwisediff(nobs = 100, sigmaA = 1, sigmaB = 1) 
-library(ggplot2) # load pcakage
+# replace values sigmaA and sigmaB 
+data <- stderror_pairwisediff(nobs = 100, 
+                              sigmaA = 1, 
+                              sigmaB = 1) 
+library(ggplot2) # load package
 ggplot(data = data,
        mapping = aes(x = nA, y = stderror)) + 
        geom_line() +
@@ -50,7 +53,9 @@ ggplot(data = data,
 - Using the optimal fraction you identified, by how much does the standard error decreases if we increase the sample size hundred-fold, i.e., we go from 10 to 1 000 observations?
 - Do you think we can act on the standard deviation $\text{std. dev}$ term as experimenter? Why or why not?
 
+## Task 2 - Critical review
 
+Send in your paper for the [Critical review](evaluations/critical-review/) for approval; submit the PDF of the paper as attachment on ZoneCours.
 
 
 ## References

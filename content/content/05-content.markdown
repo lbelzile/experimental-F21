@@ -20,7 +20,7 @@ slides: "05-slides"
 -   Measures of effect sizes
 -   The interplay between sample size, effect and power
     <!--
-    - Assumptions of the analysis of variance model 
+    - Assumptions of the analysis of variance model
         - Additivity
         - Homogeneity of variance and Levene's test
         - Independence
@@ -50,7 +50,7 @@ At the end of the session, students should be capable of
 
 ## Complementary readings
 
--   <i class="fas fa-book"></i> (Chapter 3 of Harrer et al., 2021)(https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/effects.html)
+-   <i class="fas fa-book"></i> [Chapter 3](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/effects.html) of Harrer et al. (2021)
 -   <i class="fas fa-book"></i> Chapter 5 of Dean et al. (2017).
 -   <i class="fas fa-book"></i> Chapter 7 (model assumptions) and Chapter 8 (effect size and power) of Keppel & Wickens (2004).
 
@@ -110,16 +110,12 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 </div>
 
 <!--
-- <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons. 
+- <i class="fas fa-book"></i> Andrew Gelman's blog on [Ethical responsibility of research assistants](https://statmodeling.stat.columbia.edu/2021/09/18/for-a-research-assistant-do-you-think-there-is-an-ethical-responsibility-to-inform-your-supervisor-principal-investigator-if-they-change-their-analysis-plan-multiple-times-during-the-research-proje/): a discussion of _p_-hacking, which consists in selectively reporting only tests that are significant, making it seem as they were planned comparisons.
 
 
-
-
-
-## In-class
 
 -->
-<!-- 
+<!--
 {{% div fyi %}}
 **Fun fact**: If you type <kbd>?</kbd> (or <kbd>shift</kbd> + <kbd>/</kbd>) while going through the slides, you can see a list of special slide-specific commands.
 {{% /div %}}

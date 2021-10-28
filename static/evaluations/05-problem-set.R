@@ -85,8 +85,9 @@ marg_pairs <- contrast(marg_means, method = "pairwise")
 pairs(marg_means)
 
 ## Effect size computed from emmeans package
-# Basically Cohen's d with Delta/sigma, where
-# sigma is the value you provide
+# This is Cohen's d., with Delta/sigma, where
+# the value of 'sigma' (standard deviation) is provided by the user
+# sigma = estimated variability of an observation, sqrt(variance)
 emmeans::eff_size(cell_means, 
          sigma = sigma(model),   # standard deviation (ASSUMED EQUAL VARIANCE)
          edf = df.residual(model))
