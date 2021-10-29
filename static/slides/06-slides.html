@@ -4,7 +4,7 @@
     <title>Two-way designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-25" />
+    <meta name="date" content="2021-10-28" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -892,10 +892,10 @@ class: title title-6
 - Calculation based on `\(F\)` distribution with 
    - `\(\nu_1=\text{df}_{\text{effect}}\)` degrees of freedom
    - `\(\nu_2 = n - n_g\)`, where `\(n_g\)` is the number of mean parameters estimated. 
-   - noncentrality parameter `\(\phi = nf^2_{\langle \text{effect}\rangle}\)` where \text{effect} is either `\(A\)`, `\(B\)` or `\(AB\)`.
+   - noncentrality parameter `\(\phi = nf^2_{\langle \text{effect}\rangle}\)` where `\(\text{effect}\)` is either `\(A\)`, `\(B\)` or `\(AB\)`.
 
 
-Example: if `a` and `b` denote the number of levels of each factor and `omega.sq` is `\(\omega^2_{\langle AB \rangle}\)`, then the sample size needed to detect the interaction with power of 80% is
+Example: if `a` and `b` denote the number of levels of each factor and `omega.sq` is `\(\omega^2_{\langle AB \rangle}\)`, then the sample size needed to detect the interaction `\(AB\)` with 80% power is
 
 ```r
 fhat &lt;- sqrt(omega.sq/(1-omega.sq))

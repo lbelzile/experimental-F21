@@ -23,7 +23,7 @@
 "content/example/01-onewayanova.Rmarkdown" "c1ff6264644725e40cb558394f71b1a4"
 "content/example/02-hypothesis_testing.Rmarkdown" "40e90bf944e8c833bf828dd6c8ceddd5"
 "content/example/03-onewayanova.Rmarkdown" "10cf1e5a41f25ad5d790b83cc8e258fa"
-"content/example/04-twowayanova.Rmarkdown" "5fb7f994d262dd77c93e34f9efff43d8"
+"content/example/04-twowayanova.Rmarkdown" "9323460409f6602b01fbd322aea1ead5"
 "content/example/05-threewayanova.Rmarkdown" "c9f510852d52d5cc5d2f57a0bbe17fc7"
 "content/example/installR.Rmarkdown" "5a3db5e6397ce8205ad045a1b6ebbe6c"
 "content/example/random-numbers.Rmarkdown" "180f70c625fabef7b317d908e42d32d0"
