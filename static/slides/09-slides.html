@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Analysis of covariance</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Léo Belzile" />
+    <meta name="date" content="2021-11-01" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <script src="libs/peerjs-1.3.1/peerjs.min.js"></script>
+    <script src="libs/tiny.toast-1.0.0/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
+    <script src="libs/freezeframe-5.0.2/freezeframe.min.js"></script>
+    <script src="libs/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
+    <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <link rel="stylesheet" href="css/ath-slides.css" type="text/css" />
+    <link rel="stylesheet" href="css/ath-inferno-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: center middle main-title section-title-1
+
+# Analysis of covariance
+
+.class-info[
+
+**Session 9**
+
+.light[MATH 80667A: Experimental Design and Statistical Methods &lt;br&gt;for Quantitative Research in Management &lt;br&gt;
+HEC Montréal
+]
+
+]
+
+---
+
+name: outline
+class: title title-inv-1
+
+# Outline
+--
+
+
+.box-3.large.sp-after-half[Analysis of covariance]
+
+--
+
+.box-4.large.sp-after-half[Beyond ANOVA]
+---
+layout: false
+name: ancova
+class: center middle section-title section-title-3
+
+# Analysis of covariance
+
+---
+class: title title-3
+# What's in a model?
+
+In experimental designs, the explanatories are 
+
+- experimental factors (categorical)
+- continuous (dose-response)
+
+.box-inv-3[
+Random assignment should  imply that there is no systematic difference on average.
+]
+
+---
+class: title title-3
+# ANCOVA = Analysis of covariance
+
+ 
+- Analysis of variance with added continuous covariate(s) to reduce experimental error (similar to blocking).
+- These continuous covariates are typically concomitant variables (measured alongside response).
+- Including them in the mean response (as slopes) can help reduce the experimental error (residual error).
+
+---
+class: title title-3
+# Control to gain power!
+
+
+.box-inv-3.sp-after-half[
+Identify external sources of variations
+]
+
+- enhance balance of design (randomization)
+- reduce mean squared error of residuals to increase power
+
+These steps should in principle increase power **if** the variables used as control are correlated with the response.
+
+- Beware the kitchen sink approach
+- Continuous variables are not used for assignment to treatment
+
+---
+
+class: title title-3
+# Example
+
+Abstract of [van Stekelenburg et al. (2021)](https://doi.org/10.1177/09567976211007788)
+
+&gt; In three experiments with more than 1,500 U.S. adults who held false beliefs, participants first learned the value of scientific consensus and how to identify it. Subsequently, they read a news article with information about a scientific consensus opposing their beliefs. We found strong evidence that in the domain of genetically engineered food, this two-step communication strategy was more successful in correcting misperceptions than merely communicating scientific consensus.
+
+???
+
+
+Aart van Stekelenburg, Gabi Schaap, Harm Veling and Moniek Buijzen (2021), Boosting Understanding and Identification of Scientific Consensus Can Help to Correct False Beliefs, Psychological Science
+https://doi.org/10.1177/09567976211007788
+---
+class: title title-3
+# Experiment 2: Genetically Engineered Food
+
+We focus on a single experiment; preregistered exclusion criteria led to `\(n=442\)` total sample size (unbalanced design).
+
+There are three experimental conditions: `Boost`, `Boost Plus` and Consensus only (`consensus`, control).
+
+Use `prior` beliefs as a control variable in an ANCOVA.
+
+&gt; their response was measured on a visual analogue scale ranging from –⁠100 (I am 100% certain this is false) to 100 (I am 100% certain this is true) with 0 (I don’t know) in the middle.
+
+---
+
+![](img/09/Experiment2.png)
+---
+class: title title-3
+# Model formulation
+
+Average for the `\(r\)`th replication of the `\(i\)`th experimental group is
+`$$\mathsf{E}(\text{posterior}_{ir}) = \mu + \alpha_i\text{condition}_i + \beta \text{prior}_{ir}.$$`
+
+We assume that there is no interaction between `condition` and `prior`
+- the slopes are the same.
+
+Note: marginal means will be based on detrended values.
+
+---
+class: title title-3
+# Contrasts of interest
+
+1. Difference between average boosts (`Boost` and `BoostPlus`) and control (`consensus`)
+2. Difference between `Boost` and `BoostPlus` (pairwise)
+
+Inclusion of the `prior` score leads to increased precision for the mean (reduces variability).
+
+Because the difference between levels of `condition` are the same for any value of `prior` (parallel lines), we can proceed as before for estimated marginal means.
+
+---
+class: title title-3
+# Data analysis
+
+.panelset[
+
+.panel[.panel-name[Loading data]
+
+```r
+library(tidyverse)
+library(emmeans)
+options(contrasts = c("contr.sum", "contr.poly"))
+url &lt;- "https://edsm.rbind.io/data/vanStekelenburg2021S2.csv"
+exp2 &lt;- read.csv(url, header = TRUE) %&gt;%
+  mutate(condition = factor(condition))
+# Check balance
+with(exp2, table(condition))
+```
+] 
+.panel[.panel-name[Plot]
+.pull-left.small[
+
+```r
+ggplot(data = exp2,
+       aes(x = prior, y = post)) + 
+       geom_point() + 
+       geom_smooth(method = "lm",
+                   se = FALSE)
+```
+.small[Strong correlation; note responses that achieve max of scale.]
+]
+.pull-right[
+&lt;img src="img/09/Experiment2_scatter.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+]
+]
+.panel[.panel-name[ANCOVA]
+
+```r
+# Check that the data are well randomized
+car::Anova(lm(prior ~ condition, data = exp2), type = 3)
+# Fit linear model with continuous covariate
+model1 &lt;- lm(post ~ condition + prior, data = exp2)
+# Fit model without for comparison
+model2 &lt;- lm(post ~ condition, data = exp2)
+# Global test for differences - of NO INTEREST
+car::Anova(model1, type = 3)
+car::Anova(model2, type = 3)
+```
+]
+.panel[.panel-name[Contrasts]
+
+
+```r
+emm1 &lt;- emmeans(model1, specs = "condition")
+# Note order: Boost, BoostPlus, consensus
+emm2 &lt;- emmeans(model2, specs = "condition")
+# Not comparable: since one is detrended and the other isn't
+contrast_list &lt;- list(
+    c(1,  1, -2), #av. boosts vs control
+    c(1, -1,  0)) #Boost vs BoostPlus
+contrast(emm1, 
+         method = contrast_list, 
+         p.adjust = "holm") 
+```
+]
+.panel[.panel-name[Hypothesis]
+
+```r
+# Equality of variance 
+car::leveneTest(resid(model1) ~ condition, data = exp2)
+# Equality of slopes (interaction)
+car::Anova(lm(post ~ condition * prior, data = exp2),
+           model1, type = 3)
+# Normality
+car::qqPlot(model1, id = FALSE, 
+            ylab = "empirical quantiles")
+# Treatment only effective for some people?
+```
+]
+
+]
+
+---
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": false,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
