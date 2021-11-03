@@ -1,0 +1,71 @@
+---
+title: "Analysis of covariance and model assumptions"
+linktitle: "9: Analysis of covariance and model assumptions"
+date: "2021-11-02"
+start_date: "2021-11-01"
+end_date: "2021-11-05"
+menu:
+  content:
+    parent: Course content
+    weight: 9
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "09-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+source(here::here("R", "youtube-playlist.R"))
+
+playlist_id <- "PLUB8VZzxA8IsXym3S3kqgGIbJoka7tkGl"
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+   "", "Introduction", "1", TRUE,
+  "gTLp0pplRXk", "Analysis of covariance", "ancova", FALSE,
+  "", "Model assumptions", "assumptions", FALSE
+)
+```
+
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/09-slides.html")
+```
+
+A script containing the **R** code generated in the slides can be [downloaded here](/content/09-slides.R)
+
+
+## Videos
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id)
+```
+
+## Readings
+
+
+
+## Complementary readings
+
+- <i class="fas fa-book"></i> Chapters 9 and 5 of @Dean:2017
+- <i class="fas fa-book"></i> Chapters 15 and 7 of @Keppel/Wickens:2004
+
+
+
+## In class
+
+- We will look at Experiment 3 of @vanStekelenburg:2021 [download paper](https://doi.org/10.1177/09567976211007788) 
+- We will talk about peer-reviewing of journal articles
+
+
+
+
+## References

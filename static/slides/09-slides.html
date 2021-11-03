@@ -4,7 +4,7 @@
     <title>Analysis of covariance</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-01" />
+    <meta name="date" content="2021-11-02" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -23,6 +23,8 @@
     <script src="libs/freezeframe-5.0.2/freezeframe.min.js"></script>
     <script src="libs/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
     <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/ath-slides.css" type="text/css" />
     <link rel="stylesheet" href="css/ath-inferno-fonts.css" type="text/css" />
     <link rel="stylesheet" href="css/animate.css" type="text/css" />
@@ -62,7 +64,7 @@ class: title title-inv-1
 
 --
 
-.box-4.large.sp-after-half[Beyond ANOVA]
+.box-4.large.sp-after-half[Model assumptions]
 ---
 layout: false
 name: ancova
@@ -79,8 +81,8 @@ In experimental designs, the explanatories are
 - experimental factors (categorical)
 - continuous (dose-response)
 
-.box-inv-3[
-Random assignment should  imply that there is no systematic difference on average.
+.box-inv-3.medium[
+Random assignment implies&lt;br&gt; no systematic difference between groups.
 ]
 
 ---
@@ -129,26 +131,31 @@ class: title title-3
 
 We focus on a single experiment; preregistered exclusion criteria led to `\(n=442\)` total sample size (unbalanced design).
 
-There are three experimental conditions: `Boost`, `Boost Plus` and Consensus only (`consensus`, control).
+Three experimental conditions:
 
-Use `prior` beliefs as a control variable in an ANCOVA.
+.float-left.center[.box-3[`Boost`] .box-3[`Boost Plus`] .box-3[Consensus only (`consensus`)] ]
+
+Use `post` as response variable and `prior` beliefs as a control variable in the analysis of covariance.
 
 &gt; their response was measured on a visual analogue scale ranging from –⁠100 (I am 100% certain this is false) to 100 (I am 100% certain this is true) with 0 (I don’t know) in the middle.
 
+
+
 ---
 
-![](img/09/Experiment2.png)
+&lt;img src="img/09/Experiment2.png" width="80%" style="display: block; margin: auto;" /&gt;
 ---
 class: title title-3
 # Model formulation
 
 Average for the `\(r\)`th replication of the `\(i\)`th experimental group is
-`$$\mathsf{E}(\text{posterior}_{ir}) = \mu + \alpha_i\text{condition}_i + \beta \text{prior}_{ir}.$$`
+`$$\begin{align*}\mathsf{E}(\texttt{post}_{ir}) &amp;= \mu + \alpha_i\texttt{condition}_i + \beta \texttt{prior}_{ir}.\\
+\mathsf{Va}(\texttt{post}_{ir}) &amp;= \sigma^2\end{align*}$$`
 
 We assume that there is no interaction between `condition` and `prior`
-- the slopes are the same.
+- the slopes for `prior` are the same for each `condition` group.
+- the effect of prior is linear
 
-Note: marginal means will be based on detrended values.
 
 ---
 class: title title-3
@@ -159,7 +166,15 @@ class: title title-3
 
 Inclusion of the `prior` score leads to increased precision for the mean (reduces variability).
 
-Because the difference between levels of `condition` are the same for any value of `prior` (parallel lines), we can proceed as before for estimated marginal means.
+
+- The estimated marginal means will be based on detrended values `\(\neq\)` group averages
+- In the `emmeans` package, the average of the covariate is used as value.
+- the difference between levels of `condition` are the same for any value of `prior` (parallel lines), but the uncertainty changes.
+
+Multiple testing adjustments:
+
+- Methods of Bonferroni (prespecified number of tests) and Scheffé (arbitrary contrasts) still apply
+- Can't use Tukey anymore (adjusted means are not independent anymore).
 
 ---
 class: title title-3
@@ -180,7 +195,7 @@ exp2 &lt;- read.csv(url, header = TRUE) %&gt;%
 with(exp2, table(condition))
 ```
 ] 
-.panel[.panel-name[Plot]
+.panel[.panel-name[Scatterplot]
 .pull-left.small[
 
 ```r
@@ -198,7 +213,7 @@ ggplot(data = exp2,
 
 ]
 ]
-.panel[.panel-name[ANCOVA]
+.panel[.panel-name[Model]
 
 ```r
 # Check that the data are well randomized
@@ -212,6 +227,94 @@ car::Anova(model1, type = 3)
 car::Anova(model2, type = 3)
 ```
 ]
+.panel[.panel-name[ANOVA]
+.pull-left.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; sum of squares &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 166341 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 71.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; condition &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 14107 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 3.0 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 0.05 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prior &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 385385 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 166.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Residuals &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1016461 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 438 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+.pull-right.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; sum of squares &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 123377 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 53.16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; condition &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 11680 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 2.52 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 0.082 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Residuals &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1016461 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 438 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+]
+---
+class: title title-3
+# Data analysis
+
+.panelset[
+
 .panel[.panel-name[Contrasts]
 
 
@@ -221,32 +324,197 @@ emm1 &lt;- emmeans(model1, specs = "condition")
 emm2 &lt;- emmeans(model2, specs = "condition")
 # Not comparable: since one is detrended and the other isn't
 contrast_list &lt;- list(
-    c(1,  1, -2), #av. boosts vs control
-    c(1, -1,  0)) #Boost vs BoostPlus
+   "boost vs control" = c(0.5,  0.5, -1), 
+   #av. boosts vs consensus
+   "Boost vs BoostPlus" = c(1, -1,  0))
 contrast(emm1, 
          method = contrast_list, 
-         p.adjust = "holm") 
+         p.adjust = "holm")
 ```
 ]
-.panel[.panel-name[Hypothesis]
+.panel[.panel-name[_t_-tests]
+.pull-left.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; contrast &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; estimate &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; se &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; t stat &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; boost vs control &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -8.37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 438 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.09 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Boost vs BoostPlus &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.95 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 438 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.78 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.08 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Contrasts with ANCOVA with `prior` (Holm-Bonferroni adjustment with `\(k=2\)` tests)
+]
+.pull-right.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; contrast &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; estimate &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; se &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; t stat &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; boost vs control &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -5.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 439 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.32 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Boost vs BoostPlus &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 439 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.63 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Contrasts for ANOVA (Holm-Bonferroni adjustment with `\(k=2\)` tests)
+]
+]
+.panel[.panel-name[Assumptions]
+
+.pull-left.small[
 
 ```r
-# Equality of variance 
-car::leveneTest(resid(model1) ~ condition, data = exp2)
+# Test equality of variance
+levene &lt;- car::leveneTest(
+   resid(model1) ~ condition, 
+   data = exp2,
+   center = 'mean')
 # Equality of slopes (interaction)
-car::Anova(lm(post ~ condition * prior, data = exp2),
+car::Anova(lm(post ~ condition * prior, 
+           data = exp2),
            model1, type = 3)
-# Normality
-car::qqPlot(model1, id = FALSE, 
-            ylab = "empirical quantiles")
-# Treatment only effective for some people?
 ```
+
+Levene's test of equality of variance: _F_ (2, 439) = 2.05 with a `\(p\)`-value of 0.13.
+]
+.pull-right.small[
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; sum of squares &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165573 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 71.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; condition &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4245 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prior &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 382596 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 164.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; condition:prior &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 3257 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 0.7 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: black !important;background-color: yellow !important;"&gt; 0.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Residuals &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1016461 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 438 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Fit the model with an interaction `condition*prior`. A significative interaction (small `\(p\)`-value) indicates that the slopes differ per condition group.
+]
+]
+]
+---
+class: title title-3
+# The kitchen sink approach
+
+.box-inv-3[
+Should we control for more stuff?
 ]
 
-]
+.box-3.medium[NO! ANCOVA is a design to reduce error]
+--
+
+- Randomization should ensure that there is no confounding
+- No difference (on average) between group given a value of the covariate.
+- If it isn't the case, adjustment matters
 
 ---
+class: title title-3
+# Equal trends
+.small[
+- If trends are different, meaningful comparisons (?)
+- Differences between groups depend on value of the covariate
+]
+&lt;img src="09-slides_files/figure-html/ancovadifftrend-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+.small[Due to lack of overlap, comparisons hazardous as they entail extrapolation one way or another.]
 
+---
+layout: false
+name: assumptions
+class: center middle section-title section-title-4
+
+# Model assumptions
+
+---
+class: title title-4
+# Are my conclusions valid?
+
+Assumptions give us leverage for designing tests and models
+
+.box-4-inv[Linear model assumptions]
+
+.float-left.center[.box-4[linearity] .box-4[equal variance] .box-4[normality] .box-4[independence]]
 
 
     </textarea>

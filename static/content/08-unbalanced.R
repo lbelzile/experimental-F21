@@ -16,6 +16,7 @@ JU_data <- JU_data %>%
   mutate(anchor = as_factor(Anchortype),
          magnitude = as_factor(magnitude),
          gender = as_factor(Gender)) %>%
+  filter(JU_data$DROP == 0) %>% # keep only some observations
   dplyr::select(anchor, magnitude, gender, mean2) %>%
   rename(madjust = mean2)
 # Tasks:
@@ -33,7 +34,7 @@ summary_tab <-
             mean = mean(madjust))
 # Alternative code to check balance
 with(JU_data, table(magnitude, anchor))
-# NOT BALANCED
+# BALANCED if you filter the DROP==0
 
 # Interaction plot
 ggplot(data = summary_tab,
