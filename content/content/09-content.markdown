@@ -91,6 +91,8 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## Readings
 
+-   [Example 6](/example/06-ancova/)
+
 ## Complementary readings
 
 -   <i class="fas fa-book"></i> Chapters 9 and 5 of Dean et al. (2017)
@@ -98,8 +100,9 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## In class
 
--   We will look at Experiment 3 of Stekelenburg et al. (2021) [download paper](https://doi.org/10.1177/09567976211007788)
--   We will talk about peer-reviewing of journal articles
+-   Experiment 3 of Stekelenburg et al. (2021) [\[download paper\]](https://doi.org/10.1177/09567976211007788)
+-   Talk about peer-reviewing of journal articles
+-   In-class discusssion about model assumptions: do they matter?
 
 ## References
 
