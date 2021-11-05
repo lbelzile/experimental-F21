@@ -32,7 +32,8 @@ anova(model1, model3)
 
 # Test for equality of variance
 # For Levene's test, use residuals
-car::leveneTest(resid(model1) ~ group)
+car::leveneTest(resid(model1) ~ group,
+                data = reading)
 model1b <- nlme::gls(posttest2 ~ group + pretest2,
                      data = reading)
 model4 <- nlme::gls(posttest2 ~ group + pretest2,

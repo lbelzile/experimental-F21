@@ -28,9 +28,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <li class="nav-item">
 <a class="nav-link" id="analysis-of-covariance-tab" data-toggle="tab" href="#analysis-of-covariance" role="tab" aria-controls="analysis-of-covariance" aria-selected="false">Analysis of covariance</a>
 </li>
-<li class="nav-item">
-<a class="nav-link" id="model-assumptions-tab" data-toggle="tab" href="#model-assumptions" role="tab" aria-controls="model-assumptions" aria-selected="false">Model assumptions</a>
-</li>
 </ul>
 
 <div id="slide-tabs" class="tab-content">
@@ -57,17 +54,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
-<div id="model-assumptions" class="tab-pane fade" role="tabpanel" aria-labelledby="model-assumptions-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/09-slides.html#assumptions">
-</iframe>
-
-</div>
-
-</div>
-
 </div>
 
 A script containing the **R** code generated in the slides can be [downloaded here](/content/09-slides.R)
@@ -76,9 +62,8 @@ A script containing the **R** code generated in the slides can be [downloaded he
 
 Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=PLUB8VZzxA8IsXym3S3kqgGIbJoka7tkGl).
 
--   [Introduction](https://www.youtube.com/watch?v=&list=PLUB8VZzxA8IsXym3S3kqgGIbJoka7tkGl)
+-   [Introduction](https://www.youtube.com/watch?v=gTLp0pplRXk&list=PLUB8VZzxA8IsXym3S3kqgGIbJoka7tkGl)
 -   [Analysis of covariance](https://www.youtube.com/watch?v=gTLp0pplRXk&list=PLUB8VZzxA8IsXym3S3kqgGIbJoka7tkGl)
--   [Model assumptions](https://www.youtube.com/watch?v=&list=PLUB8VZzxA8IsXym3S3kqgGIbJoka7tkGl)
 
 You can also watch the playlist (and skip around to different sections) here:
 
@@ -100,9 +85,18 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## In class
 
--   Experiment 3 of Stekelenburg et al. (2021) [\[download paper\]](https://doi.org/10.1177/09567976211007788)
+-   In-class discusssion about model assumptions: do they matter?  
 -   Talk about peer-reviewing of journal articles
--   In-class discusssion about model assumptions: do they matter?
+
+We consider Experiment 3 of Stekelenburg et al. (2021); [\[download paper\]](https://doi.org/10.1177/09567976211007788) [\[download script\]](https://osf.io/4yatk/download); the code starts line 491+ after some initial manipulations. The [helper code](/content/09-ancova.R) provides the database after these have been made.
+
+1.  What is the purpose of collecting demographic information not used?
+2.  Have a quick look at the exclusion guidelines in the [preregistration](https://osf.io/4w9tq) Do they make sense? are there other criteria that could be listed.
+3.  The author proceed with splitting the data set in three group for each pairwise comparisons in turn, corresponding to the different hypotheses (circa lines 499-533 of the script). Is this approach correct?
+4.  Using a `\(\chi^2\)` test, compare the proportion of people who mention consensus for experimental condition Boost+ versus the control group `Control`. Comment on the results
+5.  Test the assumptions of (1) equal variance per experimental condition and (2) proper randomization based on `Prior` scores.
+6.  Compute the difference in posterior belief between Boost+ and consensus only conditions. Report the sample average and standard deviation estimates of each group, test statistic `\(\eta^2_p\)` with a 90% confidence interval and Cohen’s `\(d\)`. How large is this effect?
+7.  Before doing the analysis of variance, the authors removed outliers (which they defined as people who had absolute standardized residuals larger than 3). Does it impact the conclusions if these are kept?
 
 ## References
 

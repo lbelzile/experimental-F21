@@ -1,5 +1,5 @@
 # Load packages, set global options
-suppressPackageStartupMessages(library(tidyverse))
+library(tidyverse)
 library(emmeans)
 options(contrasts = c("contr.sum", "contr.poly"))
 # Load data
@@ -113,8 +113,7 @@ levene <- car::leveneTest(
   data = exp2,
   center = 'mean')
 # Alternative test for equality of variance
-nlme::gls()
-  
+
 # Equality of slopes (interaction)
 car::Anova(lm(post ~ condition * prior,
               data = exp2),
