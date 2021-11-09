@@ -88,15 +88,18 @@ You can also watch the playlist (and skip around to different sections) here:
 -   In-class discusssion about model assumptions: do they matter?  
 -   Talk about peer-reviewing of journal articles
 
-We consider Experiment 3 of Stekelenburg et al. (2021); [\[download paper\]](https://doi.org/10.1177/09567976211007788) [\[download script\]](https://osf.io/4yatk/download); the code starts line 491+ after some initial manipulations. The [helper code](/content/09-ancova.R) provides the database after these have been made.
+<!--
+We consider Experiment 3 of @vanStekelenburg:2021; [[download paper]](https://doi.org/10.1177/09567976211007788) [[download script]](https://osf.io/4yatk/download); the code starts line 491+ after some initial manipulations. The [helper code](/content/09-ancova.R) provides the database after these have been made.
 
-1.  What is the purpose of collecting demographic information not used?
-2.  Have a quick look at the exclusion guidelines in the [preregistration](https://osf.io/4w9tq) Do they make sense? are there other criteria that could be listed.
-3.  The author proceed with splitting the data set in three group for each pairwise comparisons in turn, corresponding to the different hypotheses (circa lines 499-533 of the script). Is this approach correct?
-4.  Using a `\(\chi^2\)` test, compare the proportion of people who mention consensus for experimental condition Boost+ versus the control group `Control`. Comment on the results
-5.  Test the assumptions of (1) equal variance per experimental condition and (2) proper randomization based on `Prior` scores.
-6.  Compute the difference in posterior belief between Boost+ and consensus only conditions. Report the sample average and standard deviation estimates of each group, test statistic `\(\eta^2_p\)` with a 90% confidence interval and Cohen’s `\(d\)`. How large is this effect?
-7.  Before doing the analysis of variance, the authors removed outliers (which they defined as people who had absolute standardized residuals larger than 3). Does it impact the conclusions if these are kept?
+   1. What is the purpose of collecting demographic information not used?
+   2. Have a quick look at the exclusion guidelines in the [preregistration](https://osf.io/4w9tq) Do they make sense? are there other criteria that could be listed.
+   3. The author proceed with splitting the data set in three group for each pairwise comparisons in turn, corresponding to the different hypotheses (circa lines 499-533 of the script). Is this approach correct?
+   3. Using a `\(\chi^2\)` test, compare the proportion of people who mention consensus for experimental condition Boost+  versus the control group `Control`. Comment on the results
+   4. Test the assumptions of (1) equal variance per experimental condition and (2) proper randomization based on `Prior` scores.
+   5. Compute the difference in posterior belief between Boost+ and consensus only conditions. Report the sample average and standard deviation estimates of each group, test statistic `\(\eta^2_p\)` with a 90% confidence interval and Cohen's `\(d\)`. How large is this effect?
+   6. Before doing the analysis of variance, the authors removed outliers (which they defined as people who had absolute standardized residuals larger than 3). Does it impact the conclusions if these are kept?
+
+-->
 
 ## References
 
@@ -111,12 +114,6 @@ Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments
 <div id="ref-Keppel/Wickens:2004" class="csl-entry">
 
 Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
-
-</div>
-
-<div id="ref-vanStekelenburg:2021" class="csl-entry">
-
-Stekelenburg, A. van, Schaap, G., Veling, H., & Buijzen, M. (2021). Boosting understanding and identification of scientific consensus can help to correct false beliefs. *Psychological Science*, *32*(10), 1549–1565. <https://doi.org/10.1177/09567976211007788>
 
 </div>
 

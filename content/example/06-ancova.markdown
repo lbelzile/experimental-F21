@@ -232,7 +232,7 @@ Table 2: Preplanned contrasts for Model 1 (ANCOVA, left) and Model 2 (ANOVA, rig
 </tbody>
 </table>
 
-The values for the contrasts show that `\(p\)`-values have been reduced by 30% to 40%, so while there are clear differences in treatment, it could help increase the power in more borderline cases. The estimated Cohen’s `\(d\)` measure for contrast 1 is -1.5717522 (95% CI: -2.6545938, -0.4889106) for Model 1 (ANCOVA), versus -1.4715124 (95% CI: -2.5474895, -0.3955353) for Model 2 (ANOVA). These confidence interval are unadjusted, but are narrower with the added covariate. The estimated effect size is large, and the upper bounds for the effect imply a medium-sized effect at the very least.
+The values for the contrasts show that `\(p\)`-values have been reduced by 30% to 40%, so while there are clear differences in treatment, it could help increase the power in more borderline cases. The estimated Cohen’s `\(d\)` measure for contrast 1 is -1.57 (95% CI: -2.65, -0.49) for Model 1 (ANCOVA), versus -1.47 (95% CI: -2.55, -0.4) for Model 2 (ANOVA). These confidence interval are unadjusted, but are narrower with the added covariate. The estimated effect size is large, and the upper bounds for the effect imply a medium-sized effect at the very least.
 
 ## Testing model assumptions
 
@@ -369,6 +369,13 @@ contrast(emmeans(model_diffvar, specs = "group"),
 The drawback of the above approach is that one needs to specify a model for the variance, but sometimes the pattern of heteroscedasticity (from the Greek, meaning unequal variance) is complex: it could be that larger measurements have larger variability, or that the variance decreases over time as the experimenter gets better at making measurements. A popular approach in econometrics and social sciences is to use robust standard errors (sometime called White’s standard error, or sandwich error).
 
 To be continued
+
+## Robusts tests
+
+If the distribution of the residuals is asymmetric, skewed, heavy-tailed and contaminated with outliers, etc., the usual methods for AN(C)OVA won’t necessarily deliver robust findings as a single observation can alter the conclusion. There are a plethora of alternatives to mitigate the impact of extremes of outliers, which are often found under the vocable ‘robust’ statistics.
+
+A popular alternative is to replace observations by their rank; suppose we have measurements for the response of 2.1, 5.3 and 6.7 in group 1 and 10.1, 3.2 and 4.4 in group 2. The ranks of the pooled sample would be 1 (as 2.1 is the smallest observation), 4 and 5 for group 1, versus 6, 2 and 3 for group 2. The benefit of ranks is that the impact of extremes are strongly diminished (whether I replace the first observation of group 2, 10.1 by 1000, its rank is unchanged).
+We could proceed with a robust ANOVA by replacing our response with the rank and computing the average ranking; this amounts if `\(n>20\)` or so to using Wilcoxon test for two samples, or to using
 
 # References
 

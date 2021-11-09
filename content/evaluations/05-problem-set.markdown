@@ -34,7 +34,7 @@ Things worth reporting:
 
 -   A graphic showing the raw data.
 -   Sample mean, sample size and standard deviation of each group.
--   The `\(F\)` statistic for the interaction, along with the `\(p\)`-value and a measure of variability (e.g., partial `\(\omega^2\)`) with a description.
+-   The `\(F\)` statistic for the interaction, along with the `\(p\)`-value and a measure of variability (e.g., partial `\(\eta^2\)` or `\(\omega^2\)`) with a description.
 -   If there is an interaction, the difference in likelihood scores between unprepared and prepared for each of female and male. If there is no significant interaction, the difference of unprepared vs prepared overall. In either case, report
     -   the estimated differences for the contrast (*t* tests) with a (possibly adjusted) confidence interval
     -   (possibly ajusted) *p*-values for the contrast(s)
@@ -82,4 +82,4 @@ Wilkinson, L. (1999). Statistical methods in psychology journals: Guidelines and
 
 [^1]: For the sake of the exercise, never do this at home unless you want to throw information away! We will see how to properly analyze unbalanced designs latter.
 
-[^2]: Hint: there are multiple alternatives and estimators of the latter, including the original study, your dataset, the replication study. Think about which is the most reliable. Another option is to use the lower bound of a confidence interval for `\(\omega^2_p\)` as proxy or simply compute the sample for a larger power.
+[^2]: Hint: there are multiple alternatives for the effect size (different estimators) and different values, including those of the original study, the one found in your subset of the whole replication, or the effect from the whole replication study. Think about which is the most reliable. Another option is to use the lower bound of a confidence interval for `\(\omega^2_p\)`. You may wish to also set a larger power if you pick an effect size you feel is less reliable.

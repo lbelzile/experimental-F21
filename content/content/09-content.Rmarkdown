@@ -64,7 +64,7 @@ youtube_list(slide_details, playlist_id)
 - In-class discusssion about model assumptions: do they matter?   
 - Talk about peer-reviewing of journal articles
 
-
+<!--
 We consider Experiment 3 of @vanStekelenburg:2021; [[download paper]](https://doi.org/10.1177/09567976211007788) [[download script]](https://osf.io/4yatk/download); the code starts line 491+ after some initial manipulations. The [helper code](/content/09-ancova.R) provides the database after these have been made.
 
    1. What is the purpose of collecting demographic information not used?
@@ -75,6 +75,6 @@ We consider Experiment 3 of @vanStekelenburg:2021; [[download paper]](https://do
    5. Compute the difference in posterior belief between Boost+ and consensus only conditions. Report the sample average and standard deviation estimates of each group, test statistic $\eta^2_p$ with a 90% confidence interval and Cohen's $d$. How large is this effect?
    6. Before doing the analysis of variance, the authors removed outliers (which they defined as people who had absolute standardized residuals larger than 3). Does it impact the conclusions if these are kept?
 
-
+-->
 
 ## References

@@ -106,7 +106,7 @@ The purpose of the exercise is to investigate what happens if the variance are u
 
 1.  What is the best way to allocate a sample of 100 observations between the two groups if `\(\sigma^2_A = 1\)` and `\(\sigma^2_B = 4\)`? Replace the value of `sigmasqB` in the call to the function `stderror_pairwisediff` and in `optfrac`. Run the rest of the code to create a plot illustrating the standard error of the difference as a function of the number of observations assigned to treatment `\(A\)`.
 2.  Look at the curve showing the optimum allocation as a function of the ratio of the variance `\(\sigma^2_A/\sigma^2_B\)` (we assume that the variability in group `\(A\)` is smaller than that of group `\(B\)`, meaning `\(0 <\sigma^2_A/\sigma^2_B \leq 1\)`, but we could interchange the labels of groups otherwise). Does the result shown in the graph surprise you?
-3.  By how much does the standard error decreases if we increase the sample size hundred-fold, i.e., we go from 10 to 1 000 observations?
+3.  By how much does the standard error decreases if we increase the sample size hundred-fold, e.g., we go from 10 to 1 000 observations?
 4.  Do you think we can act on the standard deviation terms (i.e., `\(\sigma_A\)` and `\(\sigma_B\)`) as experimenters? Why or why not?
 
 ## Task 2 - Critical review
