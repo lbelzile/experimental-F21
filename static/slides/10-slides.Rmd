@@ -1,5 +1,5 @@
 ---
-title: "Repeated measures"
+title: "Mixed models and within-designs"
 author: "Léo Belzile"
 date: "`r Sys.Date()`"
 output:
@@ -77,7 +77,172 @@ class: title title-inv-1
 
 layout: false
 name: repeated-measures
-class: center middle section-title section-title-3
+class: center middle section-title section-title-8
 
 # Repeated measures
 
+---
+class: title title-8
+# So far: between-design
+
+Each subject (experimental unit) assigned to a single condition.
+
+- individuals (subjects) are **nested** within condition/treatment.
+
+
+In many instances, it may be possible to randomly assign multiple conditions to each experimental unit.
+
+---
+class: title title-8
+# Benefits of within-designs
+
+Assign (some or) all treatments to subjects and measure the response.
+
+Benefits: 
+
+- Filter out effect due to subject (like blocking):
+  - increased precision of effect sizes
+  - increased power (tests are based on within-subject variability)
+- Each subject (experimental unit) serves as its own control (greater comparability among treatment conditions).
+
+Impact: need smaller sample sizes than between-subjects designs
+
+---
+class: title title-8
+# Drawbacks of within-designs
+
+- Potential sources of bias
+  - Period effect (e.g., practice or fatigue)
+  - Carryover effects
+  - Permanent change in the subject condition after a treatment
+  - Loss of subjects over time
+
+---
+class: title title-8
+# Minimizing sources of bias
+
+- Randomize the order of treatment conditions among
+subjects 
+- or use a balanced crossover design and include the period and carryover effect in the statistical model (confounding or control variables to better isolate the treatment effect).
+- Allow enough time between treatment conditions to reduce or eliminate period or carryover effects.
+
+---
+
+
+
+layout: false
+name: mixed-models
+class: center middle section-title section-title-7
+
+# Mixed models
+
+---
+class: title title-7
+# Why mixed models?
+
+So far, we consider factors (treatment factor, blocking) as **fixed**
+
+- Meaning their effect is constant
+
+.box-inv-7[Change of scenery]
+
+Assume that the levels of a factor form a random sample from a large population
+
+
+---
+class: title title-7
+# Fixed vs random: no clear definition
+
+Gelman (2005) lists a handfull of definitions:
+
+> When a sample exhausts the population, the corresponding variable is fixed; when the sample is a small (i.e., negligible) part of the population the corresponding variable is random [Green and Tukey (1960)].
+
+> Effects are fixed if they are interesting in themselves or random if there is interest in the underlying population (e.g., Searle, Casella and McCulloch [(1992), Section 1.4])
+---
+class: title title-7
+# One-way ANOVA with random effects
+
+As before, we have one experimental factor $A$ with $a$ levels, with
+
+$$\underset{\text{response}\vphantom{l}}{Y_{ij}} = \underset{\text{global mean}}{\mu} + \underset{\text{random effect}}{A_i} + \underset{\text{error}\vphantom{l}}{\varepsilon_{ij}}$$
+
+where $A_i \sim \mathsf{No}(0, \sigma^2_a)$ and $\varepsilon_{ij} \sim \mathsf{No}(0, \sigma^2_e)$ are random variables.
+
+The errors and random effects are independent from one another.
+
+The model **parameters** are $\mu$, $\sigma^2_a$ and $\sigma^2_e$.
+---
+class: title title-7
+# Variance components
+
+- The global average is $\mu$.
+- The variance of the response $Y_{ij}$ is $\sigma^2_a + \sigma^2_e$.
+- The **intra-class correlation** between observations in group $i$ is $\sigma^2_a/(\sigma^2_a + \sigma^2_e)$.
+
+We can use the model to predict the values for $Y_{i\cdot}$.
+
+Note: replications are needed to estimate effects (cannot estimate $\sigma^2_a$ if there is a single measurement per group).
+---
+class: title title-7
+# ANOVA: fixed vs random
+
+
+
+
+---
+class: title title-7
+# Nested versus crossed
+
+.pull-left-wide[
+Nested effects if a factor appears only within a particular level of another factor.
+
+Crossed is for everything else (typically combinations of all factors).
+]
+.pull-right-narrow[
+![Russian dolls](img/10/matroshka.jpg)
+]
+
+.small[
+
+Example of nested random effects: class nested within schools 
+- class 1 is not the same in school 1 than in school 2
+```{r out.width = '70%', eval = TRUE, echo = FALSE}
+knitr::include_graphics("img/10/nested.png")
+```
+
+]
+
+
+
+
+???
+
+Matroschka from Wikimedia Commons CC-BY-SA 3.0
+https://en.wikipedia.org/wiki/Matryoshka_doll#/media/File:Matryoshka_transparent.png
+---
+
+# Formula for nested effects
+
+- In **R**, the notation with `lme4` package is `(1|group1/group2)` to mean `group2` is nested within `group1`. This formula expands to 
+`(1|group1) + (1|group1:group2)`
+
+
+Example of Clayton (2018)
+
+Gender quota on village councils: respondent nested within village
+
+
+
+---
+
+Structure of the data
+
+---
+
+Looking for crossover effects or trends
+
+---
+
+
+
+---

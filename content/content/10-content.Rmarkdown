@@ -1,0 +1,65 @@
+---
+title: "Repeated measures"
+linktitle: "10: Repeated measures"
+date: "2021-11-09"
+start_date: "2021-11-08"
+end_date: "2021-11-12"
+menu:
+  content:
+    parent: Course content
+    weight: 10
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "10-slides"
+---
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+source(here::here("R", "youtube-playlist.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "Repeated measures", "repeated-measures", FALSE,
+  "", "Mixed models", "mixed-models", FALSE,
+  "", "Testing", "testing", FALSE
+)
+```
+
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/09-slides.html")
+```
+
+A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
+
+
+## Videos
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id)
+```
+
+## Readings
+
+- <i class="fas fa-book"></i>[Chapter 6 Random and Mixed-Effects Models](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html) of Lukas Meier's ANOVA and Mixed Models: A Short Intro Using R] 
+
+## Complementary readings
+
+- <i class="fas fa-book"></i> Section 17.1 of @Keppel/Wickens:2004
+
+## In class
+
+Examples of random effects and **R** demo of the `lme4` package.
+
+## References
