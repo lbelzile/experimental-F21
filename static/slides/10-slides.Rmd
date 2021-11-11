@@ -1,5 +1,5 @@
 ---
-title: "Mixed models and within-designs"
+title: "Introduction to mixed models"
 author: "Léo Belzile"
 date: "`r Sys.Date()`"
 output:
@@ -127,9 +127,14 @@ subjects
 - Allow enough time between treatment conditions to reduce or eliminate period or carryover effects.
 
 ---
+class: title title-8
+# Models for repeated measures
 
+Consider a setting with one categorical variable indicating group membership (`id`) and an experimental factor $A$.
 
+A repeated measure ANOVA is a model in which we fit both as factors.
 
+---
 layout: false
 name: mixed-models
 class: center middle section-title section-title-7

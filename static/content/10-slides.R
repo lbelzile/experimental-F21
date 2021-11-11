@@ -3,7 +3,7 @@ library(tidyverse) # grammar of graphics, etc.
 library(emmeans) # estimated marginal mean
 library(lme4) # linear mixed models
 library(lmerTest) # F-tests for lme4 output
-
+library(afex) # factorial experiment 
 options(contrasts = c("contr.sum", "contr.poly"))
 
 
@@ -31,17 +31,27 @@ t16p3 <- data.frame(
 mod1_fixeff <- lm(time ~ string + subjects, data = t16p3)
 # For a random effect, put (1 | grouping) where grouping is a factor
 mod1_raneff <- lmer(time ~ (1 | subjects) + string, data = t16p3)
-# Similar, but with aov (requires balanced samples)
-mod1b_raneff <- aov(time ~ string + Error(subjects), data = t16p3)
+# Similar, but with aov /!\ requires balanced samples
+aov(time ~ string + Error(subjects), data = t16p3)
+# The "Error" is used to denote the grouping
+# with replications, you will see Error(subjects/string)
 
-rstatix::anova_test(data = t16p3, dv = time, wid = subjects, within = string)
-
+# Model with correction for sphericity and adjusted tests
+mod1 <- afex::aov_ez(id = "subjects", 
+                     dv = "time", 
+                     within = "string",
+                     data = t16p3)
+summary(mod1, multivariate = FALSE)
 # Analysis of variance model (fixed vs random)
 anova(mod1_fixeff)
 anova(mod1_raneff)
 summary(mod1b_raneff)
 # Confidence intervals for the variance
 confint(mod1_raneff)
+
+## Repeated measures ANOVA in R
+#
+# aov with Error()
 
 
 # Data from Clayton (2018)
@@ -68,5 +78,4 @@ lmtest::coeftest(aov_clay,
          vcov = sandwich::vcovCL,
          cluster = ~village)
 # Not much change, as we often have a single observation per village...
-# Testing sphericity
-mauchly.test(mod_clay)
+

@@ -42,7 +42,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/09-slides.html#1">
+<iframe class="embed-responsive-item" src="/slides/10-slides.html#1">
 </iframe>
 
 </div>
@@ -53,7 +53,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/09-slides.html#repeated-measures">
+<iframe class="embed-responsive-item" src="/slides/10-slides.html#repeated-measures">
 </iframe>
 
 </div>
@@ -64,7 +64,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/09-slides.html#mixed-models">
+<iframe class="embed-responsive-item" src="/slides/10-slides.html#mixed-models">
 </iframe>
 
 </div>
@@ -75,7 +75,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/09-slides.html#testing">
+<iframe class="embed-responsive-item" src="/slides/10-slides.html#testing">
 </iframe>
 
 </div>
@@ -86,23 +86,22 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
 
+<!--
 ## Videos
 
 Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=).
 
--   [Introduction](https://www.youtube.com/watch?v=&list=)
--   [Repeated measures](https://www.youtube.com/watch?v=&list=)
--   [Mixed models](https://www.youtube.com/watch?v=&list=)
--   [Testing](https://www.youtube.com/watch?v=&list=)
+- [Introduction](https://www.youtube.com/watch?v=&list=)
+- [Repeated measures](https://www.youtube.com/watch?v=&list=)
+- [Mixed models](https://www.youtube.com/watch?v=&list=)
+- [Testing](https://www.youtube.com/watch?v=&list=)
 
 You can also watch the playlist (and skip around to different sections) here:
 
 <div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-
+<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/playlist?list=" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+-->
 
 ## Readings
 
@@ -110,7 +109,7 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## Complementary readings
 
--   <i class="fas fa-book"></i> Section 17.1 of Keppel & Wickens (2004)
+-   <i class="fas fa-book"></i> Sections 17.1 and 17.3 of Keppel & Wickens (2004)
 
 ## In class
 
