@@ -1,6 +1,6 @@
 ---
-title: "Repeated measures"
-linktitle: "10: Repeated measures"
+title: "Mixed models"
+linktitle: "10: Mixed models"
 date: "2021-11-09"
 start_date: "2021-11-08"
 end_date: "2021-11-12"

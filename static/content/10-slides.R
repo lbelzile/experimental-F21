@@ -21,7 +21,7 @@ predict(mod0_raneff, newdata = newdat)
 # More shrinkage towards the mean for the random effect
 anova(mod0_fixeff)
 
-## Repeated measure ANOVA (from Table 16.3 in Kepel & Wickens)
+## Repeated measure ANOVA (from Table 16.3 in Keppel & Wickens)
 
 t16p3 <- data.frame(
   subjects = factor(rep(paste0("s", 1:6), length.out = 18)),
