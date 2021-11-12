@@ -1,7 +1,7 @@
 ---
-title: "Mixed models"
-linktitle: "10: Mixed models"
-date: "2021-11-09"
+title: "Repeated measures and mixed models"
+linktitle: "10: Repeated measures and mixed models"
+date: "2021-11-12"
 start_date: "2021-11-08"
 end_date: "2021-11-12"
 menu:
@@ -24,9 +24,9 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
+  "", "Why repeated measures?", "why-repeated-measures", FALSE,
   "", "Repeated measures", "repeated-measures", FALSE,
-  "", "Mixed models", "mixed-models", FALSE,
-  "", "Testing", "testing", FALSE
+  "", "Mixed models", "mixed-models", FALSE
 )
 ```
 
@@ -57,10 +57,12 @@ youtube_list(slide_details, playlist_id)
 
 ## Complementary readings
 
+- [Chapter 11 of @Oehlert:2010 ](http://users.stat.umn.edu/~gary/book/fcdae.pdf)
 - <i class="fas fa-book"></i> Sections 17.1 and 17.3 of @Keppel/Wickens:2004
 
 ## In class
 
-Examples of random effects and **R** demo of the `lme4` package.
+- Repeated measure example for Study 2 of @Bobak:2019; see [paper](https://doi.org/10.1186/s41235-019-0174-3) and [helper code](/content/10-repeated-measures.R)
+- **R** demo of the `lme4` package with 
 
 ## References

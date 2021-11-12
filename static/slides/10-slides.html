@@ -4,7 +4,7 @@
     <title>Introduction to mixed models</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-11" />
+    <meta name="date" content="2021-11-12" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -37,7 +37,7 @@
 
 class: center middle main-title section-title-1
 
-# Repeated measures
+# Repeated measures and mixed models
 
 .class-info[
 
@@ -57,27 +57,29 @@ class: title title-inv-1
 # Outline
 --
 
-
-.box-8.large.sp-after-half[Repeated measures]
+.box-8.large.sp-after-half[Why repeated measures?]
 
 --
 
-.box-7.large.sp-after-half[Mixed models]
+.box-7.large.sp-after-half[Repeated measures]
+
 --
 
-.box-6.large.sp-after-half[Testing]
+.box-6.large.sp-after-half[Mixed models]
+
 ---
 
 
 layout: false
-name: repeated-measures
+name: why-repeated-measures
 class: center middle section-title section-title-8
 
-# Repeated measures
+# Why repeated measures?
 
 ---
+
 class: title title-8
-# So far: between-design
+# Beyond between-designs
 
 Each subject (experimental unit) assigned to a single condition.
 
@@ -121,23 +123,16 @@ subjects
 - Allow enough time between treatment conditions to reduce or eliminate period or carryover effects.
 
 ---
-class: title title-8
-# Models for repeated measures
 
-Consider a setting with one categorical variable indicating group membership (`id`) and an experimental factor `\(A\)`.
-
-A repeated measure ANOVA is a model in which we fit both as factors.
-
----
 layout: false
-name: mixed-models
+name: repeated-measures
 class: center middle section-title section-title-7
 
-# Mixed models
+# Repeated measures
 
 ---
 class: title title-7
-# Why mixed models?
+# Exhaustive or small subsample?
 
 So far, we consider factors (treatment factor, blocking) as **fixed**
 
@@ -152,63 +147,209 @@ Assume that the levels of a factor form a random sample from a large population
 class: title title-7
 # Fixed vs random: no clear definition
 
-Gelman (2005) lists a handfull of definitions:
+Gelman (2005) lists a handful of definitions:
 
 &gt; When a sample exhausts the population, the corresponding variable is fixed; when the sample is a small (i.e., negligible) part of the population the corresponding variable is random [Green and Tukey (1960)].
 
 &gt; Effects are fixed if they are interesting in themselves or random if there is interest in the underlying population (e.g., Searle, Casella and McCulloch [(1992), Section 1.4])
+
 ---
+
 class: title title-7
-# One-way ANOVA with random effects
+# One-way ANOVA with a random effect
 
 As before, we have one experimental factor `\(A\)` with `\(a\)` levels, with
 
-`$$\underset{\text{response}\vphantom{l}}{Y_{ij}} = \underset{\text{global mean}}{\mu} + \underset{\text{random effect}}{A_i} + \underset{\text{error}\vphantom{l}}{\varepsilon_{ij}}$$`
+`$$\begin{align*}\underset{\text{response}\vphantom{l}}{Y_{ij}} = \underset{\text{global mean}}{\mu_{\vphantom{j}}} + \underset{\text{mean difference}}{\alpha_j} + \underset{\text{random effect for subject}}{S_{i\vphantom{j}}} + \underset{\text{error}\vphantom{l}}{\varepsilon_{ij}}\end{align*}$$`
 
-where `\(A_i \sim \mathsf{No}(0, \sigma^2_a)\)` and `\(\varepsilon_{ij} \sim \mathsf{No}(0, \sigma^2_e)\)` are random variables.
+where `\(S_i \sim \mathsf{No}(0, \sigma^2_s)\)` and `\(\varepsilon_{ij} \sim \mathsf{No}(0, \sigma^2_e)\)` are random variables.
 
 The errors and random effects are independent from one another.
 
-The model **parameters** are `\(\mu\)`, `\(\sigma^2_a\)` and `\(\sigma^2_e\)`.
+The model **parameters** are `\(\mu\)`, `\(\sigma^2_s\)` and `\(\sigma^2_e\)`.
+
 ---
+
 class: title title-7
 # Variance components
 
 - The global average is `\(\mu\)`.
-- The variance of the response `\(Y_{ij}\)` is `\(\sigma^2_a + \sigma^2_e\)`.
-- The **intra-class correlation** between observations in group `\(i\)` is `\(\sigma^2_a/(\sigma^2_a + \sigma^2_e)\)`.
+- The variance of the response `\(Y_{ij}\)` is `\(\sigma^2_s + \sigma^2_e\)`.
+- The **intra-class correlation** between observations in group `\(i\)` is `\(\sigma^2_s/(\sigma^2_s + \sigma^2_e)\)`.
 
 This dependence structure within group is termed **compound symmetry**.
 
 ---
 class: title title-7
+# Example: happy fakes
+
+An experiment conducted in a graduate course at HEC gathered electroencephalography (EEG) data.
+
+The response variable is the amplitude of a brain signal measured at 170 ms after the participant has been exposed to different faces. 
+
+Repeated measures were collected on 9 participants, but only the average of the 34 replications is provided.
+---
+# Experimental conditions
+
+.pull-left-wide[
+The control (`real`) is a true image, whereas the other were generated using a generative adversarial network (GAN) so be slightly smiling (`GAN_S`) or extremely smiling (`GAN_E`, looks more fake).
+
+Research question: do the GAN image trigger different reactions (pairwise difference with control)?
+]
+.pull-right-narrow[
+
+![](img/10/face_real.jpg)
+![](img/10/face_GAN_S.jpg)
+![](img/10/face_GAN_E.jpg)
+
+]
+---
+
+class: title title-7
+# Models for repeated measures
+
+We have `\(r=1\)` replication per participant for each condition. In this specific case, the repeated-measures ANOVA model amounts to a randomized block, i.e.,
+
+- `participant` (blocking factor)
+- `condition` (experimental factor)
+
+For balanced designs, we can use `aov` in **R**. 
+
+This approach has a drawback: variance estimates can be negative...
+
+---
+.panelset[
+.panel[.panel-name[Load data]
+
+```r
+library(tidyverse)
+library(lme4)
+library(lmerTest)
+options(contrasts = c("contr.sum", "contr.poly"))
+url &lt;- "https://edsm.rbind.io/data/faces.csv"
+faces &lt;- read.csv(url, header = TRUE, 
+                 stringsAsFactors = TRUE) %&gt;%
+  mutate(id = factor(participant),
+         condition = relevel(condition, ref = "real"))
+# Declare participant ID as categorical
+```
+]
+.panel[.panel-name[Graph]
+.pull-left[
+
+```r
+library(tidyverse)
+ggplot(data = faces,
+       aes(x = id,
+           group = condition,
+           colour = condition,
+           y = amplitude)) +
+  geom_point()
+```
+]
+.pull-right[
+&lt;img src="10-slides_files/figure-html/graph2-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+.panel[.panel-name[ANOVA]
+.small[
+
+```r
+anova_model &lt;- aov(amplitude ~ condition + Error(id), data = faces)
+# Random intercept for participant
+model &lt;- lme4::lmer(amplitude ~ condition + (1 | id), 
+               data = faces)
+car::Anova(model, test = "F", type = 3)
+```
+
+```
+## Analysis of Deviance Table (Type III Wald F tests with Kenward-Roger df)
+## 
+## Response: amplitude
+##                  F Df Df.res Pr(&gt;F)
+## (Intercept) 0.6051  1   12.5 0.4511
+## condition   0.2497  2   16.0 0.7820
+```
+
+- No detectable difference between conditions.
+- The _p_-value (0.782) for the mixed model is the same as `aov`. 
+- Residual degrees of freedom is `\((a-1) \times (n-1)=18\)` for `\(n=9\)` subjects and `\(a=3\)` levels.
+]
+]
+.panel[.panel-name[QQ plots]
+.pull-left[
+&lt;img src="10-slides_files/figure-html/qqplot1-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="10-slides_files/figure-html/qqplot2-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+]
+]
+---
+
+class: title title-7
 # Model assumptions
 
-The validity of the `\(F\)` null distribution relies on the model having the correct structure
+The validity of the `\(F\)` null distribution relies on the model having the correct structure.
 
 - Same variance per observation
 - equal correlation between measurements of the same subject
 - normality of the random effect
 
 
-- Can test for compound symmetry, but a weaker assumption is *sphericity* since we care about differences in treatment
-- 
--
----
-
-We can use the model to predict the values for `\(Y_{i\cdot}\)`.
-
-Note: replications are needed to estimate effects (cannot estimate `\(\sigma^2_a\)` if there is a single measurement per group).
+- Since we care only about differences in treatment, can get away with a weaker assumption than compound symmetry
+   - *sphericity*: variance of difference between treatment is constant
 
 ---
 class: title title-7
-# ANOVA: fixed vs random
+# Testing for sphericity
 
+Popular two-stage approach:
 
+- Mauchly's test of sphericity
+   - if statistically significant, use a correction
+   - if no evidence, proceed with `\(F\)` test as usual
+   
+---
+class: title title-7
+# Corrections for sphericity
+
+An idea due to Box is to correct the degrees of freedom from `\(\mathsf{F}\{a-1, (a-1)(n-1)\}\)` to `\(\mathsf{F}\{\epsilon(a-1), \epsilon(a-1)(n-1)\}\)` for `\(\epsilon &lt; 1\)`
+
+- Since the statistic is a ratio, it is unaffected
+- Three widely used corrections:
+   - Greenhouse-Geisser 
+   - Huynh-Feldt (more powerful, but can be larger than 1 - cap)
+   - lower bound with `\(\epsilon = (a-1)^{-1}\)`, giving `\(\mathsf{F}(1, n-1)\)`.
+
+Another option is to go fully multivariate.
+
+---
+layout: false
+name: mixed-models
+class: center middle section-title section-title-6
+
+# Mixed models
+
+---
+class: title title-6
+# Generalization
+
+Using mixed models in place of *old school* ANOVA has benefits in that it's easier to account for complex designs.
+
+In general, things are not obvious
+
+- Estimation via restricted maximum likelihood
+- Theory for testing is more complicated 
+   - `\(F\)`-tests via Kenward-Rogers (best, but costly) or Satterthwaite approximation
+   - Determining the degrees of freedom is not always trivial (Hass diagrams)
+- For more layers, need replications to estimate variability (estimability/identifiability)
 
 
 ---
-class: title title-7
+
+class: title title-6
 # Nested versus crossed
 
 .pull-left-wide[
@@ -233,8 +374,8 @@ Example of nested random effects: class nested within schools
 Matroschka from Wikimedia Commons CC-BY-SA 3.0
 https://en.wikipedia.org/wiki/Matryoshka_doll#/media/File:Matryoshka_transparent.png
 ---
-
-# Formula for nested effects
+class: title title-6
+# Formulae for nested effects
 
 **R** uses the following notation for nested effect: `group1/group2`, to mean `group2` is nested within `group1`. 
 This formula expands to `group1 + group1:group2`
@@ -245,28 +386,16 @@ In package `lme4`, a random intercept per group is written `(1 | group1/group2)`
 
 ---
 
-Example of Clayton (2018)
+layout: false
+class: center middle section-title section-title-6
 
-Gender quota on village councils: respondent nested within village
-
-
-
----
-
-Structure of the data
-
----
-
-Looking for crossover effects or trends
-
----
+# Demo and examples
 
 ???
 
 https://journals.sagepub.com/stoken/default+domain/2CauuvIqpaIUiIdXSWh4/full
 https://cran.r-project.org/doc/Rnews/Rnews_2007-2.pdf
 
----
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

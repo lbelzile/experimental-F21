@@ -11,3 +11,6 @@ stringr
 forcats
 patchwork
 emmeans
+Matrix
+lme4
+lmerTest

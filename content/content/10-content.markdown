@@ -1,7 +1,7 @@
 ---
-title: "Mixed models"
-linktitle: "10: Mixed models"
-date: "2021-11-09"
+title: "Repeated measures and mixed models"
+linktitle: "10: Repeated measures and mixed models"
+date: "2021-11-12"
 start_date: "2021-11-08"
 end_date: "2021-11-12"
 menu:
@@ -26,13 +26,13 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <a class="nav-link active" id="introduction-tab" data-toggle="tab" href="#introduction" role="tab" aria-controls="introduction" aria-selected="true">Introduction</a>
 </li>
 <li class="nav-item">
+<a class="nav-link" id="why-repeated-measures-tab" data-toggle="tab" href="#why-repeated-measures" role="tab" aria-controls="why-repeated-measures" aria-selected="false">Why repeated measures?</a>
+</li>
+<li class="nav-item">
 <a class="nav-link" id="repeated-measures-tab" data-toggle="tab" href="#repeated-measures" role="tab" aria-controls="repeated-measures" aria-selected="false">Repeated measures</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" id="mixed-models-tab" data-toggle="tab" href="#mixed-models" role="tab" aria-controls="mixed-models" aria-selected="false">Mixed models</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="testing-tab" data-toggle="tab" href="#testing" role="tab" aria-controls="testing" aria-selected="false">Testing</a>
 </li>
 </ul>
 
@@ -43,6 +43,17 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <div class="embed-responsive embed-responsive-16by9">
 
 <iframe class="embed-responsive-item" src="/slides/10-slides.html#1">
+</iframe>
+
+</div>
+
+</div>
+
+<div id="why-repeated-measures" class="tab-pane fade" role="tabpanel" aria-labelledby="why-repeated-measures-tab">
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="/slides/10-slides.html#why-repeated-measures">
 </iframe>
 
 </div>
@@ -71,17 +82,6 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
-<div id="testing" class="tab-pane fade" role="tabpanel" aria-labelledby="testing-tab">
-
-<div class="embed-responsive embed-responsive-16by9">
-
-<iframe class="embed-responsive-item" src="/slides/10-slides.html#testing">
-</iframe>
-
-</div>
-
-</div>
-
 </div>
 
 A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
@@ -92,9 +92,9 @@ A script containing the **R** code generated in the slides can be [downloaded he
 Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=).
 
 - [Introduction](https://www.youtube.com/watch?v=&list=)
+- [Why repeated measures?](https://www.youtube.com/watch?v=&list=)
 - [Repeated measures](https://www.youtube.com/watch?v=&list=)
 - [Mixed models](https://www.youtube.com/watch?v=&list=)
-- [Testing](https://www.youtube.com/watch?v=&list=)
 
 You can also watch the playlist (and skip around to different sections) here:
 
@@ -109,19 +109,33 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## Complementary readings
 
+-   [Chapter 11 of Oehlert (2000)](http://users.stat.umn.edu/~gary/book/fcdae.pdf)
 -   <i class="fas fa-book"></i> Sections 17.1 and 17.3 of Keppel & Wickens (2004)
 
 ## In class
 
-Examples of random effects and **R** demo of the `lme4` package.
+-   Repeated measure example for Study 2 of Bobak et al. (2019); see [paper](https://doi.org/10.1186/s41235-019-0174-3) and [helper code](/content/10-repeated-measures.R)
+-   **R** demo of the `lme4` package with
 
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
+<div id="ref-Bobak:2019" class="csl-entry">
+
+Bobak, A. K., Mileva, V. R., & Hancock, P. J. B. (2019). A grey area: How does image hue affect unfamiliar face matching? *Cognitive Research: Principles and Implications*, *4*(1), 27. <https://doi.org/10.1186/s41235-019-0174-3>
+
+</div>
+
 <div id="ref-Keppel/Wickens:2004" class="csl-entry">
 
 Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s handbook*. Pearson Prentice Hall.
+
+</div>
+
+<div id="ref-Oehlert:2010" class="csl-entry">
+
+Oehlert, G. (2000). *A first course in design and analysis of experiments*. W. H. Freeman. <http://users.stat.umn.edu/~gary/Book.html>
 
 </div>
 

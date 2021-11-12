@@ -6,76 +6,86 @@ library(lmerTest) # F-tests for lme4 output
 library(afex) # factorial experiment 
 options(contrasts = c("contr.sum", "contr.poly"))
 
+# Example 1 in slides
+url <- "https://edsm.rbind.io/data/faces.csv"
+faces <- read.csv(url, header = TRUE, 
+                  stringsAsFactors = TRUE) %>%
+  mutate(id = factor(participant),
+         condition = relevel(condition, ref = "real"))
+# Data must be in long format (one measurement per line)
+# Declare participant ID as categorical
 
-data(TVbo, package = "lmerTest")
-# One-way ANOVA (fixed effect)
-mod0_fixeff <- lm(Coloursaturation ~ Assessor, data = TVbo)
-# One-way random effect ANOVA
-mod0_raneff <- lmer(Coloursaturation ~ (1 | Assessor), data = TVbo)
+# Plot observations (only one replicate per participant)
+# n = 9 people, a = 3 conditions
+ggplot(data = faces,
+       aes(x = id,
+           group = condition,
+           colour = condition,
+           y = amplitude)) +
+  geom_point() +
+  theme_classic() +
+  theme(legend.position = "bottom")
 
-# Compare fitted means
-newdat <- data.frame(Assessor = unique(TVbo$Assessor))
-# alpha_i + mu, where alpha1 (reference category) is - alpha2 - ... - alpha8
-predict(mod0_fixeff, newdata = newdat)
-predict(mod0_raneff, newdata = newdat)
-# More shrinkage towards the mean for the random effect
-anova(mod0_fixeff)
+# Fit model with aov
+aov(amplitude ~ condition + Error(id), data = faces)
+# Random intercept for participant
+model <- lme4::lmer(amplitude ~ condition + (1 | id), 
+                    data = faces)
+car::Anova(model, test = "F", type = 3)
 
-## Repeated measure ANOVA (from Table 16.3 in Keppel & Wickens)
+# Diagnostic plots
+# Linearity (Tukey-Anscombe plot of residuals vs individual means)
+plot(model, ylab = "residuals", xlab = "fitted")
+# Std.error of residuals and participants
+VarCorr(model)
+confint(model)
+########################
+### Diagnostic plots ###
+########################
+# Catterpillar plot
+# Plot conditional mode of random effects 
+# (should be straight line)
+lattice::qqmath(lme4::ranef(model, condVar = TRUE))
+# QQ of random effects 
+# these are stored in a list
+car::qqPlot(as.vector(unlist(lme4::ranef(model)$id)),
+            xlab = "theoretical normal quantiles",
+            ylab = "random effects", 
+            id = FALSE)
+# QQ plot of residuals
+car::qqPlot(as.vector(resid(model)), 
+            xlab = "theoretical normal quantiles",
+            ylab = "residuals", 
+            id = FALSE)
 
-t16p3 <- data.frame(
-  subjects = factor(rep(paste0("s", 1:6), length.out = 18)),
-  string = factor(rep(c("word", "nonword", "random"), each = 6)),
-  time = c(745,777,734,779,756,721,764,786,733,801,786,732,774,788,763,797,785,740))
+# Assumption of sphericity
+# There are options in car and base R
+# but it's a mess and the below is simpler
+modspher <- afex::aov_ez(id = "id",
+                         dv = "amplitude", 
+                         data = faces, 
+                         within = "condition")
+summary(modspher)
+# P-value for test of sphericity is large
+# so no evidence against this hypothesis
+# can proceed without correction.
 
-mod1_fixeff <- lm(time ~ string + subjects, data = t16p3)
-# For a random effect, put (1 | grouping) where grouping is a factor
-mod1_raneff <- lmer(time ~ (1 | subjects) + string, data = t16p3)
-# Similar, but with aov /!\ requires balanced samples
-aov(time ~ string + Error(subjects), data = t16p3)
-# The "Error" is used to denote the grouping
-# with replications, you will see Error(subjects/string)
+# Test group homoscedasticity with Levene's test
+car::leveneTest(resid(model) ~ condition, 
+                data = faces,
+                center = 'mean')
+# All seems good
 
-# Model with correction for sphericity and adjusted tests
-mod1 <- afex::aov_ez(id = "subjects", 
-                     dv = "time", 
-                     within = "string",
-                     data = t16p3)
-summary(mod1, multivariate = FALSE)
-# Analysis of variance model (fixed vs random)
-anova(mod1_fixeff)
-anova(mod1_raneff)
-summary(mod1b_raneff)
-# Confidence intervals for the variance
-confint(mod1_raneff)
+# Pairwise comparisons
+emmeans(model, specs = "condition") %>% pairs()
+# Unsurprisingly, none of the difference are significant - they were not overall.
 
-## Repeated measures ANOVA in R
-#
-# aov with Error()
-
-
-# Data from Clayton (2018)
-
-# Nested random effects (individuals within village
-# sex and age are crossed 
-url <- "https://edsm.rbind.io/data/ImplicitBias2014.csv"
-Clayton <- read_csv(file = url, col_types = "dffffdf")
-
-
-# Don't use "aov" with Error (as data are unbalanced)
-range(xtabs(~village, data = Clayton))
-# Effect of quota varies between villages 
-mod_clay <- lmer(d.score ~ quota*female*under25 + (1 | village/quota), data = Clayton)
-# Include female and under25 for blocking fixed effects
-anova(mod_clay)
-# Nothing going on there...
-# Marginalize over rest and keep difference in quota
-emmeans(mod_clay, specs = "quota") %>% contrast(method = "pairwise")
-
-# Account for clustering with clustered standard errors instead of mixed models
-aov_clay <- lm(d.score ~ quota*female*under25, data = Clayton)
-lmtest::coeftest(aov_clay,
-         vcov = sandwich::vcovCL,
-         cluster = ~village)
-# Not much change, as we often have a single observation per village...
-
+# Power analysis
+WebPower::wp.rmanova(n = 9, # number of subjects
+                     ng = 3, # number of groups
+                     nm = 35, # number replications
+                     #corresponds to number per person,
+                     nscor = 0.9, #sphericity correction,
+                     power = 0.9) # power
+# Could detect an effect size of 1.65
+# this is the ratio of variance 

@@ -20,8 +20,4 @@ Useful ressources for learning **R**, the `tidyverse` and Rmarkdown basics inclu
 - the [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets/), also available from RStudio menu in Help > Cheat Sheets
 
 To install all packages used throughout the course, use the command
-```{r}
-lib <- c("afex", "car", "emmeans", "effectsize", "lme4", "lmerTest", 
-         "nlme", "pwr", "tidyverse", "tidymodels", "WebPower")
-install.packages(lib)
-```
+
