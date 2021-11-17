@@ -115,7 +115,7 @@ You can also watch the playlist (and skip around to different sections) here:
 ## In class
 
 -   Repeated measure example for Study 2 of Bobak et al. (2019); see [paper](https://doi.org/10.1186/s41235-019-0174-3) and [helper code](/content/10-repeated-measures.R)
--   **R** demo of the `lme4` package with
+-   **R** demo of the `lme4` package
 
 ## References
 

@@ -4,7 +4,7 @@
     <title>Unbalanced designs and polynomial regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-25" />
+    <meta name="date" content="2021-11-17" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -132,7 +132,7 @@ Consider a t-test for assessing the difference between treatments `\(A\)` and `\
 `$$t= \frac{\text{estimated difference}}{\text{estimated variability}} = \frac{(\widehat{\mu}_A - \widehat{\mu}_B) - 0}{\mathsf{se}(\widehat{\mu}_A - \widehat{\mu}_B)}.$$`
 
 The standard error of the average difference is 
-`$$\sqrt{\frac{\text{std. dev}_A}{\text{nb of obs. in }A} + \frac{\text{std. dev}_B}{\text{nb of obs. in }B}} = \sqrt{\frac{\sigma}{n_A} + \frac{\sigma}{n_B}}$$`
+`$$\sqrt{\frac{\text{variance}_A}{\text{nb of obs. in }A} + \frac{\text{variance}_B}{\text{nb of obs. in }B}} = \sqrt{\frac{\sigma^2}{n_A} + \frac{\sigma^2}{n_B}}$$`
 
 ---
 class: title title-5
