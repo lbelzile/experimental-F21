@@ -138,7 +138,7 @@ Consider a t-test for assessing the difference between treatments $A$ and $B$ wi
 $$t= \frac{\text{estimated difference}}{\text{estimated variability}} = \frac{(\widehat{\mu}_A - \widehat{\mu}_B) - 0}{\mathsf{se}(\widehat{\mu}_A - \widehat{\mu}_B)}.$$
 
 The standard error of the average difference is 
-$$\sqrt{\frac{\text{std. dev}_A}{\text{nb of obs. in }A} + \frac{\text{std. dev}_B}{\text{nb of obs. in }B}} = \sqrt{\frac{\sigma}{n_A} + \frac{\sigma}{n_B}}$$
+$$\sqrt{\frac{\text{variance}_A}{\text{nb of obs. in }A} + \frac{\text{variance}_B}{\text{nb of obs. in }B}} = \sqrt{\frac{\sigma^2}{n_A} + \frac{\sigma^2}{n_B}}$$
 
 ---
 class: title title-5
