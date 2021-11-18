@@ -1,5 +1,5 @@
 ---
-title: "Multivariate analysis of variance"
+title: "Within-subjects and mixed designs"
 author: "Léo Belzile"
 date: "`r Sys.Date()`"
 output:
@@ -43,7 +43,7 @@ xaringanExtra::use_xaringan_extra(c("tile_view","freezeframe","panelset","clipbo
 
 class: center middle main-title section-title-1
 
-# Multivariate analysis of variance
+# Within-subjects and mixed factorial designs
 
 .class-info[
 
@@ -63,24 +63,100 @@ class: title title-inv-1
 # Outline
 --
 
-.box-8.large.sp-after-half[Why repeated measures?]
+.box-5.large.sp-after-half[Hasse diagrams]
+
+--
+.box-2.large.sp-after-half[Two factors within-subjects designs]
 
 --
 
-.box-7.large.sp-after-half[Repeated measures]
-
---
-
-.box-6.large.sp-after-half[Mixed models]
+.box-3.large.sp-after-half[Two factors mixed designs]
 
 ---
 
 
 layout: false
-name: why-repeated-measures
-class: center middle section-title section-title-8
+name: hasse
+class: center middle section-title section-title-5
 
-# Why repeated measures?
+# Hasse diagrams
 
 ---
+class: title title-5
+# Motivation
+
+Most experiments are inherently
+
+.box-inv-5[Complicated]
+
+We follow Oehlert approach and focus on restricted models (see Oehlert, 2001, p.286).
+---
+class: title title-5
+# To-do list
+
+Need to determine
+
+1. sources of variation
+2. relation between factors (nested or crossed)
+3. nature of factors (fixed or random effects)
+4. which interactions should be in the model.
+
+- The statistical model must match the experiment design.
+- For tests, need adequate denominators and degrees of freedom
+
+
+---
+
+class: title title-5
+# What is a Hasse diagram?
+
+
+A graph in which every effect is a node
+- Node labels indicate fixed vs (random) 
+- superscript is number of instances
+- subscript degrees of freedom
+- lines joining variables show crossing/nesting relations and hierarchy
+
+Useful for balanced designs
+
+---
+class: title title-5
+# Examples of Hasse diagrams
+
+
+```{r eval = TRUE, echo = FALSE, out.width = '60%', fig.align = "center", fig.retina = 3}
+knitr::include_graphics("img/11/Hasse_diagram.png")
+```
+
+
+---
+class: title title-5
+# Rules for testing (denominators)
+
+From Oehlert (2001), Display 12.3
+
+1. The denominator for testing a term $U$ is the leading eligible random term below $U$ in the Hasse diagram.
+2. An eligible random term $V$ below $U$ is leading if there is no eligible random term that is above $V$ and below $U$.
+3. If there are two or more leading eligible random terms, then we must use an approximate test.
+4. In the restricted model, all random terms below $U$ are eligible except those that contain a fixed factor not found in $U$.
+
+---
+class: title title-5
+# Degrees of freedom 
+
+> Degrees of freedom for a term $U$ are found by starting with the superscript for $U$ and subtracting out the degrees of freedom for all terms above $U$.
+
+
+---
+layout: false
+name: within-design
+class: center middle section-title section-title-2
+
+# Two factors within-subjects designs
+
+---
+
+We observe $A \times B \times S$: each subject $S_i$ gets assigned to every treatment pair $a_j \times b_k$.
+
+
 

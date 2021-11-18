@@ -1,0 +1,65 @@
+---
+title: "Within-subjects and mixed designs"
+linktitle: "11: Within-subjects and mixed designs"
+date: "2021-11-14"
+start_date: "2021-11-15"
+end_date: "2021-11-19"
+menu:
+  content:
+    parent: Course content
+    weight: 11
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "11-slides"
+---
+
+<!--
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+source(here::here("R", "youtube-playlist.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "Why repeated measures?", "why-repeated-measures", FALSE,
+  "", "Repeated measures", "repeated-measures", FALSE,
+  "", "Mixed models", "mixed-models", FALSE
+)
+```
+
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/10-slides.html")
+```
+
+A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
+-->
+<!--
+## Videos
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id)
+```
+-->
+
+## Readings
+
+- [Chapter 12 (12.1 to 12.6) of @Oehlert:2010 ](http://users.stat.umn.edu/~gary/book/fcdae.pdf)
+
+## Complementary readings
+
+
+- <i class="fas fa-book"></i> Chapters 18 and 19 of @Keppel/Wickens:2004
+- <i class="fas fa-book"></i> Chapters 17 and 18 of @Dean:2017
+
+## References
