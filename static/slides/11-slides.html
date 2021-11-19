@@ -31,156 +31,117 @@
     <textarea id="source">
 
 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": false,
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
 
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
 
-
-
-class: center middle main-title section-title-1
-
-# Within-subjects and mixed factorial designs
-
-.class-info[
-
-**Session 11**
-
-.light[MATH 80667A: Experimental Design and Statistical Methods &lt;br&gt;for Quantitative Research in Management &lt;br&gt;
-HEC Montréal
-]
-
-]
-
----
-
-name: outline
-class: title title-inv-1
-
-# Outline
---
-
-.box-5.large.sp-after-half[Hasse diagrams]
-
---
-.box-6.large.sp-after-half[Two factors within-subjects designs]
-
-
----
-
-
-layout: false
-name: hasse
-class: center middle section-title section-title-5
-
-# Hasse diagrams
-
----
-class: title title-5
-# To-do list
-
-Need to determine
-
-1. relation between factors (nested or crossed)
-2. nature of factors (fixed or random effects)
-3. which interactions should be in the model (maximal structure supported by experimental design)
-
-The statistical model must match the experiment design.
-
-Building tests require considering variability of effects (mean squared errors and degrees of freedom of denominators).
-???
-
-The interactions depends on both the presence of replication to 
-estimate these effects and on the nature of the dependence (crossed/nested)
-
----
-
-
-class: title title-5
-# What is a Hasse diagram?
-
-
-A graph in which every effect is a node
-- Node labels indicate fixed vs (random) 
-- superscript is number of instances
-- subscript degrees of freedom
-- lines joining variables show crossing/nesting relations and hierarchy
-
-&gt; Degrees of freedom for a term `\(U\)` are found by starting with the superscript for `\(U\)` and subtracting out the degrees of freedom for all terms above `\(U\)`.
-
-This rule only applies for balanced designs.
-
----
-class: title title-5
-# Examples of Hasse diagrams
-
-
-&lt;img src="img/11/Hasse_diagram.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-
----
-class: title title-5
-# Rules for testing (denominators)
-
-From Oehlert (2001), Display 12.3
-
-1. The denominator for testing a term `\(U\)` is the leading eligible random term below `\(U\)` in the Hasse diagram.
-2. An eligible random term `\(V\)` below `\(U\)` is leading if there is no eligible random term that is above `\(V\)` and below `\(U\)`.
-3. If there are two or more leading eligible random terms, then we must use an approximate test.
-4. In the restricted model, all random terms below `\(U\)` are eligible except those that contain a fixed factor not found in `\(U\)`.
-
----
-class: title title-5
-
-# Example: chocolate rating
-
-Example from L. Meier, adapted from Oehlert (2010)
-
-&gt; A group of 10 rural and 10 urban raters rated 4 different chocolate types. Every rater got to eat two samples from the same chocolate type in random order.
-
----
-layout: false
-name: within-design-mixed
-class: center middle section-title section-title-6
-
-# Within-subjects and mixed designs
-
----
-class: title title-6
-# Why use within-subject factors?
-
-- (+) can decompose variance (more power)
-- (+) fewer participants needed
-- (-) crossover effects
-- (-) more complicated
-- (-) assumptions about correlation structure
-
----
-class: title title-6
-# Two-factor within design
-
-We observe `\(A \times B \times S\)`: each subject `\(S_i\)` gets assigned to every treatment pair `\(a_j \times b_k\)`.
-
-- `\(A\)` and `\(B\)` are crossed (interaction)
-- Hasse diagram (board work)
-
----
-class: title title-6
-# Testing in within-designs
-
-Main-effect statistics are
-
-- `\(A\)`: `\(\textsf{MS}_A/\textsf{MS}_{AS}\)`
-- `\(B\)`: `\(\textsf{MS}_B/\textsf{MS}_{BS}\)`
-- `\(AB\)`: `\(\textsf{MS}_{AB}/\textsf{MS}_{ABS}\)`
-
-where `\(\textsf{MS}\)` is the mean squared error.
-
-The term `\(\textsf{MS}_{ABS}\)` is equivalent to residuals if there are no replications.
-
-???
-The error terms for any within-subject effect is the interaction with the subjects (recall rules).
-
----
-class: title title-6
-# Analyzing contrasts in within-designs
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
+n-designs
 From Table 18.5 of Keppel and Wickens (2004)
 
 &gt; Any effect involving a contrast on a within-subject factor is tested against an error term that includes the interaction
@@ -188,6 +149,7 @@ of that contrast with subjects. To calculate this error term, create a contrast 
 
 &gt; Any within-subject effect involving a portion of the data (e.g., a pairwise comparison between two levels of one factor), is tested against an error term derived exclusively from those data. To calculate this error term, simply extract these data and analyze them as if they come from a simpler design.
 
+Note: sometimes, increase the number of subjects does not increase power for a given effect
 
 ???
 Watch out! Software may get the test statistic right, but not the degrees of freedom.
@@ -198,9 +160,23 @@ Contrasts inherit degrees of freedom of their corresponding main effects.
 class: title title-6
 # Two-factor mixed design
 
-We observe `\(A \times (B \times S)\)`: each subject `\(S_i\)` is nested in `\(A\)` and we see each of `\(b\)` treatments for `\(B\)`
+We observe `\(A \times (B \times S)\)`: each subject `\(S_i\)` is nested in `\(A\)` and we see each of the `\(b\)` levels of `\(B\)` per subject
 
 - Hasse diagram (board work)
+
+
+---
+class: title title-6
+# Example: Curley et al. (2021+)
+
+.small[
+
+&gt; Two variables were manipulated within participants: (a) evidence anchor (strong-first versus weak-first); (b) verdict system (two- versus three-verdict systems). Total pre-trial bias score was used as a covariate in the analysis (this score is based on the PJAQ and is explained further in the Materials section). Participants were also given two vignettes (Vignette 1 and Vignette 2); thus, the vignette variable was included in the data analysis [...]
+
+&gt; The dependent variable was the final belief of guilt score, which was measured on an accumulated scale from 0–14, with 0 representing no belief of guilt and 14 representing a total belief that the person is guilty
+
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

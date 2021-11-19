@@ -248,7 +248,7 @@ g1 + g2
 # ggsave("scatterplot.pdf", plot = g1, width = 5, height = 5)
 ```
 
-Since the measurements are discrete and scarce, it is hard to see much but this assumption is reasonable. An added line (local fit, LOESS) is added to help detect departures from linearity but be careful not to over-interpret the graphs. Another way to see this is to create replicate data by permuting residuals (a form of graphical test); if we can easily detect the dataset from the list, then there may be residual structure (otherwise the patterns are due to sampling variability). For example, could you spot the 
+Since the measurements are discrete and scarce, it is hard to see much but this assumption is reasonable. An added line (local fit, LOESS) is added to help detect departures from linearity but be careful not to over-interpret the graphs. Another way to see this is to create replicate data by permuting residuals (a form of graphical test); if we can easily detect the dataset from the list, then there may be residual structure (otherwise the patterns are due to sampling variability). For example, could you spot the true residuals from the 20 panels?
 ```{r nullabor, echo = FALSE, eval = TRUE, fig.cap = "Panels with 20 replicate datasets obtained by permuting residuals. The true data is in position 16.", cache = TRUE}
 library(nullabor)
 set.seed(1324)

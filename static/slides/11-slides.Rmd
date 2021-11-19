@@ -139,6 +139,7 @@ class: title title-5
 
 # Example: chocolate rating
 
+
 Example from L. Meier, adapted from Oehlert (2010)
 
 > A group of 10 rural and 10 urban raters rated 4 different chocolate types. Every rater got to eat two samples from the same chocolate type in random order.
@@ -196,6 +197,7 @@ of that contrast with subjects. To calculate this error term, create a contrast 
 
 > Any within-subject effect involving a portion of the data (e.g., a pairwise comparison between two levels of one factor), is tested against an error term derived exclusively from those data. To calculate this error term, simply extract these data and analyze them as if they come from a simpler design.
 
+Note: sometimes, increase the number of subjects does not increase power for a given effect
 
 ???
 Watch out! Software may get the test statistic right, but not the degrees of freedom.
@@ -206,6 +208,20 @@ Contrasts inherit degrees of freedom of their corresponding main effects.
 class: title title-6
 # Two-factor mixed design
 
-We observe $A \times (B \times S)$: each subject $S_i$ is nested in $A$ and we see each of $b$ treatments for $B$
+We observe $A \times (B \times S)$: each subject $S_i$ is nested in $A$ and we see each of the $b$ levels of $B$ per subject
 
 - Hasse diagram (board work)
+
+
+---
+class: title title-6
+# Example: Curley et al. (2021+)
+
+.small[
+
+> Two variables were manipulated within participants: (a) evidence anchor (strong-first versus weak-first); (b) verdict system (two- versus three-verdict systems). Total pre-trial bias score was used as a covariate in the analysis (this score is based on the PJAQ and is explained further in the Materials section). Participants were also given two vignettes (Vignette 1 and Vignette 2); thus, the vignette variable was included in the data analysis [...]
+
+> The dependent variable was the final belief of guilt score, which was measured on an accumulated scale from 0–14, with 0 representing no belief of guilt and 14 representing a total belief that the person is guilty
+
+
+]
