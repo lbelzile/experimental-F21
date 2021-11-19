@@ -15,64 +15,79 @@ csl: "../../static/bib/apa.csl"
 slides: "11-slides"
 ---
 
-<!--
+## In-class
 
-
+-   Hasse diagrams (board)
+-   Examples of within and mixed designs, including
+    -   Singmann & Klauer (2011) ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html))
+    -   Lages et al. (2017) ([download code](content/11-mixed.R))
+    -   Analysis of data from Table 18.3 of Keppel & Wickens (2004) ([download code](content/11-two-factor_within-subject.R))
+    -   Curley et al. (2021+)
+    -   [Example of chocolat raters from Meier’s *ANOVA and Mixed Models: A Short Intro Using R*, Section 6.6.2](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html#example-chocolate-data)
 
 ## Slides
 
-The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
 
-`{{% slide-buttons %}}`{=html}
+{{% slide-buttons %}}
 
 <ul class="nav nav-tabs" id="slide-tabs" role="tablist">
 <li class="nav-item">
 <a class="nav-link active" id="introduction-tab" data-toggle="tab" href="#introduction" role="tab" aria-controls="introduction" aria-selected="true">Introduction</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="why-repeated-measures-tab" data-toggle="tab" href="#why-repeated-measures" role="tab" aria-controls="why-repeated-measures" aria-selected="false">Why repeated measures?</a>
+<a class="nav-link" id="hasse-diagrams-tab" data-toggle="tab" href="#hasse-diagrams" role="tab" aria-controls="hasse-diagrams" aria-selected="false">Hasse diagrams</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="repeated-measures-tab" data-toggle="tab" href="#repeated-measures" role="tab" aria-controls="repeated-measures" aria-selected="false">Repeated measures</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="mixed-models-tab" data-toggle="tab" href="#mixed-models" role="tab" aria-controls="mixed-models" aria-selected="false">Mixed models</a>
+<a class="nav-link" id="withinsubjects-and-mixed-designs-tab" data-toggle="tab" href="#withinsubjects-and-mixed-designs" role="tab" aria-controls="withinsubjects-and-mixed-designs" aria-selected="false">Within-subjects and mixed designs</a>
 </li>
 </ul>
-<div class="tab-content" id="slide-tabs">
-<div class="tab-pane fade show active" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+
+<div id="slide-tabs" class="tab-content">
+
+<div id="introduction" class="tab-pane fade show active" role="tabpanel" aria-labelledby="introduction-tab">
+
 <div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/10-slides.html#1"></iframe>
-</div>
-</div>
-<div class="tab-pane fade" id="why-repeated-measures" role="tabpanel" aria-labelledby="why-repeated-measures-tab">
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/10-slides.html#why-repeated-measures"></iframe>
-</div>
-</div>
-<div class="tab-pane fade" id="repeated-measures" role="tabpanel" aria-labelledby="repeated-measures-tab">
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/10-slides.html#repeated-measures"></iframe>
-</div>
-</div>
-<div class="tab-pane fade" id="mixed-models" role="tabpanel" aria-labelledby="mixed-models-tab">
-<div class="embed-responsive embed-responsive-16by9">
-<iframe class="embed-responsive-item" src="/slides/10-slides.html#mixed-models"></iframe>
-</div>
-</div>
+
+<iframe class="embed-responsive-item" src="/slides/11-slides.html#1">
+</iframe>
+
 </div>
 
-A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
--->
+</div>
+
+<div id="hasse-diagrams" class="tab-pane fade" role="tabpanel" aria-labelledby="hasse-diagrams-tab">
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="/slides/11-slides.html#hasse-diagrams">
+</iframe>
+
+</div>
+
+</div>
+
+<div id="withinsubjects-and-mixed-designs" class="tab-pane fade" role="tabpanel" aria-labelledby="withinsubjects-and-mixed-designs-tab">
+
+<div class="embed-responsive embed-responsive-16by9">
+
+<iframe class="embed-responsive-item" src="/slides/11-slides.html#within-design-mixed">
+</iframe>
+
+</div>
+
+</div>
+
+</div>
+
 <!--
 ## Videos
 
 Videos for each section of the lecture are [available at this YouTube playlist](https://www.youtube.com/playlist?list=).
 
 - [Introduction](https://www.youtube.com/watch?v=&list=)
-- [Why repeated measures?](https://www.youtube.com/watch?v=&list=)
-- [Repeated measures](https://www.youtube.com/watch?v=&list=)
-- [Mixed models](https://www.youtube.com/watch?v=&list=)
+- [Hasse diagrams](https://www.youtube.com/watch?v=&list=)
+- [Within-subjects and mixed designs](https://www.youtube.com/watch?v=&list=)
 
 You can also watch the playlist (and skip around to different sections) here:
 
@@ -94,6 +109,12 @@ You can also watch the playlist (and skip around to different sections) here:
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
+<div id="ref-Curley:2021" class="csl-entry">
+
+Curley, L. J., Murray, J., MacLean, R., Munro, J., Lages, M., Frumkin, L. A., Laybourn, P., & Brown, D. (2021+). Verdict spotting: Investigating the effects of juror bias, evidence anchors and verdict system in jurors. *Psychiatry, Psychology and Law*, 1–22. <https://doi.org/10.1080/13218719.2021.1904450>
+
+</div>
+
 <div id="ref-Dean:2017" class="csl-entry">
 
 Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
@@ -106,9 +127,21 @@ Keppel, G., & Wickens, T. D. (2004). *Design and analysis: A researcher’s hand
 
 </div>
 
+<div id="ref-Lages:2017" class="csl-entry">
+
+Lages, M., Boyle, S. C., & Jenkins, R. (2017). Illusory increases in font size improve letter recognition. *Psychological Science*, *28*(8), 1180–1188. <https://doi.org/10.1177/0956797617705391>
+
+</div>
+
 <div id="ref-Oehlert:2010" class="csl-entry">
 
 Oehlert, G. (2000). *A first course in design and analysis of experiments*. W. H. Freeman. <http://users.stat.umn.edu/~gary/Book.html>
+
+</div>
+
+<div id="ref-Singmann/Klauer:2011" class="csl-entry">
+
+Singmann, H., & Klauer, K. C. (2011). Deductive and inductive conditional inferences: Two modes of reasoning. *Thinking & Reasoning*, *17*(3), 247–281.
 
 </div>
 

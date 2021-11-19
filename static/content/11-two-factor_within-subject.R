@@ -1,10 +1,12 @@
-setwd("/home/lbelzile/Documents/website/experimental/static/data")
+# Load packages
 library(tidyverse)
 library(lme4)
 library(lmerTest)
 library(emmeans)
 options(contrasts = c("contr.sum","contr.poly"))
-data <- read.table("KW_tab18p3.txt", header = TRUE) %>%
+# Load data
+url <- "https://edsm.rbind.io/data/KW_tab18p3.txt"
+data <- read.table(url, header = TRUE) %>%
    transmute(subject = factor(s),
              wordtype = factor(a),
              repetition = factor(b),
@@ -12,7 +14,11 @@ data <- read.table("KW_tab18p3.txt", header = TRUE) %>%
 # # With 'aov' (balanced designs only)
 # summary(aov(recall ~ wordtype*repetition + Error(subject/(wordtype*repetition)), data = data))
 # With lme4::lmer (linear mixed model)
-mixmod <- lmer(recall ~ wordtype*repetition + (1 | subject) + (1 | subject:wordtype) + (1 | subject:repetition), data = data)
+mixmod <- lmer(recall ~ wordtype*repetition + 
+                 (1 | subject) + 
+                 (1 | subject:wordtype) + 
+                 (1 | subject:repetition), 
+               data = data)
 # With afex aov_ez
 within <- afex::aov_ez(id = "subject", 
              dv = "recall", 
@@ -51,11 +57,9 @@ within %>%
 within %>% 
    emmeans(specs = "repetition", by = "wordtype") %>% 
    contrast(method = "poly") %>%
-   #contrast(method = list(trend = c(-3,-1,1,3))) %>% 
    joint_tests(by = "contrast") 
-# Test statistics above are both correct, 
-# but denominator df are incorrect 
-# (should be respectively 7 and 14)
+# Watch out: the above degrees of freedom are correct F(2,7)
+# Contrast with mixmod
 
 # To get these, we could compute manually a column response
 # with the contrast and run a one-way within-subject ANOVA
@@ -83,7 +87,10 @@ simple_a2 %>%
 # Simultaneously, have 
 # psiA = 2*mua1-mua2-mua3 (wordtype) 
 # psiB = -3*mub1 - mub2 + mub3 + 3*mub4 (repetition)
-intcont <- list(int_contrast = c(2*c(-3,-1,1,3), -c(-3,-1,1,3), -c(-3,-1,1,3)))
+intcont <- list(int_contrast = 
+                  c(2*c(-3,-1,1,3), 
+                    -c(-3,-1,1,3), 
+                    -c(-3,-1,1,3)))
 within %>% 
   emmeans(specs = c("repetition","wordtype")) %>%
   contrast(method = intcont)

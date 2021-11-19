@@ -15,7 +15,7 @@ csl: "../../static/bib/apa.csl"
 slides: "11-slides"
 ---
 
-<!--
+
 ```{r slides-videos, echo=FALSE, include=FALSE}
 source(here::here("R", "slide-tabs.R"))
 source(here::here("R", "youtube-playlist.R"))
@@ -25,12 +25,20 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
-  "", "Why repeated measures?", "why-repeated-measures", FALSE,
-  "", "Repeated measures", "repeated-measures", FALSE,
-  "", "Mixed models", "mixed-models", FALSE
+  "", "Hasse diagrams", "hasse-diagrams", FALSE,
+  "", "Within-subjects and mixed designs", "within-design-mixed", FALSE
 )
 ```
 
+## In-class
+
+- Hasse diagrams (board)
+- Examples of within and mixed designs, including 
+   - @Singmann/Klauer:2011  ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html))
+   - @Lages:2017 ([download code](content/11-mixed.R))
+   - Analysis of data from Table 18.3 of @Keppel/Wickens:2004 ([download code](content/11-two-factor_within-subject.R))
+   - @Curley:2021
+   - [Example of chocolat raters from Meier's *ANOVA and Mixed Models: A Short Intro Using R*, Section 6.6.2](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html#example-chocolate-data)
 
 ## Slides
 
@@ -39,11 +47,9 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 `r blogdown::shortcode("slide-buttons")`
 
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/10-slides.html")
+slide_tabs(slide_details, "/slides/11-slides.html")
 ```
 
-A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
--->
 <!--
 ## Videos
 

@@ -4,7 +4,7 @@
     <title>Within-subjects and mixed designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-18" />
+    <meta name="date" content="2021-11-19" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -60,11 +60,8 @@ class: title title-inv-1
 .box-5.large.sp-after-half[Hasse diagrams]
 
 --
-.box-2.large.sp-after-half[Two factors within-subjects designs]
+.box-6.large.sp-after-half[Two factors within-subjects designs]
 
---
-
-.box-3.large.sp-after-half[Two factors mixed designs]
 
 ---
 
@@ -77,29 +74,24 @@ class: center middle section-title section-title-5
 
 ---
 class: title title-5
-# Motivation
-
-Most experiments are inherently
-
-.box-inv-5[Complicated]
-
-We follow Oehlert approach and focus on restricted models (see Oehlert, 2001, p.286).
----
-class: title title-5
 # To-do list
 
 Need to determine
 
-1. sources of variation
-2. relation between factors (nested or crossed)
-3. nature of factors (fixed or random effects)
-4. which interactions should be in the model.
+1. relation between factors (nested or crossed)
+2. nature of factors (fixed or random effects)
+3. which interactions should be in the model (maximal structure supported by experimental design)
 
-- The statistical model must match the experiment design.
-- For tests, need adequate denominators and degrees of freedom
+The statistical model must match the experiment design.
 
+Building tests require considering variability of effects (mean squared errors and degrees of freedom of denominators).
+???
+
+The interactions depends on both the presence of replication to 
+estimate these effects and on the nature of the dependence (crossed/nested)
 
 ---
+
 
 class: title title-5
 # What is a Hasse diagram?
@@ -111,7 +103,9 @@ A graph in which every effect is a node
 - subscript degrees of freedom
 - lines joining variables show crossing/nesting relations and hierarchy
 
-Useful for balanced designs
+&gt; Degrees of freedom for a term `\(U\)` are found by starting with the superscript for `\(U\)` and subtracting out the degrees of freedom for all terms above `\(U\)`.
+
+This rule only applies for balanced designs.
 
 ---
 class: title title-5
@@ -134,24 +128,79 @@ From Oehlert (2001), Display 12.3
 
 ---
 class: title title-5
-# Degrees of freedom 
 
-&gt; Degrees of freedom for a term `\(U\)` are found by starting with the superscript for `\(U\)` and subtracting out the degrees of freedom for all terms above `\(U\)`.
+# Example: chocolate rating
 
+Example from L. Meier, adapted from Oehlert (2010)
+
+&gt; A group of 10 rural and 10 urban raters rated 4 different chocolate types. Every rater got to eat two samples from the same chocolate type in random order.
 
 ---
 layout: false
-name: within-design
-class: center middle section-title section-title-2
+name: within-design-mixed
+class: center middle section-title section-title-6
 
-# Two factors within-subjects designs
+# Within-subjects and mixed designs
 
 ---
+class: title title-6
+# Why use within-subject factors?
+
+- (+) can decompose variance (more power)
+- (+) fewer participants needed
+- (-) crossover effects
+- (-) more complicated
+- (-) assumptions about correlation structure
+
+---
+class: title title-6
+# Two-factor within design
 
 We observe `\(A \times B \times S\)`: each subject `\(S_i\)` gets assigned to every treatment pair `\(a_j \times b_k\)`.
 
+- `\(A\)` and `\(B\)` are crossed (interaction)
+- Hasse diagram (board work)
+
+---
+class: title title-6
+# Testing in within-designs
+
+Main-effect statistics are
+
+- `\(A\)`: `\(\textsf{MS}_A/\textsf{MS}_{AS}\)`
+- `\(B\)`: `\(\textsf{MS}_B/\textsf{MS}_{BS}\)`
+- `\(AB\)`: `\(\textsf{MS}_{AB}/\textsf{MS}_{ABS}\)`
+
+where `\(\textsf{MS}\)` is the mean squared error.
+
+The term `\(\textsf{MS}_{ABS}\)` is equivalent to residuals if there are no replications.
+
+???
+The error terms for any within-subject effect is the interaction with the subjects (recall rules).
+
+---
+class: title title-6
+# Analyzing contrasts in within-designs
+From Table 18.5 of Keppel and Wickens (2004)
+
+&gt; Any effect involving a contrast on a within-subject factor is tested against an error term that includes the interaction
+of that contrast with subjects. To calculate this error term, create a contrast variable by applying the contrast to each subject's data, then analyse these computed data as if they come from a simpler design.
+
+&gt; Any within-subject effect involving a portion of the data (e.g., a pairwise comparison between two levels of one factor), is tested against an error term derived exclusively from those data. To calculate this error term, simply extract these data and analyze them as if they come from a simpler design.
 
 
+???
+Watch out! Software may get the test statistic right, but not the degrees of freedom.
+
+Contrasts inherit degrees of freedom of their corresponding main effects.
+
+---
+class: title title-6
+# Two-factor mixed design
+
+We observe `\(A \times (B \times S)\)`: each subject `\(S_i\)` is nested in `\(A\)` and we see each of `\(b\)` treatments for `\(B\)`
+
+- Hasse diagram (board work)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
