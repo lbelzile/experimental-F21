@@ -20,9 +20,9 @@ slides: "11-slides"
 -   Hasse diagrams (board)
 -   Examples of within and mixed designs, including
     -   Singmann & Klauer (2011) ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html))
-    -   Lages et al. (2017) ([download code](content/11-mixed.R))
+    -   Lages et al. (2017) ([download code](/content/11-mixed.R))
     -   Analysis of data from Table 18.3 of Keppel & Wickens (2004) ([download code](content/11-two-factor_within-subject.R))
-    -   Curley et al. (2021+) ([download code](content/11-mixed.R))
+    -   Curley et al. (2021+) ([download code](/content/11-mixed.R))
     -   [Example of chocolat raters from Meier’s *ANOVA and Mixed Models: A Short Intro Using R*, Section 6.6.2](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html#example-chocolate-data)
 
 ## Slides
@@ -98,7 +98,7 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## Readings
 
--   [Chapter 12 (12.1 to 12.6) of Oehlert (2000)](http://users.stat.umn.edu/~gary/book/fcdae.pdf)
+-   (Chapter 12 (12.1 to 12.6) of Oehlert, 2000 )(http://users.stat.umn.edu/\~gary/book/fcdae.pdf)
 
 ## Complementary readings
 
