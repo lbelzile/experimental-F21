@@ -146,7 +146,27 @@ class: title title-5
 
 > Degrees of freedom for a term $U$ are found by starting with the superscript for $U$ and subtracting out the degrees of freedom for all terms above $U$.
 
+---
 
+Examples: 
+
+- Single factor within-subject: $A \times S$, measurements for every subjects of each level of $A$.
+- Two-factor within-subject: $A \times B \times S$, where every subject is assigned to $ab$ experimental factor combinations
+- Two-factor mixed design: $A \times (B \times S)$: same as above, but with $A$ fixed and $B$ random
+
+
+---
+
+# Example of within design: Curley et al. (in press)
+
+.small[
+
+> Two variables were manipulated within participants: (a) evidence anchor (strong-first versus weak-first); (b) verdict system (two- versus three-verdict systems). Total pre-trial bias score was used as a covariate in the analysis (this score is based on the PJAQ and is explained further in the Materials section). Participants were also given two vignettes (Vignette 1 and Vignette 2); thus, the vignette variable was included in the data analysis [...]
+
+> The dependent variable was the final belief of guilt score, which was measured on an accumulated scale from 0–14, with 0 representing no belief of guilt and 14 representing a total belief that the person is guilty
+
+
+]
 ---
 layout: false
 name: within-design
@@ -159,4 +179,5 @@ class: center middle section-title section-title-2
 We observe $A \times B \times S$: each subject $S_i$ gets assigned to every treatment pair $a_j \times b_k$.
 
 
+Note: sometimes, increase the number of subjects does not increase power for a given effect
 

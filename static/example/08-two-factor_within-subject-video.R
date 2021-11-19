@@ -1,10 +1,10 @@
-setwd("/home/lbelzile/Documents/website/experimental/static/data")
 library(tidyverse)
 library(lme4)
 library(lmerTest)
 library(emmeans)
 options(contrasts = c("contr.sum","contr.poly"))
-data <- read.table("KW_tab18p3.txt", header = TRUE) %>%
+url <- "https://edsm.rbind.io/data/KW_tab18p3.txt"
+data <- read.table(url, header = TRUE) %>%
    transmute(subject = factor(s),
              wordtype = factor(a),
              repetition = factor(b),
@@ -18,7 +18,6 @@ within <- afex::aov_ez(id = "subject",
              dv = "recall", 
              within = c("repetition","wordtype"), 
              data = data)
-
 # Maximal random effects: wordtype and repetition are crossed
 # Because we have repetitions 
 # (we see 4 repetitions of word type, 
@@ -100,8 +99,7 @@ within %>%
 #              within = c("repetition","wordtype"), 
 #              data = data, anova_table = list(es = "pes"))
 # effectsize::effectsize(within, generalized = TRUE)
-effectsize::eta_squared(within)
+effectsize::eta_squared(within, ci = FALSE)
 # Another option is to have "observed" variable (for blocking factors or
 # any condition that is not experimentally manipulated).
-
 # These are partial Rsquared
