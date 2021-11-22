@@ -22,8 +22,12 @@ car::leveneTest(resid(model) ~ Condition,
                 data = df)
 # We could use robust standard errors to account for heteroscedasticity
 car::Anova(model, type = 3, white.adjust = TRUE)
+# This only makes sense with equal variance
+effectsize::eta_squared(model)
+emmeans(model, specs = "Condition") %>%
+  contrast(method = "pairwise")
 
-# Or we could fit a model with different variance per group
+# Solution 2: we could fit a model with different variance per group
 model <- nlme::gls(Post ~ Condition + Prior,
           weights = nlme::varIdent(form = ~1 | Condition),
           data = df,
@@ -36,7 +40,7 @@ car::Anova(model, type = 3)
 emmeans(model, specs = "Condition", 
         mode = "df.error") %>%
   contrast(method = "pairwise")
-effectsize::eta_squared(model)
+
 car::Anova(model, type = 3) # sign difference between Consensus only and control
 etaSquared(model2_NO, type = 3) # get effect size, also small to medium, but smaller than h1
 get.ci.partial.eta.squared(10.583, 1, 571, conf.level = 0.90)
