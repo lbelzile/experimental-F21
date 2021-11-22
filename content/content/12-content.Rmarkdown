@@ -1,0 +1,62 @@
+---
+title: "Mediation and causal inference"
+linktitle: "12: Mediation and causal inference"
+date: "2021-11-21"
+start_date: "2021-11-22"
+end_date: "2021-11-26"
+menu:
+  content:
+    parent: Course content
+    weight: 12
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "12-slides"
+---
+
+<!--
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+source(here::here("R", "youtube-playlist.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "Hasse diagrams", "hasse-diagrams", FALSE,
+  "", "Within-subjects and mixed designs", "within-design-mixed", FALSE
+)
+```
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/11-slides.html")
+```
+
+-->
+
+<!--
+## Videos
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id)
+```
+-->
+
+## Readings
+
+- @Baron/Kenny:1986
+
+## Complementary readings
+
+- @Imai:2010
+- @Pearl:2016, Chapter 3
+
+## References

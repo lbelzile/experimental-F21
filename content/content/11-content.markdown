@@ -19,11 +19,12 @@ slides: "11-slides"
 
 -   Hasse diagrams (board)
 -   Examples of within and mixed designs, including
-    -   Singmann & Klauer (2011) ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html))
-    -   Lages et al. (2017) ([download code](/content/11-mixed.R))
-    -   Analysis of data from Table 18.3 of Keppel & Wickens (2004) ([download code](content/11-two-factor_within-subject.R))
-    -   Curley et al. (2021+) ([download code](/content/11-mixed.R))
     -   [Example of chocolat raters from Meier’s *ANOVA and Mixed Models: A Short Intro Using R*, Section 6.6.2](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html#example-chocolate-data)
+    -   Lages et al. (2017) ([download code](/content/11-mixed_b.R), [PDF of drawing](/content/Lages_Boyle_Jenkins-2017-Hasse_diagram.pdf))
+    -   Curley et al. (2021+) ([download code](/content/11-mixed_c.R))
+-   Additional examples not discussed in class
+    -   Singmann & Klauer (2011) ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html), [PDF of drawing](/content/Singmann_Klauer2011_E2-Hasse_diagram.pdf), [code](/content/11-mixed_a.R))
+    -   Analysis of data from Table 18.3 of Keppel & Wickens (2004) ([download code](content/11-two-factor_within-subject.R))
 
 ## Slides
 
@@ -98,26 +99,29 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## Readings
 
--   (Chapter 12 (12.1 to 12.6) of Oehlert, 2000 )(http://users.stat.umn.edu/\~gary/book/fcdae.pdf)
+-   [Chapter 12 (12.1 to 12.6) of Oehlert (2000)](http://users.stat.umn.edu/~gary/book/fcdae.pdf)
 
 ## Complementary readings
 
+-   <i class="fas fa-book"></i> Chapter 15 of Abdi et al. (2009)
 -   <i class="fas fa-book"></i> Chapters 18 and 19 of Keppel & Wickens (2004)
--   <i class="fas fa-book"></i> Chapters 17 and 18 of Dean et al. (2017)
+    <!--
+    - <i class="fas fa-book"></i> Chapters 17 and 18 of @Dean:2017 
+    -->
 
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
-<div id="ref-Curley:2021" class="csl-entry">
+<div id="ref-Abdi:2009" class="csl-entry">
 
-Curley, L. J., Murray, J., MacLean, R., Munro, J., Lages, M., Frumkin, L. A., Laybourn, P., & Brown, D. (2021+). Verdict spotting: Investigating the effects of juror bias, evidence anchors and verdict system in jurors. *Psychiatry, Psychology and Law*, 1–22. <https://doi.org/10.1080/13218719.2021.1904450>
+Abdi, H., Edelman, B., Valentin, D., & Dowling, W. J. (2009). *Experimental design and analysis for psychology*. Oxford University Press. <https://global.oup.com/academic/product/experimental-design-and-analysis-for-psychology-9780199299881?cc=ca&lang=en&#>
 
 </div>
 
-<div id="ref-Dean:2017" class="csl-entry">
+<div id="ref-Curley:2021" class="csl-entry">
 
-Dean, A., Voss, D., & Draguljić, D. (2017). *Design and analysis of experiments*. Springer. <https://www.springer.com/gp/book/9783319522487>
+Curley, L. J., Murray, J., MacLean, R., Munro, J., Lages, M., Frumkin, L. A., Laybourn, P., & Brown, D. (2021+). Verdict spotting: Investigating the effects of juror bias, evidence anchors and verdict system in jurors. *Psychiatry, Psychology and Law*, 1–22. <https://doi.org/10.1080/13218719.2021.1904450>
 
 </div>
 

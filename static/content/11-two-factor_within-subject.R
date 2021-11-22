@@ -41,8 +41,10 @@ afex_plot(within,
           mapping = c("shape", "color")) +
   theme_classic() + 
   theme(legend.position = "bottom")
-# Diagnostic plots
-lattice::qqmath(ranef(mixmod))
+# Diagnostic plots for normality
+# Normality of random effect terms
+lattice::qqmath(ranef(mixmod)) 
+# Normality of residual error
 car::qqPlot(resid(mixmod), id = FALSE, ylab = "residuals")
 
 # Contrast for the effect of repetition
@@ -51,28 +53,32 @@ car::qqPlot(resid(mixmod), id = FALSE, ylab = "residuals")
 # Testing overall trend (marginal)
 within %>% 
    emmeans(specs = "repetition") %>% 
-   contrast(method = list(trend = c(-3,-1,1,3)))
-# Testing differences in trends between word type
-within %>% 
-   emmeans(specs = "repetition", by = "wordtype") %>% 
-   contrast(method = "poly") %>%
-   joint_tests(by = "contrast") 
-# Watch out: the above degrees of freedom are correct F(2,7)
-# Contrast with mixmod
+   contrast(method = "poly")
 
-# To get these, we could compute manually a column response
-# with the contrast and run a one-way within-subject ANOVA
-# To get these results
+# To run more complicated tests, we need to simplify
+# the design and consider averaging
+# by manually creating a new database 
+# incorporating the contrast constraint.
+# To get these, we could compute manually 
+# a column response with the contrast and
+#  run a one-way within-subject ANOVA
 data_contrast <- data %>% 
   pivot_wider(names_from = repetition, 
               values_from = recall, 
               names_prefix = 'r') %>%
-  mutate(contrast = -3*r1 - r2 + r3 + 3*r4)
-model_contrast <- lmer(contrast ~ wordtype + (1 | subject),
-     data = data_contrast)
-emmeans(model_contrast, "wordtype") %>% joint_tests()
+  mutate(linear = -3*r1 - r2 + r3 + 3*r4)
 
-# Marginal analysis with A=a2 (wordtype)
+# Testing the equality of linear slopes
+mod_lineargroup <- afex::aov_ez(id = "subject",
+                    dv = "linear",
+                    within = "wordtype",
+                    data = data_contrast)
+anova(mod_lineargroup, correction = "none")
+# Testing equality of linear slopes
+anova(lmer(linear ~ wordtype + (1 | subject), 
+           data = data_contrast))
+
+# Marginal analysis within A=a2 (wordtype)
 simple_a2 <- afex::aov_ez(id = "subject", 
              dv = "recall", 
              within = "repetition", 

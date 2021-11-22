@@ -34,11 +34,14 @@ slide_details <- tibble::tribble(
 
 - Hasse diagrams (board)
 - Examples of within and mixed designs, including 
-   - @Singmann/Klauer:2011  ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html))
-   - @Lages:2017 ([download code](/content/11-mixed.R))
-   - Analysis of data from Table 18.3 of @Keppel/Wickens:2004 ([download code](content/11-two-factor_within-subject.R))
-   - @Curley:2021 ([download code](/content/11-mixed.R))
    - [Example of chocolat raters from Meier's *ANOVA and Mixed Models: A Short Intro Using R*, Section 6.6.2](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html#example-chocolate-data)
+   - @Lages:2017 ([download code](/content/11-mixed_b.R), [PDF of drawing](/content/Lages_Boyle_Jenkins-2017-Hasse_diagram.pdf))
+   - @Curley:2021 ([download code](/content/11-mixed_c.R))
+- Additional examples not discussed in class
+   - @Singmann/Klauer:2011  ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html), [PDF of drawing](/content/Singmann_Klauer2011_E2-Hasse_diagram.pdf), [code](/content/11-mixed_a.R))
+   - Analysis of data from Table 18.3 of @Keppel/Wickens:2004 ([download code](content/11-two-factor_within-subject.R))
+
+
 
 ## Slides
 
@@ -60,12 +63,14 @@ youtube_list(slide_details, playlist_id)
 
 ## Readings
 
-- [Chapter 12 (12.1 to 12.6) of @Oehlert:2010 ](http://users.stat.umn.edu/~gary/book/fcdae.pdf)
+- [Chapter 12 (12.1 to 12.6) of @Oehlert:2010](http://users.stat.umn.edu/~gary/book/fcdae.pdf)
 
 ## Complementary readings
 
-
+- <i class="fas fa-book"></i> Chapter 15 of @Abdi:2009
 - <i class="fas fa-book"></i> Chapters 18 and 19 of @Keppel/Wickens:2004
-- <i class="fas fa-book"></i> Chapters 17 and 18 of @Dean:2017
+<!--
+- <i class="fas fa-book"></i> Chapters 17 and 18 of @Dean:2017 
+-->
 
 ## References
