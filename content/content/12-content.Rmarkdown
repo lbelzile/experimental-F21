@@ -15,7 +15,7 @@ csl: "../../static/bib/apa.csl"
 slides: "12-slides"
 ---
 
-<!--
+
 ```{r slides-videos, echo=FALSE, include=FALSE}
 source(here::here("R", "slide-tabs.R"))
 source(here::here("R", "youtube-playlist.R"))
@@ -25,8 +25,9 @@ playlist_id <- ""
 slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
-  "", "Hasse diagrams", "hasse-diagrams", FALSE,
-  "", "Within-subjects and mixed designs", "within-design-mixed", FALSE
+  "_qs_1B4ySWY", "Directed acyclic graphs", "dag", FALSE,
+  "", "Causal mediation", "", FALSE,
+  "", "Baron and Kenny (1986)", "", FALSE,
 )
 ```
 
@@ -37,10 +38,9 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 `r blogdown::shortcode("slide-buttons")`
 
 ```{r show-slide-tabs, echo=FALSE, results="asis"}
-slide_tabs(slide_details, "/slides/11-slides.html")
+slide_tabs(slide_details, "/slides/12-slides.html")
 ```
 
--->
 
 <!--
 ## Videos
@@ -52,11 +52,24 @@ youtube_list(slide_details, playlist_id)
 
 ## Readings
 
+Andrew Heiss' course notes on directed acyclic graphs (DAG) and types of association. 
+  - Causal models ([video](https://www.youtube.com/watch?v=kJQuH3nssfI&list=PLS6tnpTr39sFVrHdTifzlyS9dsJjhEhsF) and [slides](https://evalf21.classes.andrewheiss.com/slides/04-slides.html#causal-models))
+  - Paths, doors, and adjustment ([video](https://www.youtube.com/watch?v=_qs_1B4ySWY) and [slides](https://evalf21.classes.andrewheiss.com/slides/04-slides.html#58))
+
+The structural equation modelling (SEM) approach to mediation
+
 - @Baron/Kenny:1986
+- @Zhao:2010
+
+The causal inference approach
+
+- @Pearl:2014
+- @Imai:2010
 
 ## Complementary readings
 
-- @Imai:2010
 - @Pearl:2016, Chapter 3
+- @Rohrer:2018
+
 
 ## References
