@@ -32,8 +32,26 @@ We consider Study 2 of @Bobak:2019; @Bobak:2019; see [paper](https://doi.org/10.
    - If there is a significant difference at the 5% level, perform pairwise tests with Tukey's pairwise multiplicity correction. Report the values and $t$-test statistics.
 3. Graphical representation: 
    - Create a plot of the average proportion of correct matches as a function of the color match. 
-   - Add one standard error bars around the mean. *Note: the standard error should be that of the response variable, so based on the total variance). You can use the `VarCorr` method to extract the estimated variance from an object fitted with `lmer`: if you saved the fitted object under `model`, then `print(VarCorr(model), comp = "Variance")` will print the variances.*
+   - Add one standard error bars around the mean. 
+   
+Note: the standard error should be that of the response variable, so based on the total variance). You can use the `VarCorr` method to extract the estimated variance from an object fitted with `lmer`: if you saved the fitted object under `model`, then `print(VarCorr(model), comp = "Variance")` will print the variances.*
 
+```{r var, eval = FALSE, echo = TRUE}
+# Suppose you have fitted a lmer model
+# Get the fitted means
+fmean <- predict(model,
+        newdata = tibble(color = unique(bobak$color),
+                         pnum = 999), 
+        # dummy id not found
+        allow.new.levels = TRUE)
+# Variance of random effect and residuals
+fvar <- as.data.frame(VarCorr(model, comp = "Variance"))$vcov
+# Use this data frame for the plot
+data_plot <- tibble::tibble(mean = fmean,
+               se = sqrt(sum(fvar)),
+               lower = fmean - se,
+               upper = fmean + se)
+```
 
 
 ## References

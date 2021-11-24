@@ -1,6 +1,8 @@
 library(tidyverse)
 url <- "https://edsm.rbind.io/data/Bobak2019S2.csv"
-bobak_full <- read.csv(url, header = TRUE)
+bobak_full <- read.csv(url, 
+                       header = TRUE,
+                       fileEncoding = "UTF-8-BOM")
 bobak <- bobak_full %>%
   select(pnum:diffmon) %>%
   pivot_longer(cols = starts_with("diff"),
