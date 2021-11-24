@@ -34,7 +34,9 @@ We consider Study 2 of Bobak et al. (2019); Bobak et al. (2019); see [paper](htt
     -   Create a plot of the average proportion of correct matches as a function of the color match.
     -   Add one standard error bars around the mean.
 
-Note: the standard error should be that of the response variable, so based on the total variance). You can use the `VarCorr` method to extract the estimated variance from an object fitted with `lmer`: if you saved the fitted object under `model`, then `print(VarCorr(model), comp = "Variance")` will print the variances.\*
+Note: the standard error should be that of the response variable, so based on the total variance. You can use the `VarCorr` method to extract the estimated variance from an object fitted with `lmer`: if you saved the fitted object under `model`, then `print(VarCorr(model), comp = "Variance")` will print the variances.
+
+The following code produces the plot:
 
 ``` r
 # Suppose you have fitted a lmer model
@@ -48,9 +50,19 @@ fmean <- predict(model,
 fvar <- as.data.frame(VarCorr(model, comp = "Variance"))$vcov
 # Use this data frame for the plot
 data_plot <- tibble::tibble(mean = fmean,
+               color = unique(bobak$color),
                se = sqrt(sum(fvar)),
                lower = fmean - se,
                upper = fmean + se)
+library(ggplot2)               
+ggplot(data = data_plot, 
+       mapping = aes(x = color, 
+                     y = fmean)) + 
+  geom_point() + 
+  geom_errorbar(aes(ymin = lower, 
+                    ymax = upper)) +
+  theme_classic() +
+  labs(x = "color match", y = "percentage of correct match")
 ```
 
 ## References
