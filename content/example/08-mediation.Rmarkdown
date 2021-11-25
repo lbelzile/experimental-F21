@@ -1,0 +1,216 @@
+---
+title: "Causal mediation"
+linktitle: "8. Causal mediation"
+date: "2021-11-25"
+menu:
+  example:
+    parent: Examples
+    weight: 8
+type: docs
+toc: true
+editor_options: 
+  chunk_output_type: console
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+---
+
+<!--
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "youtube-playlist.R"))
+playlist_id <- "PLUB8VZzxA8IvjcV7Yl-OW_9KI6f_2K5HY"
+slide_details <- tibble::tribble(
+~title, ~youtube_id,
+"Introduction", "SHhP_TfZGVM",
+"Interaction plots", "I63CNxonlow",
+"Marginal contrast and simple effects", "KLLBNQhD0rE",
+"More contrasts and interactions", "WIoxZZ4pvlE",
+"Effect size and power", "zBVX2RDjKUw"
+)
+
+```
+
+# Videos
+
+The code created in the video [can be downloaded here](/example/08-mediation-video.R).
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id, example = TRUE)
+```
+
+-->
+
+# Notebook
+
+The purpose of this example is twofold: first, we illustrate the Baron-Kenny approach (and generally the structural equation model approach to mediation under assumptions of no confounder or unmeasured variables with linear effects. The data are simulated from the postulated model, but serve to illustrate the skewness of the null distribution of Sobel's statistic and to illustrate the nonparametric bootstrap scheme used in place of the normal approximation.
+
+## Conceptual model
+
+```{r setup, include = FALSE}
+library(knitr)
+options(knitr.kable.NA = '')
+options(tidyverse.quiet = TRUE)
+library(tidyverse)
+library(dagitty)
+library(ggdag)
+set.seed(1124)
+```
+
+```{r dagmodel, eval = TRUE, echo = FALSE, fig.height=3, out.width="100%", fig.cap = "Directed acyclic graph of the linear mediation analysis assuming no confounders with treatment $X$ (e.g., an experimental factor), mediator $M$ and response $Y$.", cache = TRUE}
+
+dagify(
+  Y ~ X + M,
+  M ~ X,
+  coords = list(x = c(X = 1, Y = 3, M = 2),
+                y = c(X = 1, Y = 1, M = 2)),
+  exposure = "X",
+  outcome = "Y",
+  labels = c("X" = "experimental factor\ntreatment", "Y" = "response",
+             "M" = "mediator")
+) %>% 
+  tidy_dagitty() %>% 
+  node_status() %>% 
+  ggplot(aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_dag_edges() +
+  geom_dag_point(aes(color = status), size = 15) +
+  geom_dag_text(color = "white", size = 5) +
+  # geom_dag_label_repel(aes(label = label), 
+  #                      nudge_y = c(10,10,10),
+  #                      nudge_x = c(10,10,100)) +
+  scale_color_manual(values = c("#FF4136", "#0074D9"),
+                     na.value = "#7FDBFF") +
+  guides(color = "none") +
+  theme_dag()
+```
+
+The linear causal model assumed in,  e.g., @Baron/Kenny:1986, conditional on $X$ is of the form 
+
+\begin{align}
+(M \mid X) &= \mu_M + \alpha x + \varepsilon_M (\#eq:regM)\\
+(Y \mid X, M) &=  \mu_Y + \beta x + \gamma m + \varepsilon_Y (\#eq:regY)
+\end{align}
+from which it follows that 
+\begin{align}
+Y\mid X &= (\mu_Y + \gamma\mu_M) + (\beta + \alpha\gamma)\cdot X + (\gamma \varepsilon_M + \varepsilon_Y)\\
+&= \mu_Y' + \pi X + \varepsilon_Y' (\#eq:regYmarg)
+\end{align}
+
+@Pearl:2014 gives the example of encouragement design whereby the binary treatment $X$ stands for a new educational program, the mediator $M$ is the amount of homework and the response $Y$ is the student score. 
+
+This simplistic causal model suggest that we can estimate the total causal effect of $X$, labelled $\tau$, by running the linear regression \@ref(eq:regYmarg). In a completely randomized experimental design, there is no confounding affecting treatment $X$ so this strategy is valid.
+
+Baron and Kenny suggested for $X$ and $M$ continuous breaking down the task in three separate steps:
+
+1) fit a linear regression \@ref(eq:regM) of $M$ on $X$ to estimate $\alpha$
+2) fit a linear regression \@ref(eq:regYmarg) of $Y$ on $X$ to estimate $\tau$
+3) fit a linear regression \@ref(eq:regY) of $Y$ on $X$ and $M$ to estimate $\beta$ and $\gamma$.
+
+They then go to check that $\alpha, \delta, \gamma$ are non-zero by testing the null hypotheses $\mathscr{H}_0: \alpha=0$, $\mathscr{H}_0: \delta=0$ and $\mathscr{H}_0: \gamma=0$ against the two-sided alternatives.
+
+If $\alpha \gamma$ is non-zero (because the terms in the product aren't), then they consider building Sobel's statistic with the product of estimators $\alpha \beta$, which is equivalent under no unmeasured confounders to the difference between the total effect $\tau$ and the **natural direct effect** $\beta$.
+
+Sobel's statistic is 
+\begin{align}
+S &= \frac{\widehat{\alpha}\cdot\widehat{\gamma}}{\sqrt{\widehat{\gamma}^2\mathsf{Va}(\widehat{\alpha}) + \widehat{\alpha}^2\mathsf{Va}(\widehat{\gamma}) + \mathsf{Va}(\widehat{\gamma})\mathsf{Va}(\widehat{\alpha})}} 
+\end{align}
+
+where $\widehat{\alpha}$ and $\widehat{\gamma}$ are ordinary least squares estimators with the corresponding variance estimators appearing in the denominator.^[Sobel derived the asymptotic variance using a first-order Taylor series expansion assuming both $\alpha$ and $\gamma$ are non-zero (hence the tests!)] The Sobel's statistic $S$ is approximately standard normal in large samples, but the approximation is sometimes crude.
+
+To see this, let's generate data
+
+```{r fakedat, echo = TRUE, eval = TRUE, cache = TRUE}
+alpha <- 2
+beta <- 0.5
+gamma <- 0
+n <- 100 # sample size
+X <- rbinom(n = n, size = 1, prob = c(0.5, 0.5))
+M <- alpha*X + rnorm(n)
+Y <- beta*X + gamma*M + rnorm(n)
+# Function that takes response, 
+# treatment and mediator as inputs
+# and return Sobel's stat
+sobel <- function(data){
+  stopifnot(is.data.frame(data),
+            isTRUE(all(c("M","Y","X") %in% colnames(data))))
+  # Regress M on X
+  ols1 <- lm(M ~ X, data = data)
+  ols2 <- lm(Y ~ X + M, data = data)
+  ols3 <- lm(Y ~ X, data = data)
+  # Extract estimates and their variances
+  alpha_est <- coef(ols1)[2] # intercept, alpha
+  alpha_var <- diag(vcov(ols1))[2]
+  gamma_est <- coef(ols2)[3] # intercept, alpha
+  gamma_var <- diag(vcov(ols2))[3]
+  # Compute Sobel's stat
+  sobel_val <- alpha_est * gamma_est / sqrt(alpha_est^2 * gamma_var + gamma_est^2 * alpha_var + alpha_var * gamma_var)
+  c(estimate = alpha_est * gamma_est, 
+    stat = sobel_val)
+}
+```
+
+
+
+```{r sobelsimu, echo = FALSE, eval = TRUE, cache = TRUE, fig.cap = "Null distribution of Sobel's statistic against approximate asymptotic normal distribution with $\\alpha=0$, $\\gamma=0.1$ and Student(3) random errors."}
+gamma = 0.1;
+alpha = 0
+sobel_null <- matrix(0, nrow = 1e4, ncol = 2)
+for(i in seq_len(nrow(sobel_null))){
+  X <- rbinom(n = n, size = 1, prob = c(0.5, 0.5))
+  M <- alpha*X + rt(n, df = 3)
+  Y <- beta*X + gamma*M + rt(n, df = 3)
+  sobel_null[i,] <- sobel(data.frame(Y = Y, X = X, M = M))
+}
+ggplot(data = data.frame(stat = sobel_null[,2]),
+       aes(x = stat)) +
+  geom_histogram(aes(y = ..density..),
+                 bins = 30) + 
+  stat_function(fun = dnorm, 
+                n = 1001, 
+                col = "blue") + labs(x = "Sobel statistic")
+```
+
+If we knew exactly the model that generated $X$, $M$, $Y$ and the relations between them, we could simulate multiple datasets like in \@ref(fig:sobelsimu) and compared the test statistic we obtained with the simulation-based null distribution with $\alpha\gamma=0$. In practice we do not know the model that generated the data and furthermore we have a single dataset at hand.
+
+
+Nowadays, the asymptotic approximation (sometimes misnamed delta method^[The latter is the name of the method used to derive the denominator of Sobel's statistic.]) has fallen out of fashion among practitioners, who prefer the nonparametric bootstrap coupled with the percentile method. The latter is conceptually easy to understand:
+
+Repeat the following $B$ times:
+1) sample $n$ observations, i.e., a tuple ($X_i, M_i, Y_i$, from the original data **with replacement**.
+2) compute the natural indirect effect $\widehat{\alpha}\widehat{\gamma}$ on each simulated sample
+
+For a two-sided test at level $\alpha$, compute the $\alpha/2$ and $1-\alpha/2$ quantiles of the bootstrap statistics $\{\widehat{\alpha}_b\widehat{\gamma}_b\}_{b=1}^B$. If you have $\alpha=5$% and $B=1000$ bootstrap samples, the interval bounds are the 25th and 975th ordered observations.
+
+```{r bootstrap, echo = TRUE, eval = TRUE, cache = TRUE, fig.cap = "Bootstrap distribution of indirect effect with estimate and percentile 95% confidence intervals."}
+data <- data.frame(Y, X, M)
+n <- nrow(data)
+# Create a matrix to save statistics
+boot_stats <- matrix(0, nrow = 1e4, ncol = 2)
+# repeat B times
+for(b in seq_len(nrow(boot_stats))){
+  boot_samp <- data[sample.int(n = n, size = n, replace = TRUE),]
+  boot_stats[b,] <- sobel(boot_samp)
+}
+# Statistic on original data
+stat_ori <- sobel(data.frame(X = X, Y = Y, M = M))
+
+# Compute 95% confidence intervals for alpha*gamma
+# via percentile method
+#  (Efron & Tibshirani, 1994 S13.3)
+conf_interv <- quantile(boot_stats[,1], 
+                       probs = c(0.025, 0.975))
+# Plot distribution against data
+ggplot(data = data.frame(stat = boot_stats[,1]),
+       aes(x = stat)) +
+  geom_histogram(aes(y = ..density..),
+                 bins = 30) + 
+  geom_vline(
+    xintercept = c(conf_interv, stat_ori[1]),
+    color = "red") +
+  labs(x = "bootstrap statistic") +
+  theme_classic()
+```
+
+The nonparametric percentile bootstrap confidence interval for $\alpha\gamma$ is [`r round(conf_interv[1], 2)`, `r round(conf_interv[2], 2)`] and thus `r ifelse(conf_interv[1] > 0 | conf_interv[2] < 0, "we reject", "we fail to reject")` the null hypothesis of mediation $\mathscr{H}_0: \alpha \gamma=0$ due to lack of power.
+
+
+## References
