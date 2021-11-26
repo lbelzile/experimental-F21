@@ -138,11 +138,14 @@ sobel <- function(data){
   ols3 <- lm(Y ~ X, data = data)
   # Extract estimates and their variances
   alpha_est <- coef(ols1)[2] # intercept, alpha
-  alpha_var <- diag(vcov(ols1))[2]
-  gamma_est <- coef(ols2)[3] # intercept, alpha
-  gamma_var <- diag(vcov(ols2))[3]
+  alpha_var <- diag(vcov(ols1))[2] # var of gamma
+  gamma_est <- coef(ols2)[3] # intercept, beta, gamma
+  gamma_var <- diag(vcov(ols2))[3] # var of gamma
   # Compute Sobel's stat
-  sobel_val <- alpha_est * gamma_est / sqrt(alpha_est^2 * gamma_var + gamma_est^2 * alpha_var + alpha_var * gamma_var)
+  sobel_val <- alpha_est * gamma_est / 
+    sqrt(alpha_est^2 * gamma_var + gamma_est^2 * alpha_var +
+           alpha_var * gamma_var) 
+  # additional factor on last line sometimes omitted from denom
   c(estimate = alpha_est * gamma_est, 
     stat = sobel_val)
 }
@@ -154,10 +157,11 @@ sobel <- function(data){
 gamma = 0.1;
 alpha = 0
 sobel_null <- matrix(0, nrow = 1e4, ncol = 2)
+nsmall <- 20
 for(i in seq_len(nrow(sobel_null))){
-  X <- rbinom(n = n, size = 1, prob = c(0.5, 0.5))
-  M <- alpha*X + rt(n, df = 3)
-  Y <- beta*X + gamma*M + rt(n, df = 3)
+  X <- rbinom(n = nsmall, size = 1, prob = c(0.5, 0.5))
+  M <- alpha*X + rt(nsmall, df = 3)
+  Y <- beta*X + gamma*M + rt(nsmall, df = 3)
   sobel_null[i,] <- sobel(data.frame(Y = Y, X = X, M = M))
 }
 ggplot(data = data.frame(stat = sobel_null[,2]),
@@ -166,10 +170,11 @@ ggplot(data = data.frame(stat = sobel_null[,2]),
                  bins = 30) + 
   stat_function(fun = dnorm, 
                 n = 1001, 
-                col = "blue") + labs(x = "Sobel statistic")
+                col = "blue") + labs(x = "Sobel statistic") + 
+  theme_classic()
 ```
 
-If we knew exactly the model that generated $X$, $M$, $Y$ and the relations between them, we could simulate multiple datasets like in \@ref(fig:sobelsimu) and compared the test statistic we obtained with the simulation-based null distribution with $\alpha\gamma=0$. In practice we do not know the model that generated the data and furthermore we have a single dataset at hand.
+If we knew exactly the model that generated $X$, $M$, $Y$ and the relations between them, we could simulate multiple datasets like in \@ref(fig:sobelsimu) with $n=20$ observations and compared the test statistic we obtained with the simulation-based null distribution with $\alpha\gamma=0$. In practice we do not know the model that generated the data and furthermore we have a single dataset at hand.
 
 
 Nowadays, the asymptotic approximation (sometimes misnamed delta method^[The latter is the name of the method used to derive the denominator of Sobel's statistic.]) has fallen out of fashion among practitioners, who prefer the nonparametric bootstrap coupled with the percentile method. The latter is conceptually easy to understand:
