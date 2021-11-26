@@ -84,7 +84,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
-A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
+-   A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
 
 <!--
 ## Videos

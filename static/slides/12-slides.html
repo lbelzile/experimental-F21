@@ -4,7 +4,8 @@
     <title>Causal mediation</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-25" />
+    <meta name="date" content="2021-11-26" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view-0.2.6/tile-view.js"></script>
@@ -640,6 +641,13 @@ For binary treatment `\(X_i\)`
 Effect cannot be estimated directly in general, even with randomized experiments.
 ]
 ---
+# Examples of mediation
+
+Pearl (2014) discusses an encouragement design with a new education program `\(X\)` (say binary), `\(M\)` the amount of homework and the score on an exam as outcome `\(Y\)`
+
+
+
+---
 # Data generating mechanism
 
 Assume structural models 
@@ -667,7 +675,7 @@ M_x &amp;= f_M(x, U), \\ Y_x &amp;= f_Y(x, M_x, U),\\ Y_{x, m} &amp;= f_Y(x, m, 
 **Potential outcomes**: existence of hypothetical values for `\(Y(X)\)` 
 
 ]
---
+
 
 .box-3.large[(what-if?)]
 
@@ -728,14 +736,13 @@ Expected population change in response when the experimental factor changes from
 Counterfactual conditioning reflects a physical intervention, not mere (probabilistic) conditioning.
 ]
 
-Total effect is 
-`$$\mathsf{TE}(x, x^*) = \textsf{NDE}(x, x^*) - \textsf{NIE}(x^*, x)$$`
+Total effect is `\(\mathsf{TE}(x, x^*) = \textsf{NDE}(x, x^*) - \textsf{NIE}(x^*, x)\)`
 ???
 
 This formalizes the additive decomposition
 In linear systems, changing order amounts to flipping signs
 This definition works under temporal reversal and gives the correct answer (the regression-slope approach of the linear SEM does not)
----
+
 # Necessary and sufficiency of mediation
 From Pearl (2014):
 
@@ -743,8 +750,6 @@ From Pearl (2014):
 
 ---
 
-
----
 
 layout: false
 name: linear-sem
@@ -837,6 +842,8 @@ Note: many bootstraps! parametric, wild, sieve, block, etc. and many methods (ba
 ---
 # Example from Preacher and Hayes (2004)
 
+.small[
+
 &gt; Suppose an investigator is interested in the effects of a new cognitive therapy on life satisfaction after retirement.
 
 &gt;Residents of a retirement home diagnosed as clinically
@@ -853,6 +860,7 @@ The question is whether the cognitive therapy’s effect on life
 satisfaction is mediated by the positivity of their causal
 attributions of negative experiences. ”
 
+]
 ---
 # Defaults of linear SEM
 
@@ -861,9 +869,9 @@ attributions of negative experiences. ”
 .pull-left-wide[
 
 - Definitions contingent on model 
-  -(causal quantities have a meaning regardless of estimation method)
+   - (causal quantities have a meaning regardless of estimation method)
 - Linearity assumption not generalizable.
-  - effect constant over individuals/levels
+   - effect constant over individuals/levels
 
 Additional untestable assumption of uncorrelated disturbances (no unmeasured confounders).
 ]
@@ -882,6 +890,8 @@ Need assumptions to hold (and correct model!) to derive causal statements
  - *as-if* randomization assumption
  
 - Generalizations to interactions, multiple mediators, etc. should require careful acknowledgement of confounding.
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

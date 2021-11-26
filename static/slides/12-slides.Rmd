@@ -1031,7 +1031,7 @@ M_x &= f_M(x, U), \\ Y_x &= f_Y(x, M_x, U),\\ Y_{x, m} &= f_Y(x, m, U)
 **Potential outcomes**: existence of hypothetical values for $Y(X)$ 
 
 ]
---
+
 
 .box-3.large[(what-if?)]
 
@@ -1111,14 +1111,13 @@ Expected population change in response when the experimental factor changes from
 Counterfactual conditioning reflects a physical intervention, not mere (probabilistic) conditioning.
 ]
 
-Total effect is 
-$$\mathsf{TE}(x, x^*) = \textsf{NDE}(x, x^*) - \textsf{NIE}(x^*, x)$$
+Total effect is $\mathsf{TE}(x, x^*) = \textsf{NDE}(x, x^*) - \textsf{NIE}(x^*, x)$
 ???
 
 This formalizes the additive decomposition
 In linear systems, changing order amounts to flipping signs
 This definition works under temporal reversal and gives the correct answer (the regression-slope approach of the linear SEM does not)
----
+
 # Necessary and sufficiency of mediation
 From Pearl (2014):
 
@@ -1126,8 +1125,6 @@ From Pearl (2014):
 
 ---
 
-
----
 
 layout: false
 name: linear-sem
@@ -1220,6 +1217,8 @@ Note: many bootstraps! parametric, wild, sieve, block, etc. and many methods (ba
 ---
 # Example from Preacher and Hayes (2004)
 
+.small[
+
 > Suppose an investigator is interested in the effects of a new cognitive therapy on life satisfaction after retirement.
 
 >Residents of a retirement home diagnosed as clinically
@@ -1236,6 +1235,7 @@ The question is whether the cognitive therapy’s effect on life
 satisfaction is mediated by the positivity of their causal
 attributions of negative experiences. ”
 
+]
 ---
 # Defaults of linear SEM
 
@@ -1244,9 +1244,9 @@ attributions of negative experiences. ”
 .pull-left-wide[
 
 - Definitions contingent on model 
-  -(causal quantities have a meaning regardless of estimation method)
+   - (causal quantities have a meaning regardless of estimation method)
 - Linearity assumption not generalizable.
-  - effect constant over individuals/levels
+   - effect constant over individuals/levels
 
 Additional untestable assumption of uncorrelated disturbances (no unmeasured confounders).
 ]

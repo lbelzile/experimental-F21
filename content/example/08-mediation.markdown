@@ -100,11 +100,14 @@ sobel <- function(data){
   ols3 <- lm(Y ~ X, data = data)
   # Extract estimates and their variances
   alpha_est <- coef(ols1)[2] # intercept, alpha
-  alpha_var <- diag(vcov(ols1))[2]
-  gamma_est <- coef(ols2)[3] # intercept, alpha
-  gamma_var <- diag(vcov(ols2))[3]
+  alpha_var <- diag(vcov(ols1))[2] # var of gamma
+  gamma_est <- coef(ols2)[3] # intercept, beta, gamma
+  gamma_var <- diag(vcov(ols2))[3] # var of gamma
   # Compute Sobel's stat
-  sobel_val <- alpha_est * gamma_est / sqrt(alpha_est^2 * gamma_var + gamma_est^2 * alpha_var + alpha_var * gamma_var)
+  sobel_val <- alpha_est * gamma_est / 
+    sqrt(alpha_est^2 * gamma_var + gamma_est^2 * alpha_var +
+           alpha_var * gamma_var) 
+  # additional factor on last line sometimes omitted from denom
   c(estimate = alpha_est * gamma_est, 
     stat = sobel_val)
 }
@@ -119,7 +122,7 @@ Figure 2: Null distribution of Sobel’s statistic against approximate asymptoti
 
 </div>
 
-If we knew exactly the model that generated `\(X\)`, `\(M\)`, `\(Y\)` and the relations between them, we could simulate multiple datasets like in <a href="#fig:sobelsimu">2</a> and compared the test statistic we obtained with the simulation-based null distribution with `\(\alpha\gamma=0\)`. In practice we do not know the model that generated the data and furthermore we have a single dataset at hand.
+If we knew exactly the model that generated `\(X\)`, `\(M\)`, `\(Y\)` and the relations between them, we could simulate multiple datasets like in <a href="#fig:sobelsimu">2</a> with `\(n=20\)` observations and compared the test statistic we obtained with the simulation-based null distribution with `\(\alpha\gamma=0\)`. In practice we do not know the model that generated the data and furthermore we have a single dataset at hand.
 
 Nowadays, the asymptotic approximation (sometimes misnamed delta method[^2]) has fallen out of fashion among practitioners, who prefer the nonparametric bootstrap coupled with the percentile method. The latter is conceptually easy to understand:
 
@@ -161,14 +164,14 @@ ggplot(data = data.frame(stat = boot_stats[,1]),
 
 <div class="figure">
 
-<img src="/example/08-mediation_files/figure-html/bootstrap-1.png" alt="Bootstrap distribution of indirect effect with estimate and percentile 95% confidence intervals." width="672" />
+<img src="/example/08-mediation_files/figure-html/bootstrap-1.png" alt="Bootstrap distribution of indirect effect with estimate and percentile 95% confidence intervals (vertical red lines)." width="672" />
 <p class="caption">
-Figure 3: Bootstrap distribution of indirect effect with estimate and percentile 95% confidence intervals.
+Figure 3: Bootstrap distribution of indirect effect with estimate and percentile 95% confidence intervals (vertical red lines).
 </p>
 
 </div>
 
-The nonparametric percentile bootstrap confidence interval for `\(\alpha\gamma\)` is \[-0.12, 0.14\] and thus we fail to reject the null hypothesis of mediation `\(\mathscr{H}_0: \alpha \gamma=0\)` due to lack of power.
+The nonparametric percentile bootstrap confidence interval for `\(\alpha\gamma\)` is \[-0.61, 0.24\] and thus we fail to reject the null hypothesis of mediation `\(\mathscr{H}_0: \alpha \gamma=0\)` due to lack of power.
 
 ## References
 

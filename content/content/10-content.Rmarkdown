@@ -41,7 +41,7 @@ The slides for today's lesson are available online as an HTML file. Use the butt
 slide_tabs(slide_details, "/slides/10-slides.html")
 ```
 
-A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
+- A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
 
 <!--
 ## Videos

@@ -1,5 +1,5 @@
 ---
-title: "Mediation and causal inference"
+title: "Mediation analysis and causal inference"
 linktitle: "12: Mediation and causal inference"
 date: "2021-11-21"
 start_date: "2021-11-22"
@@ -32,7 +32,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 <a class="nav-link" id="causal-mediation-tab" data-toggle="tab" href="#causal-mediation" role="tab" aria-controls="causal-mediation" aria-selected="false">Causal mediation</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" id="baron-and-kenny-1986-tab" data-toggle="tab" href="#baron-and-kenny-1986" role="tab" aria-controls="baron-and-kenny-1986" aria-selected="false">Baron and Kenny (1986)</a>
+<a class="nav-link" id="linear-sem-and-mediation-tab" data-toggle="tab" href="#linear-sem-and-mediation" role="tab" aria-controls="linear-sem-and-mediation" aria-selected="false">Linear SEM and mediation</a>
 </li>
 </ul>
 
@@ -64,18 +64,18 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/12-slides.html#">
+<iframe class="embed-responsive-item" src="/slides/12-slides.html#causal-mediation">
 </iframe>
 
 </div>
 
 </div>
 
-<div id="baron-and-kenny-1986" class="tab-pane fade" role="tabpanel" aria-labelledby="baron-and-kenny-1986-tab">
+<div id="linear-sem-and-mediation" class="tab-pane fade" role="tabpanel" aria-labelledby="linear-sem-and-mediation-tab">
 
 <div class="embed-responsive embed-responsive-16by9">
 
-<iframe class="embed-responsive-item" src="/slides/12-slides.html#">
+<iframe class="embed-responsive-item" src="/slides/12-slides.html#linear-sem">
 </iframe>
 
 </div>
@@ -92,7 +92,7 @@ Videos for each section of the lecture are [available at this YouTube playlist](
 - [Introduction](https://www.youtube.com/watch?v=&list=)
 - [Directed acyclic graphs](https://www.youtube.com/watch?v=_qs_1B4ySWY&list=)
 - [Causal mediation](https://www.youtube.com/watch?v=&list=)
-- [Baron and Kenny (1986)](https://www.youtube.com/watch?v=&list=)
+- [Linear SEM and mediation](https://www.youtube.com/watch?v=&list=)
 
 You can also watch the playlist (and skip around to different sections) here:
 
@@ -121,6 +121,10 @@ The causal inference approach
 
 -   Pearl et al. (2016), Chapter 3
 -   Rohrer (2018)
+
+## In-class
+
+-   [Code for the examples using the `mediation` package](/content/12-slides.R)
 
 ## References
 

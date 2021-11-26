@@ -185,7 +185,7 @@ Repeat the following $B$ times:
 
 For a two-sided test at level $\alpha$, compute the $\alpha/2$ and $1-\alpha/2$ quantiles of the bootstrap statistics $\{\widehat{\alpha}_b\widehat{\gamma}_b\}_{b=1}^B$. If you have $\alpha=5$% and $B=1000$ bootstrap samples, the interval bounds are the 25th and 975th ordered observations.
 
-```{r bootstrap, echo = TRUE, eval = TRUE, cache = TRUE, fig.cap = "Bootstrap distribution of indirect effect with estimate and percentile 95% confidence intervals."}
+```{r bootstrap, echo = TRUE, eval = TRUE, cache = TRUE, fig.cap = "Bootstrap distribution of indirect effect with estimate and percentile 95% confidence intervals (vertical red lines)."}
 data <- data.frame(Y, X, M)
 n <- nrow(data)
 # Create a matrix to save statistics

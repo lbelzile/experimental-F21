@@ -1,5 +1,5 @@
 ---
-title: "Mediation and causal inference"
+title: "Mediation analysis and causal inference"
 linktitle: "12: Mediation and causal inference"
 date: "2021-11-21"
 start_date: "2021-11-22"
@@ -26,8 +26,8 @@ slide_details <- tibble::tribble(
   ~youtube_id,   ~title, ~slide, ~active,
   "", "Introduction", "1", TRUE,
   "_qs_1B4ySWY", "Directed acyclic graphs", "dag", FALSE,
-  "", "Causal mediation", "", FALSE,
-  "", "Baron and Kenny (1986)", "", FALSE,
+  "", "Causal mediation", "causal-mediation", FALSE,
+  "", "Linear SEM and mediation", "linear-sem", FALSE,
 )
 ```
 
@@ -70,6 +70,11 @@ The causal inference approach
 
 - @Pearl:2016, Chapter 3
 - @Rohrer:2018
+
+## In-class
+
+- [Code for the examples using the `mediation` package](/content/12-slides.R)
+
 
 
 ## References
