@@ -45,7 +45,7 @@ You may (and should!) work together on the problem sets, but *you must turn in y
 
 ## Final project
 
-For your final project, you will perform a critical review of an **unpublished** paper (i.e., preprint) in your field containing an experiment and which uses one of the statistical techniques covered in class. You will pay particular attention to reproducibility, readability and the correctness of the analysis, discussing points of improvement, statistical fallacies. This will help you develop skills for efficient peer-review of the statistical methodology section.
+For your final project, you will perform a critical review of a paper in your field containing an experiment and which uses one of the statistical techniques covered in class. You will pay particular attention to reproducibility, readability and the correctness of the analysis, discussing points of improvement, statistical fallacies. This will help you develop skills for efficient peer-review of the statistical methodology section.
 
 
 ## Exams

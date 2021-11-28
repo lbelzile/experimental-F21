@@ -4,7 +4,7 @@
     <title>Causal mediation</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-27" />
+    <meta name="date" content="2021-11-28" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -827,12 +827,15 @@ compute the `\(\alpha/2\)` and `\(1-\alpha/2\)` empirical quantiles.
 
 ]
 .pull-right[
-.box-inv-3[_p_-value]
+.box-inv-3[Two-sided _p_-value]
 
-Compute the sample proportion of bootstrap statistics `\(S^{(1)}, \ldots, S^{(B)}\)` that are more 'extreme' than `\(S\)` 
+Compute the sample proportion of bootstrap statistics `\(S^{(1)}, \ldots, S^{(B)}\)` that are larger/smaller than zero. 
 
-`$$\frac{1}{B}\sum_{b=1}^B \mathsf{1}(|S^{(b)}| &gt; |S|)$$`
+If $S^{(M)} &lt; 0 \leq S^{(M+1)}$$ for `\(1 \leq M \leq B\)`.
 
+$$p = $2\min\{M/B, 1-M/B\}$$
+
+and zero otherwise
 ]
 
 

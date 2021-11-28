@@ -23,8 +23,8 @@ We consider Experiment 3 of Stekelenburg et al. (2021); ([download paper](https:
 1.  What is the purpose of collecting demographic information if it’s not used for the testing procedure?
 2.  Have a quick look at the exclusion guidelines in the [preregistration](https://osf.io/4w9tq). Do they make sense? think about other potential criteria that could have been listed.
 3.  The author proceed with splitting the data set in three group for each pairwise comparisons in turn, corresponding to the different hypotheses (circa lines 499-533 of the [script](https://osf.io/4yatk/download)). Why might this approach be suboptimal relative to the one that consists in fitting a model to the three categories and proceeding later with computing pairwise differences and contrasts?
-4.  Test the assumptions of (1) equal variance per experimental condition and (2) proper randomization based on `Prior` scores.
-5.  Compute the difference in posterior belief between Boost+ and consensus only conditions. Report the sample average and standard deviation estimates of each group, the test statistic `\(F\)` (or `\(t\)`), the proportion of variance `\(\eta^2_p\)` with a 90% confidence interval and Cohen’s `\(d\)`. Do these measures agree with those of the paper?
+4.  Compute the difference in posterior belief between Boost+ and consensus only conditions assuming **equal variance** like in the paper. Report the sample average and standard deviation estimates of each group, the test statistic `\(F\)` (or `\(t\)`), the proportion of variance `\(\eta^2_p\)` with a 90% confidence interval and Cohen’s `\(d\)`. Do these measures agree with those of the paper?
+5.  Test the assumptions of (1) equal variance per experimental condition and (2) proper randomization based on `Prior` scores. If you fit the model with unequal variances per group and look at the pairwise difference between between Boost+ and consensus only condition, does your conclusion change?
 
 ## References
 
