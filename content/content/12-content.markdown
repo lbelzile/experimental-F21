@@ -15,6 +15,17 @@ csl: "../../static/bib/apa.csl"
 slides: "12-slides"
 ---
 
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+-   understanding the importance of listing potential confounders
+-   determining which variables to control for (confounders vs colliders)
+-   drawing a directed acyclic graph describing the interrelation between variables
+-   interpreting and performing a linear mediation analysis
+-   explaining the basics of the nonparametric bootstrap and the percentile method for confidence intervals
+-   explaining the differences between experimental and observational studies for studying mediation
+
 ## Slides
 
 The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.

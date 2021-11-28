@@ -81,41 +81,12 @@ class: title title-2
 
 # General recipe of hypothesis testing
 
-
-.box-2.sp-after-half.large[
-(1) Define variables
-]
-
-.box-2.sp-after-half.large[
-(2) Write down hypotheses
-]
-
----
-
-class: title title-2
-# General recipe of hypothesis testing
-
-
-.box-2.sp-after-half.large[
-(3) Choose/compute a test statistic
-]
-
-.box-2.sp-after-half.large[
-(4) Compare statistic to null distribution
-]
-
----
-
-class: title title-2
-
-# General recipe of hypothesis testing
-
-.box-2.sp-after-half.large[
-(5) Compute _p_-value / confidence interval
-]
-.box-2.sp-after-half.large[
-(6) Conclude (reject/fail to reject)
-]
+.box-2.small.sp-after-half[(1) Define variables]
+.box-2.small.sp-after-half[(2) Write down hypotheses]
+.box-2.small.sp-after-half[(3) Choose/compute a test statistic]
+.box-2.small.sp-after-half[(4) Compare statistic to null distribution]
+.box-2.small.sp-after-half[(5) Compute _p_-value / confidence interval]
+.box-2.small.sp-after-half[(6) Conclude (reject/fail to reject)]
 
 ---
 

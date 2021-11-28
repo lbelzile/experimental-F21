@@ -28,6 +28,14 @@ slide_details <- tibble::tribble(
 )
 ```
 
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+- Explaining the benefits of including concomitant variables to reduce error
+- Listing the four basic assumptions (linearity/correct mean model, equal variance, normality, independence of measurements)
+- Interpreting graphical tests to detect departures from the linear model assumptions 
+
 
 ## Slides
 

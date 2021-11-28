@@ -4,7 +4,7 @@
     <title>Within-subjects and mixed designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-19" />
+    <meta name="date" content="2021-11-27" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -217,6 +217,60 @@ class: title title-6
 
 
 ]
+
+---
+
+
+
+
+class: title title-6
+# Latin square
+
+A latin square is a incomplete blocked design with one treatment with `\(T\)` levels and two blocking factors with also `\(T\)` levels each.
+
+Experiment arranged so that experimental unit is assigned once to each row/column. Letters correspond to the different treatments: 
+
+| |  col 1 | col 2 | col 3 | col 4|
+|--|:---:|:---:|:---:|:---:|
+| **row 1** | `\(A\)` | `\(B\)` | `\(C\)` | `\(D\)` |
+| **row 2** | `\(B\)` | `\(C\)` | `\(D\)` | `\(A\)` |
+| **row 3** | `\(C\)` | `\(D\)` | `\(A\)` | `\(B\)` |
+| **row 4** | `\(D\)` | `\(A\)` | `\(B\)` | `\(C\)` |
+
+---
+
+class: title title-6
+# Example of a `\(4 \times 4\)` latin square
+
+
+The model takes the form
+`$$\underset{\text{response}}{Y_{ijk}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking (row)}}{\beta_j} + \underset{\text{blocking (col)}}{\gamma_k} + \underset{\text{error}}{\varepsilon_{ijk}}$$`
+
+--
+
+There are `\(1+3\cdot (T-1)\)` mean parameters to estimate, and **no interaction**.
+
+This systematic assignment is called **counterbalancing**. 
+
+The order of the treatment to row/treatment is randomized.
+
+--
+
+.box-inv-6.sp-after-half[
+
+Only look at treatment effect `\(\alpha_i\)`.
+
+]
+
+
+???
+Link with Sudokus!
+
+- This is a very efficient design, but degrees of freedom of residuals tend to be low.
+- Can have replications.
+- The figure shown is one of many possible latin squares (we can permute rows and columns)
+- Treatment is randomly allocated
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

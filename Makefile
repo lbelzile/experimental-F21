@@ -6,24 +6,27 @@ all: build pdf_slides
 
 
 # Slides to PDF -----------------------------------------------------------
-# TO_PDF = $(wildcard static/slides/*.html)
-# PDF_TARGETS_FULL = $(addsuffix .pdf,$(basename $(TO_PDF)))
-# PDF_TARGETS = $(filter-out static/slides/14-slides.pdf, $(PDF_TARGETS_FULL))
+TO_PDF = $(wildcard static/slides/*.Rmd)
+PDF_TARGETS = $(addsuffix .pdf, $(basename $(TO_PDF)))
 
-#static/slides/%.pdf: static/slides/%.html
-#	Rscript -e "xaringanBuilder::build_pdf("blogdown::build_site(build_rmd = blogdown::filter_md5sum)" $@
+# Compile slides
 
-#pdf_slides: $(PDF_TARGETS)
+static/slides/%.pdf: static/slides/%.Rmd
+	Rscript -e 'xaringanBuilder::build_pdf("$<", complex_slides = TRUE, keep_intermediates = TRUE)'
+	
+pdf_slides: $(PDF_TARGETS)
 
 
 # Site building -----------------------------------------------------------
 clean:
 	rm -rf public/
 
+# Create CSS
 static/slides/css/ath-slides.css:
 	sass static/slides/css/ath-slides.scss > static/slides/css/ath-slides.css
 
-# build: 
+	
+# Build site
 build: static/slides/css/ath-slides.css pdf_slides
 	Rscript -e "blogdown::build_site(build_rmd = blogdown::filter_md5sum)"
 

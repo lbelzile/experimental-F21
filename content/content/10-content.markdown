@@ -15,6 +15,15 @@ csl: "../../static/bib/apa.csl"
 slides: "10-slides"
 ---
 
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+-   Listing the benefits and disadvantages of repeated measure designs
+-   Determining which factors are crossed and nested
+-   Correctly setting up a mixed model
+-   Interpreting the results of the sphericity test and proceeding with adjustments if necessary
+
 ## Slides
 
 The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
@@ -84,7 +93,7 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 
 </div>
 
--   A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
+A script containing the **R** code generated in the slides can be [downloaded here](/content/10-slides.R)
 
 <!--
 ## Videos

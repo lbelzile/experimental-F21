@@ -4,7 +4,7 @@
 library(mediation)
 set.seed(1234)
 url <- "https://edsm.rbind.io/data/mediator.csv"
-mediator <- read.csv(mediator, 
+mediator <- read.csv(url, 
                      header = TRUE, 
                      stringsAsFactors = TRUE)
 # Response (y): satis

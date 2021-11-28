@@ -4,7 +4,7 @@
     <title>Two-way designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-26" />
+    <meta name="date" content="2021-11-27" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -631,168 +631,6 @@ class: title title-5
 ]
 
 
-
-.box-inv-5.sp-before[
-Factors are crossed, replicates are nested within `\(AB\)` groups
-]
-
----
-class: title title-5
-# Example: Fiber strength
-
-We consider a `\(5 \times 3\)` factorial design (no interaction term).
-
-Consider five levels of application of potash
-
-- `\(T_1=36\)`, `\(T_2=54\)`, `\(T_3=72\)`, `\(T_4=108\)` and `\(T_5=144\)` lb K&lt;sub&gt;2&lt;/sub&gt;O per acre, applied to a cotton crop. 
-
-The response is a measure of single-fiber strength, an average of a number of tests on the cotton from each plot.
-
-There were three blocks each containing five plots.
-
----
-class: title title-5
-# Data on fiber strength
-
-.pull-left[
-
-&lt;table&gt;
-&lt;caption&gt;Reordered data&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; block &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T4 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T5 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; block 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.62 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.76 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.46 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; block 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8.15 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.73 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.57 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.68 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; block 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.93 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.87 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.74 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.80 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.21 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-]
-
-.pull-right[
-
-&lt;table&gt;
-&lt;caption&gt;Residuals&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; block &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T4 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; T5 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; block 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -0.14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.18 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -0.25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.10 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; block 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.05 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -0.01 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -0.12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -0.05 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; block 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.09 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -0.17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; -0.23 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-
-]
-
-
-
-???
-From Cox (1958) Planning of experiments
-
-Sources of variability:
- - cultivation and harvesting of the crop
- - selection of fibers for the test
- - strength testing
- 
----
-class: title title-5
-# Analysis of variance table
-
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; sum of squares &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; F &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; p-value &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; treatment &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.732 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.192 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.040 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; block &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.097 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.112 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.375 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Residuals &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.349 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
 ---
 class: title title-5
 # Some pending questions
@@ -853,11 +691,11 @@ class: title title-6
 # Partial effect size (variance)
 
 Effect size are often reported in terms of variability via the ratio
-`$$\frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{effect}} + \sigma^2_{\text{resid}}}.$$`
+`$$\eta^2_{\langle \text{effect} \rangle} = \frac{\sigma^2_{\text{effect}}}{\sigma^2_{\text{effect}} + \sigma^2_{\text{resid}}}.$$`
 
-- Both `\(\widehat{\eta}^2_{\langle \text{effect} \rangle}\)` and `\(\widehat{\omega}^2_{\langle \text{effect} \rangle}\)` are estimators of this quantity and obtained from the `\(F\)` statistic and degrees of freedom of the effect.
+- Both `\(\widehat{\eta}^2_{\langle \text{effect} \rangle}\)` (aka `\(\widehat{R}^2_{\langle \text{effect} \rangle}\)`) and `\(\widehat{\omega}^2_{\langle \text{effect} \rangle}\)` are estimators of this quantity and obtained from the `\(F\)` statistic and degrees of freedom of the effect.
 
-- `\(\widehat{\omega}^2_{\langle \text{effect} \rangle}\)` is less biased than `\(\eta^2_{\langle \text{effect} \rangle}\)`. 
+- `\(\widehat{\omega}^2_{\langle \text{effect} \rangle}\)` is less biased than `\(\widehat{\eta}^2_{\langle \text{effect} \rangle}\)`. 
 
 
 ---
@@ -879,7 +717,7 @@ The confidence intervals are based on the F distribution, by changing the non-ce
 class: title title-6
 # Converting `\(\omega^2\)` to Cohen's `\(f\)`
 
-Given the estimated `\(\widehat{\omega}^2_{\langle \text{effect} \rangle}\)`, convert it into an estimate of Cohen's partial `\(f^2_{\langle \text{effect} \rangle}\)` via
+Given an estimation of  `\(\eta^2_{\langle \text{effect} \rangle}\)`, convert it into an estimate of Cohen's partial `\(f^2_{\langle \text{effect} \rangle}\)`, e.g.,
 `$$\widehat{f}^2_{\langle \text{effect} \rangle} = \frac{\widehat{\omega}^2_{\langle \text{effect}}\rangle }{1-\widehat{\omega}^2_{\langle \text{effect}}\rangle }.$$`
 
 Note that `effectsize::cohens_f` returns `\(\widetilde{f}^2 = n^{-1}F_{\text{effect}}\text{df}_{\text{effect}}\)`, a transformation of `\(\widehat{\eta}^2_{\langle \text{effect}\rangle}\)`.
@@ -901,9 +739,6 @@ Example: if `a` and `b` denote the number of levels of each factor and `omega.sq
 fhat &lt;- sqrt(omega.sq/(1-omega.sq))
 WebPower::wp.kanova(power = 0.8, f = fhat, ndf = (a-1)*(b-1), ng = ab)
 ```
----
-class: title title-6
-# Illustration of the bias
 
 ---
 class: title title-6

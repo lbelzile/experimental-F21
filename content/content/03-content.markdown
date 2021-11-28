@@ -26,9 +26,10 @@ slides: "03-slides"
 
 At the end of the session, students should be capable of
 
--   understand the trade-off between power and level
--   interpret parameter estimates for a one-way analysis of variance with different parametrizations (average, constrasts, sum-to-zero)
--   set up specific contrasts for custom tests
+-   understanding the trade-off between power and level of a test
+-   interpreting the conclusions of tests for main effects or contrasts
+-   interpreting parameter estimates for a one-way analysis of variance with different parametrizations (average, constrasts, sum-to-zero)
+-   setting up specific contrasts for custom tests
 
 ## Readings
 
@@ -122,6 +123,8 @@ The slides for today’s lesson are available online as an HTML file. Use the bu
 </div>
 
 </div>
+
+The code for this session is provided in [this file](/content/03-slides.R)
 
 ## In-class
 

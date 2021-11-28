@@ -27,10 +27,11 @@ slides: "04-slides"
 
 At the end of the session, students should be capable of
 
--   list strategies to enhance reproducibility
--   determining the number of testsin a family that need to be corrected for
--   understand how to correct *p*-values to account for multiple testing
--   grasp the tradeoff between multiple testing and power
+-   listing strategies to enhance reproducibility
+-   determining the number of tests in a family that need to be corrected for
+-   understanding how to correct *p*-values to account for multiple testing
+-   listing multiplicity testing methods suitable depending on context
+-   grasping the tradeoff between multiple testing and power
 
 ## Readings
 

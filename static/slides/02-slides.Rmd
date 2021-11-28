@@ -124,7 +124,7 @@ class: title title-8
 
 # Sampling variability
 
-```{r sampvar, echo = FALSE, fig.width = 8, fig.height  = 3.5, cache = TRUE}
+```{r sampvar, echo = FALSE, eval = TRUE, fig.width = 8, fig.height  = 3.5, cache = TRUE}
 set.seed(1234)
 library(gganimate)
 nrep <- 10
@@ -145,8 +145,8 @@ ggplot(data = samp,
   theme(legend.position = "none") + 
   transition_states(
     rep,
-    transition_length = 8,
-    state_length = 1
+    transition_length = 2,
+    state_length = 8
   )
 ```
 

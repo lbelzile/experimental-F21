@@ -4,7 +4,7 @@
     <title>General factorial designs</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-25" />
+    <meta name="date" content="2021-11-27" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -169,15 +169,15 @@ Group units in sets as alike as possible.
 class: title title-3
 # Assignment to treatment
 
-.box-inv-3.sp-after-half[
+.box-inv-3.medium.sp-after-half[
 Divide subjects within each block
 ]
 
-.box-inv-3.sp-after-half[
+.box-inv-3.medium.sp-after-half[
 Randomly allocate to treatment within block
 ]
 
-.box-3.sp-after-half.medium[
+.box-3.sp-after-half[
 (stratified sampling)
 ]
 
@@ -344,7 +344,33 @@ class: title title-3
 
 ]
 
+
 ---
+class: title title-3
+# Effect sizes
+
+- With a design that only consists of experimental factors, use partial effect size 
+`$$\eta^2_{\langle \text{effect} \rangle} = \sigma^2_{\text{effect}} / (\sigma^2_{\text{effect}} + \sigma^2_{\text{res}})$$`
+- If there are only blocking factors and a single experimental factor, use total effect size 
+`$$\eta^2 =\sigma^2_{\text{effect}} / \sigma^2_{\text{total}}$$`
+
+---
+
+class: title title-3
+# Semipartial effect sizes
+If there is a mix, include variance of all blocking factors and interactions (only with effect!) in denominator.
+
+- E.g., if `\(A\)` is effect of interest, `\(B\)` is a blocking factor and `\(C\)` is another experimental factor, use
+`$$\eta_{\langle A \rangle}^2 = \frac{\sigma^2_A}{\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{res}}}.$$`
+
+.small[
+
+In **R**, use `effectsize::omega_squared(model, partial = TRUE, generalized = "blocking")` where `blocking` gets replaced with a vector containing the name of the blocking factors.
+
+]
+
+---
+
 layout: false
 name: factorial-designs
 class: center middle section-title section-title-4 animated fadeIn
@@ -458,6 +484,7 @@ What is the best brand of microwave popcorn?
 ---
 
 
+
 .panelset[
 .panel[.panel-name[Data cleaning]
 
@@ -488,7 +515,8 @@ anova_table &lt;- anova(model) # 'anova' is for balanced designs
 # except for quantile-quantile plot
 car::qqPlot(model, # points should be on straight line!
 	    id = FALSE, 
-	    ylab = 'studentized residuals')
+	    ylab = 'studentized residuals',
+	    xlab = "Student-t quantiles")
 ```
 ]
 
@@ -648,51 +676,6 @@ It may be useful not to consider some interactions if they are known or (strongl
 
 ---
 
-class: title title-4
-# Latin square
-
-A latin square is a blocked design with one treatment with `\(T\)` levels and two blocking factors with also `\(T\)` levels each.
-
-Experiment arranged so that treatment is assigned once to each row/column. Letters correspond to the different treatments: 
-
-| |  col 1 | col 2 | col 3 | col 4|
-|--|:---:|:---:|:---:|:---:|
-| **row 1** | `\(A\)` | `\(B\)` | `\(C\)` | `\(D\)` |
-| **row 2** | `\(B\)` | `\(C\)` | `\(D\)` | `\(A\)` |
-| **row 3** | `\(C\)` | `\(D\)` | `\(A\)` | `\(B\)` |
-| **row 4** | `\(D\)` | `\(A\)` | `\(B\)` | `\(C\)` |
-
----
-
-class: title title-4
-# Example of a `\(4 \times 4\)` latin square
-
-The model takes the form
-`$$\underset{\text{response}}{Y_{ijk}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking (row)}}{\beta_j} + \underset{\text{blocking (col)}}{\gamma_k} + \underset{\text{error}}{\varepsilon_{ijk}}$$`
-
---
-
-There are `\(1+3\cdot (T-1)\)` mean parameters to estimate, and **no interaction**.
-
---
-
-.box-inv-4.sp-after-half[
-
-Only look at treatment effect `\(\alpha_i\)`.
-
-]
-
-
-???
-Link with Sudokus!
-
-- This is a very efficient design, but degrees of freedom of residuals tend to be low.
-- Can have replications.
-- The figure shown is one of many possible latin squares (we can permute rows and columns)
-- Treatment is randomly allocated
-
----
-
 layout: false
 name: contrasts
 class: center middle section-title section-title-5 animated fadeIn
@@ -790,27 +773,6 @@ At level 99% with Tukey's method, compare all three times (4, 4.5 and 5 minutes)
 emm_popcorn_C &lt;- emmeans(model, specs = "time")
 pairs(emm_popcorn_C, adjust = "tukey", level = 0.99, infer = TRUE)
 ```
-
----
-class: title title-5
-# Semipartial effect sizes
-
-Normally, partial effect sizes are of the form  
-- if only experimental factors, `\(\sigma^2_{\text{effect}} / (\sigma^2_{\text{effect}} + \sigma^2_{\text{res}})\)` for the given `\(\text{effect}\)`
-- if only blocking factors, use total effect size `\(\sigma^2_{\text{effect}} / \sigma^2_{\text{total}}\)`
-- if a mix, include variance of all blocking factors and interactions (only with effect!) in denominator.
-
-If `\(A\)` is effect of interest, `\(B\)` is a blocking factor and `\(C\)` is another experimental factor, use
-`$$\text{semipartial } \omega_A^2 = \frac{\sigma^2_A}{\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{res}}}.$$`
-
----
-
-class: title title-5
-# Power for complex studies
-
-One can estimate (semi)partial effects and proceed as if you had a one-way ANOVA by specifying the missing ingredients.
-
-- In more general settings, it may be easier to simulate from the fitted model directly and calculate the power as you change the number of observations per group.
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

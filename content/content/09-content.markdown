@@ -15,6 +15,14 @@ csl: "../../static/bib/apa.csl"
 slides: "09-slides"
 ---
 
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+-   Explaining the benefits of including concomitant variables to reduce error
+-   Listing the four basic assumptions (linearity/correct mean model, equal variance, normality, independence of measurements)
+-   Interpreting graphical tests to detect departures from the linear model assumptions
+
 ## Slides
 
 The slides for today’s lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.

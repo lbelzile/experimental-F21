@@ -122,6 +122,8 @@ contrasts_res <-
                     method = contrast_specif)
 # Obtain confidence intervals instead of p-values
 confint(contrasts_res)
+# Adjusted with Scheffe's method
+
 # Compare with adjusted intervals
 confint(contrasts_res, adjust = "bonferroni")
 
@@ -158,14 +160,3 @@ with(data = arithmetic,
                      pool.sd = TRUE,
                      p.adjust.method = "holm")
 )
-
-TukeyHSD(aov(score ~ group, data = arithmetic))
-# Agricolae package
-tukey_arithmetic <- agricolae::HSD.test(mod_param1, trt = "group")
-scheffe_arithmetic <- agricolae::scheffe.test(mod_param1, trt = "group")
-
-# Alternative: give a vector of p-values and a method
-# can also use n (n>p) if you are only 
-# passing the smallest p-values
-p.adjust(p = pvalues, method = "holm")
-

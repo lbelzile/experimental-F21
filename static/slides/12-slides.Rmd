@@ -183,7 +183,7 @@ dagify(
 .box-inv-2.sp-after-half[Location]&ensp;.box-inv-2.sp-after-half[Ability]&ensp;.box-inv-2.sp-after-half[Demographics]
 ]
 .center.float-left.sp-after-half[
-.box-inv-2.sp-after-half[Socioeonomic status]&ensp;.box-inv-2.sp-after-half[Year of birth]
+.box-inv-2.sp-after-half[Socioeconomic status]&ensp;.box-inv-2.sp-after-half[Year of birth]
 ]
 .center.float-left[
 .box-inv-2.sp-after-half[Compulsory schooling laws]&ensp;.box-inv-2.sp-after-half[Job connections]

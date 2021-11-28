@@ -39,11 +39,12 @@ slide_details <- tibble::tribble(
 
 At the end of the session, students should be capable of
 
-- use randomized block designs to reduce the error
-- list under which circumstances blocking is adequate
-- interpret a factorial design
-- correctly parametrize and interpret a three-way analysis of variance model
-- correctly specify hypothesis of interest and tests for interactions
+- using randomized block designs to reduce the error
+- listing under which circumstances blocking is adequate
+- interpreting a factorial design
+- correctly parametrizing and interpreting a three-way analysis of variance model
+- correctly specifying custom contrasts and tests for interactions
+- choosing whether it is adequate to marginalize over a factor
 
 
 

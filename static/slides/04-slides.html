@@ -4,7 +4,7 @@
     <title>Multiple testing and model assumptions</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-10-16" />
+    <meta name="date" content="2021-11-27" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -144,7 +144,7 @@ class: title title-2
 
 # Motivation
 
-- If we do `\(m\)` independent comparisons, each
+- If we do `\(m\)` **independent** comparisons, each
 one at the level `\(\alpha\)`, the probability of making at least one type I error, say `\(\alpha^{\star}\)`, is
 
 \begin{align}\alpha^{\star} &amp;= 1 – \text{probability of making no type I error} \\\ &amp;= 1- (1-\alpha)^m\end{align}
@@ -241,7 +241,7 @@ class: title title-2
 # Bonferroni's procedure
 
 Consider a family of `\(m\)` hypothesis tests and perform each test at level `\(\alpha/m\)`.
-- reject i$th null `\(\mathscr{H}_{i0}\)` if the associated _p_-value `\(p_i \leq \alpha/m\)`.
+- reject `\(i\)`th null `\(\mathscr{H}_{i0}\)` if the associated _p_-value `\(p_i \leq \alpha/m\)`.
 - build confidence intervals similarly with `\(1-\alpha/m\)` quantiles.
 
 If the (raw) `\(p\)`-values are reported, reject `\(\mathscr{H}_{0i}\)` if `\(m \times p_i \geq \alpha\)` (i.e., multiply reported `\(p\)`-values by `\(m\)`)
@@ -266,7 +266,7 @@ associated to null hypothesis `\(\mathscr{H}_{0(1)}, \ldots, \mathscr{H}_{0(m)}\
 
 Coupling Holm's method with Bonferroni's procedure: compare `\(p_{(1)}\)` to `\(\alpha_{(1)} = \alpha/m\)`, `\(p_{(2)}\)` to `\(\alpha_{(2)}=\alpha/(m-1)\)`, etc.
 
-.box-inv-2.sp-after-half.medium[
+.box-inv-2.sp-after-half[
 Holm-Bonferroni procedure is **always** more powerful than Bonferroni
 ]
 
@@ -352,19 +352,17 @@ Any procedure that controls the per-family error rate thus also controls the fam
 ---
 
 class: title title-2
-# Methods dedicated for one-way ANOVA
+# Dedicated methods for ANOVA
 
-Described in Dean, Voss and Draguljić (2017) in more details. 
-
-Specialized to the one-way ANOVA setting
-
-All methods assume (require) equal variance and independent observations.
+All methods valid with equal group variances and independent observations.
 
 .small[
 - **Tukey**'s honestly significant difference (HSD) method: to compare (all) pairwise differences between subgroups, based on the largest possible pairwise mean differences, with extensions for unbalanced samples.
 - **Scheffé**'s method: applies to any contrast (properties depends on sample size `\(n\)` and number of groups `\(K\)`, not the number of test). Better than Bonferroni if `\(m\)` is large. Can be used for any design, but not powerful.
 - **Dunnett**'s method: only for all pairwise contrasts relative to a specific baseline (control).
 ]
+
+.small[Described in Dean, Voss and Draguljić (2017) in more details. ]
 
 ---
 class: title title-2
@@ -377,17 +375,17 @@ Proceed only if there is a significant difference between groups, i.e. if we rej
 
 With `\(K=5\)` groups and `\(n=9\)` individuals per group (`arithmetic` example), critical value for two-sided test of zero difference with standardized `\(t\)`-test statistic and `\(\alpha=5\)`% are
 
-- Scheffé's (all contrasts): 3.229 (`agricolae::scheffe.test`)
-- Tukey's (all pairwise differences): 2.856 (`TukeyHSD`, `agricolae::HSD.test`)
-- Dunnett's (difference to baseline): 2.543 (`DescTools::DunnettTest`)
+- Scheffé's (all contrasts): 3.229
+- Tukey's (all pairwise differences): 2.856 
+- Dunnett's (difference to baseline): 2.543 
 - unadjusted Student's `\(t\)`-distribution: 2.021
 
 ???
 
 These were derived from the output of the function, sometimes by reverse-engineering.
-
-
-
+`agricolae::scheffe.test`
+`TukeyHSD`, `agricolae::HSD.test`
+`DescTools::DunnettTest`
 ---
 
 class: title title-2
@@ -503,7 +501,7 @@ list of principles](https://doi.org/10.1080/00031305.2016.1154108) guiding (mis)
 
 &gt; (2) _P_-values do not measure the probability that the studied hypothesis is true
 
-&gt; (3) Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.
+&gt; (3) Scientific conclusions and business or policy decisions should not be based only on whether a _p_-value passes a specific threshold.
 
 &gt; (4) _P_-values and related analyses should not be reported selectively
 

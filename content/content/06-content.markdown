@@ -18,7 +18,6 @@ slides: "06-slides"
 ## Content
 
 -   Two way designs
--   Blocking factor
 -   Interactions
 -   Power, effect size and contrasts for two way designs
 
@@ -31,7 +30,6 @@ At the end of the session, students should be capable of
 -   test whether an interaction term is significant
 -   compute (partial) effect sizes in **R**
 -   estimate the sample size needed for a two way study
--   explain the benefit of blocking factors and concomitant variables
 -   correctly report findings for a two-way analysis of variance
 
 ## Readings

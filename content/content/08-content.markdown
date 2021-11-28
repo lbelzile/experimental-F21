@@ -19,9 +19,9 @@ slides: "08-slides"
 
 At the end of the session, students should be capable of
 
--   Explain why balanced designs are prefered
--   Understand impacts of unbalanced designs on estimation and testing
--   fit a polynomial model for a single continuous factor and test for simpler alternatives
+-   Explaining why balanced designs are prefered when the variance are equal
+-   Understanding impacts of unbalanced designs on estimation and testing
+-   Fitting a polynomial model for a single continuous factor and testing for simpler alternatives (one way ANOVA)
 
 ## Slides
 
@@ -112,9 +112,9 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## In class
 
-We will do an overview of the topics covered so far in the course, followed by a Q&A period.
-We will play with unbalanced data using the Replication of Study 4a of Janiszewski & Uy (2008) by J. Chandler (Chandler, 2016)
-[(download data)](/data/Janizewski.csv)
+-   Overview of the topics covered so far in the course, followed by a Q&A period.
+-   Play with unbalanced data using the Replication of Study 4a of Janiszewski & Uy (2008) by J. Chandler (Chandler, 2016)
+    [(download data)](/data/Janizewski.csv)
 
 The final code can be [downloaded here](/content/08-unbalanced.R)
 

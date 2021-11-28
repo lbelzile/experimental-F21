@@ -176,15 +176,15 @@ Group units in sets as alike as possible.
 class: title title-3
 # Assignment to treatment
 
-.box-inv-3.sp-after-half[
+.box-inv-3.medium.sp-after-half[
 Divide subjects within each block
 ]
 
-.box-inv-3.sp-after-half[
+.box-inv-3.medium.sp-after-half[
 Randomly allocate to treatment within block
 ]
 
-.box-3.sp-after-half.medium[
+.box-3.sp-after-half[
 (stratified sampling)
 ]
 
@@ -310,7 +310,33 @@ knitr::kable(anova(model_raw),
 
 ]
 
+
 ---
+class: title title-3
+# Effect sizes
+
+- With a design that only consists of experimental factors, use partial effect size 
+$$\eta^2_{\langle \text{effect} \rangle} = \sigma^2_{\text{effect}} / (\sigma^2_{\text{effect}} + \sigma^2_{\text{res}})$$
+- If there are only blocking factors and a single experimental factor, use total effect size 
+$$\eta^2 =\sigma^2_{\text{effect}} / \sigma^2_{\text{total}}$$
+
+---
+
+class: title title-3
+# Semipartial effect sizes
+If there is a mix, include variance of all blocking factors and interactions (only with effect!) in denominator.
+
+- E.g., if $A$ is effect of interest, $B$ is a blocking factor and $C$ is another experimental factor, use
+$$\eta_{\langle A \rangle}^2 = \frac{\sigma^2_A}{\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{res}}}.$$
+
+.small[
+
+In **R**, use `effectsize::omega_squared(model, partial = TRUE, generalized = "blocking")` where `blocking` gets replaced with a vector containing the name of the blocking factors.
+
+]
+
+---
+
 layout: false
 name: factorial-designs
 class: center middle section-title section-title-4 animated fadeIn
@@ -438,6 +464,22 @@ What is the best brand of microwave popcorn?
 	
 ---
 
+```{r popcorn_pre, echo = FALSE, eval = TRUE}
+# Somehow there is an error messsage when knitting
+library(tidyverse) #load packages
+# Sum-to-zero parametrization
+options(contrasts = rep("contr.sum", 2))
+url <- "https://edsm.rbind.io/data/popcorn.txt"
+popcorn <- read.table(url, 
+                      header = TRUE, 
+                      stringsAsFactor = TRUE) %>% 
+   mutate(brand = factor(brand), 
+	  power = factor(power, labels = c("500","600")), 
+	  time = factor(time, labels = c("4","4.5","5")))
+model <- lm(percentage ~ brand*power*time, data = popcorn)
+# ANOVA table
+anova_table <- anova(model) # 'anova' is for balanced designs
+```
 
 .panelset[
 .panel[.panel-name[Data cleaning]
@@ -457,7 +499,7 @@ popcorn <- read.table(url,
 ]
 
 .panel[.panel-name[ANOVA]
-```{r popcorn_qqplot, echo = TRUE, fig.show = 'hide', fig.asp = 1, fig.retina = 3}
+```{r popcorn_qqplot, echo = TRUE, eval = FALSE}
 # Fit model with three-way interaction
 model <- lm(percentage ~ brand*power*time, data = popcorn)
 # ANOVA table
@@ -467,7 +509,8 @@ anova_table <- anova(model) # 'anova' is for balanced designs
 # except for quantile-quantile plot
 car::qqPlot(model, # points should be on straight line!
 	    id = FALSE, 
-	    ylab = 'studentized residuals')
+	    ylab = 'studentized residuals',
+	    xlab = "Student-t quantiles")
 
 ```
 ]
@@ -475,9 +518,11 @@ car::qqPlot(model, # points should be on straight line!
 .panel[.panel-name[QQ-plot]
 
 ```{r popcornplotqqplot, out.width = '35%', fig.retina = 3, fig.asp = 1,eval = TRUE, echo = FALSE}
+
 car::qqPlot(model, # points should be on straight line!
 	    id = FALSE, 
-	    ylab = 'studentized residuals')
+	    ylab = 'studentized residuals',
+	    xlab = "Student-t quantiles")
 ```
 
 All points fall roughly on a straight line.
@@ -485,7 +530,7 @@ All points fall roughly on a straight line.
 ]
 
 .panel[.panel-name[**R** code]
-```{r popcorn_plot, echo = TRUE, fig.show = 'hide', message = FALSE, fig.asp = 0.35, out.width = '60%'}
+```{r popcorn_plot, echo = TRUE, eval = FALSE, message = FALSE}
 popcorn %>% 
  group_by(brand, time, power) %>% 
  summarize(mean_percentage = mean(percentage)) %>% 
@@ -506,7 +551,7 @@ popcorn %>%
 
 .panel[.panel-name[Interaction plot]
 
-```{r popcornplot2, echo = FALSE, eval = TRUE, message = FALSE, fig.asp = 0.35, out.width = '80%'}
+```{r popcornplot2, echo = FALSE, eval = TRUE, message = FALSE, cache = TRUE, fig.asp = 0.35, out.width = '80%'}
 popcorn %>% 
  group_by(brand, time, power) %>% 
  summarize(mean_percentage = mean(percentage)) %>% 
@@ -575,51 +620,6 @@ The more levels and factors, the more parameters to estimate (and replications n
 It may be useful not to consider some interactions if they are known or (strongly) suspected not to be present
 
 - If important interactions are omitted from the model, biased estimates/output!
-
----
-
-class: title title-4
-# Latin square
-
-A latin square is a blocked design with one treatment with $T$ levels and two blocking factors with also $T$ levels each.
-
-Experiment arranged so that treatment is assigned once to each row/column. Letters correspond to the different treatments: 
-
-| |  col 1 | col 2 | col 3 | col 4|
-|--|:---:|:---:|:---:|:---:|
-| **row 1** | $A$ | $B$ | $C$ | $D$ |
-| **row 2** | $B$ | $C$ | $D$ | $A$ |
-| **row 3** | $C$ | $D$ | $A$ | $B$ |
-| **row 4** | $D$ | $A$ | $B$ | $C$ |
-
----
-
-class: title title-4
-# Example of a $4 \times 4$ latin square
-
-The model takes the form
-$$\underset{\text{response}}{Y_{ijk}} = \mu + \underset{\text{treatment}}{\alpha_i} + \underset{\text{blocking (row)}}{\beta_j} + \underset{\text{blocking (col)}}{\gamma_k} + \underset{\text{error}}{\varepsilon_{ijk}}$$
-
---
-
-There are $1+3\cdot (T-1)$ mean parameters to estimate, and **no interaction**.
-
---
-
-.box-inv-4.sp-after-half[
-
-Only look at treatment effect $\alpha_i$.
-
-]
-
-
-???
-Link with Sudokus!
-
-- This is a very efficient design, but degrees of freedom of residuals tend to be low.
-- Can have replications.
-- The figure shown is one of many possible latin squares (we can permute rows and columns)
-- Treatment is randomly allocated
 
 ---
 
@@ -727,25 +727,4 @@ emm_popcorn_C <- emmeans(model, specs = "time")
 pairs(emm_popcorn_C, adjust = "tukey", level = 0.99, infer = TRUE)
 
 ```
-
----
-class: title title-5
-# Semipartial effect sizes
-
-Normally, partial effect sizes are of the form  
-- if only experimental factors, $\sigma^2_{\text{effect}} / (\sigma^2_{\text{effect}} + \sigma^2_{\text{res}})$ for the given $\text{effect}$
-- if only blocking factors, use total effect size $\sigma^2_{\text{effect}} / \sigma^2_{\text{total}}$
-- if a mix, include variance of all blocking factors and interactions (only with effect!) in denominator.
-
-If $A$ is effect of interest, $B$ is a blocking factor and $C$ is another experimental factor, use
-$$\text{semipartial } \omega_A^2 = \frac{\sigma^2_A}{\sigma^2_A + \sigma^2_B + \sigma^2_{AB} + \sigma^2_{\text{res}}}.$$
-
----
-
-class: title title-5
-# Power for complex studies
-
-One can estimate (semi)partial effects and proceed as if you had a one-way ANOVA by specifying the missing ingredients.
-
-- In more general settings, it may be easier to simulate from the fitted model directly and calculate the power as you change the number of observations per group.
 

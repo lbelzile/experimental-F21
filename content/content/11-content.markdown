@@ -15,16 +15,12 @@ csl: "../../static/bib/apa.csl"
 slides: "11-slides"
 ---
 
-## In-class
+## Learning objectives
 
--   Hasse diagrams (board)
--   Examples of within and mixed designs, including
-    -   [Example of chocolat raters from Meier’s *ANOVA and Mixed Models: A Short Intro Using R*, Section 6.6.2](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html#example-chocolate-data)
-    -   Lages et al. (2017) ([download code](/content/11-mixed_b.R), [PDF of drawing](/content/Lages_Boyle_Jenkins-2017-Hasse_diagram.pdf))
-    -   Curley et al. (2021+) ([download code](/content/11-mixed_c.R))
--   Additional examples not discussed in class
-    -   Singmann & Klauer (2011) ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html), [PDF of drawing](/content/Singmann_Klauer2011_E2-Hasse_diagram.pdf), [code](/content/11-mixed_a.R))
-    -   Analysis of data from Table 18.3 of Keppel & Wickens (2004) ([download code](content/11-two-factor_within-subject.R))
+At the end of the session, students should be capable of
+
+-   Drawing a Hasse diagram to obtain the degrees of freedom and correctly set up the model in a mixed design
+-   Choosing the correct source of error in a design with random factors.
 
 ## Slides
 
@@ -108,6 +104,17 @@ You can also watch the playlist (and skip around to different sections) here:
     <!--
     - <i class="fas fa-book"></i> Chapters 17 and 18 of @Dean:2017 
     -->
+
+## In-class
+
+-   Hasse diagrams (board)
+-   Examples of within and mixed designs, including
+    -   [Example of chocolat raters from Meier’s *ANOVA and Mixed Models: A Short Intro Using R*, Section 6.6.2](https://stat.ethz.ch/~meier/teaching/anova/random-and-mixed-effects-models.html#example-chocolate-data)
+    -   Lages et al. (2017) ([download code](/content/11-mixed_b.R), [PDF of drawing](/content/Lages_Boyle_Jenkins-2017-Hasse_diagram.pdf))
+    -   Curley et al. (2021+) ([download code](/content/11-mixed_c.R)) - note that this is an incomplete design.
+-   Additional examples not discussed in class
+    -   Singmann & Klauer (2011) ([download paper](http://singmann.org/download/publications/Singmann%20&%20Klauer%20(2011).pdf), [vignette](https://mran.microsoft.com/web/packages/afex/vignettes/afex_anova_example.html), [PDF of drawing](/content/Singmann_Klauer2011_E2-Hasse_diagram.pdf), [code](/content/11-mixed_a.R))
+    -   Analysis of data from Table 18.3 of Keppel & Wickens (2004) ([download code](content/11-two-factor_within-subject.R))
 
 ## References
 
