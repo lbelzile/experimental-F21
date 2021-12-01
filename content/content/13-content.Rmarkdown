@@ -1,0 +1,80 @@
+---
+title: "Multivariate analysis of variance"
+linktitle: "13: Multivariate analysis of variance"
+date: "2021-11-29"
+start_date: "2021-11-29"
+end_date: "2021-12-03"
+menu:
+  content:
+    parent: Course content
+    weight: 13
+type: docs
+toc: true
+bibliography: "../../static/bib/references.bib"
+csl: "../../static/bib/apa.csl"
+slides: "13-slides"
+---
+
+
+
+## Learning objectives
+
+At the end of the session, students should be capable of
+
+- determining when a multivariate analysis is adequate
+- interpreting MANOVA tests
+- conducting suitable post-hoc analyses
+- listing the benefits and drawback of the multivariate approach
+
+
+
+```{r slides-videos, echo=FALSE, include=FALSE}
+source(here::here("R", "slide-tabs.R"))
+source(here::here("R", "youtube-playlist.R"))
+
+playlist_id <- ""
+
+slide_details <- tibble::tribble(
+  ~youtube_id,   ~title, ~slide, ~active,
+  "", "Introduction", "1", TRUE,
+  "", "MANOVA", "manova", FALSE,
+)
+```
+
+## Slides
+
+The slides for today's lesson are available online as an HTML file. Use the buttons below to open the slides either as an interactive website or as a static PDF (for printing or storing for later). You can also click in the slides below and navigate through them with your left and right arrow keys.
+
+`r blogdown::shortcode("slide-buttons")`
+
+```{r show-slide-tabs, echo=FALSE, results="asis"}
+slide_tabs(slide_details, "/slides/13-slides.html")
+```
+
+
+<!--
+## Videos
+
+```{r show-youtube-list, echo=FALSE, results="asis"}
+youtube_list(slide_details, playlist_id)
+```
+-->
+
+## Readings
+
+- Chapter 6 of @Hair:2019
+- @Grice/Iwasaki:2007
+
+## Complementary readings
+
+- @Smith/Lamb/Henson:2020
+
+## In-class
+
+- MANOVA slides
+- Recap of course content
+- Practice final exam
+
+
+
+## References
