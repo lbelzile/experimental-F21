@@ -4,7 +4,7 @@
     <title>Multivariate analysis of variance</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-12-01" />
+    <meta name="date" content="2021-12-02" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -23,6 +23,8 @@
     <script src="libs/freezeframe-5.0.2/freezeframe.min.js"></script>
     <script src="libs/xaringanExtra-freezeframe-0.0.1/freezeframe-init.js"></script>
     <script id="xaringanExtra-freezeframe-options" type="application/json">{"selector":"img[src$=\"gif\"]","trigger":"click","overlay":false,"responsive":true,"warnings":true}</script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/ath-slides.css" type="text/css" />
     <link rel="stylesheet" href="css/ath-inferno-fonts.css" type="text/css" />
     <link rel="stylesheet" href="css/animate.css" type="text/css" />
@@ -52,13 +54,249 @@ HEC Montréal
 ---
 
 layout: false
-name: dag
+name: manova
 class: center middle section-title section-title-1
 
 # Multivariate analysis of variance
 
 ---
 
+layout: true
+class: title title-1
+
+
+
+---
+# Motivational example
+
+From Anandarajan et al. (2002), Canadian Accounting Perspective
+
+
+&gt; This study questions whether the current or proposed Canadian standard of disclosing a going-concern contingency is viewed as equivalent to the standard adopted in the United States by financial statement users. We examined loan officers’ perceptions across three different formats
+
+
+---
+
+# Alternative going-concern reporting formats
+
+Bank loan officers were selected as the appropriate financial statement users for this study. 
+
+Experiment was conducted on the user’s interpretation of a
+going-concern contingency when it is provided in one of three
+disclosure formats:
+
+1. Integrated note (Canadian standard)
+2. Stand-alone note (Proposed standard)
+3. Stand-alone note plus modified report with explanatory
+paragraph (standard adopted in US and other countries)
+
+---
+# Multivariate response
+
+![](img/13/questionnaire.png)
+
+
+---
+
+# Why use MANOVA?
+
+1. Control experimentwise error
+  - do a single test, reduces type I error
+2. Detect differences in combination that would not be found with univariate tests
+3. Increase power (context dependent)
+
+---
+
+
+# Multivariate model
+Postulate the following model:
+`$$\boldsymbol{Y}_{ij} \sim \mathsf{No}_p(\boldsymbol{\mu}_j, \boldsymbol{\Sigma}), \qquad j = 1, \ldots J$$`
+
+Each response `\(\boldsymbol{Y}_{ij}\)` is `\(p\)`-dimensional.
+
+.small[
+
+We assume multivariate measurements are independent of one another, with
+
+- the same distribution
+- same covariance matrix `\(\boldsymbol{\Sigma}\)`
+- same mean vector `\(\boldsymbol{\mu}_j\)`  within each `\(j=1, \ldots, J\)` experimental groups.  
+   - (randomization)
+
+]
+
+The model is fitted using multivariate linear regression.
+
+---
+# Model assumptions
+
+.box-inv-1[The more complex the model, the more assumptions...]
+
+
+Same as ANOVA, with in addition
+
+
+- The data follow a multivariate normal distribution 
+  - Shapiro–Wilk test, univariate QQ-plots
+- The covariance matrix is the same for all subjects
+  - Box's `\(M\)` test is often used, but highly sensitive to departures from the null (other assumptions impact the test)
+
+Normality matters more in small samples.
+
+---
+# When to use MANOVA?
+
+In addition, for this model to make sense, you need just enough correlation (Goldilock principle)
+
+ - if correlation is weak, use univariate analyses 
+   - (no gain from multivariate approach)
+   - less power due to additional covariance parameter estimation
+ - if correlation is too strong, redundancy
+    - don't use Likert scales that measure a similar dimension
+
+.box-inv-1[Only combine elements that theoretically or conceptually make sense together.]
+
+---
+# Testing equality of mean vectors
+
+The null hypothesis is `\(\mathscr{H}_0: \boldsymbol{\mu}_1 = \cdots = \boldsymbol{\mu}_J\)` against the alternative that at least one vector is diffferent from the rest. The null imposes `\((J-1) \times p\)` restrictions on the parameters.
+
+With `\(J=2\)` (bivariate), the MANOVA test finds the best composite score with weights for `\(Y_{i1}\)` and `\(Y_{i2}\)` that maximizes the value of the `\(t\)`-test.
+
+The null distribution is Hotelling's `\(T^2\)`, but a modifification of the test statistic can be approximated by a `\(F\)` distribution.
+
+
+---
+# Choice of test statistic
+
+In higher dimensions, with `\(J \geq 3\)`, there are many statistics that can be used to test equality of mean.
+
+The statistics are constructed from within/between sum covariance matrices.
+
+These are
+
+- Roy's largest root (most powerful provided all assumptions hold)
+- Wilk's `\(\Lambda\)`: most powerful, most commonly used
+- **Pillai's trace**: most robust choice for departures from normality or equality of covariance matrices
+
+Most give similar conclusion, and they are all equivalent with `\(J=2\)`.
+
+
+---
+
+# Sample size for MANOVA
+
+The number of observations must be sufficiently large to estimate all covariance parameters and mean parameters.
+
+
+To achieve a power of 80%, need the following number of replicates **per group**.
+.small[
+
+&lt;table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="empty-cells: hide;" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #111111; margin-bottom: -1px; "&gt;3 groups&lt;/div&gt;&lt;/th&gt;
+&lt;th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #111111; margin-bottom: -1px; "&gt;4 groups&lt;/div&gt;&lt;/th&gt;
+&lt;th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #111111; margin-bottom: -1px; "&gt;5 groups&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; effect size \ p &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 8 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 6 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 8 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; very large &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; large &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 34 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; medium &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 56 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 64 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 76 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; small &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 125 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 145 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 160 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 115 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 145 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 165 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 185 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 170 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 230 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+.small[
+Laüter, J. (1978), Sample size requirements for the `\(T^2\)` test of MANOVA (tables for one-way classification). *Biometrical Journal*, **20**, 389-406.
+]
+
+???
+You can use G*Power software for power calculations.
+
+
+---
+# Post hoc testing
+
+Researchers often conduct *post hoc* univariate tests using univariate ANOVA.
+
+This is suboptimal, rather proceed with descriptive discriminant analysis.
+
+This method tries to find the combinations of the mean that provides the best difference between the difference groups.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

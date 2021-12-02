@@ -58,10 +58,176 @@ HEC Montréal
 ---
 
 layout: false
-name: dag
+name: manova
 class: center middle section-title section-title-1
 
 # Multivariate analysis of variance
 
 ---
 
+layout: true
+class: title title-1
+
+
+
+---
+# Motivational example
+
+From Anandarajan et al. (2002), Canadian Accounting Perspective
+
+
+> This study questions whether the current or proposed Canadian standard of disclosing a going-concern contingency is viewed as equivalent to the standard adopted in the United States by financial statement users. We examined loan officers’ perceptions across three different formats
+
+
+---
+
+# Alternative going-concern reporting formats
+
+Bank loan officers were selected as the appropriate financial statement users for this study. 
+
+Experiment was conducted on the user’s interpretation of a
+going-concern contingency when it is provided in one of three
+disclosure formats:
+
+1. Integrated note (Canadian standard)
+2. Stand-alone note (Proposed standard)
+3. Stand-alone note plus modified report with explanatory
+paragraph (standard adopted in US and other countries)
+
+---
+# Multivariate response
+
+![](img/13/questionnaire.png)
+
+
+---
+
+# Why use MANOVA?
+
+1. Control experimentwise error
+  - do a single test, reduces type I error
+2. Detect differences in combination that would not be found with univariate tests
+3. Increase power (context dependent)
+
+---
+
+
+# Multivariate model
+Postulate the following model:
+$$\boldsymbol{Y}_{ij} \sim \mathsf{No}_p(\boldsymbol{\mu}_j, \boldsymbol{\Sigma}), \qquad j = 1, \ldots J$$
+
+Each response $\boldsymbol{Y}_{ij}$ is $p$-dimensional.
+
+.small[
+
+We assume multivariate measurements are independent of one another, with
+
+- the same distribution
+- same covariance matrix $\boldsymbol{\Sigma}$
+- same mean vector $\boldsymbol{\mu}_j$  within each $j=1, \ldots, J$ experimental groups.  
+   - (randomization)
+
+]
+
+The model is fitted using multivariate linear regression.
+
+---
+# Model assumptions
+
+.box-inv-1[The more complex the model, the more assumptions...]
+
+
+Same as ANOVA, with in addition
+
+
+- The data follow a multivariate normal distribution 
+  - Shapiro–Wilk test, univariate QQ-plots
+- The covariance matrix is the same for all subjects
+  - Box's $M$ test is often used, but highly sensitive to departures from the null (other assumptions impact the test)
+
+Normality matters more in small samples.
+
+---
+# When to use MANOVA?
+
+In addition, for this model to make sense, you need just enough correlation (Goldilock principle)
+
+ - if correlation is weak, use univariate analyses 
+   - (no gain from multivariate approach)
+   - less power due to additional covariance parameter estimation
+ - if correlation is too strong, redundancy
+    - don't use Likert scales that measure a similar dimension
+
+.box-inv-1[Only combine elements that theoretically or conceptually make sense together.]
+
+---
+# Testing equality of mean vectors
+
+The null hypothesis is $\mathscr{H}_0: \boldsymbol{\mu}_1 = \cdots = \boldsymbol{\mu}_J$ against the alternative that at least one vector is diffferent from the rest. The null imposes $(J-1) \times p$ restrictions on the parameters.
+
+With $J=2$ (bivariate), the MANOVA test finds the best composite score with weights for $Y_{i1}$ and $Y_{i2}$ that maximizes the value of the $t$-test.
+
+The null distribution is Hotelling's $T^2$, but a modifification of the test statistic can be approximated by a $F$ distribution.
+
+
+---
+# Choice of test statistic
+
+In higher dimensions, with $J \geq 3$, there are many statistics that can be used to test equality of mean.
+
+The statistics are constructed from within/between sum covariance matrices.
+
+These are
+
+- Roy's largest root (most powerful provided all assumptions hold)
+- Wilk's $\Lambda$: most powerful, most commonly used
+- **Pillai's trace**: most robust choice for departures from normality or equality of covariance matrices
+
+Most give similar conclusion, and they are all equivalent with $J=2$.
+
+
+---
+
+# Sample size for MANOVA
+
+The number of observations must be sufficiently large to estimate all covariance parameters and mean parameters.
+
+
+To achieve a power of 80%, need the following number of replicates **per group**.
+.small[
+
+```{r tablepowersamplesize, echo = FALSE, eval = TRUE, output = "asis"}
+library(tidyverse)
+tab <- data.frame(
+n = c(13,16,18,21,26,33,38,42,44,56,66,72,98,125,145,160,14,18,21,23,29,37,44,48,50,64,74,84,115,145,165,185,16,21,24,27,34,44,52,58,60,76,90,100,135,170,200,230),
+ngroups = factor(rep(3:5, each = 16)),
+ndep = factor(rep(c(2L,4L,6L,8L), length.out = 3*16)),
+effects = factor(rep(rep(c("very large", "large", "medium", "small"), each = 4), length.out = 3*16))
+)
+
+tab_pivot <- tab %>% pivot_wider(values_from = "n", 
+                    names_from = c("ndep","ngroups"))
+library(kableExtra)
+kbl(tab_pivot,
+    col.names = c("effect size \\ p",rep(c("2","4","6","8"), length.out = 12))) %>%
+  kable_classic() %>%
+  add_header_above(c(" " = 1, "3 groups" = 4, "4 groups" = 4, "5 groups" = 4))
+```
+
+]
+.small[
+Laüter, J. (1978), Sample size requirements for the $T^2$ test of MANOVA (tables for one-way classification). *Biometrical Journal*, **20**, 389-406.
+]
+
+???
+You can use G*Power software for power calculations.
+
+
+---
+# Post hoc testing
+
+Researchers often conduct *post hoc* univariate tests using univariate ANOVA.
+
+This is suboptimal, rather proceed with descriptive discriminant analysis.
+
+This method tries to find the combinations of the mean that provides the best difference between the difference groups.

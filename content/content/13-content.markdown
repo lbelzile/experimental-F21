@@ -82,7 +82,7 @@ You can also watch the playlist (and skip around to different sections) here:
 
 ## Readings
 
--   Chapter 6 of Hair et al. (2019)
+-   Chapter 6 of Hair et al. (2009) (avoid the eight edition)
 -   Grice & Iwasaki (2007)
 
 ## Complementary readings
@@ -92,6 +92,7 @@ You can also watch the playlist (and skip around to different sections) here:
 ## In-class
 
 -   MANOVA slides
+-   [Code](/content/13-slides.R) for the example in the slides (Anandarajan et al., 2002) (simulated data)
 -   Recap of course content
 -   Practice final exam
 
@@ -99,15 +100,21 @@ You can also watch the playlist (and skip around to different sections) here:
 
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 
+<div id="ref-Anandarajan:2002" class="csl-entry">
+
+Anandarajan, A., Viger, C., & Curatola, A. P. (2002). An experimental investigation of alternative going-concern reporting formats: A Canadian experience\*. *Canadian Accounting Perspectives*, *1*(2), 141–162. https://doi.org/<https://doi.org/10.1506/5947-NQTC-C3Y5-H46N>
+
+</div>
+
 <div id="ref-Grice/Iwasaki:2007" class="csl-entry">
 
 Grice, J. W., & Iwasaki, M. (2007). A truly multivariate approach to MANOVA. *Applied Multivariate Research*, *12*, 199–226. <https://psychology.okstate.edu/faculty/jgrice/personalitylab/Grice_Iwasaki_AMR.pdf>
 
 </div>
 
-<div id="ref-Hair:2019" class="csl-entry">
+<div id="ref-Hair:2009" class="csl-entry">
 
-Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2019). *Multivariate data analysis* (8th ed.). Cengage.
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2009). *Multivariate data analysis* (7th ed.). Prentice Hall.
 
 </div>
 
