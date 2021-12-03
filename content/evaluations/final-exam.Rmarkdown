@@ -12,7 +12,7 @@ weight: 1
 
 The final is a 180 minutes closed-book examination covering all of the material.
 
-The exam format is the following:
+The exam format is:
 
 - One question on the fundamentals of experimental designs (blocking, randomization, etc.)
 - One question on reproducibility

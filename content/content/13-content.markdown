@@ -94,7 +94,7 @@ You can also watch the playlist (and skip around to different sections) here:
 -   MANOVA slides
 -   [Code](/content/13-slides.R) for the example in the slides (Anandarajan et al., 2002) (simulated data)
 -   Recap of course content
--   Practice final exam
+-   [Practice final exam](/evaluations/final-exam/)
 
 ## References
 
@@ -102,7 +102,7 @@ You can also watch the playlist (and skip around to different sections) here:
 
 <div id="ref-Anandarajan:2002" class="csl-entry">
 
-Anandarajan, A., Viger, C., & Curatola, A. P. (2002). An experimental investigation of alternative going-concern reporting formats: A Canadian experience\*. *Canadian Accounting Perspectives*, *1*(2), 141–162. https://doi.org/<https://doi.org/10.1506/5947-NQTC-C3Y5-H46N>
+Anandarajan, A., Viger, C., & Curatola, A. P. (2002). An experimental investigation of alternative going-concern reporting formats: A Canadian experience. *Canadian Accounting Perspectives*, *1*(2), 141–162. https://doi.org/<https://doi.org/10.1506/5947-NQTC-C3Y5-H46N>
 
 </div>
 
