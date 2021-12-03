@@ -36,7 +36,7 @@ Based on the description of this mixed model analysis of variance, draw a Hasse 
 3.  the number of levels and the degrees of freedom associated to each factors
 4.  interactions that could be fitted based on the data collected
 5.  the adequate source of variation for testing
-    1.  the mean effect of subtask order
+    1.  the main effect of subtask order
     2.  the interaction between grade and sex
 
 Justify your answers, possibly quoting the paper.

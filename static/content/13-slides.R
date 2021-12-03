@@ -4,28 +4,33 @@ url <- "https://edsm.rbind.io/data/Anandarajan2002_fake.csv"
 # Cast 'format' to categorical
 # Create dummy for 
 data <- read.csv(file = url) %>%
-  mutate(format = factor(format),
-         id = 1:n())
+  mutate(format = factor(format))
+# Check format of data
+str(data)
 
 # Check for balance
 xtabs(~ format, data = data)
-# Nope (matters for power)
-# But here we have a single factor
+# Nope (need roughly balanced data for good power)
 
-str(data)
-options(contrast = c("contr.sum", "contr.poly"))
+# Sum-to-zero parametrization
+options(contrasts = c("contr.sum", "contr.poly"))
 # Fit a multivariate linear model
+# bind columns on the left for the response
 model <- manova(cbind(prime, debt, profitability) ~ format, 
             data = data)
+# Check whether there is sufficient correlation
+cor(resid(model))
 # Print all coefficients
 dummy.coef(model)
 # Create MANOVA table
 # Pick a test statistic among 
 # "Pillai", "Wilks", "Hotelling-Lawley", "Roy"
 summary(model, test = "Pillai")
+# Pillai's trace is more robust to departures from the null hypothesis
 
 # The multivariate linear model is also properly
-# handled using 'anova'
+# handled using 'anova' when fitted with 'lm' 
+# (synonym with previous) 'manova' command
 anova(lm(cbind(prime, debt, profitability) ~ format, 
          data = data))
 # Effect size

@@ -19,11 +19,11 @@ The exam format is:
 - One questions on key concepts (power, effect size, multiple testing)
 - One question on advanced topics (mixed models, causal inference and mediation analysis, MANOVA, etc.)
 - Two data analysis questions, using completely randomized or blocked designs (between-subjects or within-subject) with multi-way analysis of variance, ANCOVA, mixed model, with specific questions on various aspects including 
-  - calculation of test statistics
+  - parametrization of ANOVA
   - adequate setup of model
   - interaction plots 
   - use of different tests and methods
-  - calculation of degrees of the model
+  - calculation of degrees of freedom of the model / sample size
   - conclusions related to output of tests
   - interpretation of effect sizes
   - contrasts
