@@ -163,11 +163,11 @@ In addition, for this model to make sense, you need just enough correlation (Gol
 ---
 # Testing equality of mean vectors
 
-The null hypothesis is $\mathscr{H}_0: \boldsymbol{\mu}_1 = \cdots = \boldsymbol{\mu}_J$ against the alternative that at least one vector is diffferent from the rest. The null imposes $(J-1) \times p$ restrictions on the parameters.
+The null hypothesis is $\mathscr{H}_0: \boldsymbol{\mu}_1 = \cdots = \boldsymbol{\mu}_J$ against the alternative that at least one vector is different from the rest. The null imposes $(J-1) \times p$ restrictions on the parameters.
 
 With $J=2$ (bivariate), the MANOVA test finds the best composite score with weights for $Y_{i1}$ and $Y_{i2}$ that maximizes the value of the $t$-test.
 
-The null distribution is Hotelling's $T^2$, but a modifification of the test statistic can be approximated by a $F$ distribution.
+The null distribution is Hotelling's $T^2$, but a modification of the test statistic can be approximated by a $F$ distribution.
 
 
 ---

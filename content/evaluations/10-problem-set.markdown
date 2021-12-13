@@ -27,8 +27,10 @@ The DOI of the two articles are provided in the References section.
 
 Flavell et al. (1966) consider the verbal production of children asked to perform a memorization task. The kids were recruited from three grades (kindergarden, second and fifth grades) and each student is presented with three subtasks (delayed recall, immediate recall, or point and name).
 
-The study enrolled 60 public school children, 20 per age group with an equal number of boys and girls. The authors looked into the potential for crossover effects (increased recall over time). Suppose we want to test next whether mean recall score by subtask depends on the subtask order (Tables 4 and 5, pp. 294–295) in which they are administered. The subtasks were balanced with half of the participants (per sex and grade) receiving the subtasks with immediate recall (`IR`) followed by direct recall (`DR`); the second group received them in the opposite order. Both ended with the point and name subtask.
-
+The study enrolled 60 public school children, 20 per age group with an equal number of boys and girls. Table 5 on p. 295 shows the final ANOVA table accounting for the design.
+<!--
+in which they are administered. The subtasks were balanced with half of the participants (per sex and grade) receiving the subtasks with immediate recall (`IR`) followed by direct recall (`DR`); the second group received them in the opposite order. Both ended with the point and name subtask.
+-->
 Based on the description of this mixed model analysis of variance, draw a Hasse diagram and determine
 
 1.  sources of variance (experimental factors) and levels of those variables
@@ -36,7 +38,7 @@ Based on the description of this mixed model analysis of variance, draw a Hasse 
 3.  the number of levels and the degrees of freedom associated to each factors
 4.  interactions that could be fitted based on the data collected
 5.  the adequate source of variation for testing
-    1.  the mean effect of subtask order
+    1.  the main effect of subtask
     2.  the interaction between grade and sex
 
 Justify your answers, possibly quoting the paper.
