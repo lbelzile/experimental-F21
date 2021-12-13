@@ -17,7 +17,17 @@ data <- read_csv("https://edsm.rbind.io/data/MaglioPolman2014S1.csv",
 # A 5x2 factorial design (two-way ANOVA)
 options(contrasts = c("contr.sum", "contr.poly"))
 model <- lm(distance ~ station*direction, data = data)
-summary(model)
+# List coefficients 
+# (global mean mu, deviation by station, etc.)
+dummy.coef(model)
+# The missing coefficients can be deduced 
+# from the sum-to-zero constraint, e.g.,
+# the coefficient for Sherbourne station is
+# 0.7254515 = -0.4877592 + 0.4545485 + 0.7586622
+# Sherbourne = - Spadina - St. George - Bloor-Yonge
+
+
+
 car::Anova(model, type = "3")
 
 # Interaction plot 

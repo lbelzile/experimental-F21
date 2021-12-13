@@ -259,7 +259,7 @@ kableExtra::row_spec(2, bold = TRUE, color = "black", background = "yellow")
 ]
 .pull-right.small[
 ```{r ancova3c, echo = FALSE, eval = TRUE}
-kableExtra::kable(jtools::tidy(car::Anova(model2, model1, type = 3)), 
+kableExtra::kable(jtools::tidy(car::Anova(model2, type = 3)), 
 		 col.names = c("term",
 			 "sum of squares",
 			 "df",

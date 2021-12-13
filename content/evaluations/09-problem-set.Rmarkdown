@@ -18,7 +18,7 @@ csl: "../../static/bib/apa.csl"
 
 Complete this assignment in teams of 2 to 4 students. Submit a single PDF report per group and indicate the name of your other teammates.
 
-We consider Study 2 of @Bobak:2019; @Bobak:2019; see [paper](https://doi.org/10.1186/s41235-019-0174-3) and [helper code](/content/10-repeated-measures.R). Perform a repeated measure ANOVA with `color` as within-factor.
+We consider Study 2 of @Bobak:2019; see [paper](https://doi.org/10.1186/s41235-019-0174-3) and [helper code](/content/10-repeated-measures.R). Perform a repeated measure ANOVA with `color` as within-factor.
 
 1. Model diagnostics
    - Produce normal quantile-quantile plots of the random effects and of the residuals. Comment on the assumption in light of the graphical diagnostics.

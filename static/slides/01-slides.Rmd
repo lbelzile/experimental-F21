@@ -545,8 +545,8 @@ class: title title-2
 
 ???
 
-Control: Control for the (potential) effect of variables other than the ones directly being studied.
-2. Randomize: Randomly assign subjects to treatments, and randomly sample from the population whenever possible.
+1. Control: experimenter decides on allocation of units to treatment
+2. Randomize: randomly assign subjects to treatments, and randomly sample from the population to account for confounding, i.e.,  (potential) effect of variables other than the ones directly being studied get averaged out.
 3. Replicate: Within a study, replicate by collecting a sufficiently large
 sample. Or replicate the entire study.
 4. Block: If there are variables that are known or suspected to affect the response variable, first group subjects into blocks based on
