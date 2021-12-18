@@ -4,7 +4,7 @@
     <title>Causal mediation</title>
     <meta charset="utf-8" />
     <meta name="author" content="Léo Belzile" />
-    <meta name="date" content="2021-11-28" />
+    <meta name="date" content="2021-12-18" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
@@ -720,7 +720,7 @@ This can be generalized for continuous `\(X\)` to any pair of values `\((x_1, x_
 ---
 # Average controlled direct effect
 
-`$$\begin{align*}\textsf{CDE}(m, x, x^*) &amp;= \mathsf{E}[Y \mid \text{do}(X=x, m=m)] - \mathsf{E}[Y \mid \text{do}(X=x^*m, m=m) \\&amp;= \mathsf{E}(Y_{x, m} -Y_{x^*, m}) \end{align*}$$`
+`$$\begin{align*}\textsf{CDE}(m, x, x^*) &amp;= \mathsf{E}[Y \mid \text{do}(X=x, m=m)] - \mathsf{E}[Y \mid \text{do}(X=x^*, m=m) \\&amp;= \mathsf{E}(Y_{x, m} -Y_{x^*, m}) \end{align*}$$`
 Expected population change in response when the experimental factor changes from `\(x\)` to `\(x^*\)` and the mediator is set to a fixed value `\(m\)`.
 
 ---
@@ -831,9 +831,9 @@ compute the `\(\alpha/2\)` and `\(1-\alpha/2\)` empirical quantiles.
 
 Compute the sample proportion of bootstrap statistics `\(S^{(1)}, \ldots, S^{(B)}\)` that are larger/smaller than zero. 
 
-If $S^{(M)} &lt; 0 \leq S^{(M+1)}$$ for `\(1 \leq M \leq B\)`.
+If `\(S^{(M)} &lt; 0 \leq S^{(M+1)}\)` for `\(1 \leq M \leq B\)`.
 
-$$p = $2\min\{M/B, 1-M/B\}$$
+`$$p = 2\min\{M/B, 1-M/B\}$$`
 
 and zero otherwise
 ]

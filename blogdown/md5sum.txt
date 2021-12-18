@@ -25,7 +25,7 @@
 "content/evaluations/09-problem-set.Rmarkdown" "4b3105be3be1dc1efe94ed640d78fd84"
 "content/evaluations/10-problem-set.Rmarkdown" "592c18408b21c0f04a9c0e1757df0e58"
 "content/evaluations/11-problem-set.Rmarkdown" "d08965e0b9c109fb618f1170de56e411"
-"content/evaluations/critical-review.Rmarkdown" "15e0426cefdea268d89e2681df87edb2"
+"content/evaluations/critical-review.Rmarkdown" "12083670cd5bd0caf65fc00f121dc8a7"
 "content/evaluations/final-exam.Rmarkdown" "e56b7c627e54316ce0545b32b0bd6b2c"
 "content/evaluations/weekly-check-in.Rmarkdown" "a536b635ecce5c45618e3d17620e3189"
 "content/example/_index.Rmarkdown" "d95a3518c8d1828609d678bff4f8ae15"
