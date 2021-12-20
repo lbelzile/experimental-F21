@@ -55,7 +55,7 @@ Note that many element of your review may be positive if the paper has already b
 
 <div id="ref-Campion:1993" class="csl-entry">
 
-Campion, M. A. (1993). Article review checklist: A criterion checklist for reviewing research articles in applied psychology. *Personnel Psychology*, *46*(3), 705–718. https://doi.org/<https://doi.org/10.1111/j.1744-6570.1993.tb00896.x>
+Campion, M. A. (1993). Article review checklist: A criterion checklist for reviewing research articles in applied psychology. *Personnel Psychology*, *46*(3), 705–718. <https://hecmontreal.on.worldcat.org/oclc/4631220958>
 
 </div>
 
